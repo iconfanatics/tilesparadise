@@ -125,6 +125,196 @@ You can learn more about this (and learn how to cleanly revert these changes) at
 {%- endif -%}
   {% endif %}
 {% endunless %}
+
+<style>
+/* Overall Container */
+.faq {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Category Headings */
+.faq__group-title {
+  font-family: var(--heading-font-family) !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: #1a1a1a !important;
+  margin: 50px 0 25px 0 !important;
+  text-align: left !important;
+  border-bottom: 2px solid #eaeaea !important;
+  padding-bottom: 12px !important;
+}
+.faq__group:first-of-type .faq__group-title {
+  margin-top: 20px !important;
+}
+
+/* FAQ Cards */
+.faq__item {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.04) !important;
+  margin-bottom: 16px !important;
+  border: 1px solid #f0f0f0 !important;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
+  overflow: hidden !important;
+}
+.faq__item:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important;
+  border-color: #1e73be !important;
+}
+
+/* Question Button */
+.faq__question {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 22px 25px !important;
+  font-family: var(--base-font-family) !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+  background: transparent !important;
+  text-align: left !important;
+  transition: color 0.2s ease !important;
+  border: none !important;
+}
+.faq__question:hover,
+.faq__question[aria-expanded="true"] {
+  color: #1e73be !important;
+}
+
+/* Answer Area */
+.faq__answer {
+  padding: 0 25px 25px 25px !important;
+  font-size: 16px !important;
+  color: #555 !important;
+  line-height: 1.6 !important;
+  border-top: none !important;
+}
+.faq__answer p {
+  margin-bottom: 10px !important;
+}
+.faq__answer p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Contact Info Section Redesign (Any question?) */
+.faq__contact-info {
+  background: #f8f9fa !important;
+  border-radius: 16px !important;
+  padding: 50px 40px !important;
+  margin-top: 60px !important;
+  text-align: center !important;
+  border: 1px solid #eaeaea !important;
+}
+
+.faq__contact-info .page__title {
+  font-family: var(--heading-font-family) !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: #1a1a1a !important;
+  margin-bottom: 15px !important;
+  letter-spacing: -0.5px !important;
+}
+
+.faq__contact-info .page__description {
+  font-size: 16px !important;
+  color: #555 !important;
+  max-width: 600px !important;
+  margin: 0 auto 40px auto !important;
+  line-height: 1.5 !important;
+}
+
+/* Contact Cards */
+.faq__contact-info .text-with-icons {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 20px !important;
+  flex-wrap: wrap !important;
+  margin: 0 !important;
+}
+
+.faq__contact-info .text-with-icons__item {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 30px 20px !important;
+  width: calc(50% - 10px) !important;
+  min-width: 250px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
+  border: 1px solid #f0f0f0 !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.faq__contact-info .text-with-icons__item:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06) !important;
+  border-color: #1e73be !important;
+}
+
+.faq__contact-info .text-with-icons__icon-wrapper {
+  color: #1e73be !important;
+  background: #f0f7ff !important;
+  width: 65px !important;
+  height: 65px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 20px !important;
+  border: none !important;
+}
+
+.faq__contact-info .text-with-icons__icon-wrapper svg {
+  width: 28px !important;
+  height: 28px !important;
+  stroke-width: 2px !important;
+}
+
+.faq__contact-info .text-with-icons__title {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  margin-bottom: 10px !important;
+}
+
+.faq__contact-info .text-with-icons__content p {
+  font-size: 15px !important;
+  color: #666 !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+  .faq__group-title {
+    font-size: 26px !important;
+    margin: 40px 0 20px 0 !important;
+  }
+  .faq__question {
+    font-size: 16px !important;
+    padding: 18px 20px !important;
+  }
+  .faq__answer {
+    padding: 0 20px 20px 20px !important;
+    font-size: 15px !important;
+  }
+  .faq__contact-info {
+    padding: 35px 20px !important;
+    margin-top: 40px !important;
+  }
+  .faq__contact-info .page__title {
+    font-size: 26px !important;
+  }
+  .faq__contact-info .text-with-icons__item {
+    width: 100% !important;
+  }
+}
+</style>
+
 {% schema %}
 {
   "name": "FAQ",

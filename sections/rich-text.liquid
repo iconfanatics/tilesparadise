@@ -27,6 +27,114 @@
       {%- endif -%}
     </div>
   </div>
+  
+  {%- if section.settings.custom_class contains 'reviews-custom-header' -%}
+    <style>
+      /* Hide the default section title since it's now beautifully styled inside the RTE content */
+      .reviews-custom-header .heading.h1 {
+        display: none !important;
+      }
+      
+      .reviews-custom-header {
+        padding-top: 65px !important;
+        padding-bottom: 45px !important;
+        background: #fafafa !important;
+        border-top: 1px solid #eaeaea;
+      }
+
+      .reviews-custom-header .rte {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      /* Floating Rating Pill (First Paragraph) */
+      .reviews-custom-header .rte > p:first-of-type {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #ffffff;
+        padding: 8px 18px 9px;
+        border-radius: 100px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        margin-bottom: 24px;
+        border: 1px solid #f0f0f0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .reviews-custom-header .rte > p:first-of-type:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      }
+
+      .reviews-custom-header .rte > p:first-of-type em {
+        color: #00b67a; /* Premium Trustpilot Green */
+        font-size: 22px;
+        line-height: 1;
+        letter-spacing: 2px;
+        margin-top: -2px;
+        font-style: normal;
+      }
+
+      .reviews-custom-header .rte > p:first-of-type strong {
+        font-weight: 800;
+        font-size: 16px;
+        color: #1a1a1a;
+        margin-left: 2px;
+        line-height: 1;
+      }
+
+      /* Massive, Bold Trustworthy Title */
+      .reviews-custom-header .rte h2 {
+        font-family: var(--heading-font-family) !important;
+        font-size: 44px !important;
+        font-weight: 800 !important;
+        color: #1a1a1a !important;
+        margin: 0 0 16px 0 !important;
+        letter-spacing: -1.2px !important;
+        line-height: 1.1 !important;
+        text-transform: none !important;
+      }
+
+      /* Elegant Subtitle */
+      .reviews-custom-header .rte > p:last-of-type {
+        font-size: 18px !important;
+        color: #555 !important;
+        font-weight: 500 !important;
+        max-width: 620px !important;
+        margin: 0 auto !important;
+        line-height: 1.5 !important;
+      }
+      
+      @media screen and (max-width: 768px) {
+        .reviews-custom-header {
+          padding-top: 45px !important;
+          padding-bottom: 25px !important;
+        }
+        .reviews-custom-header .rte h2 {
+          font-size: 32px !important;
+          letter-spacing: -0.5px !important;
+          margin-bottom: 12px !important;
+        }
+        .reviews-custom-header .rte > p:last-of-type {
+          font-size: 16px !important;
+          padding: 0 15px;
+        }
+        .reviews-custom-header .rte > p:first-of-type {
+          padding: 6px 14px 7px;
+          margin-bottom: 20px;
+        }
+        .reviews-custom-header .rte > p:first-of-type em {
+          font-size: 18px;
+        }
+        .reviews-custom-header .rte > p:first-of-type strong {
+          font-size: 14px;
+        }
+      }
+    </style>
+  {%- endif -%}
 </section>
 
 {% schema %}

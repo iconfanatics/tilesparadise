@@ -58,6 +58,33 @@
         opacity: 1;
         transform: translateX(0);
       }
+      
+      /* Center align the collection boxes explicitly for Shop Bathrooms */
+      .shop-bathrooms-sec .scroller__inner,
+      .shop-bathrooms-sec .collection-list {
+        display: flex !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 30px !important;
+        width: 100% !important;
+      }
+      .shop-bathrooms-sec .collection-item {
+        width: calc(25% - 30px) !important; /* Forces 4 columns on desktop without shrinking */
+        min-width: 160px !important;
+        text-align: center !important;
+        margin: 0 !important;
+      }
+      .shop-bathrooms-sec .collection-item__title {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+      @media screen and (max-width: 768px) {
+        .shop-bathrooms-sec .collection-item {
+          width: calc(50% - 30px) !important; /* 2 columns on mobile */
+        }
+      }
     </style>
 
     {%- if section.settings.custom_class contains 'shop-by-room-grid' -%}

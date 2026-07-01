@@ -346,7 +346,7 @@
         "link": "shopify://collections",
         "round_images": false,
         "show_collection_title": true,
-        "custom_class": "home-shop-by-color-sec"
+        "custom_class": "home-shop-by-color-sec shop-bathrooms-sec"
       }
     },
     "rich_text_NrganX": {
@@ -359,9 +359,9 @@
       "name": "Rich text",
       "settings": {
         "text_width": "wide",
-        "custom_class": "",
+        "custom_class": "reviews-custom-header",
         "title": "Reviews from Customers",
-        "content": "<p>Rated 4.8★ by homeowners across the UK for quality, durability, and style.</p>",
+        "content": "<p><strong>4.8</strong> <em>★★★★★</em></p><h2>Reviews from Customers</h2><p>Rated by homeowners across the UK for quality, durability, and style.</p>",
         "button_text": "",
         "button_link": "shopify://collections/all"
       }
