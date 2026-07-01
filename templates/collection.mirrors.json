@@ -1,0 +1,200 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "4720762a-6b61-48e4-9dae-1e2b9be5db51": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-delivery",
+            "title": "Free Delivery On orders over £499",
+            "content": ""
+          }
+        },
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-returns",
+            "title": "Free Samples On Selected Tiles",
+            "content": ""
+          }
+        },
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-customer-support",
+            "title": "Price Match We'll Beat Any Price",
+            "content": ""
+          }
+        },
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-4": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-secure-payment",
+            "title": "Buy Now, Pay Later Options",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-1",
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-2",
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-3",
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-4"
+      ],
+      "settings": {
+        "stack_mobile": false
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "custom_css": [
+        "button.quic_mod.product-item__action-button.button.button--small.button--ternary.hidden-phone,.product-item .product-form.cst.collect input#add-free-sample {display: none;}"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "collapse_collection_description": true,
+        "collection_image_size": "preserve_ratio",
+        "products_per_row": "3",
+        "default_products_per_page": 48,
+        "default_view_layout": "grid",
+        "show_quick_buy": "list",
+        "show_quick_view": "list_grid",
+        "quick_links": "",
+        "quick_links_show_products_count": true,
+        "show_filters": true,
+        "show_filter_color_swatch": false,
+        "open_group_filters_mode": "all_open"
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
+    },
+    "169974545854ef2da9": {
+      "type": "apps",
+      "blocks": {
+        "c68a5f1e-c45c-4fdc-b2db-75a84b9ff064": {
+          "type": "shopify://apps/vitals/blocks/featured-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "c68a5f1e-c45c-4fdc-b2db-75a84b9ff064"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "faq_6WEje6": {
+      "type": "faq",
+      "blocks": {
+        "question_iEGQNT": {
+          "type": "question",
+          "settings": {
+            "title": "Are LED bathroom mirrors safe to use in bathrooms?",
+            "answer": "<p>Yes. LED bathroom mirrors are specifically designed for bathroom environments and meet UK safety standards. Most models are IP44 rated or higher, making them suitable for use in areas exposed to moisture and humidity.</p>"
+          }
+        },
+        "question_jghtwY": {
+          "type": "question",
+          "settings": {
+            "title": "What does an IP44 rating mean on a bathroom mirror?",
+            "answer": "<p>An IP44 rating means the mirror is protected against water splashes from all directions. This level of protection makes IP44-rated mirrors suitable for use in bathrooms, including near sinks and vanity units.</p>"
+          }
+        },
+        "question_QzYLkk": {
+          "type": "question",
+          "settings": {
+            "title": "Do LED bathroom mirrors include a demister pad?",
+            "answer": "<p>Many LED bathroom mirrors come with a built-in demister pad. When switched on, the demister helps prevent the mirror from steaming up during showers or baths, keeping the surface clear.</p>"
+          }
+        },
+        "question_DiALLU": {
+          "type": "question",
+          "settings": {
+            "title": "How are LED bathroom mirrors powered?",
+            "answer": "<p>Most LED bathroom mirrors are designed to be hardwired into the mains electrical supply. Installation should always be carried out by a qualified electrician to ensure safe and compliant fitting.</p>"
+          }
+        },
+        "question_aGyTFj": {
+          "type": "question",
+          "settings": {
+            "title": "Are LED bathroom mirrors energy efficient?",
+            "answer": "<p>Yes. LED technology is highly energy efficient and uses significantly less electricity than traditional lighting. LED bathroom mirrors provide bright illumination while keeping running costs low.</p>"
+          }
+        },
+        "question_RDXawm": {
+          "type": "question",
+          "settings": {
+            "title": "Can LED bathroom mirrors be installed vertically or horizontally?",
+            "answer": "<p>Many LED bathroom mirrors can be installed in either portrait or landscape orientation, depending on the model. Always check the individual product specifications before installation.</p>"
+          }
+        },
+        "question_Eamqtc": {
+          "type": "question",
+          "settings": {
+            "title": "What is tri-colour (CCT) lighting on LED mirrors?",
+            "answer": "<p>Tri-colour (CCT) lighting allows you to switch between warm white, neutral white, and cool white light. This feature lets you adjust the lighting to suit different tasks, times of day, or personal preference.</p>"
+          }
+        },
+        "question_HHJMV3": {
+          "type": "question",
+          "settings": {
+            "title": "Do LED bathroom mirrors require special maintenance?",
+            "answer": "<p>No. LED bathroom mirrors are low maintenance. Clean the glass with a soft cloth and a non-abrasive cleaner, and avoid using harsh chemicals near electrical components.</p>"
+          }
+        },
+        "question_QDtVfy": {
+          "type": "question",
+          "settings": {
+            "title": "Are LED bathroom mirrors suitable for small bathrooms?",
+            "answer": "<p>Yes. LED bathroom mirrors are ideal for small bathrooms as they combine lighting and a mirror in one unit, helping to save space while making the room feel brighter and more open.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_iEGQNT",
+        "question_jghtwY",
+        "question_QzYLkk",
+        "question_DiALLU",
+        "question_aGyTFj",
+        "question_RDXawm",
+        "question_Eamqtc",
+        "question_HHJMV3",
+        "question_QDtVfy"
+      ],
+      "name": "Frequently Asked Questions",
+      "settings": {
+        "show_contact_info": false,
+        "contact_info_heading": "Any question?",
+        "contact_info_text": "<p>If we still haven't answered your question, you can contact us below and we will get back to you as soon as possible.</p>",
+        "contact_1_icon": "bi-phone",
+        "contact_1_heading": "Customer support",
+        "contact_1_text": "<p>Enter your text here</p>",
+        "contact_2_icon": "bi-email",
+        "contact_2_heading": "Send a message",
+        "contact_2_text": "<p>Enter your text here</p>"
+      }
+    }
+  },
+  "order": [
+    "4720762a-6b61-48e4-9dae-1e2b9be5db51",
+    "main",
+    "recently-viewed-products",
+    "169974545854ef2da9",
+    "faq_6WEje6"
+  ]
+}

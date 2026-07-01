@@ -1,0 +1,115 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "item_byGND8": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Star_36_1.png",
+            "text": "Rated 4.8★ by 1,000+ customers"
+          }
+        },
+        "item_qmAkgN": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/free-shipping-1.png",
+            "text": "Fast, Free Delivery Over £499"
+          }
+        },
+        "item_yWkDXT": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/product-return-1.png",
+            "text": "0% interest-free finance"
+          }
+        }
+      },
+      "block_order": [
+        "item_byGND8",
+        "item_qmAkgN",
+        "item_yWkDXT"
+      ],
+      "settings": {
+        "background": "#000000",
+        "text_color": "#ffffff",
+        "text": "",
+        "text_position": "center",
+        "link": "",
+        "show_newsletter": false,
+        "newsletter_button": "Subscribe & Save",
+        "newsletter_title": "Newsletter",
+        "newsletter_content": "<p>By subscribing, you'll receive exclusive access to our latest news, updates, and special offers.</p>"
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "mega_menu_cMtDFM": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "",
+            "image_1_heading": "Your image",
+            "image_1_text": "Tell your story",
+            "image_1_link": "",
+            "image_2_heading": "Your image",
+            "image_2_text": "Tell your story",
+            "image_2_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_cMtDFM"
+      ],
+      "custom_css": [
+        ".nav-bar__inner {text-align: center;}"
+      ],
+      "settings": {
+        "enable_sticky_header": true,
+        "logo": "shopify://shop_images/Logo-01.png",
+        "logo_max_width": 195,
+        "mobile_logo_max_width": 100,
+        "show_mobile_contact": false,
+        "show_phone_icon": false,
+        "mobile_phone": "07562 758749",
+        "mobile_timing": "Mon-Sat, 8am-6pm",
+        "mobile_icon": "shopify://shop_images/call-icon.png",
+        "show_locale_selector": true,
+        "show_country_selector": false,
+        "navigation_menu": "main-menu",
+        "navigation_mobile_menu": "main-menu",
+        "desktop_navigation_layout": "inline",
+        "desktop_navigation_open_trigger": "click",
+        "show_navigation_social_media": true,
+        "navigation_phone_number": "",
+        "navigation_email": "sales@tilesparadiseuk.com",
+        "show_condensed_search": true,
+        "show_search_filter": false,
+        "search_menu": "",
+        "show_search_menu_title": true
+      }
+    },
+    "176869648164908762": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "176869648164908762"
+  ]
+}

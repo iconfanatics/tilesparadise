@@ -1,0 +1,431 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "text_LqiWTn": {
+          "type": "text",
+          "settings": {
+            "content": "<p>6.5mm Luxury Vinyl Flooring</p>"
+          }
+        },
+        "product_meta": {
+          "type": "product_meta",
+          "settings": {
+            "show_vendor": false,
+            "show_sku": false,
+            "show_reviews_badge": false,
+            "show_share_buttons": false
+          }
+        },
+        "content_Xf3RKN": {
+          "type": "content",
+          "settings": {
+            "title": "",
+            "content": "<p><strong>Free Attached Underlay </strong></p>",
+            "page": "",
+            "display_mode": "show_all"
+          }
+        },
+        "text_E9LVyA": {
+          "type": "text",
+          "settings": {
+            "content": "<p>{{ product.metafields.custom.per_pack_text.value }} </p>"
+          }
+        },
+        "variant_selector": {
+          "type": "variant_selector",
+          "settings": {
+            "selector_mode": "block",
+            "color_mode": "dropdown",
+            "show_quantity_selector": true,
+            "show_taxes_included": false,
+            "show_inventory_quantity": false,
+            "low_inventory_threshold": 100
+          }
+        },
+        "delivery_estimator_app_block_H7eJFc": {
+          "type": "shopify://apps/delivery-estimator/blocks/app-block/2be8f45f-2937-4f60-b6b3-7488e231d668",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "image1": "shopify://shop_images/shopping-bag.png",
+            "image-sample": "shopify://shop_images/cut.png"
+          }
+        },
+        "9d4bfcf6-11bc-449b-8839-fd0dd9450aa9": {
+          "type": "liquid",
+          "settings": {
+            "title": "Product Details",
+            "liquid": "<div class=\"cstm_details\">\n<table>\n{% if product.first_available_variant.sku != blank %}\n<tr><td>SKU </td> \n<td>{{product.first_available_variant.sku}}</td> </tr>{%endif %}\n{% if product.metafields.custom.tile_material != blank %}\n<tr><td> Material</td> <td> {{product.metafields.custom.tile_material}}</td></tr>{%endif%}\n{% if product.metafields.custom.tile_color != blank %}\n<tr><td>Colour</td><td> {{product.metafields.custom.tile_color}}</td></tr>{%endif%}\n{% if product.metafields.custom.thickness != blank %}\n<tr><td>Thickness</td><td> {{product.metafields.custom.thickness}}</td></tr>{%endif%}\n{% if product.metafields.custom.slip_rating != blank %}\n<tr><td>Anti-Slip Rating</td><td> {{product.metafields.custom.slip_rating}}</td></tr>{%endif%}\n{% if product.metafields.custom.tile_finish != blank %}\n<tr><td>Finish</td><td> {{product.metafields.custom.tile_finish}}</td></tr>{%endif%}\n{% if product.metafields.custom.floor_or_wall != blank %}\n<tr><td>Floor or Wall</td><td> {{product.metafields.custom.floor_or_wall}}</td></tr>{%endif%}\n{% if product.metafields.custom.size != blank %}\n<tr><td>Size</td><td> {{product.metafields.custom.size}}</td></tr>{%endif%}\n{% if product.metafields.custom.edge_detail != blank %}\n<tr><td>Edge Detail</td><td> {{product.metafields.custom.edge_detail}}</td></tr>{%endif%}\n</table>\n<table>\n\n{% if product.metafields.custom.rectified != blank %}\n<tr><td> Rectified</td> <td> {{product.metafields.custom.rectified}}</td></tr>{%endif%}\n{% if product.metafields.custom.suitable_for_underfloor_heating != blank %}\n<tr><td>Suitable for Underfloor Heating </td><td> {{ product.metafields.custom.suitable_for_underfloor_heating}}</td></tr>{%endif%}\n{% if product.metafields.custom.box_quantity != blank %}\n<tr><td>Box Quantity</td><td> {{product.metafields.custom.box_quantity}}</td></tr>{%endif%}\n{% if product.metafields.custom.weight != blank %}\n<tr><td>Weight</td><td> {{product.metafields.custom.weight}}</td></tr>{%endif%}\n{% if product.metafields.custom.pattern_repeats != blank %}\n<tr><td>Pattern Repeats</td><td> {{product.metafields.custom.pattern_repeats}}</td></tr>{%endif%}\n{% if product.metafields.custom.sale_by != blank %}\n<tr><td>Sale By</td><td> {{product.metafields.custom.sale_by}}</td></tr>{%endif%}\n<tr>\n<td>Water Rating</td>\n<td>Wateproof</td>\n</tr>\n{% if product.metafields.custom.wear_layer!= blank %}\n<tr><td>Wear Layer</td><td> {{product.metafields.custom.wear_layer}}</td></tr>{%endif%}\n</table>\n</div>",
+            "display_mode": "show_all"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "display_mode": "view_more"
+          }
+        },
+        "a3299db7-8617-4b3e-80dc-466e51c061b7": {
+          "type": "shopify://apps/avada-boost-sales-trust-badge/blocks/app-badge-v2-block/45454b7f-f6a7-4852-b770-8e0c3992a226",
+          "disabled": true,
+          "settings": {
+            "badge_id": "AVADA-99446876"
+          }
+        },
+        "a9c560d5-40e3-4fee-934f-f6b7ef7a9739": {
+          "type": "trust",
+          "settings": {
+            "trust_title": "Payment & Security",
+            "show_payment_icons": true,
+            "custom_security_badge_width": 200
+          }
+        },
+        "html_FGDTgt": {
+          "type": "html",
+          "settings": {
+            "title": "Need Extra? Buy it Loose"
+          }
+        },
+        "vitals_back_in_stock_mkJRGa": {
+          "type": "shopify://apps/vitals/blocks/back-in-stock/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        },
+        "vitals_wishlist_button_fGcFPX": {
+          "type": "shopify://apps/vitals/blocks/wishlist-button/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "text_LqiWTn",
+        "product_meta",
+        "content_Xf3RKN",
+        "text_E9LVyA",
+        "variant_selector",
+        "delivery_estimator_app_block_H7eJFc",
+        "buy_buttons",
+        "9d4bfcf6-11bc-449b-8839-fd0dd9450aa9",
+        "description",
+        "a3299db7-8617-4b3e-80dc-466e51c061b7",
+        "a9c560d5-40e3-4fee-934f-f6b7ef7a9739",
+        "html_FGDTgt",
+        "vitals_back_in_stock_mkJRGa",
+        "vitals_wishlist_button_fGcFPX"
+      ],
+      "settings": {
+        "image_size": "medium",
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "zoom_effect": "inside",
+        "carousel_effect": "slide"
+      }
+    },
+    "suitable_BRfrwp": {
+      "type": "suitable",
+      "blocks": {
+        "room_WFzwnL": {
+          "type": "room",
+          "settings": {
+            "icon": "shopify://shop_images/livingroom.svg",
+            "label": "Living Room",
+            "tooltip": "<p><strong>Suitable for Living Rooms </strong></p><p>This floor is suitable for use in living rooms, offering durability to withstand high foot traffic areas.</p>"
+          }
+        },
+        "room_c4x99r": {
+          "type": "room",
+          "settings": {
+            "icon": "shopify://shop_images/diningroom.svg",
+            "label": "Dining Rooms",
+            "tooltip": "<p><strong>Suitable for Dining Rooms</strong></p><p>This floor is ideal to install in dining rooms. It is easy to maintain and boasts durable properties.</p>"
+          }
+        },
+        "room_MD9Wb6": {
+          "type": "room",
+          "settings": {
+            "icon": "shopify://shop_images/bedroom.svg",
+            "label": "Bedrooms",
+            "tooltip": "<p><strong>Suitable for Bedrooms</strong></p><p>This floor is an ideal option for bedrooms. We recommend a sound reduction underlay to reduce noise in the rooms below.</p>"
+          }
+        },
+        "room_Tz4VGi": {
+          "type": "room",
+          "settings": {
+            "icon": "shopify://shop_images/bathroom.svg",
+            "label": "Bathroom",
+            "tooltip": ""
+          }
+        },
+        "room_deMHQ6": {
+          "type": "room",
+          "settings": {
+            "icon": "shopify://shop_images/hallway.svg",
+            "label": "Hallways",
+            "tooltip": ""
+          }
+        },
+        "room_bMUjAB": {
+          "type": "room",
+          "settings": {
+            "icon": "shopify://shop_images/kitchen.svg",
+            "label": "Kitchens",
+            "tooltip": "<p><strong>Suitable for Kitchens</strong></p><p>This floor is suitable for kitchen use. However, we always recommend cleaning up any spills immediately.</p>"
+          }
+        },
+        "room_rqm4TG": {
+          "type": "room",
+          "settings": {
+            "icon": "shopify://shop_images/office.svg",
+            "label": "Offices",
+            "tooltip": "<p><strong>Suitable for Offices</strong></p><p>This floor is ideal to install in home and commercial offices</p>"
+          }
+        },
+        "room_9gRMik": {
+          "type": "room",
+          "settings": {
+            "icon": "shopify://shop_images/conservatory.svg",
+            "label": "Conservatories",
+            "tooltip": "<p><strong>Suitable for Conservatories</strong> This floor is suitable for use in conservatories. We recommend it be fitted with a suitable underlay to protect from ground floor moisture.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "room_WFzwnL",
+        "room_c4x99r",
+        "room_MD9Wb6",
+        "room_Tz4VGi",
+        "room_deMHQ6",
+        "room_bMUjAB",
+        "room_rqm4TG",
+        "room_9gRMik"
+      ],
+      "name": "Suitable For Rooms",
+      "settings": {}
+    },
+    "offers_BdggwC": {
+      "type": "offers",
+      "blocks": {
+        "offer_WWNQwd": {
+          "type": "offer",
+          "settings": {
+            "title": "100%",
+            "content": "<p>Waterproof</p>"
+          }
+        },
+        "offer_AmXM6J": {
+          "type": "offer",
+          "settings": {
+            "title": "+50%",
+            "content": "<p>Denser than laminate</p>"
+          }
+        },
+        "offer_qMEJYy": {
+          "type": "offer",
+          "settings": {
+            "title": "Slip Resistant",
+            "content": "<p></p>"
+          }
+        }
+      },
+      "block_order": [
+        "offer_WWNQwd",
+        "offer_AmXM6J",
+        "offer_qMEJYy"
+      ],
+      "name": "Offers",
+      "settings": {
+        "cstm_cls": "offe_custom",
+        "items_per_row": 3,
+        "stack_mobile": true
+      }
+    },
+    "offers_9yandF": {
+      "type": "offers",
+      "blocks": {
+        "offer_c9wTti": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify://shop_images/3008-Wet-Feet.jpg",
+            "title": "100% WATERPROOF",
+            "content": "<p><strong>Our SPC flooring is engineered for complete water resistance—perfect for bathrooms, kitchens, and outdoor areas. It stands up flawlessly to splashes, spills, and steam without warping, staining, or damage</strong><br/><br/></p>"
+          }
+        },
+        "offer_6Geke8": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify://shop_images/3008-Muddy-Boots.webp",
+            "title": "Ultra Durable",
+            "content": "<p><strong>Designed to handle heavy foot traffic, active pets, and everyday wear, our SPC flooring features a rigid stone-plastic composite core and a durable, scratch-resistant wear layer. Ideal for both residential and commercial spaces, it delivers long-lasting beauty and performance where it matters most.</strong><br/><br/></p>"
+          }
+        },
+        "offer_UxcDVj": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify://shop_images/3008-Plank-Back.webp",
+            "title": "Easy Installation & Low Maintenance",
+            "content": "<p><strong>Click-lock installation requires no glue or grout, and the non-porous surface wipes clean effortlessly—ideal for busy households and high-traffic environments.<br/></strong><br/></p>"
+          }
+        },
+        "offer_Qgp3T3": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify://shop_images/3008-Crayons.jpg",
+            "title": "Enhanced Slip Resistance",
+            "content": "<p><strong>Textured wear layers provide excellent traction underfoot, reducing the risk of slips and falls in wet or high-traffic zones.</strong><br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "offer_c9wTti",
+        "offer_6Geke8",
+        "offer_UxcDVj",
+        "offer_Qgp3T3"
+      ],
+      "custom_css": [
+        ".offers_explain {margin-top: 0 !important;}"
+      ],
+      "name": "Offers",
+      "settings": {
+        "cstm_cls": "offers_explain",
+        "items_per_row": 4,
+        "stack_mobile": false
+      }
+    },
+    "1696257302336cdbe8": {
+      "type": "apps",
+      "blocks": {
+        "vitals_shipping_info_cmL3ak": {
+          "type": "shopify://apps/vitals/blocks/shipping-info/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vitals_shipping_info_cmL3ak"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1bab74a2-efd0-4cec-9aa9-63cea191bc69": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "Related Products",
+        "show_quick_buy": false
+      }
+    },
+    "16962541374c589cf5": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
+    },
+    "097930f0-3b82-40af-b1da-488b0158137f": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_cLkN8B": {
+          "type": "collection",
+          "settings": {
+            "collection": "all-tiles",
+            "link": ""
+          }
+        },
+        "template--18353885806882__097930f0-3b82-40af-b1da-488b0158137f-168510686270847d27-5": {
+          "type": "collection",
+          "settings": {
+            "collection": "bathroom-tiles",
+            "link": ""
+          }
+        },
+        "collection_Qzeaaf": {
+          "type": "collection",
+          "settings": {
+            "collection": "floor-tiles",
+            "link": ""
+          }
+        },
+        "collection_dy6tKt": {
+          "type": "collection",
+          "settings": {
+            "collection": "kitchen-tiles",
+            "link": ""
+          }
+        },
+        "template--18353885806882__097930f0-3b82-40af-b1da-488b0158137f-168510686270847d27-4": {
+          "type": "collection",
+          "settings": {
+            "collection": "gold-tiles",
+            "link": ""
+          }
+        },
+        "template--18353885806882__097930f0-3b82-40af-b1da-488b0158137f-168510686270847d27-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "carrara-marble-tiles",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_cLkN8B",
+        "template--18353885806882__097930f0-3b82-40af-b1da-488b0158137f-168510686270847d27-5",
+        "collection_Qzeaaf",
+        "collection_dy6tKt",
+        "template--18353885806882__097930f0-3b82-40af-b1da-488b0158137f-168510686270847d27-4",
+        "template--18353885806882__097930f0-3b82-40af-b1da-488b0158137f-168510686270847d27-0"
+      ],
+      "settings": {
+        "title": "Our collections",
+        "link_title": "View all",
+        "link": "shopify://collections",
+        "round_images": true,
+        "show_collection_title": true
+      }
+    },
+    "1702171093fecd8e8b": {
+      "type": "apps",
+      "blocks": {
+        "d40f04bd-3da0-4f32-94fd-166b29e4f357": {
+          "type": "shopify://apps/vitals/blocks/product-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "d40f04bd-3da0-4f32-94fd-166b29e4f357"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "suitable_BRfrwp",
+    "offers_BdggwC",
+    "offers_9yandF",
+    "1696257302336cdbe8",
+    "1bab74a2-efd0-4cec-9aa9-63cea191bc69",
+    "16962541374c589cf5",
+    "recently-viewed-products",
+    "097930f0-3b82-40af-b1da-488b0158137f",
+    "1702171093fecd8e8b"
+  ]
+}

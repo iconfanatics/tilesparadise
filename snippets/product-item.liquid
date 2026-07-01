@@ -1,0 +1,762 @@
+{%- comment -%}Color labels used to detect what is a color swatch{%- endcomment -%}
+{%- assign color_label = 'color,colour,couleur,cor,colore,farbe,색,色,カラー,färg,farve,szín,barva' | split: ',' -%}
+{% if product.handle contains 'sample' or product.price <= 0  %}
+  {% else %}
+<div class="product-item {% if horizontal %}product-item--horizontal{% elsif list %}product-item--list{% else %}product-item--vertical{% endif %} {% if complementary_products %}product-item--complementary{% endif %} {% if section.id == 'blog-sidebar' %}product-item--compact{% endif %} {{ grid_classes }}">
+  {%- capture product_labels -%}
+    {%- unless hide_labels -%}
+      {%- for tag in product.tags -%}
+        {%- if tag contains '__label:' -%}
+          <span class="product-label product-label--custom1">{{ tag | split: '__label:' | last }}</span>
+        {%- endif -%}
+
+        {%- if tag contains '__label1:' -%}
+          <span class="product-label product-label--custom1">{{ tag | split: '__label1:' | last }}</span>
+        {%- endif -%}
+
+        {%- if tag contains '__label2:' -%}
+          <span class="product-label product-label--custom2">{{ tag | split: '__label2:' | last }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if settings.show_discount and product.price < product.compare_at_price -%}
+        {%- if settings.discount_mode == 'percentage' -%}
+          {%- assign savings = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round | append: '%' -%}
+        {%- else -%}
+          {%- capture savings -%}<span>{{ product.compare_at_price | minus: product.price | money }}</span>{%- endcapture -%}
+        {%- endif -%}
+
+     {% comment %}   <span class="product-label product-label--on-sale">{{ 'collection.product.discount_html' | t: savings: savings }}</span>    {% endcomment %} 
+
+      {%- endif -%}
+    {%- endunless -%}
+  {%- endcapture -%}
+
+  {%- if product_labels != blank -%}
+    <div class="product-item__label-list">
+      {{- product_labels -}}
+    </div>
+{% if settings.sale_text != blank and settings.sale_collection and product.collections contains settings.sale_collection %}
+    <div class="new_sale">
+        <p>{{ settings.sale_text }}</p>
+    </div>
+{% endif %}
+
+  {%- endif -%}
+
+  {%- if settings.show_secondary_image and product.media.size > 1 -%}
+    {%- assign show_secondary_media = true -%}
+  {%- else -%}
+    {%- assign show_secondary_media = false -%}
+  {%- endif -%}
+
+  {%- assign filtered_variant = '' -%}
+
+  {%- if product.media.size > 0 -%}
+    {%- assign primary_media = product.featured_media -%}
+
+    <a href="{{ product.url }}" class="product-item__image-wrapper {% if show_secondary_media %}product-item__image-wrapper--with-secondary{% endif %}">
+        {% if savings %}
+          <span class="custom-sale-badge">
+            <span class="save-text">Save</span>
+            <span class="save-value">{{ savings }}</span>
+          </span>
+        {% endif %}
+      <div class="aspect-ratio {% if settings.product_image_size != 'natural' %}aspect-ratio--{{ settings.product_image_size }}{% endif %}" style="padding-bottom: {{ 100.0 | divided_by: primary_media.preview_image.aspect_ratio }}%">
+        {{- primary_media | image_url: width: primary_media.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 100vw, 600px', widths: '200,300,400,600,800,1000,1200,1400,1600', data-media-id: primary_media.id, class: 'product-item__primary-image' -}}
+
+        {%- if show_secondary_media -%}
+          {{- product.media[1] | image_url: width: product.media[1].width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 100vw, 600px', widths: '200,300,400,600,800,1000,1200,1400,1600', class: 'product-item__secondary-image' -}}
+        {%- endif -%}
+      </div>
+    </a>
+
+  {%- endif -%}
+
+  <div class="product-item__info">
+  <div class="AirReviews-Widget AirReviews-Widget--Stars"></div>
+    <div class="product-item__info-inner">
+      {%- capture price_list -%}
+        <div class="product-item__price-list price-list">
+          {%- if product.price < product.compare_at_price -%}
+            {%- if product.price_varies -%}
+              {%- if settings.currency_code_enabled -%}
+                {%- capture price_min -%}{{ product.price_min | money_with_currency }}{%- endcapture -%}
+                {%- capture price_max -%}{{ product.price_max | money_with_currency }}{%- endcapture -%}
+              {%- else -%}
+                {%- capture price_min -%}{{ product.price_min | money }}{%- endcapture -%}
+                {%- capture price_max -%}{{ product.price_max | money }}{%- endcapture -%}
+              {%- endif -%}
+
+              <span class="price price--highlight b">
+                <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+                {{- 'collection.product.from_price_html' | t: price_min: price_min, price_max: price_max -}}  
+              </span>
+
+              <span class="price price--compare">
+                <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
+
+                {%- if settings.currency_code_enabled -%}
+                  {{- product.compare_at_price_min | money_with_currency -}} 
+                {%- else -%}
+                  {{- product.compare_at_price_min | money -}}
+                {%- endif -%}
+              </span>
+            {%- else -%}
+              <span class="price price--highlight v ss">
+                <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+
+                {%- if settings.currency_code_enabled -%}
+                  {{- product.price | money_with_currency -}} 
+{% if collection.title contains 'Adhesive'
+        or collection.title contains 'Underfloor Heating'
+        or collection.title contains 'Grout'
+        or collection.title contains 'Matting'
+        or collection.title contains 'Backerboards'
+        or collection.title contains 'Showers'
+            or collection.title contains 'LED Mirrors'
+             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
+        or collection.title contains 'Adhesives Checkout'    or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'  or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
+       
+            {% else %}
+            <span>Per m²</span>
+                {% endif %}
+                {%- else -%}
+
+{% if template.name == 'search' %}
+
+
+    {{- product.price | money -}}
+{% assign show_per_m = true %}
+           {% for collection in product.collections %}
+             
+{% if collection.title contains 'Adhesive'
+        or collection.title contains 'Underfloor Heating'
+        or collection.title contains 'Grout'
+        or collection.title contains 'Matting'
+        or collection.title contains 'Backerboards'
+        or collection.title contains 'Showers'
+            or collection.title contains 'LED Mirrors'
+             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
+        or collection.title contains 'Adhesives Checkout'    or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'  or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
+       
+    {% assign show_per_m = false %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+            {% if show_per_m %}
+  <span>Per m²</span>
+{% endif %}
+  {% else %}
+                {{- product.price | money -}} 
+           {% assign show_per_m = true %}
+           {% for collection in product.collections %}
+{% if collection.title contains 'Adhesive'
+        or collection.title contains 'Underfloor Heating'
+        or collection.title contains 'Grout'
+        or collection.title contains 'Matting'
+        or collection.title contains 'Backerboards'
+        or collection.title contains 'Showers'
+            or collection.title contains 'LED Mirrors'
+             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
+        or collection.title contains 'Adhesives Checkout'    or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'  or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
+       
+    {% assign show_per_m = false %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+                  {% if collection.title != 'LED Mirrors' %}
+            {% if show_per_m %}
+  <span>Per m²</span>
+{% endif %}
+                    {% else %}
+                    
+                    {% endif %}
+            {%- endif -%}
+                           {%- endif -%}
+   
+          </span>
+
+              <span class="price price--compare n">
+                <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
+                {%- if settings.currency_code_enabled -%}
+           <b>   RRP   </b>  {{- product.compare_at_price | money_with_currency -}} 
+    {% assign show_per_m = true %}
+    {% for collection in product.collections %}
+      {% if collection.title contains 'Adhesive'
+        or collection.title contains 'Underfloor Heating'
+        or collection.title contains 'Grout'
+        or collection.title contains 'Matting'
+        or collection.title contains 'Backerboards'
+        or collection.title contains 'Showers'
+            or collection.title contains 'LED Mirrors'
+             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
+        or collection.title contains 'Adhesives Checkout'    or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'  or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
+        {% assign show_per_m = false %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if show_per_m %}
+      <span>Per m²</span>
+    {% endif %}
+  {%- else -%}
+                    <b>   RRP   </b>   {{- product.compare_at_price | money -}} 
+                        {% assign show_per_m = true %}
+    {% for collection in product.collections %}
+      {% if collection.title contains 'Adhesive'
+        or collection.title contains 'Underfloor Heating'
+        or collection.title contains 'Grout'
+        or collection.title contains 'Matting'
+            or collection.title contains 'LED Mirrors'
+        or collection.title contains 'Backerboards'
+        or collection.title contains 'Showers'
+        or collection.title contains 'Adhesives Checkout'   
+             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
+         or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'
+         or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
+        {% assign show_per_m = false %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+                  {% if collection.title != 'LED Mirrors' %}
+    {% if show_per_m %}
+      <span>Per m²</span>
+    {% endif %}
+                    {% else %}
+                    {% endif %}
+  {%- endif -%}
+<b>| Save</b>
+                <span class="save_amount"> 
+                 {% assign saving = product.compare_at_price | minus: product.price %}
+     {{ saving | money_with_currency }}
+                </span>
+              </span>
+          
+               {%- endif -%}
+          {%- elsif product.price_varies -%}
+            {%- if settings.currency_code_enabled -%}
+              {%- capture price_min -%}{{ product.price_min | money_with_currency }}{%- endcapture -%}
+              {%- capture price_max -%}{{ product.price_max | money_with_currency }}{%- endcapture -%}
+            {%- else -%}
+              {%- capture price_min -%}{{ product.price_min | money }}{%- endcapture -%}
+              {%- capture price_max -%}{{ product.price_max | money }}{%- endcapture -%}
+            {%- endif -%}
+
+            <span class="price vv">
+              <span class="visually-hidden">{{ 'product.general.sale_price' | t }}
+    {% for collection in product.collections %}
+      {% if collection.title contains 'Adhesive'
+        or collection.title contains 'Underfloor Heating'
+        or collection.title contains 'Grout'
+        or collection.title contains 'Matting'
+        or collection.title contains 'Backerboards'
+        or collection.title contains 'Showers'
+            or collection.title contains 'LED Mirrors'
+             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
+        or collection.title contains 'Adhesives Checkout'    or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'  or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
+        {% assign show_per_m = false %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if show_per_m %}
+      <span>Per m²</span>
+    {% endif %}
+              {{- 'collection.product.from_price_html' | t: price_min: price_min, price_max: price_max -}}
+            </span>
+          {%- else -%}
+            <span class="price gg">
+              <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+              {%- if settings.currency_code_enabled -%}
+                {{- product.price | money_with_currency -}}
+              {%- else -%}
+        
+                {{- product.price | money -}}
+    {% for collection in product.collections %}
+      {% if collection.title contains 'Adhesive'
+        or collection.title contains 'Underfloor Heating'
+        or collection.title contains 'Grout'
+        or collection.title contains 'Matting'
+        or collection.title contains 'Backerboards'
+        or collection.title contains 'Showers'
+            or collection.title contains 'LED Mirrors'
+             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
+        or collection.title contains 'Adhesives Checkout'    or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'  or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
+        {% assign show_per_m = false %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if show_per_m %}
+      <span>Per m²</span>
+    {% endif %}
+              {%- endif -%}
+            </span>
+          {%- endif -%}
+        </div>
+
+        {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
+          <div class="product-item__price-info">
+            <div class="unit-price-measurement">
+              <span class="unit-price-measurement__price">{{ product.selected_or_first_available_variant.unit_price | money }}</span>
+              <span class="unit-price-measurement__separator">/ </span>
+
+              {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+                <span class="unit-price-measurement__reference-value">{{ product.selected_or_first_available_variant.unit_price_measurement.reference_value }}</span>
+              {%- endif -%}
+
+              <span class="unit-price-measurement__reference-unit">{{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- capture vendor -%}
+        {%- if settings.show_vendor -%}
+          {%- assign vendor_handle = product.vendor | handle -%}
+          {%- assign collection_for_vendor = collections[vendor_handle] -%}
+
+          {%- unless collection_for_vendor.empty? -%}
+            <a class="product-item__vendor link" href="{{ collection_for_vendor.url }}">{{ product.vendor }}</a>
+          {%- else -%}
+            <a class="product-item__vendor link" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- if settings.product_price_position == 'before_title' -%}
+        {{ price_list }}
+      {%- endif -%}
+
+      {%- if settings.product_price_position == 'after_title' -%}
+        {{ vendor }}
+      {%- endif -%}
+
+      <a href="{{ filtered_variant.url | default: product.url }}" class="product-item__title text--strong link">{{ product.title }}</a>
+
+      {%- if settings.product_price_position == 'before_title' -%}
+        {{ vendor }}
+      {%- endif -%}
+
+      {%- if settings.show_color_swatch and template != 'blog' -%}
+        {%- capture color_swatch -%}
+          {%- capture color_name -%}{{ section.id }}-{{ product.id }}{%- endcapture -%}
+
+          {%- for option in product.options_with_values -%}
+            {%- assign downcased_option = option.name | downcase -%}
+
+            {%- if color_label contains downcased_option -%}
+              {%- assign variant_option = 'option' | append: forloop.index -%}
+              {%- assign value_to_match = filtered_variant[variant_option] | default: option.selected_value -%}
+
+              {%- assign color_swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />' -%}
+
+              {%- for value in option.values -%}
+                {%- assign downcased_value = value | downcase -%}
+                {%- capture color_id -%}{{ color_name }}-{{ forloop.index }}{%- endcapture -%}
+
+                {%- for variant in product.variants -%}
+                  {%- if variant[variant_option] == value -%}
+                    {%- assign variant_for_value = variant -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                  {%- if variant_for_value.featured_media -%}
+                    {%- assign image_url = variant_for_value.featured_media | image_url: width: 800 -%}
+                  {%- endif -%}
+
+                  <input class="color-swatch__radio" type="radio" name="{{ color_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if value_to_match == value %}checked="checked"{% endif %} data-variant-url="{{ variant_for_value.url }}" {% if variant_for_value.featured_media %}data-media-id="{{ variant_for_value.featured_media.id }}" data-image-url="{{ image_url }}" data-image-aspect-ratio="{{ variant_for_value.featured_media.preview_image.aspect_ratio }}"{% endif %} aria-label="{{ value | escape }}">
+                  <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: downcased_value %}" title="{{ value | escape }}">
+                    <span class="visually-hidden">{{ value }}</span>
+                  </label>
+                  <a href="{{ product.url }}" class="color-swatch__item-link">+{{ option.values.size | minus: forloop.index0 }}</a>
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+
+        {%- if color_swatch != blank -%}
+          <div class="product-item__swatch-list">
+            <div class="color-swatch-list">
+              {{ color_swatch }}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if settings.product_price_position == 'after_title' -%}
+        {{ price_list }}
+      {%- endif -%}
+
+      {%- if settings.show_reviews_badge -%}
+        <a class="product-item__reviews-badge link" href="{{ product.url }}#product-reviews">
+          
+        
+          {%- render 'product-rating', product: product -%}
+       
+        </a>
+      {%- endif -%}
+
+      {%- if settings.show_inventory_quantity and product.variants.first.inventory_management != blank and product.template_suffix != 'pre-order' -%}
+        {%- if product.available -%}
+          {%- assign should_calculate_inventory = true -%}
+
+          {%- for variant in product.variants -%}
+            {%- comment -%}
+              If we have one variant that is set to "continue" or that do not have any inventory management, then we skip the calculation of inventory as this
+              means at least one of the variant is always purchasable
+            {%- endcomment -%}
+
+            {%- if variant.inventory_policy == 'continue' or variant.inventory_management == null -%}
+              {%- assign should_calculate_inventory = false -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if should_calculate_inventory and settings.low_inventory_threshold > 0 -%}
+            {%- assign all_inventory = 0 -%}
+
+            {%- for variant in product.variants -%}
+              {%- if variant.inventory_management -%}
+                {%- assign all_inventory = variant.inventory_quantity | at_least: 0 | plus: all_inventory -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- if all_inventory <= settings.low_inventory_threshold -%}
+              <span class="product-item__inventory inventory inventory--low">{{ 'collection.product.low_stock_with_quantity_count' | t: count: all_inventory }}</span>
+            {%- else -%}
+              <span class="product-item__inventory inventory inventory--high">{{ 'collection.product.in_stock_with_quantity_count' | t: count: all_inventory }}</span>
+            {%- endif -%}
+          {%- else -%}
+            {%- if product.variants.first.inventory_policy == 'continue' and product.variants.first.inventory_quantity <= 0 and product.variants.first.requires_shipping -%}
+              <span class="product-item__inventory inventory inventory--high">{{ 'collection.product.oversell_stock' | t }}</span>
+            {%- else -%}
+              <span class="product-item__inventory inventory inventory--high">{{ 'collection.product.in_stock' | t }}</span>
+            {%- endif -%}
+          {%- endif -%}
+        {%- else -%}
+          <span class="product-item__inventory inventory">{{ 'collection.product.sold_out' | t }}</span>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+
+    {%- if request.page_type == 'collection' or request.page_type == 'search' or show_add_to_cart -%}
+      {%- if section.settings.show_quick_view == 'list_grid' or section.settings.show_quick_buy == 'list_grid' or show_add_to_cart -%}
+        {%- assign product_form_classes = 'product-item__action-list button-stack' -%}
+      {%- else -%}
+        {%- assign product_form_classes = 'product-item__action-list product-item__action-list--list-view-only button-stack' -%}
+      {%- endif -%}
+
+      {%- assign form_id = 'product_form_id_' | append: product.id | append: '_' | append: section.id -%}
+
+      {%- if product.template_suffix == 'contact' -%}
+        <div class="{{ product_form_classes }}">
+          <a href="mailto:{{ shop.email }}" class="product-item__action-button button button--small button--primary">
+            {{- 'product.form.contact_us' | t -}}
+          </a>
+        </div>
+      {%- else -%}
+        {%- capture quick_buy_form -%}
+          {%- form 'product', product, id: form_id, class: product_form_classes -%}
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+            {%- if section.settings.show_quick_buy == 'list_grid' or show_add_to_cart -%}
+              {%- if complementary_products -%}
+                {%- assign quick_buy_classes = 'product-item__action-button button button--small button--ternary' -%}
+              {%- else -%}
+                {%- assign quick_buy_classes = 'product-item__action-button button button--small button--primary' -%}
+              {%- endif -%}
+            {%- else -%}
+              {%- assign quick_buy_classes = 'product-item__action-button product-item__action-button--list-view-only button button--small button--primary' -%}
+            {%- endif -%}
+
+            {% comment %} {%- if product.available -%}
+              {%- if product.variants.size == 1 -%}
+                <button type="submit" class="{{ quick_buy_classes }}" data-action="add-to-cart">
+                  {%- if product.template_suffix == 'pre-order' -%}
+                    {{- 'collection.product.pre_order' | t -}}
+                  {%- else -%}
+                Buy
+                  {%- endif -%}
+                </button>
+              {%- else -%}
+                <a href="{{ product.url }}" class="{{ quick_buy_classes }}">{{ 'collection.product.choose_options' | t }}</a>
+              {%- endif -%}
+            {%- else -%}
+              <button class="{{ quick_buy_classes | replace: 'button--primary', 'button--disabled' }}" disabled>{{ 'collection.product.sold_out' | t }}</button>
+            {%- endif -%} {% endcomment %}
+
+            <div class="custom-product-buttons">
+
+              {%- if product.available -%}
+
+                {% if show_shop_button %}
+                  {%- if product.variants.size == 1 -%}
+                    <button type="submit" class="{{ quick_buy_classes }}" data-action="add-to-cart">
+                      {{ shop_button_label }}
+                    </button>
+                  {%- else -%}
+                    <a href="{{ product.url }}" class="{{ quick_buy_classes }}">
+                      {{ shop_button_label }}
+                    </a>
+                  {%- endif -%}
+                {% endif %}
+
+                {% if enable_sample_button and product.metafields.custom.item_has_a_free_sample == true and product.metafields.custom.sample_product %}
+                  {% assign sampleProduct = all_products[product.metafields.custom.sample_product] %}
+                  
+                  <button 
+                    type="button"
+                    class="sample-btn cst_add"
+                    data-id="{{ sampleProduct.variants.first.id }}"
+                  >
+                    {{ sample_button_label }}
+                  </button>
+                {% endif %}
+
+              {%- else -%}
+
+                <button class="{{ quick_buy_classes | replace: 'button--primary', 'button--disabled' }}" disabled>
+                  {{ 'collection.product.sold_out' | t }}
+                </button>
+
+              {%- endif -%}
+
+            </div>
+
+            {%- if section.settings.show_quick_view == 'list_grid' -%}
+              {%- assign quick_view_classes = 'product-item__action-button button button--small button--ternary hidden-phone' -%}
+            {%- else -%}
+              {%- assign quick_view_classes = 'product-item__action-button product-item__action-button--list-view-only button button--small button--ternary hidden-phone' -%}
+            {%- endif -%}
+
+            <button type="button" class="quic_mod {{ quick_view_classes }}" data-action="open-modal" data-secondary-action="open-quick-view" aria-controls="modal-quick-view-{{ section.id }}" data-product-url="{{ product.url }}">Buy</button>
+            {% if show_view_button %}
+              <a href="{{ product.url }}">
+                <button type="button" class="view_cls">View</button>
+              </a>
+            {% endif %}
+      {%- endform -%}
+        {%- endcapture -%}
+
+        {%- if complementary_products != true -%}
+          {{- quick_buy_form -}}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+{% if enable_sample_button and product.metafields.custom.item_has_a_free_sample == true and product.metafields.custom.sample_product %}
+  <div class="product-form cst collect">
+  {% assign productMetafields = all_products[product.metafields.custom.sample_product] %}
+  <input class="ad_to_cart_id" value="{{ productMetafields.variants.first.id }}" type="hidden" />
+  <img src='https://cdn.shopify.com/s/files/1/0720/1216/9506/files/ZKZg.gif?v=1695801255' width="64" height="64" style="display:none;"/>
+  <input id ="add-free-sample"class="cst_add" name="add" value="{{ sample_button_label }}" type="button" >
+  </div>
+{%- endif -%}
+  
+<style>
+  #add-free-sample {
+  border: 2px solid #ff6128 !important;
+  background-color: white !important;
+    color: #ff6128 !important;
+    font-weight: bold !important;
+  
+  
+  cursor: pointer !important;
+}
+  div#tab-1:first-child {
+    display: none;
+}
+</style>
+  {%- comment -%}
+  The complementary product has an exception, where the form is shown outside
+  {%- endcomment -%}
+
+  {%- if complementary_products and show_add_to_cart -%}
+    {{- quick_buy_form -}}
+  {%- endif -%}
+</div>
+{% endif %}
+<script>
+$(document).on('click', '.modal__inner ul.tabs-nav li', function() {
+    var a = $(this).index();
+    $(this).addClass("tab-active");
+    $(this).siblings().removeClass("tab-active");
+    $(".tabs-stage .custom_tabing").eq(a).show();
+    $(".tabs-stage .custom_tabing").eq(a).siblings().hide();
+});
+
+const squareMetreInput = document.getElementsByClassName("changing_class");
+const step = parseFloat(squareMetreInput.value);
+const price_total = document.getElementsByClassName("price_now").value;
+
+function increaseSquareMeter() {
+    const squareMeterInput = document.getElementsByClassName("changing_class");
+    const step = parseFloat(squareMetreInput.value);
+    const currentValue = parseFloat(squareMeterInput.value);
+    squareMeterInput.value = (currentValue + step).toFixed(2);
+    // Don't update the actual price here to keep it constant
+}
+
+function decreaseSquareMeter() {
+    const squareMeterInput = document.getElementsByClassName("changing_class");
+
+    const currentValue = parseFloat(squareMeterInput.value);
+    if (currentValue >= step) {
+        squareMeterInput.value = (currentValue - step).toFixed(2);
+        // Don't update the actual price here to keep it constant
+    }
+}
+
+function updateActualPrice() {
+    const quantityInput = document.getElementsByClassName("quantity-selector__value");
+    const squareMeterInput = document.getElementsByClassName("changing_class");
+    const actualPriceInput = document.getElementsByClassName("price_now");
+    const pricePerSquareMeter = $(".product-form__info-content .price-list .price--highlight").text();
+    var new_data_here = parseFloat(pricePerSquareMeter.replace('Sale price£', ''));
+
+    const quantity = parseFloat(quantityInput.value);
+    const squareMeter = parseFloat(squareMeterInput.value);
+    const actualPrice = (squareMeter * new_data_here).toFixed(2);
+
+    actualPriceInput.value = actualPrice;
+}
+
+// Add event listeners
+const quantityInput = document.getElementsByClassName("quantity-selector__value");
+const squareMeterInput = document.getElementsByClassName("changing_class");
+
+$(document).on('input', quantityInput, function() {
+    const quantity = parseFloat(quantityInput.value);
+    const roundedQuantity = Math.round(quantity);
+    squareMeterInput.value = (roundedQuantity * step).toFixed(2);
+    updateActualPrice();
+});
+
+
+let steps = ''; // Define steps outside the setTimeout
+
+$('body').on('click', '.quic_mod', function() {
+
+    setTimeout(function() {
+        // Use jQuery to get the value of the element with the ID 'squareMetre'
+        steps = $('.fix').val();
+    var mtr = $("input#squareMetre").val();
+  $("input#meter").val(mtr+" m²");
+  
+        // Now that 'steps' is defined, you can handle the 'input' event
+        $(document).on('input', '.changing_class', function() {
+            var changingClassInputValue = $(this).val();
+ steps = $('.fix').val();
+            const squareMeterValue = parseFloat(this.value);
+            const quantityValue = Math.round(squareMeterValue / steps);
+          const quantityValue1 = Math.round(squareMeterValue);
+             const actPriceElement = document.querySelector('.tile_nu');
+    if (actPriceElement) {
+        actPriceElement.textContent  = quantityValue;
+    }
+console.log(changingClassInputValue);
+
+            // Update input with class 'quantity-selector__value' with quantityValue
+            $('.quantity-selector__value').attr("value",quantityValue);
+  $('.quantity-selector__value').val(quantityValue);
+            // Don't update the actual price here to keep it constant
+          $("input#meter").val(changingClassInputValue+" m²");
+
+          
+        });
+        $(document).on('input', '.quantity-selector__value', function() {
+            var changingClassInputValue = $(this).val();
+ steps = $('.fix').val();
+            const qunat = parseFloat(this.value);
+            const quantityValues = (qunat * steps).toFixed(2);
+
+            //    alert(quantityValues);
+            // Update input with class 'quantity-selector__value' with quantityValue
+            $('.changing_class').val(quantityValues);
+$("input#meter").val(quantityValues+" m²");
+            // Don't update the actual price here to keep it constant
+        });
+
+    }, 2500);
+});
+
+// Initial calculation when the page loads
+updateActualPrice();
+
+function increase_function() {
+    setTimeout(function() {
+
+        $(".decrease").removeClass("intro");
+        var real_quantity = $(".quantity-selector__value").val();
+        var valid_price = $(".product-form__info-content .price-list .price--highlight").text();
+        var new_data_here = parseFloat(valid_price.replace('Sale price£', ''));
+        var last_price = (new_data_here * real_quantity).toFixed(2);
+        $('.price_now').val(last_price);
+        // Do something with last_price if needed
+    }, 500);
+}
+increase_function();
+
+function decrease_function() {
+    setTimeout(function() {
+        var real_quantity = $(".quantity-selector__value").val();
+        if (real_quantity == 1) {
+            $(".decrease").addClass("intro");
+        }
+        if (real_quantity >= 1) {
+            var valid_price = $(".product-form__info-content .price-list .price--highlight").text();
+            var new_data_here = parseFloat(valid_price.replace('Sale price£', ''));
+            var last_price = (new_data_here * real_quantity).toFixed(2);
+            $('.price_now').val(last_price);
+        }
+
+
+        // Do something with last_price if needed
+    }, 500);
+}
+$(document).on('click', '[data-action="decrease-picker-quantity"]', function() {
+    decrease_function();
+    $('.quantity-selector__value').trigger('change');
+    var updatedQuantity = $('.quantity-selector__value').val();
+      $('.quantity-selector__value').attr("value",updatedQuantity);
+    var stepp = $('.fix').val();
+    const quantityValues = (updatedQuantity * stepp).toFixed(2);
+
+
+    // Update input with class 'quantity-selector__value' with quantityValue
+    $('.changing_class').val(quantityValues);
+  $("input#meter").val(quantityValues+" m²");
+});
+$(document).on('click', '[data-action="increase-picker-quantity"]', function() {
+    increase_function();
+    $('.quantity-selector__value').trigger('change');
+    var updatedQuantity = $('.quantity-selector__value').val();
+      $('.quantity-selector__value').attr("value",updatedQuantity);
+    var stepp = $('.fix').val();
+  // alert(updatedQuantity);
+
+    const quantityValues = (updatedQuantity * stepp).toFixed(2);
+
+
+    // Update input with class 'quantity-selector__value' with quantityValue
+    $('.changing_class').val(quantityValues);
+  $("input#meter").val(quantityValues+" m²");
+});
+$(document).on('input', ".quantity-selector__value", function() {
+    increase_function();
+    decrease_function();
+});
+$(document).on('input', ".changing_class", function() {
+
+    increase_function();
+    decrease_function();
+    var tile_nu = $(".tile_nu").text();
+   setTimeout(function () {
+   var tile_nu = $(".tile_nu").text();
+    $("input#tiles").val(tile_nu);
+        }, 500);
+});
+</script>

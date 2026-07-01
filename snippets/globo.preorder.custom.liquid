@@ -1,0 +1,15 @@
+<script>
+  window.GloboPreorderParams = window.GloboPreorderParams || {};
+  window.GloboPreorderParams.selectors = window.GloboPreorderParams.selectors || {};
+  window.GloboPreorderParams.selectors.productPositionMessage = ".product-form__payment-container";
+  window.GloboPreorderParams.selectors.productPositionLimitMessage = ".product-form__payment-container";
+  window.GloboPreorderParams.selectors.productPositionPaymentOption = ".product-form__payment-container";
+  window.GloboPreorderParams.selectors.productForm = ['form.product-form'];
+
+  document.addEventListener('globo.preorder.show.preorder', e => {
+      const {form, profile} = e.detail;
+      const preorderBtn = form.querySelector('.gPreorderBtn')
+
+      preorderBtn.innerHTML = profile.message.preorderText;
+  })
+</script>

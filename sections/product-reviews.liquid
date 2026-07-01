@@ -1,0 +1,30 @@
+<div class="reviews-container">
+  <div class="rc-header">
+    <h2>Customer Reviews</h2>
+  </div>
+  <div id="bundle-product_reviews"></div>
+
+  {%- for block in section.blocks -%}
+    {%- render block -%}
+  {%- endfor -%}
+
+  <script>
+    setTimeout(function () {
+      if (window.Vitals) {
+        window.Vitals.reload();
+      }
+    }, 500);
+  </script>
+</div>
+
+{% schema %}
+{
+  "name": "Product Reviews",
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "settings": []
+}
+{% endschema %}

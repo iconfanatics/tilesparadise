@@ -1,0 +1,21 @@
+{% for group in robots.default_groups %}
+  {{- group.user_agent -}}
+  {% for rule in group.rules %}
+    {{- rule -}}
+  {% endfor %}
+
+  {%- if group.user_agent.value == '*' -%}
+    {{ 'Disallow: /*?*filter*' }}
+    {{ 'Disallow: /*?*view*' }}
+    {{ 'Disallow: /*?q=*' }}
+    {{ 'Disallow: /collections/*sort_by*' }}
+    {{ 'Disallow: /*+*' }}
+    {{ 'Disallow: /*?utm_source=' }}
+    {{ 'Disallow: /*?utm_medium=' }}
+    {{ 'Disallow: /*?utm_campaign=' }}
+  {%- endif -%}
+
+  {%- if group.sitemap!= blank -%}
+    {{ group.sitemap }}
+  {%- endif -%}
+{% endfor %}

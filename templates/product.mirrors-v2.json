@@ -1,0 +1,296 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "liquid_QbWTND": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "title": "Reviews",
+            "liquid": "<div id=\"bundle-product_reviews\"></div> <script>\ndocument.addEventListener('DOMContentLoaded', function () {\n  const anchor = document.getElementById('bundle-product_reviews');\n  if (!anchor) return;\n\n  const card = anchor.closest('.card');\n  if (!card) return;\n\n  // Force visible initially (theme hides it)\n  card.style.setProperty('display', 'block', 'important'); \n\n  const MAX_WAIT_MS = 3000;\n  const START = Date.now();\n\n  function getWidget() {\n    return anchor.parentElement.querySelector('.vtl-pr-main-widget');\n  }\n\n  function hasRealReviews() {\n    const widget = getWidget();\n    if (!widget) return false;\n\n    return !!widget.querySelector(\n      '.vtl-pr-review, [data-review-id], .vtl-star, img, svg'\n    );\n  }\n\n  function decide(final = false) {\n    const widget = getWidget();\n\n    if (hasRealReviews()) {\n      card.style.setProperty('display', 'block', 'important');\n      observer.disconnect();\n      return;\n    }\n\n    if (final) {\n      card.style.display = 'none';\n      observer.disconnect();\n    }\n  }\n\n  const observer = new MutationObserver(() => {\n    decide(false);\n    if (Date.now() - START > MAX_WAIT_MS) decide(true);\n  });\n\n  observer.observe(anchor.parentElement, {\n    childList: true,\n    subtree: true\n  });\n\n  setTimeout(() => decide(true), MAX_WAIT_MS);\n});\n</script>",
+            "display_mode": "collapse"
+          }
+        },
+        "judge_me_reviews_preview_badge_R8ywae": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "vitals_reviews_stars_z94Nry": {
+          "type": "shopify://apps/vitals/blocks/reviews-stars/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        },
+        "product_meta": {
+          "type": "product_meta",
+          "settings": {
+            "show_vendor": false,
+            "show_sku": false,
+            "show_reviews_badge": false,
+            "show_share_buttons": false
+          }
+        },
+        "variant_selector": {
+          "type": "variant_selector",
+          "settings": {
+            "selector_mode": "block",
+            "color_mode": "dropdown",
+            "show_quantity_selector": true,
+            "show_taxes_included": false,
+            "show_inventory_quantity": false,
+            "low_inventory_threshold": 100
+          }
+        },
+        "delivery_estimator_app_block_H7eJFc": {
+          "type": "shopify://apps/delivery-estimator/blocks/app-block/2be8f45f-2937-4f60-b6b3-7488e231d668",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "image1": "shopify://shop_images/shopping-bag.png"
+          }
+        },
+        "klarna_on_site_messaging_app_block_Dbqqrq": {
+          "type": "shopify://apps/klarna-on-site-messaging/blocks/app-block/b95936a9-74b6-4a95-8103-6a1b6459c25e",
+          "settings": {
+            "data_key": "credit-promotion-badge",
+            "theme": "default",
+            "topPadding": "0",
+            "bottomPadding": "0",
+            "messagePrefix": ""
+          }
+        },
+        "a9c560d5-40e3-4fee-934f-f6b7ef7a9739": {
+          "type": "trust",
+          "settings": {
+            "trust_title": "Payment & Security",
+            "show_payment_icons": true,
+            "custom_security_badge_width": 200
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "display_mode": "view_more"
+          }
+        },
+        "9d4bfcf6-11bc-449b-8839-fd0dd9450aa9": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "title": "Product Details",
+            "liquid": "<div class=\"cstm_details\">\n<table>\n{% if product.first_available_variant.sku != blank %}\n<tr><td>SKU </td> \n<td>{{product.first_available_variant.sku}}</td> </tr>{%endif %}\n{% if product.metafields.custom.tile_material != blank %}\n<tr><td> Material</td> <td> {{product.metafields.custom.tile_material}}</td></tr>{%endif%}\n{% if product.metafields.custom.tile_color != blank %}\n<tr><td>Colour</td><td> {{product.metafields.custom.tile_color}}</td></tr>{%endif%}\n{% if product.metafields.custom.thickness != blank %}\n<tr><td>Thickness</td><td> {{product.metafields.custom.thickness}}</td></tr>{%endif%}\n{% if product.metafields.custom.slip_rating != blank %}\n<tr><td>Anti-Slip Rating</td><td> {{product.metafields.custom.slip_rating}}</td></tr>{%endif%}\n{% if product.metafields.custom.tile_finish != blank %}\n<tr><td>Finish</td><td> {{product.metafields.custom.tile_finish}}</td></tr>{%endif%}\n{% if product.metafields.custom.floor_or_wall != blank %}\n<tr><td>Floor or Wall</td><td> {{product.metafields.custom.floor_or_wall}}</td></tr>{%endif%}\n{% if product.metafields.custom.size != blank %}\n<tr><td>Size</td><td> {{product.metafields.custom.size}}</td></tr>{%endif%}\n</table>\n<table>\n\n{% if product.metafields.custom.rectified != blank %}\n<tr><td> Rectified</td> <td> {{product.metafields.custom.rectified}}</td></tr>{%endif%}\n{% if product.metafields.custom.suitable_for_underfloor_heating != blank %}\n<tr><td>Suitable for Underfloor Heating </td><td> {{ product.metafields.custom.suitable_for_underfloor_heating}}</td></tr>{%endif%}\n{% if product.metafields.custom.box_quantity != blank %}\n<tr><td>Box Quantity</td><td> {{product.metafields.custom.box_quantity}}</td></tr>{%endif%}\n{% if product.metafields.custom.weight != blank %}\n<tr><td>Weight</td><td> {{product.metafields.custom.weight}}</td></tr>{%endif%}\n{% if product.metafields.custom.pattern_repeats != blank %}\n<tr><td>Pattern Repeats</td><td> {{product.metafields.custom.pattern_repeats}}</td></tr>{%endif%}\n{% if product.metafields.custom.sale_by != blank %}\n<tr><td>Sale By</td><td> {{product.metafields.custom.sale_by}}</td></tr>{%endif%}\n</table>\n</div>",
+            "display_mode": "show_all"
+          }
+        },
+        "html_FGDTgt": {
+          "type": "html",
+          "settings": {
+            "title": "Need Extra? Buy it Loose"
+          }
+        },
+        "vitals_back_in_stock_mkJRGa": {
+          "type": "shopify://apps/vitals/blocks/back-in-stock/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "liquid_QbWTND",
+        "judge_me_reviews_preview_badge_R8ywae",
+        "vitals_reviews_stars_z94Nry",
+        "product_meta",
+        "variant_selector",
+        "delivery_estimator_app_block_H7eJFc",
+        "buy_buttons",
+        "klarna_on_site_messaging_app_block_Dbqqrq",
+        "a9c560d5-40e3-4fee-934f-f6b7ef7a9739",
+        "description",
+        "9d4bfcf6-11bc-449b-8839-fd0dd9450aa9",
+        "html_FGDTgt",
+        "vitals_back_in_stock_mkJRGa"
+      ],
+      "settings": {
+        "image_size": "large",
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "zoom_effect": "inside",
+        "carousel_effect": "slide"
+      }
+    },
+    "custom_liquid_iLeprT": {
+      "type": "custom-liquid",
+      "name": "Guarantee",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  =====================================================================\n  MIRROR — 2-Year Guarantee callout (Liquid block)\n  Compact trust strip. Sits well just below the buy box / Add to Basket.\n  =====================================================================\n{%- endcomment -%}\n\n<style>\n  .mgar{font-family:\"Roboto\",sans-serif;display:flex;align-items:center;gap:14px;max-width:520px;background:#eaf3fc;border:1px solid #cfe5fb;border-radius:12px;padding:14px 16px;margin:14px 0}\n  .mgar__ic{flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#016FD0;display:flex;align-items:center;justify-content:center}\n  .mgar__ic svg{width:22px;height:22px;fill:#fff}\n  .mgar__t{font-family:\"Fraunces\",serif;font-weight:700;font-size:17px;color:#016FD0;line-height:1.1}\n  .mgar__d{font-size:13px;color:#3a4047;line-height:1.45;margin-top:3px}\n</style>\n\n<div class=\"mgar\">\n  <span class=\"mgar__ic\">\n    <svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n      <path d=\"M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Zm-1 14-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7Z\"/>\n    </svg>\n  </span>\n  <div>\n    <div class=\"mgar__t\">2-Year Guarantee</div>\n    <div class=\"mgar__d\">Covers the LED lighting and demister, so you can buy with total confidence.</div>\n  </div>\n</div>"
+      }
+    },
+    "custom_liquid_xki7ez": {
+      "type": "custom-liquid",
+      "name": "Complete the look",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  =====================================================================\n  MIRROR — \"Browse more mirrors\" carousel  (paste into a Liquid block)\n  Pulls from one collection. CSS scroll carousel (no JS needed).\n  Current product is auto-excluded. Edit the handle + heading below.\n  =====================================================================\n{%- endcomment -%}\n\n{%- assign source_handle = 'led-mirrors' -%}\n{%- assign heading = 'Browse more mirrors' -%}\n\n{%- assign coll = collections[source_handle] -%}\n{%- assign current_handle = product.handle -%}\n\n{%- if coll != blank and coll.products_count > 0 -%}\n<style>\n  .mcaro{font-family:\"Roboto\",sans-serif;max-width:1100px;margin:0 auto}\n  .mcaro__h{font-family:\"Fraunces\",serif;font-weight:700;font-size:30px;color:#016FD0;margin:0 0 18px}\n  .mcaro__track{display:flex;gap:16px;overflow-x:auto;padding:4px 4px 14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}\n  .mcaro__track::-webkit-scrollbar{height:6px}\n  .mcaro__track::-webkit-scrollbar-thumb{background:#cfd6dd;border-radius:6px}\n  .mcaro__card{flex:0 0 220px;scroll-snap-align:start;border:2px solid #e6e8eb;border-radius:12px;overflow:hidden;background:#fff;text-decoration:none;color:#1a1d24;transition:border-color .15s}\n  .mcaro__card:hover{border-color:#016FD0}\n  .mcaro__img{position:relative;padding-bottom:100%;background:#f3f5f6}\n  .mcaro__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}\n  .mcaro__save{position:absolute;top:10px;left:10px;background:#c8102e;color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:3px 8px}\n  .mcaro__body{padding:12px 14px}\n  .mcaro__title{font-size:13.5px;font-weight:600;line-height:1.35;min-height:38px;margin-bottom:8px}\n  .mcaro__price{font-size:16px;font-weight:800}\n  .mcaro__price s{font-size:12.5px;color:#6b7280;font-weight:500;margin-left:6px}\n  @media(max-width:640px){.mcaro__h{font-size:24px}.mcaro__card{flex-basis:165px}}\n</style>\n\n<section class=\"mcaro\">\n  <h2 class=\"mcaro__h\">{{ heading }}</h2>\n  <div class=\"mcaro__track\">\n    {%- for p in coll.products limit: 12 -%}\n      {%- unless p.handle == current_handle -%}\n        <a class=\"mcaro__card\" href=\"{{ p.url }}\">\n          <div class=\"mcaro__img\">\n            {%- if p.compare_at_price > p.price -%}\n              {%- assign pct = p.compare_at_price | minus: p.price | times: 100 | divided_by: p.compare_at_price -%}\n              <span class=\"mcaro__save\">Save {{ pct }}%</span>\n            {%- endif -%}\n            {%- if p.featured_image -%}\n              <img src=\"{{ p.featured_image | image_url: width: 440 }}\" alt=\"{{ p.featured_image.alt | escape | default: p.title }}\" loading=\"lazy\">\n            {%- endif -%}\n          </div>\n          <div class=\"mcaro__body\">\n            <div class=\"mcaro__title\">{{ p.title }}</div>\n            <div class=\"mcaro__price\">{{ p.price | money }}{%- if p.compare_at_price > p.price -%}<s>{{ p.compare_at_price | money }}</s>{%- endif -%}</div>\n          </div>\n        </a>\n      {%- endunless -%}\n    {%- endfor -%}\n  </div>\n</section>\n{%- endif -%}"
+      }
+    },
+    "custom_liquid_CxGYaH": {
+      "type": "custom-liquid",
+      "name": "Product Details",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  =====================================================================\n  MIRROR — PRODUCT DETAILS spec block  (paste into a \"Liquid\" block)\n  Built from your real metafield definitions. Empty rows auto-hide.\n\n  KEYS USED (namespace.key) — VERIFY each on its definition page:\n    custom.width            custom.height          custom.orientation\n    custom.frame_type       custom.design          custom.colour\n    custom.lighting         custom.color_temprature  ← note the typo'd key\n    custom.demister         custom.bluetooth       custom.shaver_socket\n    custom.power\n  If any definition shows a different namespace or key, change it below.\n  =====================================================================\n{%- endcomment -%}\n\n{%- liquid\n  assign m = product.metafields.custom\n-%}\n\n<style>\n  .mspec{font-family:\"Roboto\",sans-serif;max-width:900px;margin:0 auto}\n  .mspec__h{font-family:\"Fraunces\",serif;font-weight:700;font-size:32px;line-height:1.15;color:#016FD0;margin:0 0 18px}\n  .mspec__grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 32px}\n  .mspec__row{display:flex;justify-content:space-between;gap:14px;padding:12px 15px;background:#f7f8f9;border-radius:9px;font-size:14.5px}\n  .mspec__row b{font-weight:700;color:#1a1d24}\n  .mspec__row span{color:#3a4047;text-align:right}\n  @media(max-width:640px){.mspec__h{font-size:25px}.mspec__grid{grid-template-columns:1fr}}\n</style>\n\n<section class=\"mspec\">\n  <h2 class=\"mspec__h\">Product Details</h2>\n  <div class=\"mspec__grid\">\n\n    {%- if m.width != blank and m.height != blank -%}\n      <div class=\"mspec__row\"><b>Size</b><span>{{ m.width }} &times; {{ m.height }}</span></div>\n    {%- elsif m.width != blank -%}\n      <div class=\"mspec__row\"><b>Width</b><span>{{ m.width }}</span></div>\n    {%- elsif m.height != blank -%}\n      <div class=\"mspec__row\"><b>Height</b><span>{{ m.height }}</span></div>\n    {%- endif -%}\n\n    {%- if m.orientation != blank -%}\n      <div class=\"mspec__row\"><b>Orientation</b><span>{{ m.orientation }}</span></div>\n    {%- endif -%}\n\n    {%- if m.design != blank -%}\n      <div class=\"mspec__row\"><b>Shape / Design</b><span>{{ m.design }}</span></div>\n    {%- endif -%}\n\n    {%- if m.frame_type != blank -%}\n      <div class=\"mspec__row\"><b>Frame</b><span>{{ m.frame_type }}</span></div>\n    {%- endif -%}\n\n    {%- if m.colour != blank -%}\n      <div class=\"mspec__row\"><b>Colour / Finish</b><span>{{ m.colour }}</span></div>\n    {%- endif -%}\n\n    {%- if m.lighting != blank -%}\n      <div class=\"mspec__row\"><b>Lighting</b><span>{{ m.lighting }}</span></div>\n    {%- endif -%}\n\n    {%- if m.color_temprature != blank -%}\n      <div class=\"mspec__row\"><b>Colour Temperature</b><span>{{ m.color_temprature }}</span></div>\n    {%- endif -%}\n\n    {%- if m.demister != blank -%}\n      <div class=\"mspec__row\"><b>Demister / Anti-Fog</b><span>{{ m.demister }}</span></div>\n    {%- endif -%}\n\n    {%- if m.bluetooth != blank -%}\n      <div class=\"mspec__row\"><b>Bluetooth</b><span>{{ m.bluetooth }}</span></div>\n    {%- endif -%}\n\n    {%- if m.shaver_socket != blank -%}\n      <div class=\"mspec__row\"><b>Shaver Socket</b><span>{{ m.shaver_socket }}</span></div>\n    {%- endif -%}\n\n    {%- if m.power != blank -%}\n      <div class=\"mspec__row\"><b>Power</b><span>{{ m.power }}</span></div>\n    {%- endif -%}\n\n  </div>\n</section>"
+      }
+    },
+    "custom_liquid_t77pJf": {
+      "type": "custom-liquid",
+      "name": "Paired With",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  =====================================================================\n  MIRROR — \"Customers also paired with\" carousel  (Liquid block)\n  Cross-sells TILES + bathroom products on a mirror page.\n  Pulls a few products from each handle below. CSS scroll (no JS).\n  Edit the handles + per-collection count + heading to taste.\n  =====================================================================\n{%- endcomment -%}\n\n{%- assign source_handles = 'tile-sale,stylish-radiators-heated-towel-rails,luxury-shower-sets,toilets' | split: ',' -%}\n{%- assign per_collection = 3 -%}\n{%- assign heading = 'Customers also paired with' -%}\n\n<style>\n  .pcaro{font-family:\"Roboto\",sans-serif;max-width:1100px;margin:0 auto}\n  .pcaro__h{font-family:\"Fraunces\",serif;font-weight:700;font-size:30px;color:#016FD0;margin:0 0 18px}\n  .pcaro__track{display:flex;gap:16px;overflow-x:auto;padding:4px 4px 14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}\n  .pcaro__track::-webkit-scrollbar{height:6px}\n  .pcaro__track::-webkit-scrollbar-thumb{background:#cfd6dd;border-radius:6px}\n  .pcaro__card{flex:0 0 220px;scroll-snap-align:start;border:2px solid #e6e8eb;border-radius:12px;overflow:hidden;background:#fff;text-decoration:none;color:#1a1d24;transition:border-color .15s}\n  .pcaro__card:hover{border-color:#016FD0}\n  .pcaro__img{position:relative;padding-bottom:100%;background:#f3f5f6}\n  .pcaro__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}\n  .pcaro__save{position:absolute;top:10px;left:10px;background:#c8102e;color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:3px 8px}\n  .pcaro__body{padding:12px 14px}\n  .pcaro__title{font-size:13.5px;font-weight:600;line-height:1.35;min-height:38px;margin-bottom:8px}\n  .pcaro__price{font-size:16px;font-weight:800}\n  .pcaro__price s{font-size:12.5px;color:#6b7280;font-weight:500;margin-left:6px}\n  @media(max-width:640px){.pcaro__h{font-size:24px}.pcaro__card{flex-basis:165px}}\n</style>\n\n<section class=\"pcaro\">\n  <h2 class=\"pcaro__h\">{{ heading }}</h2>\n  <div class=\"pcaro__track\">\n    {%- for h in source_handles -%}\n      {%- assign coll = collections[h] -%}\n      {%- if coll != blank -%}\n        {%- for p in coll.products limit: per_collection -%}\n          <a class=\"pcaro__card\" href=\"{{ p.url }}\">\n            <div class=\"pcaro__img\">\n              {%- if p.compare_at_price > p.price -%}\n                {%- assign pct = p.compare_at_price | minus: p.price | times: 100 | divided_by: p.compare_at_price -%}\n                <span class=\"pcaro__save\">Save {{ pct }}%</span>\n              {%- endif -%}\n              {%- if p.featured_image -%}\n                <img src=\"{{ p.featured_image | image_url: width: 440 }}\" alt=\"{{ p.featured_image.alt | escape | default: p.title }}\" loading=\"lazy\">\n              {%- endif -%}\n            </div>\n            <div class=\"pcaro__body\">\n              <div class=\"pcaro__title\">{{ p.title }}</div>\n              <div class=\"pcaro__price\">{{ p.price | money }}{%- if p.compare_at_price > p.price -%}<s>{{ p.compare_at_price | money }}</s>{%- endif -%}</div>\n            </div>\n          </a>\n        {%- endfor -%}\n      {%- endif -%}\n    {%- endfor -%}\n  </div>\n</section>"
+      }
+    },
+    "custom_liquid_hYpwa8": {
+      "type": "custom-liquid",
+      "name": "Product Description",
+      "settings": {
+        "title": "Product Description",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  Liquid block titled \"Description\". Pulls product.description into its own block\n  with a \"Read more\" toggle. The toggle only appears when the text is long enough\n  to need clamping, so short descriptions show in full with no button.\n  (If you use this, delete the theme's native Description block to avoid duplication.)\n{%- endcomment -%}\n{%- if product.description != blank -%}\n  <div class=\"tp-desc-wrap\">\n    <div class=\"tp-desc rte\">\n      {{ product.description | remove: 'data-section-type=\"product\"' }}\n    </div>\n    <button type=\"button\" class=\"tp-desc-toggle\" style=\"display:none\">Read more</button>\n  </div>\n\n  <style>\n    .tp-desc-wrap{max-width:820px;font-family:\"Open Sans\",sans-serif;}\n    .tp-desc{font-size:15px;line-height:1.7;color:#3a3f48;position:relative;overflow:hidden;}\n    .tp-desc.is-clamped{max-height:230px;}\n    .tp-desc.is-clamped::after{content:\"\";position:absolute;left:0;right:0;bottom:0;height:80px;\n      background:linear-gradient(to bottom,rgba(255,255,255,0),#fff);pointer-events:none;}\n    .tp-desc h2,.tp-desc h3{color:#1a1d24;font-weight:800;margin:16px 0 6px;line-height:1.3;}\n    .tp-desc p{margin:0 0 11px;}\n    .tp-desc ul,.tp-desc ol{margin:8px 0 14px 20px;}\n    .tp-desc li{margin-bottom:5px;}\n    .tp-desc table{width:100%;border-collapse:collapse;margin:10px 0;}\n    .tp-desc td,.tp-desc th{border:1px solid #e6e8eb;padding:8px 12px;text-align:left;}\n    .tp-desc-toggle{margin-top:12px;background:none;border:0;color:#c8102e;font-weight:700;\n      cursor:pointer;font-size:14px;font-family:\"Open Sans\",sans-serif;padding:0;}\n    .tp-desc-toggle:hover{text-decoration:underline;}\n  </style>\n\n  <script>\n    (function(){\n      document.querySelectorAll('.tp-desc-wrap').forEach(function(wrap){\n        var desc = wrap.querySelector('.tp-desc');\n        var btn  = wrap.querySelector('.tp-desc-toggle');\n        if(!desc || !btn) return;\n        var CLAMP = 230;\n        if(desc.scrollHeight > CLAMP + 60){\n          desc.classList.add('is-clamped');\n          btn.style.display = 'inline-block';\n          btn.addEventListener('click', function(){\n            var clamped = desc.classList.toggle('is-clamped');\n            btn.textContent = clamped ? 'Read more' : 'Read less';\n          });\n        }\n      });\n    })();\n  </script>\n{%- endif -%}"
+      }
+    },
+    "1780773500431ccfd2": {
+      "type": "apps",
+      "blocks": {
+        "vitals_product_reviews_UkDaYU": {
+          "type": "shopify://apps/vitals/blocks/product-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {
+            "hide_mock_data": false
+          }
+        }
+      },
+      "block_order": [
+        "vitals_product_reviews_UkDaYU"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "custom_liquid_ekefkB": {
+      "type": "custom-liquid",
+      "name": "TILE FAQ",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  =====================================================================\n  MIRROR FAQ BLOCK  —  paste into a \"Liquid\" block on the mirror template\n  (title field can be left blank; heading is rendered below)\n  Accordion uses native <details> (no JS). FAQPage schema included.\n  Answers are UK-specific and apply across LED mirror SKUs. Edit any\n  model-specific lines (Bluetooth / Tri-Light / demister) per range.\n  =====================================================================\n{%- endcomment -%}\n\n<style>\n  .mfaq{font-family:\"Roboto\",sans-serif;max-width:920px;margin:0 auto}\n  .mfaq__h{font-family:\"Fraunces\",serif;font-weight:700;font-size:34px;line-height:1.15;color:#016FD0;margin:0 0 8px}\n  .mfaq__sub{color:#5a6068;font-size:15px;margin:0 0 22px}\n  .mfaq__item{border:1px solid #e6e8eb;border-radius:12px;margin-bottom:12px;overflow:hidden;background:#fff}\n  .mfaq__item[open]{border-color:#016FD0}\n  .mfaq__q{list-style:none;cursor:pointer;padding:18px 20px;font-size:16px;font-weight:600;color:#1a1d24;display:flex;justify-content:space-between;align-items:center;gap:14px}\n  .mfaq__q::-webkit-details-marker{display:none}\n  .mfaq__q::after{content:\"+\";font-size:22px;font-weight:400;color:#016FD0;flex:0 0 auto;transition:transform .2s}\n  .mfaq__item[open] .mfaq__q::after{transform:rotate(45deg)}\n  .mfaq__a{padding:0 20px 18px;color:#3a4047;font-size:15px;line-height:1.65}\n  .mfaq__a a{color:#016FD0;font-weight:600}\n  @media(max-width:600px){.mfaq__h{font-size:26px}}\n</style>\n\n<section class=\"mfaq\">\n  <h2 class=\"mfaq__h\">LED Mirror FAQs</h2>\n  <p class=\"mfaq__sub\">Everything you need to know before you buy &amp; fit your mirror.</p>\n\n  <details class=\"mfaq__item\">\n    <summary class=\"mfaq__q\">Are LED bathroom mirrors safe to use in a bathroom?</summary>\n    <div class=\"mfaq__a\">Yes. Our LED mirrors are <strong>IP44 rated</strong>, meaning they're protected against splashing water from any direction. Under UK wiring regulations (BS 7671) that makes them suitable for Zone 2 — the area around a basin — and any zone beyond it.</div>\n  </details>\n\n  <details class=\"mfaq__item\">\n    <summary class=\"mfaq__q\">Which bathroom zone can I install it in?</summary>\n    <div class=\"mfaq__a\">An IP44 rating covers <strong>Zone 2 and outside zones</strong> — typically above a basin or on any wall away from direct shower spray. For Zone 1 (directly above a bath or shower), an IP65 fitting is recommended. If you're unsure, position the mirror at least 60cm from the bath or shower edge.</div>\n  </details>\n\n  <details class=\"mfaq__item\">\n    <summary class=\"mfaq__q\">Do I need an electrician to fit it?</summary>\n    <div class=\"mfaq__a\">If the mirror is hardwired into the mains, yes — bathroom electrical work in the UK falls under <strong>Part P Building Regulations</strong> and should be carried out by a qualified electrician on an RCD-protected circuit. Always check the supplied instructions for your specific model.</div>\n  </details>\n\n  <details class=\"mfaq__item\">\n    <summary class=\"mfaq__q\">Does the demister keep the whole mirror clear?</summary>\n    <div class=\"mfaq__a\">The heated demister pad sits behind the glass and keeps a generous central area clear — more than enough to shave or apply makeup straight after a hot shower. Give it a minute or two after switching on to reach full effect.</div>\n  </details>\n\n  <details class=\"mfaq__item\">\n    <summary class=\"mfaq__q\">What's the difference between front-lit and backlit?</summary>\n    <div class=\"mfaq__a\"><strong>Front-lit</strong> mirrors throw light forward onto your face — the best choice for detailed tasks like makeup and shaving. <strong>Backlit</strong> mirrors cast a soft glow around the edges for a calmer, more ambient, spa-like feel. Some designs combine both.</div>\n  </details>\n\n  <details class=\"mfaq__item\">\n    <summary class=\"mfaq__q\">Can I mount it portrait or landscape?</summary>\n    <div class=\"mfaq__a\">Yes — our mirrors are designed for both <strong>vertical and horizontal</strong> mounting, so they'll suit your space either way. Check the position of the touch control before fixing so it ends up where you want it.</div>\n  </details>\n\n  <details class=\"mfaq__item\">\n    <summary class=\"mfaq__q\">Can I change the light colour?</summary>\n    <div class=\"mfaq__a\">Tri-Light models let you cycle between <strong>warm, neutral and cool white</strong> with a tap of the touch sensor, and a memory function remembers your last setting — cool light to wake up, warmer light to wind down.</div>\n  </details>\n\n  <details class=\"mfaq__item\">\n    <summary class=\"mfaq__q\">How does the Bluetooth work?</summary>\n    <div class=\"mfaq__a\">On Bluetooth models, pair your phone or tablet to the mirror's built-in speaker to play music or podcasts while you get ready — no extra gadgets or wiring needed.</div>\n  </details>\n\n  <details class=\"mfaq__item\">\n    <summary class=\"mfaq__q\">Is the glass safe?</summary>\n    <div class=\"mfaq__a\">Our mirrors use <strong>copper-free, shatter-resistant glass</strong>, which resists the black-edge corrosion common in steamy bathrooms and is safer if accidentally knocked.</div>\n  </details>\n\n  <details class=\"mfaq__item\">\n    <summary class=\"mfaq__q\">How long do the LEDs last and how much do they cost to run?</summary>\n    <div class=\"mfaq__a\">The LEDs are rated for around <strong>50,000 hours</strong> and draw very little power, so they're cheap to run and you won't be replacing anything for years.</div>\n  </details>\n</section>\n\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\"@type\":\"Question\",\"name\":\"Are LED bathroom mirrors safe to use in a bathroom?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes. Our LED mirrors are IP44 rated, meaning they are protected against splashing water from any direction. Under UK wiring regulations (BS 7671) that makes them suitable for Zone 2 around a basin and any zone beyond it.\"}},\n    {\"@type\":\"Question\",\"name\":\"Which bathroom zone can I install an LED mirror in?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"An IP44 rating covers Zone 2 and outside zones, typically above a basin or on any wall away from direct shower spray. For Zone 1 directly above a bath or shower, an IP65 fitting is recommended. If unsure, position the mirror at least 60cm from the bath or shower edge.\"}},\n    {\"@type\":\"Question\",\"name\":\"Do I need an electrician to fit an LED mirror?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"If the mirror is hardwired into the mains, yes. Bathroom electrical work in the UK falls under Part P Building Regulations and should be carried out by a qualified electrician on an RCD-protected circuit.\"}},\n    {\"@type\":\"Question\",\"name\":\"Does the demister keep the whole mirror clear?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"The heated demister pad sits behind the glass and keeps a generous central area clear, more than enough to shave or apply makeup straight after a hot shower. Allow a minute or two after switching on to reach full effect.\"}},\n    {\"@type\":\"Question\",\"name\":\"What is the difference between front-lit and backlit LED mirrors?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Front-lit mirrors throw light forward onto your face, best for makeup and shaving. Backlit mirrors cast a soft glow around the edges for a calmer, more ambient feel. Some designs combine both.\"}},\n    {\"@type\":\"Question\",\"name\":\"Can I mount the mirror portrait or landscape?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes, our mirrors are designed for both vertical and horizontal mounting. Check the position of the touch control before fixing so it ends up where you want it.\"}},\n    {\"@type\":\"Question\",\"name\":\"Can I change the light colour?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Tri-Light models let you cycle between warm, neutral and cool white with the touch sensor, and a memory function remembers your last setting.\"}},\n    {\"@type\":\"Question\",\"name\":\"How does the Bluetooth work?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"On Bluetooth models, pair your phone or tablet to the mirror's built-in speaker to play music or podcasts while you get ready.\"}},\n    {\"@type\":\"Question\",\"name\":\"Is the glass safe?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Our mirrors use copper-free, shatter-resistant glass, which resists black-edge corrosion in steamy bathrooms and is safer if accidentally knocked.\"}},\n    {\"@type\":\"Question\",\"name\":\"How long do the LEDs last and how much do they cost to run?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"The LEDs are rated for around 50,000 hours and draw very little power, so they are cheap to run and will not need replacing for years.\"}}\n  ]\n}\n</script>"
+      }
+    },
+    "custom_liquid_WhPNfa": {
+      "type": "custom-liquid",
+      "name": "Tile USP",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  Liquid block (Display mode \"Show all\"), or paste into a Custom Liquid section\n  near the top of the page / under the header. Trust + USP bar.\n{%- endcomment -%}\n<div class=\"tp-usp\">\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 6h11v9H3z\"/><path d=\"M14 9h4l3 3v3h-7z\"/><circle cx=\"7\" cy=\"18\" r=\"1.6\"/><circle cx=\"17.5\" cy=\"18\" r=\"1.6\"/></svg>\n    Next-day UK delivery\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.8 5.7 21l1.3-6.7-5-4.6 6.8-.8z\"/></svg>\n    Rated Excellent on Trustpilot\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M3 10h18\"/></svg>\n    0% finance available\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16v12H4z\"/><path d=\"M9 20h6\"/></svg>\n    Free samples &middot; 14-day returns\n  </span>\n</div>\n<style>\n  .tp-usp{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:center;\n    background:#1a1d24;color:#fff;padding:11px 18px;border-radius:10px;\n    font-family:\"Open Sans\",sans-serif;font-size:13px;font-weight:600;}\n  .tp-usp__i{display:flex;align-items:center;gap:8px;opacity:.94;}\n  .tp-usp__i svg{width:16px;height:16px;color:#7fd3a0;flex:0 0 auto;}\n</style>"
+      }
+    },
+    "blocks_JPq7Pd": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4a575ab_wPqaDw": {
+          "type": "ai_gen_block_4a575ab",
+          "settings": {
+            "heading": "Shop Related Collections",
+            "heading_alignment": "center",
+            "max_collections": 6,
+            "show_product_count": false,
+            "product_singular_text": "product",
+            "product_plural_text": "products",
+            "empty_message": "This product is not in any collections yet.",
+            "desktop_columns": 6,
+            "tablet_columns": 3,
+            "mobile_columns": "2",
+            "grid_gap": 30,
+            "section_padding": 40,
+            "heading_spacing": 30,
+            "content_spacing": 20,
+            "circle_size": 180,
+            "background_color": "#ffffff",
+            "heading_color": "#3b3337",
+            "collection_name_color": "#3b3337",
+            "product_count_color": "#616161",
+            "heading_size": 32,
+            "collection_name_size": 18,
+            "product_count_size": 14,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4a575ab_wPqaDw"
+      ],
+      "name": "Related collections",
+      "settings": {}
+    },
+    "recently_viewed_carousel_QTWnRD": {
+      "type": "recently-viewed-carousel",
+      "name": "Recently Viewed Carousel",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false,
+        "slides_desktop": 4,
+        "slides_tablet": 3,
+        "slides_mobile": 1.2
+      }
+    },
+    "custom_liquid_cGhqfW": {
+      "type": "custom-liquid",
+      "name": "FRONT/BACKLIT",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  =====================================================================\n  MIRROR — \"Front-lit or backlit?\" lighting explainer (Liquid block)\n  Informational/SEO block + buyer decision aid. Inline SVG, no JS.\n  =====================================================================\n{%- endcomment -%}\n\n<style>\n  .mlx{font-family:\"Roboto\",sans-serif;max-width:1000px;margin:0 auto}\n  .mlx__h{font-family:\"Fraunces\",serif;font-weight:700;font-size:30px;color:#016FD0;margin:0 0 6px}\n  .mlx__sub{color:#5a6068;font-size:15px;margin:0 0 22px;max-width:680px}\n  .mlx__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}\n  .mlx__card{border:2px solid #e6e8eb;border-radius:14px;padding:22px;text-align:center;background:#fff}\n  .mlx__card svg{width:100%;height:120px;margin-bottom:14px}\n  .mlx__t{font-family:\"Fraunces\",serif;font-weight:700;font-size:19px;color:#1a1d24;margin-bottom:6px}\n  .mlx__d{font-size:13.5px;color:#3a4047;line-height:1.55}\n  .mlx__best{display:inline-block;margin-top:12px;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#016FD0;background:#eaf3fc;border-radius:20px;padding:5px 12px}\n  @media(max-width:760px){.mlx__grid{grid-template-columns:1fr}.mlx__h{font-size:25px}}\n</style>\n\n<section class=\"mlx\">\n  <h2 class=\"mlx__h\">Front-lit or backlit?</h2>\n  <p class=\"mlx__sub\">The lighting style changes how the mirror looks and how well it lights your face. Here's how to choose.</p>\n\n  <div class=\"mlx__grid\">\n\n    <!-- FRONT-LIT -->\n    <div class=\"mlx__card\">\n      <svg viewBox=\"0 0 200 120\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n        <rect x=\"58\" y=\"18\" width=\"60\" height=\"84\" rx=\"6\" fill=\"#eaf1f8\" stroke=\"#016FD0\" stroke-width=\"2.5\"/>\n        <rect x=\"64\" y=\"24\" width=\"6\" height=\"72\" rx=\"3\" fill=\"#016FD0\"/>\n        <rect x=\"106\" y=\"24\" width=\"6\" height=\"72\" rx=\"3\" fill=\"#016FD0\"/>\n        <g stroke=\"#f5b301\" stroke-width=\"2.5\" stroke-linecap=\"round\">\n          <line x1=\"120\" y1=\"38\" x2=\"150\" y2=\"32\"/>\n          <line x1=\"120\" y1=\"60\" x2=\"152\" y2=\"60\"/>\n          <line x1=\"120\" y1=\"82\" x2=\"150\" y2=\"88\"/>\n        </g>\n        <circle cx=\"170\" cy=\"60\" r=\"14\" fill=\"#cdd9e6\"/>\n      </svg>\n      <div class=\"mlx__t\">Front-lit</div>\n      <div class=\"mlx__d\">LED strips face forward, casting even light directly onto your face with no shadows.</div>\n      <span class=\"mlx__best\">Best for makeup &amp; shaving</span>\n    </div>\n\n    <!-- BACKLIT -->\n    <div class=\"mlx__card\">\n      <svg viewBox=\"0 0 200 120\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n        <defs><radialGradient id=\"glow\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n          <stop offset=\"60%\" stop-color=\"#fff4cf\"/><stop offset=\"100%\" stop-color=\"#fff4cf\" stop-opacity=\"0\"/>\n        </radialGradient></defs>\n        <ellipse cx=\"100\" cy=\"60\" rx=\"78\" ry=\"52\" fill=\"url(#glow)\"/>\n        <rect x=\"68\" y=\"20\" width=\"64\" height=\"80\" rx=\"8\" fill=\"#eaf1f8\" stroke=\"#016FD0\" stroke-width=\"2.5\"/>\n      </svg>\n      <div class=\"mlx__t\">Backlit</div>\n      <div class=\"mlx__d\">Light glows from behind the mirror onto the wall, creating a soft halo and calm atmosphere.</div>\n      <span class=\"mlx__best\">Best for ambience</span>\n    </div>\n\n    <!-- BOTH -->\n    <div class=\"mlx__card\">\n      <svg viewBox=\"0 0 200 120\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n        <defs><radialGradient id=\"glow2\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n          <stop offset=\"60%\" stop-color=\"#fff4cf\"/><stop offset=\"100%\" stop-color=\"#fff4cf\" stop-opacity=\"0\"/>\n        </radialGradient></defs>\n        <ellipse cx=\"100\" cy=\"60\" rx=\"78\" ry=\"52\" fill=\"url(#glow2)\"/>\n        <rect x=\"68\" y=\"20\" width=\"64\" height=\"80\" rx=\"8\" fill=\"#eaf1f8\" stroke=\"#016FD0\" stroke-width=\"2.5\"/>\n        <rect x=\"74\" y=\"26\" width=\"5\" height=\"68\" rx=\"2.5\" fill=\"#016FD0\"/>\n        <rect x=\"121\" y=\"26\" width=\"5\" height=\"68\" rx=\"2.5\" fill=\"#016FD0\"/>\n      </svg>\n      <div class=\"mlx__t\">Front &amp; backlit</div>\n      <div class=\"mlx__d\">The best of both — bright task light on your face plus a warm ambient glow around the edges.</div>\n      <span class=\"mlx__best\">Best all-rounder</span>\n    </div>\n\n  </div>\n</section>"
+      }
+    },
+    "custom_liquid_jnhHej": {
+      "type": "custom-liquid",
+      "name": "IP44",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  =====================================================================\n  MIRROR — IP44 / Bathroom Zone safety block (Liquid block)\n  UK trust + objection handling. Inline SVG zone diagram, no JS.\n  =====================================================================\n{%- endcomment -%}\n\n<style>\n  .mzn{font-family:\"Roboto\",sans-serif;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;background:#f7f8f9;border:1px solid #e6e8eb;border-radius:16px;padding:30px}\n  .mzn__h{font-family:\"Fraunces\",serif;font-weight:700;font-size:28px;color:#016FD0;margin:0 0 6px}\n  .mzn__badge{display:inline-flex;align-items:center;gap:7px;background:#016FD0;color:#fff;font-weight:800;font-size:13px;border-radius:30px;padding:6px 14px;margin-bottom:14px}\n  .mzn__p{font-size:14.5px;color:#3a4047;line-height:1.65;margin-bottom:12px}\n  .mzn__list{list-style:none;margin:0;padding:0}\n  .mzn__list li{font-size:13.5px;color:#1a1d24;font-weight:500;padding:6px 0 6px 24px;position:relative}\n  .mzn__list li::before{content:\"✓\";position:absolute;left:0;color:#1f8a4c;font-weight:800}\n  .mzn svg{width:100%;height:auto}\n  @media(max-width:760px){.mzn{grid-template-columns:1fr;padding:22px}.mzn__h{font-size:24px}}\n</style>\n\n<section class=\"mzn\">\n  <div>\n    <svg viewBox=\"0 0 320 230\" xmlns=\"http://www.w3.org/2000/svg\" aria-label=\"UK bathroom electrical zones\">\n      <rect x=\"0\" y=\"0\" width=\"320\" height=\"230\" rx=\"10\" fill=\"#fff\" stroke=\"#e6e8eb\"/>\n      <!-- Zone 3 (room) -->\n      <rect x=\"10\" y=\"14\" width=\"300\" height=\"200\" rx=\"6\" fill=\"#eef6ee\"/>\n      <text x=\"250\" y=\"30\" font-family=\"Roboto\" font-size=\"11\" font-weight=\"700\" fill=\"#3f8a4c\">Zone 3</text>\n      <!-- Zone 2 around bath -->\n      <rect x=\"14\" y=\"40\" width=\"150\" height=\"170\" rx=\"4\" fill=\"#fdf4e3\"/>\n      <text x=\"80\" y=\"56\" font-family=\"Roboto\" font-size=\"11\" font-weight=\"700\" fill=\"#c79518\">Zone 2</text>\n      <!-- Zone 1 above bath -->\n      <rect x=\"22\" y=\"60\" width=\"120\" height=\"150\" rx=\"4\" fill=\"#fbe6e6\"/>\n      <text x=\"60\" y=\"76\" font-family=\"Roboto\" font-size=\"11\" font-weight=\"700\" fill=\"#c0392b\">Zone 1</text>\n      <!-- Bath / Zone 0 -->\n      <rect x=\"22\" y=\"176\" width=\"120\" height=\"34\" rx=\"6\" fill=\"#dfe9f3\" stroke=\"#9bb6cf\"/>\n      <text x=\"60\" y=\"198\" font-family=\"Roboto\" font-size=\"10\" font-weight=\"700\" fill=\"#5b7a98\">Bath · Zone 0</text>\n      <!-- Basin + mirror in zone 2/3 -->\n      <rect x=\"214\" y=\"150\" width=\"64\" height=\"16\" rx=\"4\" fill=\"#cdd9e6\"/>\n      <text x=\"222\" y=\"184\" font-family=\"Roboto\" font-size=\"10\" fill=\"#5a6068\">Basin</text>\n      <!-- the mirror -->\n      <rect x=\"228\" y=\"70\" width=\"36\" height=\"54\" rx=\"5\" fill=\"#eaf1f8\" stroke=\"#016FD0\" stroke-width=\"3\"/>\n      <rect x=\"244\" y=\"58\" width=\"6\" height=\"10\" fill=\"#016FD0\"/>\n      <text x=\"208\" y=\"138\" font-family=\"Roboto\" font-size=\"10\" font-weight=\"700\" fill=\"#016FD0\">Your mirror</text>\n    </svg>\n  </div>\n  <div>\n    <span class=\"mzn__badge\">🛡 IP44 RATED</span>\n    <h2 class=\"mzn__h\">Safe for your bathroom</h2>\n    <p class=\"mzn__p\">An <strong>IP44</strong> rating means the mirror is protected against splashing water from any direction. Under UK wiring regulations that makes it safe for <strong>Zone 2</strong> — the area around your basin — and anywhere beyond it.</p>\n    <ul class=\"mzn__list\">\n      <li>Ideal above a basin or vanity (Zone 2)</li>\n      <li>Fit at least 60cm from a bath or shower edge</li>\n      <li>Hardwired models: fit via a qualified electrician (Part P)</li>\n      <li>Mount portrait or landscape to suit your space</li>\n    </ul>\n  </div>\n</section>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_iLeprT",
+    "custom_liquid_xki7ez",
+    "custom_liquid_CxGYaH",
+    "custom_liquid_t77pJf",
+    "custom_liquid_hYpwa8",
+    "1780773500431ccfd2",
+    "custom_liquid_ekefkB",
+    "custom_liquid_WhPNfa",
+    "blocks_JPq7Pd",
+    "recently_viewed_carousel_QTWnRD",
+    "custom_liquid_cGhqfW",
+    "custom_liquid_jnhHej"
+  ]
+}

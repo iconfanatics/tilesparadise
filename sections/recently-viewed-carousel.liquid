@@ -1,0 +1,286 @@
+{%- capture section_settings -%}
+{
+  "currentProductId": {{ product.id | json }}
+}
+{%- endcapture -%}
+
+<section class="section recently-viewed-products special-offers-carousel" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="recently-viewed-products" 
+  data-section-settings='{{ section_settings }}'>
+
+  <div class="page-width">
+
+    {% if section.settings.title != blank %}
+      <div class="so-header so-header-rvc">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="recently-viewed-products-placeholder">
+
+      {% if request.page_type == 'search' and search.results_count > 0 %}
+
+        <div class="swiper recently-viewed-swiper">
+          <div class="swiper-wrapper">
+
+            {% assign parsed_terms = search.terms | split: ' OR ' %}
+
+            {% for parsed_term in parsed_terms %}
+              {% assign id = parsed_term | split: 'id:' | last | times: 1 %}
+
+              {% for product in search.results %}
+                {% if product.id == id %}
+
+                  <div class="swiper-slide">
+                    {% render 'product-item',
+                      product: product,
+                      show_add_to_cart: section.settings.show_quick_buy
+                      
+                    %}
+                  </div>
+
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+
+          </div>
+
+          <!-- arrows -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
+          <!-- dots -->
+          <div class="swiper-pagination"></div>
+        </div>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+  <!-- Hide section if empty -->
+  {% if request.page_type != 'search' or search.results_count == 0 %}
+    <style>
+      #shopify-section-{{ section.id }} {
+        display: none;
+      }
+    </style>
+  {% endif %}
+
+</section>
+
+<!-- SWIPER -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  new Swiper('#shopify-section-{{ section.id }} .recently-viewed-swiper', {
+    slidesPerView: {{ section.settings.slides_desktop }},
+    spaceBetween: 16,
+    slidesPerView: 'auto',
+
+
+    pagination: {
+      el: '#shopify-section-{{ section.id }} .swiper-pagination',
+      clickable: true,
+    },
+
+    breakpoints: {
+      320: {
+        slidesPerView: {{ section.settings.slides_mobile }}
+      },
+      768: {
+        slidesPerView: {{ section.settings.slides_tablet }}
+      },
+      1024: {
+        slidesPerView: {{ section.settings.slides_desktop }}
+      }
+    }
+  });
+});
+</script>
+
+<style>
+/* ===== SECTION WRAPPER ===== */
+.recently-viewed-products {
+  margin-top: 20px;
+  padding: 50px;
+}
+}
+
+/* ===== SWIPER FIX ===== */
+.recently-viewed-products .swiper {
+  overflow: visible;
+}
+
+.recently-viewed-products .swiper-wrapper {
+  align-items: stretch;
+}
+
+/* FORCE CARD WIDTH */
+.recently-viewed-products .swiper-slide {
+  width: 260px !important;
+}
+
+/* ===== PRODUCT CARD ===== */
+.recently-viewed-products .product-item {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  height: 100%;
+}
+
+/* IMAGE */
+.recently-viewed-products .product-item__image-wrapper {
+  height: 180px;
+  overflow: hidden;
+}
+
+.recently-viewed-products .product-item__primary-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* REMOVE ASPECT RATIO ISSUE */
+.recently-viewed-products .aspect-ratio {
+  padding-bottom: 0 !important;
+  height: 100% !important;
+}
+
+/* CONTENT */
+.recently-viewed-products .product-item__info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px;
+}
+
+/* TITLE */
+.recently-viewed-products .product-item__title {
+  font-size: 14px;
+  line-height: 1.4;
+  min-height: 40px;
+  margin-bottom: 6px;
+}
+
+/* PRICE */
+.recently-viewed-products .price {
+  margin-bottom: 6px;
+}
+
+/* BUTTON AREA */
+.recently-viewed-products .product-item__action-list {
+  margin-top: auto;
+}
+
+/* BUTTON */
+.recently-viewed-products .product-item__action-button {
+  display: block !important;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* ===== REMOVE ARROWS ===== */
+.recently-viewed-products .swiper-button-next,
+.recently-viewed-products .swiper-button-prev {
+  display: none !important;
+}
+
+/* ===== DOTS (PAGINATION) ===== */
+.recently-viewed-products .swiper-pagination {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.recently-viewed-products .swiper-pagination-bullet {
+  background: #ccc;
+  opacity: 1;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+}
+
+.recently-viewed-products .swiper-pagination-bullet-active {
+  background: #000;
+}
+
+/* ===== SAVE BADGE FIX ===== */
+.recently-viewed-products .save-badge,
+.recently-viewed-products .badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+button.quic_mod.product-item__action-button.product-item__action-button--list-view-only.button.button--small.button--ternary.hidden-phone {
+    background: #016fd0;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    margin: 0 !important;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Recently Viewed Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Recently viewed",
+      "label": "Heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_buy",
+      "default": false,
+      "label": "Show quick buy"
+    },
+    {
+      "type": "range",
+      "id": "slides_desktop",
+      "label": "Slides (Desktop)",
+      "min": 2,
+      "max": 6,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "slides_tablet",
+      "label": "Slides (Tablet)",
+      "min": 2,
+      "max": 4,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "slides_mobile",
+      "label": "Slides (Mobile)",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.2
+    }
+  ],
+  "presets": [
+    {
+      "name": "Recently Viewed Carousel"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,228 @@
+<section 
+  class="custom-hero-banner"
+  style="
+    background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width">
+    <div class="hero-wrapper">
+
+      <!-- RIGHT CONTENT -->
+      <div class="hero-content">
+        
+        {% if section.settings.heading != blank %}
+          <h1>{{ section.settings.heading }}</h1>
+        {% endif %}
+
+        {% if section.settings.subtext != blank %}
+          <p class="hero-subtext">{{ section.settings.subtext }}</p>
+        {% endif %}
+
+        <!-- BUTTONS -->
+        <div class="hero-buttons">
+          {% if section.settings.btn1_label != blank %}
+            <a href="{{ section.settings.btn1_link }}" class="btn btn-primary">
+              {{ section.settings.btn1_label }}
+            </a>
+          {% endif %}
+
+          {% if section.settings.btn2_label != blank %}
+            <a href="{{ section.settings.btn2_link }}" class="btn btn-secondary">
+              {{ section.settings.btn2_label }}
+            </a>
+          {% endif %}
+        </div>
+
+        <!-- EXTRA INFO -->
+        {% if section.settings.bottom_text != blank %}
+          <div class="hero-bottom-text">
+            {{ section.settings.bottom_text }}
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.custom-hero-banner {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 500px;
+}
+
+
+.hero-content h1 {
+  color: {{ section.settings.heading_color }};
+}
+
+
+.hero-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.btn {
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: {{ section.settings.btn1_bg }};
+  color: {{ section.settings.btn1_color }};
+}
+
+.btn-secondary {
+  background: {{ section.settings.btn2_bg }};
+  color: {{ section.settings.btn2_color }};
+}
+
+
+/* MOBILE */
+@media screen and (max-width: 768px) {
+  .hero-wrapper {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Transform Your Space with Premium Tiles"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Sub Text",
+      "default": "High-quality wall & floor tiles for bathrooms, kitchens, and outdoor spaces."
+    },
+
+    {
+      "type": "text",
+      "id": "btn1_label",
+      "label": "Primary Button Label",
+      "default": "Shop Best Sellers"
+    },
+    {
+      "type": "url",
+      "id": "btn1_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn1_bg",
+      "label": "Primary Button Background",
+      "default": "#0d6efd"
+    },
+    {
+      "type": "color",
+      "id": "btn1_color",
+      "label": "Primary Button Text Color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "text",
+      "id": "btn2_label",
+      "label": "Secondary Button Label",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "btn2_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn2_bg",
+      "label": "Secondary Button Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "btn2_color",
+      "label": "Secondary Button Text Color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "textarea",
+      "id": "bottom_text",
+      "label": "Bottom Small Text",
+      "default": "⭐ 4.8 Rated by 1,000+ Customers | 🚚 Free Delivery Over ₹250"
+    },
+
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1a73e8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero Banner"
+    }
+  ]
+}
+{% endschema %}

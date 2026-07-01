@@ -1,0 +1,178 @@
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "#Latest Stories"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "For new styles and inspirations follow @yourhandle"
+    },
+    {
+    "type": "image_picker",
+    "id": "icon",
+    "label": "Overlay Icon"
+    },
+    {
+    "type": "range",
+    "id": "icon_size",
+    "label": "Icon Size",
+    "min": 20,
+    "max": 80,
+    "step": 2,
+    "default": 28
+    }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Instagram Post",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Instagram Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Instagram Feed"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="instagram-feed">
+  <div class="page-width">
+
+    <!-- Header -->
+    <div class="insta-header">
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.subtitle }}</p>
+    </div>
+
+    <!-- Grid -->
+    <div class="insta-grid">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="insta-item" target="_blank">
+          
+          {% if block.settings.image %}
+            <img src="{{ block.settings.image | image_url: width: 600 }}">
+          {% endif %}
+
+            <div class="overlay">
+            {% if section.settings.icon %}
+                <img 
+                src="{{ section.settings.icon | image_url: width: 60 }}" 
+                alt="icon"
+                class="insta-icon"
+                >
+            {% endif %}
+            </div>
+
+        </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+section.instagram-feed {
+    margin-bottom: 40px;
+}
+
+.insta-header h2 {
+    font-family: Fraunces;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 0.5px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    color: #000;
+}
+
+.insta-header p {
+    color: #000000;
+    margin-bottom: 30px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 17.4px;
+    line-height: 27.9px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Grid */
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+}
+
+.insta-item {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.insta-item > img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* important */
+}
+
+/* Remove dark background completely */
+.overlay::before {
+  content: none;
+}
+
+/* Icon */
+.insta-icon {
+  width: {{ section.settings.icon_size }}px;
+  height: {{ section.settings.icon_size }}px;
+  object-fit: contain;
+  opacity: 1;
+  max-width: 100%;
+}
+
+.insta-item:hover .insta-icon {
+  transform: scale(1);
+}
+
+
+/* Mobile */
+@media (max-width: 749px) {
+  .insta-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+</style>

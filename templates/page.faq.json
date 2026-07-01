@@ -1,0 +1,181 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "separator-1": {
+          "type": "separator",
+          "settings": {
+            "title": "Tile FAQs"
+          }
+        },
+        "question-1": {
+          "type": "question",
+          "settings": {
+            "title": "What are Rectified Tiles?",
+            "answer": "<p>Rectified tiles are ceramic or porcelain tiles that are made to a precise tolerance. This means they are cut to near exact measurements with a near perfect straight edge.  <a href=\"/pages/what-are-rectified-tiles\" title=\"What are rectified tiles?\">Read More</a></p>"
+          }
+        },
+        "question-2": {
+          "type": "question",
+          "settings": {
+            "title": "What is the difference between porcelain and ceramic tiles?",
+            "answer": "<p>Porcelain tiles use a more refined clay and are fired at higher temperatures. This makes porcelain tiles denser and more durable. Porcelain tiles are considered to be a higher quality than ceramic tiles. <a href=\"/pages/what-is-the-difference-between-porcelain-and-ceramic-tiles\" title=\"What is the difference between porcelain and ceramic tiles?\">Read More.</a></p>"
+          }
+        },
+        "question-3": {
+          "type": "question",
+          "settings": {
+            "title": "Can all tiles be used on walls and floors?",
+            "answer": "<p>The simple answer to this no. Walls tiles are not suitable for use on a floor. However many tiles are multi-use for walls and floors. You just need to check they are suitable for use on a floor, then they can be used on walls <a href=\"/pages/can-all-tiles-be-used-on-walls-and-floors\" title=\"Can all tiles be used on walls and floors?\">Read More.</a></p>"
+          }
+        },
+        "68768913-de08-48d1-a24c-cec67acbfdd1": {
+          "type": "question",
+          "settings": {
+            "title": "What tiles should I use in a wet room?",
+            "answer": "<p>Careful consideration should be given when choosing tiles for a wet room. With the floor of a wet room being used like a shower tray, it is important to think about how slippery the floor could get. With this in mind we recommend that the tiles for the floor of a wet room should have a high anti slip rating. <a href=\"/pages/what-tiles-should-i-use-in-a-wet-room\" title=\"What tiles should I use in a wet room?\">Read More.</a></p>"
+          }
+        },
+        "059ae8dc-a7f7-4755-bcf6-d69241385b75": {
+          "type": "question",
+          "settings": {
+            "title": "What tiles are suitable for underfloor heating?",
+            "answer": "<p>Choosing to install underfloor heating does not diminish the choice of floor tiles you can use. As with all floor tiles, using textured floor tiles will give you more grip, especially if the floor is likely to get wet. <a href=\"/pages/what-tiles-are-suitable-for-underfloor-heating\" title=\"What tiles are suitable for underfloor heating?\">Read More.</a></p>"
+          }
+        },
+        "48052b8a-1fbf-422a-92af-b93594a37e65": {
+          "type": "question",
+          "settings": {
+            "title": "What is the maximum weight restriction for wall tiling?",
+            "answer": "<p>Over recent years there has been high demand for larger and larger tiles. With this in mind it is important to take into consideration the weight of any tiles you are installing on your walls. Remember you need to consider the weight of any adhesive used as well as the tiles. <a href=\"/pages/what-is-the-maximum-weight-restriction-for-wall-tiling\" title=\"What is the maximum weight restriction for wall tiling?\">Read More.</a></p>"
+          }
+        },
+        "25b87c5c-99e4-485a-931b-1aed7b116772": {
+          "type": "question",
+          "settings": {
+            "title": "What is shade variation and how can I avoid it?",
+            "answer": "<p>Over recent years there has been high demand for larger and larger tiles. With this in mind it is important to take into consideration the weight of any tiles you are installing on your walls. Remember you need to consider the weight of any adhesive used as well as the tiles. <a href=\"/pages/what-is-shade-variation-and-how-can-i-avoid-it\" title=\"What is shade variation and how can I avoid it?\">Read More.</a></p>"
+          }
+        },
+        "b79d56ce-7b67-4619-9b61-2307408e7030": {
+          "type": "question",
+          "settings": {
+            "title": "What tiles are best for using outdoors?",
+            "answer": "<p>Matt porcelain tiles are the best choice for tiling outdoors. Porcelain tiles with a textured surface will also help stop the tiles becoming slippery when wet. Natural stone tiles such as granite, slate and travertine can also be used externally. <a href=\"/pages/what-tiles-are-best-for-using-outdoors\" title=\"What tiles are best for using outdoors?\">Read More.</a></p>"
+          }
+        },
+        "separator-2": {
+          "type": "separator",
+          "settings": {
+            "title": "Product"
+          }
+        },
+        "question-4": {
+          "type": "question",
+          "settings": {
+            "title": "Can I return my product?",
+            "answer": "<p>We always aim for make sure our customers love our products, but if you do need to return an order, we’re happy to help. Just email us directly and we’ll take you through the process.</p>"
+          }
+        },
+        "question-5": {
+          "type": "question",
+          "settings": {
+            "title": "What if I need to amend/make additions to my order?",
+            "answer": "<p>Please ensure that you have ordered the correct amount of tiles you require, any additions, or amendments will be subject to carriage costs depending on weights and quantities. Each request will be looked at on an individual basis and charged accordingly.</p>"
+          }
+        },
+        "97d61a03-61b2-44cd-8d03-2b6bf0a9f797": {
+          "type": "question",
+          "settings": {
+            "title": "How many extra tiles should I order?",
+            "answer": "<p>We recommend that you allow an extra 10% for wastage and cuts for your order.</p>"
+          }
+        },
+        "bf7d6474-0f49-42b5-85cf-d9bee5836de2": {
+          "type": "question",
+          "settings": {
+            "title": "How long will it take for my delivery to arrive?",
+            "answer": "<p>All of our tiles are delivered through a nationwide haulage company across mainland UK. Our standard delivery time is 2 working days from your payment clearing. If you require the products at a later date there is an option to manually select a delivery date.</p>"
+          }
+        },
+        "250a06f5-2c15-4b62-a3a5-045368488c6b": {
+          "type": "question",
+          "settings": {
+            "title": "How will the tiles be delivered?",
+            "answer": "<p>Tiles will be shrink wrapped on a pallet and delivered to the ground level edge of your property. The driver will NOT be able to assist getting the tiles into your property due to insurance purposes. Orders under 20kg weight will be delivered with a parcel courier.<br/></p>"
+          }
+        },
+        "c2409d76-1e85-4bc4-bf59-62b2c77eb2d1": {
+          "type": "question",
+          "settings": {
+            "title": "Could I return any unused tiles?",
+            "answer": "<p>Due to the cost of haulage and the increased risk of the tiles being damaged in transit, we do not offer a returns policy on unused tiles.</p>"
+          }
+        },
+        "f2cf7051-954e-4c91-95d5-84cc204f13f3": {
+          "type": "question",
+          "settings": {
+            "title": "What if my tiles are damaged or the order is not correct?",
+            "answer": "<p>All damages and irregularities must be notified within 2 working days of the delivery. We will need image proof sent over via email of any damages. The exact amount missing or damaged must be notified, in writing and replacements will be sent out FOC. All damaged or faulty goods may be collected at the request of the delivery/collection company. It will be deemed acceptable that 1 or 2 tiles may be broken, due to the nature of tiles, in this instance we would recommend that you try and use these where cutting is necessary, if you still require 1 or 2 tiles to complete the job then we will send out the replacements on the assumption the original notification was given within the timescale above.</p>"
+          }
+        },
+        "bd9fa905-c3ce-43cf-9e71-21bc6ae34e6c": {
+          "type": "question",
+          "settings": {
+            "title": "The tiles have arrived, and they are not what I expected or I have changed my mind?",
+            "answer": "<p>If you have ordered samples, we will obviously carry out checks to ensure you have had the correct order, the correct tiles have been picked etc, and ask you to supply the sample tile, or an image of it next to what has been delivered. This will help us work out what has happened and we will resolve the situation. If you had not ordered a sample, then Tiles Paradise cannot be held responsible for any discrepancy from the images on the website, and how they appear on your screen. If you do not want them, you will be liable to have the collection charge and 10% re-stocking fee deducted from your refund.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "separator-1",
+        "question-1",
+        "question-2",
+        "question-3",
+        "68768913-de08-48d1-a24c-cec67acbfdd1",
+        "059ae8dc-a7f7-4755-bcf6-d69241385b75",
+        "48052b8a-1fbf-422a-92af-b93594a37e65",
+        "25b87c5c-99e4-485a-931b-1aed7b116772",
+        "b79d56ce-7b67-4619-9b61-2307408e7030",
+        "separator-2",
+        "question-4",
+        "question-5",
+        "97d61a03-61b2-44cd-8d03-2b6bf0a9f797",
+        "bf7d6474-0f49-42b5-85cf-d9bee5836de2",
+        "250a06f5-2c15-4b62-a3a5-045368488c6b",
+        "c2409d76-1e85-4bc4-bf59-62b2c77eb2d1",
+        "f2cf7051-954e-4c91-95d5-84cc204f13f3",
+        "bd9fa905-c3ce-43cf-9e71-21bc6ae34e6c"
+      ],
+      "settings": {
+        "show_contact_info": true,
+        "contact_info_heading": "Any question?",
+        "contact_info_text": "<p>If we still haven't answered your question, you can contact us below and we will get back to you as soon as possible.</p>",
+        "contact_1_icon": "bi-phone",
+        "contact_1_heading": "Customer support",
+        "contact_1_text": "<p>Contact us on our <a href=\"/pages/contact\" title=\"Contact\">Contact page</a></p>",
+        "contact_2_icon": "bi-email",
+        "contact_2_heading": "Send a message",
+        "contact_2_text": "<p>Drop a message on our live chat.</p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq"
+  ]
+}

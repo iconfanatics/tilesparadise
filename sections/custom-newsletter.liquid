@@ -1,0 +1,156 @@
+<section class="custom-newsletter" style="background: {{ section.settings.bg_color }};">
+  <div class="newsletter-container">
+
+    {% if section.settings.heading != blank %}
+      <h2 class="newsletter-heading">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.subtext != blank %}
+      <p class="newsletter-subtext">
+        {{ section.settings.subtext }}
+      </p>
+    {% endif %}
+
+    {% form 'customer', class: 'newsletter-form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+
+      <div class="input-group">
+        <input 
+          type="email"
+          name="contact[email]"
+          placeholder="{{ section.settings.placeholder }}"
+          required
+          class="newsletter-input"
+        >
+
+        <button type="submit" class="newsletter-button">
+          {{ section.settings.button_label }}
+        </button>
+      </div>
+
+      {% if form.posted_successfully? %}
+        <p class="success-msg">Thanks for subscribing!</p>
+      {% endif %}
+
+      {% if form.errors %}
+        <p class="error-msg">{{ form.errors.messages.email }}</p>
+      {% endif %}
+
+    {% endform %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Newsletter",
+    "enabled_on": {
+    "groups": ["footer"]
+    },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Lets Stay in Touch"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Sub Text",
+      "default": "Sign Up Tites Paradise emails for offers and inspiration"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input Placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1e1e1e"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Newsletter"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+    .custom-newsletter {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.newsletter-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.newsletter-heading {
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.newsletter-subtext {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  position: relative;
+}
+
+.newsletter-input {
+  width: 100%;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #aaa;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.newsletter-button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  background: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+}
+
+.success-msg {
+  color: #4caf50;
+  margin-top: 10px;
+}
+
+.error-msg {
+  color: red;
+  margin-top: 10px;
+}
+
+</style>

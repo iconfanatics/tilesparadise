@@ -1,0 +1,433 @@
+{% if product.title contains 'Mirror' %}
+  {% assign standard_delivery_price = '£5.99' %}
+  {% assign next_day_delivery_price = '£39.95' %}
+  {% assign day_specific_delivery_price = '£44.95' %}
+
+{% elsif product.title contains 'Shower' %}
+  {% assign standard_delivery_price = '£29.95' %}
+  {% assign next_day_delivery_price = '£49.95' %}
+  {% assign day_specific_delivery_price = '£59.95' %}
+
+{% elsif product.title contains 'Heated Towel Rail' %}
+  {% assign standard_delivery_price = '£24.95' %}
+  {% assign next_day_delivery_price = '£44.95' %}
+  {% assign day_specific_delivery_price = '£49.95' %}
+{% endif %}
+
+<style>
+  /* Outer card */
+.finance-delivery-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  background: #fff;
+  overflow: hidden;
+  margin: 0 0 15px 0;
+  font-size: 14px;
+}
+.delivery-row.second .delivery-text > div {
+    position: relative;
+    padding-left: 20px;
+}
+.delivery-row.second .delivery-text > div::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #111;
+  font-size: 25px;
+  line-height: 1;
+}
+.delivery-row.second .delivery-text {
+    margin-left: 15px;
+}
+/* Klarna row */
+.klarna-row {
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+}
+.delivery-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.delivery-heading strong {
+    color: #000;
+}
+.delivery-heading .delivery-icon {
+  color: #2e7d32;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Divider */
+.delivery-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Left groups */
+.klarna-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.klarna-badge svg {
+  width: 48px;
+  display: block;
+}
+
+/* Text */
+.klarna-text,
+.delivery-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #111;
+}
+
+.klarna-sub,
+.delivery-sub {
+  color: #555;
+  font-weight: 400;
+}
+
+.klarna-monthly {
+  color: #0081b9;
+}
+
+/* Icons */
+.delivery-icon {
+  color: #2e7d32;
+  font-weight: 700;
+}
+
+.klarna-arrow {
+  font-size: 20px;
+  line-height: 1;
+}
+
+</style>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  function updateKlarnaMonthly(price) {
+    if (!price) return;
+
+    const months = 12;
+    const monthly = (price / months).toFixed(2);
+
+    document.querySelectorAll(".klarna-monthly").forEach(el => {
+      el.textContent = `£${monthly}`;
+    });
+  }
+
+  {% if product.selected_or_first_available_variant %}
+    updateKlarnaMonthly({{ product.selected_or_first_available_variant.price | divided_by: 100 }});
+  {% endif %}
+
+  document.addEventListener("variant:change", function (event) {
+    if (event.detail && event.detail.variant) {
+      updateKlarnaMonthly(event.detail.variant.price / 100);
+    }
+  });
+
+});
+</script>
+
+
+
+
+
+<div class="product-form__payment-container" {{ block.shopify_attributes }}>
+  <p class="line-item-property__field">
+  <input required class="required" id="meter" type="hidden" name="properties[meter]">
+</p>
+    <p class="line-item-property__field">
+  <input required class="required" id="tiles" type="hidden" name="properties[nu of tiles]">
+</p>
+  {%- if product.template_suffix != 'contact' -%}
+    {%- if product.selected_or_first_available_variant.available -%}
+      {%- if product.template_suffix == 'pre-order' -%}
+        <button onclick="getValue()" type="submit" class="product-form__add-button button button--primary custom_alert" data-action="add-to-cart">{{ 'product.form.pre_order' | t }}</button>
+      {%- else -%}
+        <button onclick="getValue()" type="submit" class="product-form__add-button button button--primary custom_alert" data-action="add-to-cart"> {%- if block.settings.image1 != blank -%} <img src="{{ block.settings.image1 | img_url : "original" }}"> {% endif %}{{ 'product.form.add_to_cart' | t }}</button>
+      {%- endif -%}
+
+
+    {%- else -%}
+      <button type="submit" class="product-form__add-button button button--disabled" disabled>{{ 'product.form.sold_out' | t }}</button>
+    {%- endif -%}
+    {%- if block.settings.show_payment_button and product.template_suffix != 'pre-order' -%}
+      {{ form | payment_button }}
+    {%- endif -%}
+  {%- else -%}
+    <a href="mailto:{{ shop.email }}" class="button button--primary">{{ 'product.form.contact_us' | t }}</a>
+  {%- endif -%}
+
+  {%- if block.settings.show_payment_button and product.selected_or_first_available_variant.available == false -%}
+    <style>
+      #shopify-section-{{ section.id }} .shopify-payment-button {
+        display: none;
+      }
+    </style>
+  {%- endif -%}
+</div>
+
+{%- comment -%} ============ SAMPLES (real sample variant, AJAX add — no nested form, no cloud function) ============
+  Shows whenever a sample product is linked via metafields:
+    custom.sample_product  /  custom.second_sample_product
+  type="button" so it never submits the parent product form; adds the
+  actual sample variant to cart, then opens the basket.
+{%- endcomment -%}
+{%- assign s1 = product.metafields.custom.sample_product.value -%}
+{%- assign s2 = product.metafields.custom.second_sample_product.value -%}
+{%- if s1 != blank or s2 != blank -%}
+  <div class="tp-samples">
+    <span class="tp-samples__h">Try before you buy</span>
+
+    {%- if s1 != blank -%}
+      <button type="button" class="tp-sample-btn js-tp-sample" data-variant-id="{{ s1.selected_or_first_available_variant.id }}"{% unless s1.available %} disabled{% endunless %}>
+        <span class="lbl">Order a Cut Sample</span><b>{{ s1.price | money }}</b>
+      </button>
+    {%- endif -%}
+
+    {%- if s2 != blank -%}
+      <button type="button" class="tp-sample-btn js-tp-sample" data-variant-id="{{ s2.selected_or_first_available_variant.id }}"{% unless s2.available %} disabled{% endunless %}>
+        <span class="lbl">Order a 20×50cm Sample</span><b>{{ s2.price | money }}</b>
+      </button>
+    {%- endif -%}
+  </div>
+
+  <script>
+  (function(){
+    var btns = document.querySelectorAll('.js-tp-sample');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var id = btn.getAttribute('data-variant-id');
+        if(!id){ return; }
+        var lbl = btn.querySelector('.lbl');
+        var original = lbl ? lbl.textContent : '';
+        btn.disabled = true;
+        if(lbl){ lbl.textContent = 'Adding…'; }
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: [{ id: id, quantity: 1 }] })
+        })
+        .then(function(r){ if(!r.ok){ throw new Error('add failed'); } return r.json(); })
+        .then(function(){ window.location.href = '/cart'; })
+        .catch(function(){
+          btn.disabled = false;
+          if(lbl){ lbl.textContent = original; }
+          alert('Sorry, that sample could not be added. Please try again.');
+        });
+      });
+    });
+  })();
+  </script>
+{%- endif -%}
+{%- comment -%} ============ /SAMPLES ============ {%- endcomment -%}
+
+
+{%- comment -%} ===== Essential items (moved below buttons) ===== {%- endcomment -%}
+<a class="tpq__ess" href="/collections/adhesive">
+  <span><b>Essential items</b><em>Adhesive, grout &amp; accessories to finish the job</em></span>
+  <span class="arr">&rarr;</span>
+</a>
+<style>
+  .tpq__ess{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #e6e8eb;border-radius:11px;padding:12px 14px;margin:16px 0 0;text-decoration:none;font-family:"Open Sans",sans-serif;}
+  .tpq__ess b{font-size:13px;color:#1a1d24;display:block;}
+  .tpq__ess em{font-size:12px;color:#6b7280;font-style:normal;display:block;}
+  .tpq__ess .arr{color:#c8102e;font-weight:800;font-size:18px;}
+  .tpq__ess:hover{border-color:#c8102e;}
+</style>
+
+  <div class="finance-delivery-card">
+{% comment %}
+  <a href="#" class="klarna-row">
+    <div class="klarna-left">
+      <span class="klarna-badge">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 41" class="mr-2 w-8 text-brand">
+    <path fill="#FFB3C7" d="M88.262.19H11.738C5.255.19 0 5.444 0 11.927V28.9C0 35.384 5.255 40.64 11.738 40.64h76.524C94.745 40.639 100 35.383 100 28.9V11.929C100 5.445 94.745.189 88.262.189"></path>
+    <path fill="#000" d="M80.077 17.914a6.194 6.194 0 1 0 0 10.237v.75h3.515V17.163h-3.515zm-3.196 8.138a3.023 3.023 0 1 1 3.185-3.02 3.106 3.106 0 0 1-3.185 3.02m-48.678-14.12h3.678V28.9h-3.678zm35.951 4.915a4.27 4.27 0 0 0-3.62 1.638v-1.322h-3.5V28.9h3.542v-6.17a2.475 2.475 0 0 1 2.64-2.658c1.543 0 2.431.923 2.431 2.635V28.9h3.51v-7.465c0-2.731-2.17-4.59-5.003-4.59M43 17.914a6.194 6.194 0 1 0 0 10.237v.75h3.514V17.163H43zm-3.196 8.138a3.024 3.024 0 1 1 3.184-3.02 3.106 3.106 0 0 1-3.185 3.02zm12.147-7.36v-1.53h-3.598v11.74h3.606v-5.48c0-1.85 2.004-2.844 3.395-2.844l.042.002v-3.416a4.38 4.38 0 0 0-3.445 1.528m35.372 6.046a2.206 2.206 0 1 0 0 4.412 2.206 2.206 0 0 0 0-4.412m-61.655-12.81h-3.812a9.75 9.75 0 0 1-3.94 7.868l-1.51 1.13 5.85 7.98h4.81l-5.383-7.342a13.5 13.5 0 0 0 3.985-9.636m-13.548 0h3.818v16.977H12.12z"></path>
+  </svg>
+      </span>
+
+      <span class="klarna-text">
+        <strong>0% Finance Available</strong>
+        <span class="klarna-sub">
+          From <span class="klarna-monthly">£10.12</span> a month
+        </span>
+      </span>
+    </div>
+
+    <span class="klarna-arrow">›</span>
+  </a>{% endcomment %}
+
+  <div class="delivery-row">
+    <span class="delivery-icon">✓</span>
+    <span class="delivery-text">
+   <div class="estimator-message--manual"></div> 
+   
+    </span>
+  </div>
+
+{% if settings.delivery %}
+<div class="delivery-row second"style="flex-direction:column; align-items: start;">
+<div class="delivery-heading">
+  <span class="delivery-icon">✓</span>
+  <strong>Delivery Options</strong>
+</div>
+
+  <div class="delivery-text" style="flex-direction:column; align-items:flex-start; gap:6px;">
+    
+
+    {% if product.price >= free_delivery_threshold %}
+      <div>FREE Standard Delivery <span class="delivery-sub">Over £{{ free_delivery_threshold | money_without_currency }}</span></div>
+    {% else %}
+      <div>Standard Delivery <strong>{{ standard_delivery_price }}</strong> <span class="delivery-sub">for 2–7 working days</span></div>
+    {% endif %}
+
+    <div>Next Day Delivery <strong>{{ next_day_delivery_price }}</strong></div>
+    <div>Day Specific Delivery <strong>{{ day_specific_delivery_price }}</strong></div>
+
+  </div>
+</div>
+{% endif %}
+</div>
+
+{%- comment -%} ============ TRUST STRIP ============ {%- endcomment -%}
+<div class="tp-trust">
+  <div class="tp-trust__item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+    <span>Secure checkout</span>
+  </div>
+  <div class="tp-trust__item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v9H3z"/><path d="M14 9h4l3 3v3h-7z"/><circle cx="7" cy="18.5" r="1.6"/><circle cx="17.5" cy="18.5" r="1.6"/></svg>
+    <span>Next-day UK delivery</span>
+  </div>
+  <div class="tp-trust__item">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.8 5.7 21l1.3-6.7-5-4.6 6.8-.8z"/></svg>
+    <span>Rated Excellent</span>
+  </div>
+</div>
+
+<style>
+  /* Sample buttons */
+  .tp-samples{display:flex;flex-direction:column;gap:10px;margin:16px 0 0;font-family:"Open Sans",sans-serif;}
+  .tp-samples__h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;display:block;margin-bottom:2px;}
+  .tp-sample-btn{display:flex;align-items:center;justify-content:space-between;width:100%;gap:10px;background:#fff;border:1.5px solid #e6e8eb;border-radius:11px;padding:14px 16px;font-size:14px;font-weight:700;color:#1a1d24;cursor:pointer;font-family:"Open Sans",sans-serif;transition:border-color .15s,color .15s;}
+  .tp-sample-btn:hover{border-color:#c8102e;color:#c8102e;}
+  .tp-sample-btn b{font-weight:800;}
+  .tp-sample-btn[disabled]{opacity:.6;cursor:not-allowed;}
+</style>
+
+
+<script>
+  var mtr = $("input#squareMetre").val();
+  var tile_nu = $(".tile_nu").text();
+  $("input#meter").val(mtr+" m²");
+  $("input#tiles").val(tile_nu);
+  $("input#squareMetre").on('input',function(){
+      var a = $(this).val();
+      $("input#meter").val(a+" m²");
+        setTimeout(function () {
+           var tile_nu = $(".tile_nu").text();
+           $("input#tiles").val(tile_nu);
+        }, 500);
+});
+$(".custom_product_calculation .quantity-selector--product .quantity-selector__button").click(function(){
+    var a = $("input#squareMetre").val(); 
+    $("input#meter").val(a+" m²");
+});
+</script>
+
+
+{%- comment -%} ============ TP PRODUCT SKIN — match mockup (green ATC, green delivery, bold title/price) ============ {%- endcomment -%}
+<style id="tp-product-skin">
+  :root{
+    --tp-brand:#c8102e;--tp-green:#1f8a4c;--tp-green-dark:#19733f;
+    --tp-ink:#1a1d24;--tp-muted:#6b7280;--tp-line:#e6e8eb;--tp-tint:#f7f8f9;
+  }
+
+  /* ---- Title ---- */
+  .product-meta__title{
+    font-size:22px !important;line-height:1.3 !important;font-weight:800 !important;
+    letter-spacing:-.01em !important;color:var(--tp-ink) !important;
+  }
+
+  /* ---- Price block ---- */
+  .product-form__info-title{
+    font-size:12px !important;font-weight:700 !important;color:var(--tp-ink) !important;
+    text-transform:none !important;
+  }
+  .price-list .price--highlight,
+  .price-list > .price{
+    font-size:30px !important;font-weight:800 !important;color:var(--tp-ink) !important;
+    letter-spacing:-.02em !important;line-height:1.05 !important;
+  }
+  .price-list .price--highlight > span,
+  .price-list > .price > span{
+    font-size:13px !important;font-weight:600 !important;color:var(--tp-muted) !important;
+    letter-spacing:0 !important;
+  }
+  .price--compare{
+    font-size:13px !important;font-weight:500 !important;color:var(--tp-muted) !important;
+  }
+  .price--compare b{font-weight:600 !important;}
+  .save_amount{
+    display:inline-block !important;
+    font-size:15px !important;font-weight:800 !important;color:var(--tp-green-dark) !important;
+    background:#eaf6ee !important;border-radius:6px !important;padding:3px 9px !important;
+    margin-left:8px !important;line-height:1.2 !important;
+  }
+  .save_amount b{font-weight:800 !important;margin-right:2px !important;}
+
+  /* ---- Trust strip ---- */
+  .tp-trust{
+    display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:center;
+    margin:18px 0 0;padding:15px 6px 0;border-top:1px solid var(--tp-line);
+  }
+  .tp-trust__item{
+    display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--tp-muted);
+    font-family:"Open Sans",sans-serif;
+  }
+  .tp-trust__item svg{width:16px;height:16px;color:var(--tp-green);flex:0 0 auto;}
+
+  /* ---- Add to Basket -> green ---- */
+  .product-form__add-button,
+  .product-form__add-button.button--primary{
+    background:var(--tp-green) !important;border-color:var(--tp-green) !important;color:#fff !important;
+    border-radius:12px !important;padding:17px !important;font-size:16px !important;font-weight:800 !important;
+    box-shadow:0 4px 12px rgba(31,138,76,.25) !important;transition:background .15s,border-color .15s !important;
+  }
+  .product-form__add-button:hover{
+    background:var(--tp-green-dark) !important;border-color:var(--tp-green-dark) !important;color:#fff !important;
+  }
+  .product-form__add-button img{
+    filter:brightness(0) invert(1);height:18px;width:auto;margin-right:8px;vertical-align:middle;
+  }
+
+  /* ---- Delivery card -> green "Get It Between" row ---- */
+  .finance-delivery-card{border-radius:12px !important;overflow:hidden !important;}
+  .finance-delivery-card .delivery-row:first-child{
+    background:#f3faf5 !important;border-top:0 !important;padding:14px 16px !important;
+  }
+  .finance-delivery-card .delivery-row:first-child .delivery-icon{
+    background:var(--tp-green);color:#fff;width:20px;height:20px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex:0 0 auto;
+  }
+  .finance-delivery-card .delivery-text{color:var(--tp-ink);font-weight:600;}
+  .finance-delivery-card .delivery-text strong{font-weight:800 !important;color:var(--tp-ink) !important;}
+  .delivery-heading strong{font-weight:800 !important;}
+  .delivery-row.second .delivery-text > div:first-child strong{color:var(--tp-green) !important;}
+</style>

@@ -1,0 +1,276 @@
+<style>
+/* ===== TOILET PAGE — HOME PAGE FONTS ===== */
+/* Product title → Fraunces (matches home page h1/h2 headings) */
+h1.product-meta__title,
+h1.product-meta__title.heading,
+.product-meta__title {
+  font-family: "Fraunces", serif !important;
+  font-weight: 700 !important;
+}
+/* All info panel text → Roboto (matches home page body) */
+.product-block-list__item--info *:not(h1) {
+  font-family: "Roboto", sans-serif !important;
+}
+/* Price figures — Fraunces for impact */
+.toilet-price-whole {
+  font-family: "Fraunces", serif !important;
+}
+.toilet-price-symbol,
+.toilet-price-decimal {
+  font-family: "Roboto", sans-serif !important;
+}
+/* Accordion card titles */
+.card__title,
+.card__title * {
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 600 !important;
+}
+/* Sticky bar */
+.toilet-sticky-atb__title,
+.toilet-sticky-atb__price,
+.toilet-sticky-atb__btn {
+  font-family: "Roboto", sans-serif !important;
+}
+
+/* ===== BETTER BATHROOMS STYLE PRICE ===== */
+.toilet-price-wrap {
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+  margin: 6px 0 2px;
+  gap: 0;
+}
+.toilet-price-symbol {
+  font-family: "Roboto", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #101828;
+  align-self: flex-start;
+  padding-top: 8px;
+  line-height: 1;
+}
+.toilet-price-whole {
+  font-family: "Roboto", sans-serif;
+  font-size: 54px;
+  font-weight: 900;
+  color: #101828;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.toilet-price-decimal {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #101828;
+  align-self: flex-start;
+  padding-top: 8px;
+  line-height: 1;
+}
+.toilet-price-compare-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+.toilet-price-rrp-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #667085;
+  font-family: "Roboto", sans-serif;
+}
+.toilet-price-compare {
+  font-size: 15px;
+  color: #667085;
+  text-decoration: line-through;
+  font-family: "Roboto", sans-serif;
+}
+.toilet-price-save {
+  display: inline-flex;
+  align-items: center;
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+/* ===== STICKY ADD TO CART BAR ===== */
+.toilet-sticky-atb {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 2px solid #e2e8f0;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 9998;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+  transform: translateY(100%);
+  transition: transform 0.28s ease;
+}
+.toilet-sticky-atb.is-visible {
+  transform: translateY(0);
+}
+.toilet-sticky-atb__title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #101828;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.toilet-sticky-atb__price {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  color: #101828;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.toilet-sticky-atb__btn {
+  background: #1a3c6e;
+  color: #fff;
+  border: none;
+  padding: 13px 28px;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 160px;
+  text-align: center;
+  transition: background 0.15s;
+}
+.toilet-sticky-atb__btn:hover { background: #142d54; }
+
+@media (max-width: 640px) {
+  .toilet-sticky-atb { padding: 10px 14px; }
+  .toilet-sticky-atb__title { display: none; }
+  .toilet-sticky-atb__btn { min-width: 120px; font-size: 14px; padding: 12px 16px; }
+}
+</style>
+
+<!-- Sticky Add to Cart Bar -->
+<div class="toilet-sticky-atb" id="toilet-sticky-atb" aria-hidden="true">
+  <div class="toilet-sticky-atb__title">{{ product.title }}</div>
+  <div class="toilet-sticky-atb__price" id="toilet-sticky-price">
+    {{ product.selected_or_first_available_variant.price | money }}
+  </div>
+  <button class="toilet-sticky-atb__btn" id="toilet-sticky-add-btn" type="button">
+    Add to Basket
+  </button>
+</div>
+
+<script>
+(function () {
+  /* ===== PRICE FORMATTER ===== */
+  function parseAndFormat() {
+    var container = document.querySelector('.product-form__info-content .price-list');
+    if (!container) return;
+
+    var hlEl = container.querySelector('.price--highlight');
+    if (!hlEl || hlEl.dataset.toiletDone) return;
+
+    var raw = hlEl.textContent.replace(/\s+/g, '').replace('GBP', '').trim();
+    var m = raw.match(/^([£€$]?)(\d+)(?:\.(\d{2}))?$/);
+    if (!m) return;
+
+    var sym = m[1] || '£';
+    var whole = m[2];
+    var dec = m[3] || '00';
+
+    var compareEl = container.querySelector('.price--compare');
+    var compareHTML = '';
+    if (compareEl) {
+      var cRaw = compareEl.textContent.replace('RRP', '').replace('GBP', '').trim();
+      var cMatch = cRaw.match(/([£€$]?\d+(?:\.\d{2})?)/);
+      if (cMatch) {
+        var saveAmt = Math.round(parseFloat(cMatch[1].replace(/[£€$]/,'')) - parseFloat(whole + '.' + dec));
+        compareHTML = '<div class="toilet-price-compare-row">'
+          + '<span class="toilet-price-rrp-label">RRP</span>'
+          + '<span class="toilet-price-compare">' + cMatch[1] + '</span>'
+          + (saveAmt > 0 ? '<span class="toilet-price-save">Save £' + saveAmt + '</span>' : '')
+          + '</div>';
+        compareEl.style.display = 'none';
+      }
+    }
+
+    hlEl.innerHTML = '<div class="toilet-price-wrap">'
+      + '<span class="toilet-price-symbol">' + sym + '</span>'
+      + '<span class="toilet-price-whole">' + whole + '</span>'
+      + '<span class="toilet-price-decimal">.' + dec + '</span>'
+      + '</div>'
+      + compareHTML;
+
+    hlEl.dataset.toiletDone = '1';
+
+    /* sync sticky price */
+    var sp = document.getElementById('toilet-sticky-price');
+    if (sp) sp.textContent = sym + whole + '.' + dec;
+  }
+
+  /* ===== STICKY BAR ===== */
+  function initSticky() {
+    var bar = document.getElementById('toilet-sticky-atb');
+    var buyBtn = document.querySelector('.product-form__add-button');
+    var stickyBtn = document.getElementById('toilet-sticky-add-btn');
+    if (!bar || !buyBtn) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      var visible = entries[0].isIntersecting;
+      bar.classList.toggle('is-visible', !visible);
+      bar.setAttribute('aria-hidden', visible ? 'true' : 'false');
+    }, { threshold: 0.1 });
+    io.observe(buyBtn);
+
+    if (stickyBtn) {
+      stickyBtn.addEventListener('click', function () {
+        var form = document.querySelector('form[action*="/cart/add"]');
+        if (form) form.querySelector('[type="submit"]').click();
+      });
+    }
+  }
+
+  /* ===== VARIANT CHANGE — re-format price ===== */
+  function onVariantChange() {
+    var hl = document.querySelector('.product-form__info-content .price--highlight');
+    if (hl) delete hl.dataset.toiletDone;
+    setTimeout(parseAndFormat, 80);
+  }
+
+  /* ===== FONT APPLY (JS fallback for specificity) ===== */
+  function applyFonts() {
+    var title = document.querySelector('h1.product-meta__title');
+    if (title) {
+      title.style.fontFamily = '"Fraunces", serif';
+      title.style.fontWeight = '700';
+    }
+    var infoPanel = document.querySelector('.product-block-list__item--info');
+    if (infoPanel) {
+      infoPanel.style.fontFamily = '"Roboto", sans-serif';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    applyFonts();
+    parseAndFormat();
+    initSticky();
+    document.addEventListener('theme:variant:change', onVariantChange);
+    /* MutationObserver fallback for themes that update price in place */
+    var infoArea = document.querySelector('.product-form__info-content');
+    if (infoArea) {
+      new MutationObserver(onVariantChange).observe(infoArea, { childList: true, subtree: true, characterData: true });
+    }
+  });
+})();
+</script>

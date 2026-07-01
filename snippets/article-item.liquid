@@ -1,0 +1,144 @@
+<div class="article-item {% if featured %}article-item--featured{% endif %}">
+  {%- if article.image -%}
+    <a href="{{ article.url }}" class="article-item__image-container">
+      {%- capture sizes_attribute -%}(max-width: 699px) 100vw, {% if featured %}980px{% else %}475px{% endif %}{%- endcapture -%}
+      {{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: sizes_attribute, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000', class: 'article-item__image' -}}
+    </a>
+  {%- endif -%}
+
+  <div class="article-item__content-wrapper">
+    {%- if request.page_type == 'index' -%}
+      <h3 class="article-item__title heading h4">
+        <a href="{{ article.url }}" class="link">{{ article.title }}</a>
+      </h3>
+    {%- else -%}
+      <h2 class="article-item__title heading {% if featured %}h1{% else %}h3{% endif %}">
+        <a href="{{ article.url }}" class="link">{{ article.title }}</a>
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.show_excerpt -%}
+      <div class="article-item__excerpt rte">
+        {%- if article.excerpt != blank -%}
+          {{- article.excerpt -}}
+        {%- else -%}
+          {{- article.content | strip_html | truncate: 150 -}}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- capture article_meta -%}
+      <div class="article-item__meta-left">
+        {%- if section.settings.show_author -%}
+          <span class="article-item__meta-item">By {{ article.author }}</span>
+        {%- endif -%}
+
+        {%- if section.settings.show_author and section.settings.show_date -%}
+          <span class="article-item__meta-separator">|</span>
+        {%- endif -%}
+
+        {%- if section.settings.show_date -%}
+          <time class="article-item__meta-item">
+            {%- assign d = article.published_at | date: "%-d" -%}
+            {%- case d -%}
+              {%- when "1" or "21" or "31" -%}{{ d }}st
+              {%- when "2" or "22" -%}{{ d }}nd
+              {%- when "3" or "23" -%}{{ d }}rd
+              {%- else -%}{{ d }}th
+            {%- endcase -%}
+            {{ article.published_at | date: " %b %Y" }}
+          </time>
+        {%- endif -%}
+      </div>
+
+      <div class="article-item__meta-right">
+        {%- assign word_count = article.content | strip_html | split: ' ' | size -%}
+        {%- assign read_time = word_count | divided_by: 250 | at_least: 1 -%}
+        <span class="article-item__meta-item">{{ read_time }} mins read</span>
+      </div>
+    {%- endcapture -%}
+
+    <div class="article-item__meta">
+      {{ article_meta }}
+    </div>
+  </div>
+</div>
+
+<style>
+  .article-item {
+    background: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid #f0f0f0;
+    transition: box-shadow 0.3s ease;
+  }
+  .article-item:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  }
+  .article-item__image-container {
+    display: block;
+    position: relative;
+    padding-bottom: 45%; /* Shorter ratio */
+    background: #f4f4f4;
+    overflow: hidden;
+  }
+  .article-item__image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .article-item:hover .article-item__image-container img {
+    transform: scale(1.05);
+  }
+  .article-item__content-wrapper {
+    padding: 14px 16px;
+  }
+  .article-item__title {
+    margin: 0 0 12px 0;
+    font-size: 15px;
+    line-height: 1.4;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .article-item__title a {
+    color: #1a1a1a;
+    text-decoration: none;
+  }
+  .article-item__excerpt {
+    margin-bottom: 24px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+  .article-item__meta {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-size: 11.5px !important;
+    color: #777 !important;
+    border-top: 1px solid #f0f0f0 !important;
+    padding-top: 10px !important;
+    margin-top: 12px !important;
+    width: 100%;
+  }
+  .article-item__meta-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .article-item__meta-separator {
+    color: #dcdcdc;
+  }
+  .article-item__meta-right {
+    white-space: nowrap;
+  }
+</style>

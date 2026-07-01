@@ -1,0 +1,131 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {}
+    },
+    "collection_intro_hrAxbn": {
+      "type": "collection-intro",
+      "name": "Collection Intro",
+      "settings": {}
+    },
+    "rich_text_CxGCgf": {
+      "type": "rich-text",
+      "disabled": true,
+      "name": "Rich text",
+      "settings": {
+        "text_width": "wide",
+        "custom_class": "custom-collectiion-text-section",
+        "title": "All Tiles",
+        "content": "<p>With an extensive range of colours and designs, we have bathroom tiles to suit any home. Made from ceramic and porcelain, they are waterproof and easy to maintain - a practical choice for wet and steamy rooms, in other words. Whatever your style, you're sure to find the perfect tile for your bathroom, shower or luxury en-suite.<br/>Bathroom tiles buying guide</p>",
+        "button_text": "Read More",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "usp_bar_deGHRm": {
+      "type": "usp-bar",
+      "blocks": {
+        "usp_DmNXWH": {
+          "type": "usp",
+          "settings": {
+            "icon": "shopify://shop_images/refund_4.png",
+            "heading": "Rated Excellent",
+            "text": "Read Reviews From Our Customers"
+          }
+        },
+        "usp_RbNKQJ": {
+          "type": "usp",
+          "settings": {
+            "icon": "shopify://shop_images/refund_3.png",
+            "heading": "Pay with PayPal",
+            "text": "Fast, secure checkout — no card needed."
+          }
+        },
+        "usp_7PhGPb": {
+          "type": "usp",
+          "settings": {
+            "icon": "shopify://shop_images/refund_1.png",
+            "heading": "0% Interest-Free Finance",
+            "text": "Split your payment interest-free"
+          }
+        },
+        "usp_fJqtKw": {
+          "type": "usp",
+          "settings": {
+            "icon": "shopify://shop_images/refund_2.png",
+            "heading": "Free Delivery Over £499",
+            "text": "To most of the UK — no hidden fees."
+          }
+        }
+      },
+      "block_order": [
+        "usp_DmNXWH",
+        "usp_RbNKQJ",
+        "usp_7PhGPb",
+        "usp_fJqtKw"
+      ],
+      "disabled": true,
+      "name": "USP Bar",
+      "settings": {
+        "custom_class": "collection-usp-bar",
+        "bg_color": "#1e73be",
+        "heading_size": 18,
+        "text_size": 16,
+        "heading_color": "#ffffff",
+        "text_color": "#dbeafe",
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    },
+    "main": {
+      "type": "collection-custom-grid",
+      "settings": {
+        "custom_class": "custom-collectio-grid-sec"
+      }
+    },
+    "recently_viewed_carousel_tebAwQ": {
+      "type": "recently-viewed-carousel",
+      "name": "Recently Viewed Carousel",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": true,
+        "slides_desktop": 4,
+        "slides_tablet": 3,
+        "slides_mobile": 1.2
+      }
+    },
+    "178048021769c9fb35": {
+      "type": "apps",
+      "blocks": {
+        "vitals_featured_reviews_9J9KNE": {
+          "type": "shopify://apps/vitals/blocks/featured-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vitals_featured_reviews_9J9KNE"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "collection_intro_hrAxbn",
+    "rich_text_CxGCgf",
+    "usp_bar_deGHRm",
+    "main",
+    "recently_viewed_carousel_tebAwQ",
+    "178048021769c9fb35"
+  ]
+}

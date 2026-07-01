@@ -1,0 +1,264 @@
+{%- capture section_settings -%}
+{
+  "showNewsletter": {{ section.settings.show_newsletter | json }}
+}
+{%- endcapture -%}
+
+<section data-section-id="{{ section.id }}" data-section-type="announcement-bar" data-section-settings='{{ section_settings }}'>
+  {%- if section.settings.show_newsletter -%}
+    <div id="announcement-bar-newsletter" class="announcement-bar__newsletter hidden-phone" aria-hidden="true">
+      <div class="container">
+        <div class="announcement-bar__close-container">
+          <button class="announcement-bar__close" data-action="toggle-newsletter">
+            <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+            {%- render 'icon', icon: 'close' -%}
+          </button>
+        </div>
+      </div>
+
+      <div class="container container--extra-narrow">
+        <div class="announcement-bar__newsletter-inner">
+          {%- if section.settings.newsletter_title != blank -%}
+            <h3 class="heading h1">{{ section.settings.newsletter_title | escape }}</h3>
+          {%- endif -%}
+
+          {%- if section.settings.newsletter_content != blank -%}
+            <div class="rte">
+              {{ section.settings.newsletter_content }}
+            </div>
+          {%- endif -%}
+
+          {%- assign newsletter_id = 'newsletter-' | append: section.id -%}
+
+          <div class="newsletter">
+            {%- form 'customer', id: newsletter_id, class: 'form newsletter__form' -%}
+              {%- if form.posted_successfully? -%}
+                <p class="alert alert--success alert--center">{{ 'home_page.newsletter.success' | t }}</p>
+                {%- if form.context == 'announcement-bar' -%}
+                  {%- assign open_announcement = true -%}
+                {%- endif -%}
+              {%- else -%}
+                {%- if form.errors -%}
+                  <p class="alert alert--error">{{ form.errors.messages['email'] }}</p>
+                {%- endif -%}
+
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <input type="hidden" name="contact[context]" value="announcement-bar">
+
+                <div class="form__input-row">
+                  <div class="form__input-wrapper form__input-wrapper--labelled">
+                    <input type="email" id="announcement[contact][email]" name="contact[email]" class="form__field form__field--text" autofocus required>
+                    <label for="announcement[contact][email]" class="form__floating-label">{{ 'home_page.newsletter.input' | t }}</label>
+                  </div>
+
+                  <button type="submit" class="form__submit button button--primary">{{ 'home_page.newsletter.submit' | t }}</button>
+                </div>
+              {%- endif -%}
+            {%- endform -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="announcement-bar">
+    <div class="container">
+      <div class="custom-announcement-bar">
+
+        {% for block in section.blocks %}
+          <div class="announcement-item" {{ block.shopify_attributes }}>
+
+            {% if block.settings.icon %}
+              <img 
+                src="{{ block.settings.icon | image_url: width: 40 }}" 
+                alt=""
+                class="announcement-icon"
+              >
+            {% endif %}
+
+            {% if block.settings.text != blank %}
+              <span class="announcement-text">
+                {{ block.settings.text }}
+              </span>
+            {% endif %}
+
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .announcement-bar {
+    background: {{ section.settings.background }};
+    color: {{ section.settings.text_color }};
+  }
+
+  .custom-announcement-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.announcement-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+/* Divider line */
+.announcement-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18px;
+  width: 1px;
+  background: rgba(255,255,255,0.4);
+}
+
+.announcement-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.announcement-text {
+  white-space: nowrap;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .custom-announcement-bar {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 8px 15px;
+    gap: 20px;
+  }
+
+  .announcement-item::after {
+    display: none;
+  }
+}
+</style>
+
+<script>
+  {%- if section.settings.show_newsletter -%}
+    document.documentElement.style.setProperty('--announcement-bar-button-width', document.querySelector('.announcement-bar__button').clientWidth + 'px');
+  {%- else -%}
+    document.documentElement.style.removeProperty('--announcement-bar-button-width');
+  {%- endif -%}
+
+  document.documentElement.style.setProperty('--announcement-bar-height', document.getElementById('shopify-section-{{ section.id }}').clientHeight + 'px');
+</script>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#1e2d7d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Announce something here"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left",
+      "info": "Text is always centered on mobile."
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "paragraph",
+      "content": "Customers who subscribe will have their email address added to the \"accepts marketing\" [customer list](/admin/customers?query=&accepts_marketing=1)."
+    },
+    {
+      "type": "paragraph",
+      "content": "Only visible on desktop."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show sign up form",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button",
+      "label": "Open button",
+      "default": "Subscribe & Save"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "Heading",
+      "default": "Newsletter"
+    },
+    {
+      "type": "richtext",
+      "id": "newsletter_content",
+      "label": "Text",
+      "default": "<p>A short sentence describing what someone will receive by subscribing</p>"
+    }
+  ],
+  "blocks": [
+  {
+    "type": "item",
+    "name": "Announcement Item",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "icon",
+        "label": "Icon"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text",
+        "default": "Fast Delivery"
+      }
+    ]
+  }
+],
+}
+{% endschema %}
