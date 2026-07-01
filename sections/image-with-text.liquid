@@ -38,6 +38,107 @@
       {%- endif -%}
     </div>
   </div>
+
+  {%- if section.settings.custom_class contains 'home-image-text-sec' -%}
+    <style>
+      /* Make the overall section more compact */
+      .home-image-text-sec {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+      }
+
+      /* Ensure the flex container aligns items to the center so the image stays perfectly vertically centered */
+      .home-image-text-sec .image-with-text {
+        align-items: center !important;
+      }
+
+      /* Hide the redundant section title since the RTE has its own <h2> */
+      .home-image-text-sec .image-with-text__text-aligner > .heading {
+        display: none !important;
+      }
+      
+      .home-image-text-sec .image-with-text__text-container {
+        padding: 0 40px !important;
+        background: transparent !important;
+      }
+
+      /* Main RTE Intro */
+      .home-image-text-sec .rte h2 {
+        font-family: var(--heading-font-family);
+        font-size: 28px !important;
+        font-weight: 800 !important;
+        color: #1a1a1a !important;
+        margin-top: 0 !important;
+        margin-bottom: 10px !important;
+        line-height: 1.2 !important;
+      }
+
+      .home-image-text-sec .rte > p:first-of-type {
+        font-size: 15px !important;
+        color: #555 !important;
+        margin-bottom: 25px !important;
+        line-height: 1.5 !important;
+      }
+
+      /* Feature List Styling */
+      .home-image-text-sec .rte h3 {
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        color: #1e73be !important; /* Brand Blue */
+        margin-top: 18px !important;
+        margin-bottom: 6px !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        line-height: 1.4 !important;
+      }
+
+      /* Premium Checkmark Icon */
+      .home-image-text-sec .rte h3::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231e73be"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+        background-size: contain;
+        background-repeat: no-repeat;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      /* Feature Descriptions */
+      .home-image-text-sec .rte h3 + p {
+        padding-left: 30px !important;
+        font-size: 14px !important;
+        color: #666 !important;
+        margin-bottom: 0 !important;
+        line-height: 1.5 !important;
+      }
+
+      .home-image-text-sec .rte a {
+        color: #1e73be !important;
+        text-decoration: underline !important;
+        font-weight: 600 !important;
+      }
+
+      @media screen and (max-width: 768px) {
+        .home-image-text-sec {
+          padding-top: 0px !important;
+          padding-bottom: 0px !important;
+          margin-top: 0px !important;
+          margin-bottom: 0px !important;
+        }
+        .home-image-text-sec .image-with-text__text-container {
+          padding: 20px 15px !important;
+        }
+        .home-image-text-sec .rte h2 {
+          font-size: 24px !important;
+        }
+      }
+    </style>
+  {%- endif -%}
 </section>
 
 {% schema %}
