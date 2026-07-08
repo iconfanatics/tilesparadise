@@ -380,7 +380,19 @@
     }
 
     .ai-product-carousel__nav-{{ ai_gen_id }} {
-      display: none;
+      display: flex;
+      padding: 0 10px;
+      z-index: 10;
+    }
+
+    .ai-product-carousel__nav-button-{{ ai_gen_id }} {
+      width: 40px;
+      height: 40px;
+    }
+
+    .ai-product-carousel__nav-button-{{ ai_gen_id }} svg {
+      width: 20px;
+      height: 20px;
     }
 
     .ai-product-carousel__header-{{ ai_gen_id }},
@@ -402,8 +414,10 @@
       {% endif %}
       <div class="ai-product-carousel__nav-{{ ai_gen_id }}">
         <button
+          type="button"
           class="ai-product-carousel__nav-button-{{ ai_gen_id }} ai-product-carousel__prev-{{ ai_gen_id }}"
           aria-label="Previous products"
+          onclick="this.closest('product-carousel-{{ ai_gen_id }}').querySelector('.ai-product-carousel__track-{{ ai_gen_id }}').scrollBy({left: -300, behavior: 'smooth'})"
         >
           <svg
             width="20"
@@ -419,8 +433,10 @@
           </svg>
         </button>
         <button
+          type="button"
           class="ai-product-carousel__nav-button-{{ ai_gen_id }} ai-product-carousel__next-{{ ai_gen_id }}"
           aria-label="Next products"
+          onclick="this.closest('product-carousel-{{ ai_gen_id }}').querySelector('.ai-product-carousel__track-{{ ai_gen_id }}').scrollBy({left: 300, behavior: 'smooth'})"
         >
           <svg
             width="20"
@@ -612,8 +628,13 @@
 
       scroll(direction) {
         const firstItem = this.track.querySelector('.ai-product-carousel__item-{{ ai_gen_id }}');
+        if (!firstItem) return;
+        
         const gap = parseFloat(getComputedStyle(this.track).columnGap || getComputedStyle(this.track).gap) || 0;
-        const itemWidth = firstItem ? firstItem.getBoundingClientRect().width + gap : this.track.clientWidth;
+        const itemWidth = firstItem.offsetWidth + gap;
+        
+        if (itemWidth <= 0) return;
+        
         const visibleItems = Math.max(1, Math.floor(this.track.clientWidth / itemWidth));
         const scrollAmount = itemWidth * visibleItems;
 

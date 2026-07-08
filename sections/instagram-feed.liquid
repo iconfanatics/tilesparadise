@@ -207,17 +207,39 @@ section.instagram-feed {
 
 @media (max-width: 600px) {
   .insta-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 15px;
+    padding: 0 15px 20px 15px;
+    margin: 0 -15px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .insta-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .insta-item {
+    flex: 0 0 65vw;
+    scroll-snap-align: start;
+    scroll-margin-left: 15px;
+  }
+  .insta-header {
+    margin-bottom: 25px;
   }
   .insta-header h2 {
-    font-size: 28px;
+    font-size: 24px;
+    margin-bottom: 8px;
   }
   .insta-header p {
-    font-size: 15px;
+    font-size: 13px;
+    padding: 0 15px;
+    line-height: 1.4;
   }
   .insta-item > img {
-    height: 220px;
+    height: 260px;
   }
 }
 </style>

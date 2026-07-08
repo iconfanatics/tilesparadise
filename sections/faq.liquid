@@ -3,6 +3,11 @@ This file has been modified by the Yoast SEO for Shopify app.
 You can learn more about this (and learn how to cleanly revert these changes) at https://yoa.st/removing-theme-changes.
 {%- endcomment -%}
 <div class="container container--flush container--narrow">
+  <details class="mobile-faq-wrapper" id="faq-wrapper-{{ section.id }}">
+    <summary class="mobile-faq-summary">
+      <span class="mobile-faq-title">Frequently Asked Questions</span>
+      <span class="mobile-faq-icon"></span>
+    </summary>
   <div class="faq" {% if disabled_by_yoast_seo %}itemscope{% endif %} {% if disabled_by_yoast_seo %}itemtype="https://schema.org/FAQPage"{% endif %}>
     <div class="faq__group-list">
       {%- for block in section.blocks -%}
@@ -95,8 +100,19 @@ You can learn more about this (and learn how to cleanly revert these changes) at
         </div>
       </div>
     {%- endif -%}
-  </div>
+    </div>
+  </details>
 </div>
+<script>
+  function updateFaqWrapper() {
+    var wrapper = document.getElementById('faq-wrapper-{{ section.id }}');
+    if (wrapper && window.innerWidth > 768) {
+      wrapper.setAttribute('open', 'true');
+    }
+  }
+  updateFaqWrapper();
+  window.addEventListener('resize', updateFaqWrapper);
+</script>
 {% unless disabled_by_yoast_seo %}
   {% assign faq_blocks = section.blocks | where: "type", "question" %}
   {% if faq_blocks.size > 0 %}
@@ -129,38 +145,46 @@ You can learn more about this (and learn how to cleanly revert these changes) at
 <style>
 /* Overall Container */
 .faq {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 /* Category Headings */
-.faq__group-title {
-  font-family: var(--heading-font-family) !important;
-  font-size: 32px !important;
-  font-weight: 800 !important;
-  color: #1a1a1a !important;
-  margin: 50px 0 25px 0 !important;
-  text-align: left !important;
-  border-bottom: 2px solid #eaeaea !important;
-  padding-bottom: 12px !important;
+.faq__group-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
 }
-.faq__group:first-of-type .faq__group-title {
-  margin-top: 20px !important;
+.faq__group {
+  width: calc(50% - 20px);
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.faq__group-title {
+  width: 100%;
+  font-family: var(--heading-font-family) !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  margin: 0 0 15px 0 !important;
+  padding-top: 0 !important;
+  text-align: left !important;
+  border-bottom: 2px solid #1a1a1a !important;
+  padding-bottom: 8px !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* FAQ Cards */
+/* FAQ Minimal Accordion Items */
 .faq__item {
-  background: #ffffff !important;
-  border-radius: 12px !important;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.04) !important;
-  margin-bottom: 16px !important;
-  border: 1px solid #f0f0f0 !important;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
-  overflow: hidden !important;
-}
-.faq__item:hover {
-  box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important;
-  border-color: #1e73be !important;
+  width: 100%;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
 }
 
 /* Question Button */
@@ -169,34 +193,49 @@ You can learn more about this (and learn how to cleanly revert these changes) at
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  padding: 22px 25px !important;
+  padding: 16px 0 !important;
   font-family: var(--base-font-family) !important;
-  font-size: 18px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
-  color: #1a1a1a !important;
+  color: #222 !important;
   background: transparent !important;
   text-align: left !important;
   transition: color 0.2s ease !important;
   border: none !important;
+  letter-spacing: 0.2px;
 }
 .faq__question:hover,
 .faq__question[aria-expanded="true"] {
-  color: #1e73be !important;
+  color: #016fd0 !important;
+}
+
+.faq__question .plus-button {
+  transform: scale(0.6);
+  opacity: 0.6;
+}
+.faq__question:hover .plus-button {
+  opacity: 1;
 }
 
 /* Answer Area */
 .faq__answer {
-  padding: 0 25px 25px 25px !important;
-  font-size: 16px !important;
-  color: #555 !important;
-  line-height: 1.6 !important;
+  padding: 0 0 16px 0 !important;
+  font-size: 14px !important;
+  color: #666 !important;
+  line-height: 1.5 !important;
   border-top: none !important;
 }
 .faq__answer p {
-  margin-bottom: 10px !important;
+  margin-bottom: 8px !important;
 }
 .faq__answer p:last-child {
   margin-bottom: 0 !important;
+}
+
+@media screen and (max-width: 768px) {
+  .faq__group {
+    width: 100%;
+  }
 }
 
 /* Contact Info Section Redesign (Any question?) */
@@ -291,16 +330,17 @@ You can learn more about this (and learn how to cleanly revert these changes) at
 /* Mobile adjustments */
 @media screen and (max-width: 768px) {
   .faq__group-title {
-    font-size: 26px !important;
-    margin: 40px 0 20px 0 !important;
+    font-size: 15px !important;
+    margin: 8px 0 2px 0 !important;
   }
   .faq__question {
-    font-size: 16px !important;
-    padding: 18px 20px !important;
+    font-size: 12px !important;
+    padding: 2px 0 !important;
+    line-height: 1 !important;
   }
   .faq__answer {
-    padding: 0 20px 20px 20px !important;
-    font-size: 15px !important;
+    padding: 0 0 8px 0 !important;
+    font-size: 13px !important;
   }
   .faq__contact-info {
     padding: 35px 20px !important;
@@ -311,6 +351,53 @@ You can learn more about this (and learn how to cleanly revert these changes) at
   }
   .faq__contact-info .text-with-icons__item {
     width: 100% !important;
+  }
+  
+  .mobile-faq-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    color: #1a1a1a;
+  }
+  .mobile-faq-summary::-webkit-details-marker {
+    display: none;
+  }
+  .mobile-faq-icon {
+    font-size: 26px;
+    font-weight: 400;
+  }
+  .mobile-faq-icon::before {
+    content: '+';
+  }
+  .mobile-faq-wrapper[open] .mobile-faq-icon::before {
+    content: '-';
+  }
+  .faq {
+    margin-top: 15px;
+  }
+}
+.mobile-faq-summary {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .mobile-faq-summary {
+    display: flex;
+  }
+}
+.mobile-faq-summary {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .mobile-faq-summary {
+    display: flex;
   }
 }
 </style>

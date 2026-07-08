@@ -4,6 +4,7 @@
     background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    min-height: {{ section.settings.hero_height }}px;
   "
 >
   <div class="page-width">
@@ -59,7 +60,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  min-height: 500px;
+  min-height: 700px !important;
 }
 
 
@@ -202,12 +203,22 @@
 
     {
       "type": "range",
+      "id": "hero_height",
+      "label": "Hero Height",
+      "min": 300,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
       "id": "padding_top",
       "label": "Top Padding",
       "min": 0,
       "max": 150,
       "step": 10,
-      "default": 80
+      "default": 0
     },
     {
       "type": "range",
@@ -216,7 +227,7 @@
       "min": 0,
       "max": 150,
       "step": 10,
-      "default": 80
+      "default": 0
     }
   ],
   "presets": [

@@ -59,9 +59,23 @@
         "mega_menu_cMtDFM": {
           "type": "mega_menu",
           "settings": {
-            "menu_item": "",
-            "image_1_heading": "Your image",
-            "image_1_text": "Tell your story",
+            "menu_item": "Room",
+            "image_1": "shopify://shop_images/Logo-01.png",
+            "image_1_heading": "BIG SALE",
+            "image_1_text": "Room Deals",
+            "image_1_link": "",
+            "image_2_heading": "Your image",
+            "image_2_text": "Tell your story",
+            "image_2_link": ""
+          }
+        },
+        "mega_menu_sample2": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Basins",
+            "image_1": "shopify://shop_images/Logo-01.png",
+            "image_1_heading": "BASIN SALE",
+            "image_1_text": "Huge Discounts",
             "image_1_link": "",
             "image_2_heading": "Your image",
             "image_2_text": "Tell your story",
@@ -70,7 +84,8 @@
         }
       },
       "block_order": [
-        "mega_menu_cMtDFM"
+        "mega_menu_cMtDFM",
+        "mega_menu_sample2"
       ],
       "custom_css": [
         ".nav-bar__inner {text-align: center;}"

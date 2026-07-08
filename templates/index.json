@@ -72,7 +72,7 @@
       "name": "USP Bar",
       "settings": {
         "custom_class": "",
-        "bg_color": "#1e73be",
+        "bg_color": "#ffffff",
         "heading_size": 20,
         "text_size": 10,
         "heading_color": "#ffffff",
@@ -619,7 +619,7 @@
       ],
       "name": "Frequently Asked Questions",
       "settings": {
-        "show_contact_info": true,
+        "show_contact_info": false,
         "contact_info_heading": "Any question?",
         "contact_info_text": "<p>If we still haven't answered your question, you can contact us below and we will get back to you as soon as possible.</p>",
         "contact_1_icon": "bi-network",
@@ -629,6 +629,167 @@
         "contact_2_heading": "Send a message",
         "contact_2_text": "<p>Email <a href=\"mailto:sales@tilesparadiseuk.com\">sales@tilesparadiseuk.com</a> any time and we'll get back to you as soon as possible</p>"
       }
+    },
+    "trending_styles_xyz": {
+      "type": "collection-list",
+      "blocks": {
+        "block_1": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title_override": "Terrazzo Tiles",
+            "link": ""
+          }
+        },
+        "block_2": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title_override": "Patterned Tiles",
+            "link": ""
+          }
+        },
+        "block_3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title_override": "Zellige Tiles",
+            "link": ""
+          }
+        },
+        "block_4": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title_override": "Checkerboard Tiles",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
+      "settings": {
+        "title": "Trending styles",
+        "link_title": "",
+        "link": "",
+        "round_images": false,
+        "show_collection_title": true,
+        "custom_class": "trending-styles-sec"
+      }
+    },
+    "custom_tabs_1": {
+      "type": "custom-tabs",
+      "blocks": {
+        "tab_1": {
+          "type": "tab",
+          "settings": {
+            "title": "About Tiles Paradise",
+            "heading": "Tiles from Tiles Paradise",
+            "content": "<p>Tiles Paradise is the UK's premier tiles retailer. We sell a huge range of modern and traditional products.</p>"
+          }
+        },
+        "tab_2": {
+          "type": "tab",
+          "settings": {
+            "title": "Boss Your Bathroom",
+            "heading": "Boss Your Bathroom",
+            "content": "<p>When you're ready to boss your bathroom, we have everything you need. From stunning freestanding baths to sleek walk-in showers, our wide range of products ensures that you can design a space that truly reflects your style. We work with top brands and designers to bring you the best quality fixtures.</p><p>Our team of experts has handpicked every item so you can shop with confidence. Discover how easy it is to transform your space with our curated collections.</p>"
+          }
+        },
+        "tab_3": {
+          "type": "tab",
+          "settings": {
+            "title": "Renovate Your Bathroom",
+            "heading": "Renovate Your Bathroom",
+            "content": "<p>Renovating your bathroom doesn't have to be a stressful experience. With our comprehensive selection of tiles, vanity units, and bathroom suites, you can find exactly what you need all in one place. We offer complete solutions for every budget, whether you are doing a quick refresh or a full-scale remodel.</p><p>Explore our extensive guides and inspiration galleries to help you plan your perfect renovation. We are here to help you every step of the way.</p>"
+          }
+        },
+        "tab_4": {
+          "type": "tab",
+          "settings": {
+            "title": "Fresh New Look",
+            "heading": "Fresh New Look",
+            "content": "<p>Give your home a fresh new look with our latest tile collections. From bold patterns and vibrant colours to minimalist designs and natural textures, we have the perfect tiles to elevate any room. Adding a new backsplash to your kitchen or updating your hallway floor has never been easier.</p><p>Stay up to date with the latest trends and discover new ways to bring life to your living spaces. A small change can make a massive difference.</p>"
+          }
+        },
+        "tab_5": {
+          "type": "tab",
+          "settings": {
+            "title": "Shopping Made Easy",
+            "heading": "Shopping Made Easy",
+            "content": "<p>We believe that shopping for your home should be as relaxing as living in it. That's why we've designed our website to be user-friendly, with detailed product descriptions, high-quality images, and easy navigation. You can order samples directly to your door to see how our tiles look in your space before making a decision.</p><p>With fast delivery and excellent customer support, we ensure your shopping experience is completely hassle-free from start to finish.</p>"
+          }
+        },
+        "tab_6": {
+          "type": "tab",
+          "settings": {
+            "title": "Customer First Thinking",
+            "heading": "Customer First Thinking",
+            "content": "<p>Our customers are at the heart of everything we do. We are committed to providing outstanding service, expert advice, and high-quality products that stand the test of time. Our dedicated support team is always ready to answer your questions and help you find the perfect solutions for your home projects.</p><p>We listen to your feedback and constantly strive to improve our offerings, ensuring that you always receive the best possible experience when shopping with us.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "tab_1",
+        "tab_2",
+        "tab_3",
+        "tab_4",
+        "tab_5",
+        "tab_6"
+      ],
+      "settings": {
+        "bg_color": "transparent",
+        "active_color": "#016fd0",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "custom_help_xyz": {
+      "type": "custom-help",
+      "blocks": {
+        "column_1": {
+          "type": "column",
+          "settings": {
+            "title": "Contact Us",
+            "text": "<p>Chat, email, call or WhatsApp - our team will help with any tile query.</p>",
+            "link_text": "Chat to Us",
+            "link_url": "/"
+          }
+        },
+        "column_2": {
+          "type": "column",
+          "settings": {
+            "title": "Help & Advice",
+            "text": "<p>Guides on choosing, installing and caring for your tiles - all in one place.</p>",
+            "link_text": "Read More",
+            "link_url": "/"
+          }
+        },
+        "column_3": {
+          "type": "column",
+          "settings": {
+            "title": "Inspiration",
+            "text": "<p>Browse real homes, style ideas and design tips to spark your next project.</p>",
+            "link_text": "Get Inspired",
+            "link_url": "/"
+          }
+        }
+      },
+      "block_order": [
+        "column_1",
+        "column_2",
+        "column_3"
+      ],
+      "settings": {
+        "title": "We're here to help",
+        "bg_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -637,14 +798,17 @@
     "best_selling_products_PjyGVK",
     "blocks_4HkYkr",
     "collection_list_pb9YTb",
+    "trending_styles_xyz",
     "13830d8c-2d85-47ea-90e0-67f4d26a1478",
     "collection_list_iqmkDd",
     "rich_text_NrganX",
     "apps_TetGGX",
+    "custom_tabs_1",
     "slideshow_qt7hFy",
     "image_with_text_PLTMEU",
     "blog_posts_rYkFhT",
     "instagram_feed_kpMBKB",
-    "faq_tDXLaa"
+    "faq_tDXLaa",
+    "custom_help_xyz"
   ]
 }

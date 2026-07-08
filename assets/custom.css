@@ -180,6 +180,7 @@ body {
   align-items: stretch;
   justify-content: center;
   min-height: 44px;
+  gap: 10px;
 }
 
 .tabbed-mega-nav__secondary-item {
@@ -227,6 +228,8 @@ body {
   background: #fff;
   color: #222;
   box-shadow: 0 18px 35px rgba(0, 0, 0, .18);
+  border: 5px solid #1e73be;
+  border-top: none;
   transform: translateY(4px);
   transition: opacity .16s ease, visibility .16s ease, transform .16s ease;
 }
@@ -255,20 +258,34 @@ body {
 .tabbed-mega-nav__column-title {
   display: inline-flex;
   margin-bottom: 12px;
-  color: #111;
+  color: #1e73be;
   font-size: 15px;
   font-weight: 900;
   line-height: 1.2;
 }
 
+.tabbed-mega-nav__columns {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabbed-mega-nav__column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .tabbed-mega-nav__link-grid {
   column-count: 3;
   column-gap: 34px;
+  column-rule: 1px solid #1e73be;
+  flex: 1;
 }
 
 .tabbed-mega-nav__link-grid li {
   break-inside: avoid;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 }
 
 .tabbed-mega-nav__panel-link {
@@ -293,6 +310,9 @@ body {
   min-height: 250px;
   overflow: hidden;
   background: #016fd0;
+  margin-top: -26px;
+  margin-right: -28px;
+  margin-bottom: -26px;
 }
 
 .tabbed-mega-nav__promo img {
@@ -1015,7 +1035,6 @@ button.product-item__action-button.button.button--small.button--primary {
 	border-radius: 10px;
 	padding: 60px 50px !important;
 	margin: 50px 50px 0px 50px;
-	background-color: #016FD0 !important;
 }
 .usp-icon .icon-circle {
 	width: 70px;
@@ -1536,7 +1555,6 @@ span.custom-sale-badge {
 	border-radius: 10px;
 	padding: 30px 10px !important;
 	margin: 40px 20px 0;
-	background-color: #016fd0 !important;
 }
 .usp-item {
 	display: flex;
@@ -2130,6 +2148,10 @@ body {
 .template-product .page-width,
 .custom-hero-banner .hero-wrapper {
   max-width: var(--site-boxed-width) !important;
+}
+
+.custom-hero-banner .hero-wrapper {
+  min-height: 900px !important;
 }
 
 nav.nav-bar.tabbed-mega-nav {
@@ -2932,8 +2954,8 @@ body.template-index .section--sale-hero {
   left: 50% !important;
   width: 100vw !important;
   max-width: 100vw !important;
-  height: 500px !important;
-  min-height: 500px !important;
+  height: auto !important;
+  min-height: auto !important;
   margin: 0 0 0 -50vw !important;
   padding: 0 !important;
   overflow: hidden !important;
@@ -2946,7 +2968,7 @@ body.template-index .section--sale-hero picture {
   display: block !important;
   width: 100% !important;
   max-width: none !important;
-  height: 500px !important;
+  height: auto !important;
   margin: 0 !important;
   padding: 0 !important;
   line-height: 0 !important;
@@ -2955,9 +2977,9 @@ body.template-index .section--sale-hero picture {
 body.template-index .section--sale-hero .tp-sale-hero img {
   display: block !important;
   width: 100% !important;
-  height: 500px !important;
-  object-fit: fill !important;
-  object-position: center center !important;
+  height: auto !important;
+  object-fit: unset !important;
+  object-position: unset !important;
 }
 
 body.template-index #main [data-section-type="slideshow"] {
@@ -3031,7 +3053,7 @@ body.template-index .usp-bar .usp-item {
   justify-content: center !important;
   border: 1px solid rgba(255, 255, 255, .22) !important;
   border-radius: 8px !important;
-  background: rgba(255, 255, 255, .08) !important;
+  background: #1e73be !important;
 }
 
 body.template-index .usp-bar .usp-item:nth-child(4) {
@@ -3074,6 +3096,52 @@ body.template-index .usp-bar .usp-item::before {
   height: 0 !important;
   background: transparent !important;
   opacity: 0 !important;
+}
+
+@media screen and (max-width: 768px) {
+  body.template-index .usp-bar {
+    display: block !important;
+    margin: 20px 0 0 !important;
+    padding: 16px 9px !important;
+  }
+  body.template-index .usp-bar .page-width {
+    padding: 0 !important;
+  }
+  body.template-index .usp-bar .usp-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    padding: 0 !important;
+  }
+  body.template-index .usp-bar .usp-item,
+  body.template-index .usp-bar .usp-item:nth-child(4),
+  body.template-index .usp-bar .usp-item:nth-child(5) {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 14px 16px !important;
+    min-height: 60px !important;
+  }
+  body.template-index .usp-bar .icon-circle {
+    width: 44px !important;
+    height: 44px !important;
+    flex: 0 0 44px !important;
+  }
+  body.template-index .usp-bar .usp-icon img {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  body.template-index .usp-bar .usp-content h4 {
+    font-size: 16px !important;
+    margin-bottom: 3px !important;
+  }
+  body.template-index .usp-bar .usp-content p {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+  }
 }
 
 /* Shop By Room grid */

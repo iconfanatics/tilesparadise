@@ -317,6 +317,16 @@
                       <ul class="tabbed-mega-nav__secondary-list list--unstyled" role="list">
                         {%- for child_link in link.links -%}
                           {%- assign child_title_downcase = child_link.title | downcase | strip -%}
+                          
+                          {%- assign child_promo_block = menu_promo_block -%}
+                          {%- for block in section.blocks -%}
+                            {%- assign block_menu_item_downcase = block.settings.menu_item | downcase | strip -%}
+                            {%- if block_menu_item_downcase == child_title_downcase -%}
+                              {%- assign child_promo_block = block -%}
+                              {%- break -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+
                           <li class="tabbed-mega-nav__secondary-item {% if child_link.links.size > 0 %}has-panel{% endif %} {% if child_title_downcase == 'offers' %}is-offers{% endif %}">
                             <a href="{{ child_link.url }}" class="tabbed-mega-nav__secondary-link">
                               {{ child_link.title }}
@@ -324,7 +334,7 @@
 
                             {%- if child_link.links.size > 0 -%}
                               <div class="tabbed-mega-nav__panel">
-                                <div class="tabbed-mega-nav__panel-inner {% if menu_promo_block != blank and menu_promo_block.settings.image_1 != blank %}has-promo{% endif %}">
+                                <div class="tabbed-mega-nav__panel-inner {% if child_promo_block != blank and child_promo_block.settings.image_1 != blank %}has-promo{% endif %}">
                                   <div class="tabbed-mega-nav__columns">
                                     <div class="tabbed-mega-nav__column">
                                       <a href="{{ child_link.url }}" class="tabbed-mega-nav__column-title">
@@ -342,16 +352,16 @@
                                     </div>
                                   </div>
 
-                                  {%- if menu_promo_block != blank and menu_promo_block.settings.image_1 != blank -%}
-                                    <a href="{{ menu_promo_block.settings.image_1_link | default: link.url }}" class="tabbed-mega-nav__promo">
-                                      {{ menu_promo_block.settings.image_1 | image_url: width: 520 | image_tag: loading: 'lazy', sizes: '292px', widths: '292,420,520', alt: menu_promo_block.settings.image_1_heading }}
-                                      {%- if menu_promo_block.settings.image_1_heading != blank or menu_promo_block.settings.image_1_text != blank -%}
+                                  {%- if child_promo_block != blank and child_promo_block.settings.image_1 != blank -%}
+                                    <a href="{{ child_promo_block.settings.image_1_link | default: link.url }}" class="tabbed-mega-nav__promo">
+                                      {{ child_promo_block.settings.image_1 | image_url: width: 520 | image_tag: loading: 'lazy', sizes: '292px', widths: '292,420,520', alt: child_promo_block.settings.image_1_heading }}
+                                      {%- if child_promo_block.settings.image_1_heading != blank or child_promo_block.settings.image_1_text != blank -%}
                                         <span class="tabbed-mega-nav__promo-copy">
-                                          {%- if menu_promo_block.settings.image_1_heading != blank -%}
-                                            <strong>{{ menu_promo_block.settings.image_1_heading }}</strong>
+                                          {%- if child_promo_block.settings.image_1_heading != blank -%}
+                                            <strong>{{ child_promo_block.settings.image_1_heading }}</strong>
                                           {%- endif -%}
-                                          {%- if menu_promo_block.settings.image_1_text != blank -%}
-                                            <small>{{ menu_promo_block.settings.image_1_text }}</small>
+                                          {%- if child_promo_block.settings.image_1_text != blank -%}
+                                            <small>{{ child_promo_block.settings.image_1_text }}</small>
                                           {%- endif -%}
                                         </span>
                                       {%- endif -%}

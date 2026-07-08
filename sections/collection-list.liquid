@@ -122,6 +122,78 @@
           </a>
         {%- endfor -%}
       </div>
+    {%- elsif section.settings.custom_class contains 'trending-styles-sec' -%}
+      <style>
+        .trending-styles-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+        }
+        .trending-style-card {
+          text-decoration: none;
+          color: inherit;
+          display: block;
+        }
+        .trending-style-image {
+          border-radius: 8px;
+          overflow: hidden;
+          margin-bottom: 12px;
+          position: relative;
+          padding-bottom: 120%; /* Portrait aspect ratio */
+        }
+        .trending-style-image img, .trending-style-image svg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .trending-style-title {
+          font-weight: 700;
+          font-size: 16px;
+          margin-bottom: 4px;
+          color: #353535;
+        }
+        .trending-style-link {
+          color: #1e73be;
+          font-size: 14px;
+          font-weight: 600;
+          text-decoration: underline;
+        }
+        @media screen and (max-width: 768px) {
+          .trending-styles-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+          }
+        }
+      </style>
+      <div class="trending-styles-grid">
+        {%- for block in section.blocks limit: section.settings.collections_to_show -%}
+          {%- assign collection = block.settings.collection -%}
+          {%- assign display_title = block.settings.title_override | default: collection.title -%}
+          {%- assign collection_image = block.settings.image | default: collection.image | default: collection.products.first.featured_image -%}
+
+          <a href="{{ block.settings.link | default: collection.url | default: '#' }}" class="trending-style-card" {{ block.shopify_attributes }}>
+            <div class="trending-style-image">
+              {%- if collection_image != blank -%}
+                {{- collection_image | image_url: width: collection_image.width | image_tag: loading: 'lazy', sizes: '280px', widths: '280,560,840' -}}
+              {%- else -%}
+                {%- capture placeholder -%}{% cycle 'collection-1', 'collection-2', 'collection-3', 'collection-4', 'collection-5', 'collection-6' %}{%- endcapture -%}
+                {{- placeholder | placeholder_svg_tag: 'placeholder-svg' -}}
+              {%- endif -%}
+            </div>
+            {%- if section.settings.show_collection_title -%}
+              <div class="trending-style-title">
+                {% if display_title != blank %}{{ display_title }}{% else %}{{ 'home_page.onboarding.collection_title' | t }}{% endif %}
+              </div>
+            {%- endif -%}
+            <div class="trending-style-link">
+              Shop now
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
     {%- else -%}
       <div class="scroller">
         <div class="scroller__inner">
