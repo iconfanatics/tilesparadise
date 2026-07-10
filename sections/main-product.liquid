@@ -99,6 +99,7 @@
 
       <div class="product-block-list product-block-list--{{ section.settings.image_size }}">
         <div class="product-block-list__wrapper">
+          <div class="tp-sticky-left-column">
           {%- if product.media.size > 0 -%}
             <div class="product-block-list__item product-block-list__item--gallery">
                 {%- capture product_labels -%}
@@ -148,11 +149,6 @@
               {% render 'product-gallery' %}
             </div>
           {%- endif -%}
-
-          <div class="product-block-list__item product-block-list__item--info">
-            {%- render 'product-info' -%}
-
-          </div>
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
@@ -503,6 +499,11 @@
                 {%- endif -%}
             {%- endcase -%}
           {%- endfor -%}
+          </div> <!-- closing tp-sticky-left-column -->
+
+          <div class="product-block-list__item product-block-list__item--info">
+            {%- render 'product-info' -%}
+          </div>
         </div>
       </div>
     </div>
@@ -576,6 +577,39 @@ $(document).ready(function(){
 
 
       
+
+{%- for block in section.blocks -%}
+  {%- if block.type == 'delivery_options' -%}
+    <!-- Drawers for this block -->
+    <section id="drawer-delivery-options-{{ block.id }}" class="drawer tp-custom-drawer" aria-hidden="true" onclick="if(event.target === this) { this.setAttribute('aria-hidden', 'true'); document.documentElement.classList.remove('is-locked'); }">
+      <div class="drawer__inner" style="background: #fff;">
+        <header class="drawer__header tp-drawer-header">
+          <h3 class="drawer__title heading h3">{{ block.settings.delivery_options_title }}</h3>
+          <button type="button" class="drawer__close link" onclick="this.closest('.drawer').setAttribute('aria-hidden', 'true'); document.documentElement.classList.remove('is-locked');">
+            {% render 'icon', icon: 'close' %}
+          </button>
+        </header>
+        <div class="drawer__content tp-drawer-content rte">
+          {{ block.settings.delivery_drawer_content }}
+        </div>
+      </div>
+    </section>
+
+    <section id="drawer-faq-{{ block.id }}" class="drawer tp-custom-drawer" aria-hidden="true" onclick="if(event.target === this) { this.setAttribute('aria-hidden', 'true'); document.documentElement.classList.remove('is-locked'); }">
+      <div class="drawer__inner" style="background: #fff;">
+        <header class="drawer__header tp-drawer-header">
+          <h3 class="drawer__title heading h3">{{ block.settings.faq_text }}</h3>
+          <button type="button" class="drawer__close link" onclick="this.closest('.drawer').setAttribute('aria-hidden', 'true'); document.documentElement.classList.remove('is-locked');">
+            {% render 'icon', icon: 'close' %}
+          </button>
+        </header>
+        <div class="drawer__content tp-drawer-content rte">
+          {{ block.settings.faq_drawer_content }}
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+{%- endfor -%}
 
 {% schema %}
 {
@@ -924,6 +958,61 @@ $(document).ready(function(){
         {
           "type": "paragraph",
           "content": "You need to install [Shopify's free Product Reviews](https://apps.shopify.com/product-reviews) app before enabling those options."
+        }
+      ]
+    },
+    {
+      "type": "delivery_options",
+      "name": "Delivery Options",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "get_it_text",
+          "label": "Get It Text",
+          "default": "Get It Friday"
+        },
+        {
+          "type": "text",
+          "id": "order_in_text",
+          "label": "Order In Text",
+          "default": "Order in 21 hours and 4 minutes"
+        },
+        {
+          "type": "text",
+          "id": "delivery_options_title",
+          "label": "Delivery Options Title",
+          "default": "Delivery Options"
+        },
+        {
+          "type": "text",
+          "id": "delivery_options_subtitle",
+          "label": "Delivery Options Subtitle",
+          "default": "Add postcode to view all options"
+        },
+        {
+          "type": "richtext",
+          "id": "delivery_options_list",
+          "label": "Delivery Options List",
+          "default": "<p><ul><li><b>FREE Standard Pallet Delivery</b><br>Over £499 to UK mainland</li><li><b>Standard Pallet Delivery</b> £24.95 for 2-7 working days</li><li><b>Next Day Pallet Service</b> £39.95 for delivery on Friday</li><li><b>Day Specific Pallet</b> £44.95 for specific day</li></ul></p>"
+        },
+        {
+          "type": "richtext",
+          "id": "delivery_drawer_content",
+          "label": "Delivery Drawer Content",
+          "default": "<h3>Standard Delivery</h3><p>We deliver using a pallet network. Delivery takes 2-7 working days.</p><h3>Next Day Delivery</h3><p>Available on orders placed before 12pm.</p><h3>Returns</h3><p>We accept returns within 30 days of purchase. Please read our full terms.</p>"
+        },
+        {
+          "type": "text",
+          "id": "faq_text",
+          "label": "FAQ Text",
+          "default": "Delivery & Returns FAQs"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_drawer_content",
+          "label": "FAQ Drawer Content",
+          "default": "<h3>Frequently Asked Questions</h3><p><strong>How long does delivery take?</strong><br>Delivery typically takes between 2 to 7 working days depending on your location.</p><p><strong>Do you offer next day delivery?</strong><br>Yes, we offer next day pallet service for £39.95 if ordered before noon.</p><p><strong>What is your return policy?</strong><br>You can return items within 30 days in their original condition.</p>"
         }
       ]
     },

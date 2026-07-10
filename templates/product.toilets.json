@@ -166,16 +166,16 @@
     "toilet_company_usps": {
       "type": "product-toilets-company-usps",
       "settings": {
-        "usp1_icon": "🎧",
+        "usp1_icon": "\ud83c\udfa7",
         "usp1_title": "Expert Support",
         "usp1_text": "UK-based bathroom specialists on hand to help",
-        "usp2_icon": "🚚",
+        "usp2_icon": "\ud83d\ude9a",
         "usp2_title": "Fast UK Delivery",
         "usp2_text": "Nationwide delivery, tracked & insured",
-        "usp3_icon": "🏆",
+        "usp3_icon": "\ud83c\udfc6",
         "usp3_title": "Premium Brands",
         "usp3_text": "Carefully selected quality bathroom products",
-        "usp4_icon": "⭐",
+        "usp4_icon": "\u2b50",
         "usp4_title": "5 Year Guarantee",
         "usp4_text": "Full manufacturer guarantee on all toilets"
       }

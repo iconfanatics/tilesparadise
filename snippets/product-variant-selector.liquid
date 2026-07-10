@@ -207,6 +207,7 @@
     <div class="product-meta__label-list">{{- product_labels -}}</div>
   {%- endif -%}
 
+{% unless product.metafields.custom.tiles_per_sq != blank %}
   <span class="product-form__info-title text--strong jj">
     {% assign show_price_label = true %}
     {% for collection in product.collections %}
@@ -280,6 +281,7 @@
       {%- endif -%}
     {%- endif -%}
   </div>
+{% endunless %}
 </div>
 
 <div class="paypal_cont" style="margin-top:20px;">
@@ -367,77 +369,119 @@
 
     {% else %}
       {%- comment -%} ===================== TILES: Order by Area (per m²) ===================== {%- endcomment -%}
-      <style>
-        .tpq{font-family:"Open Sans",sans-serif;max-width:440px;margin-top:6px}
-        .tpq__lab{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;margin-bottom:8px}
-        .tpq__stepper{display:flex;align-items:stretch;border:1.5px solid #e6e8eb;border-radius:11px;overflow:hidden;max-width:240px}
-        .tpq__stepper:focus-within{border-color:#c8102e;box-shadow:0 0 0 3px rgba(200,16,46,.1)}
-        .tpq__stepper button{width:48px;border:0;background:#fff;font-size:22px;cursor:pointer;color:#1a1d24;line-height:1}
-        .tpq__stepper button:hover{background:#f7f8f9}
-        .tpq__val{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;border-left:1px solid #e6e8eb;border-right:1px solid #e6e8eb}
-        .tpq__val input{width:60px;border:0;text-align:right;font-size:19px;font-weight:700;padding:13px 0;outline:none;-moz-appearance:textfield;background:transparent}
-        .tpq__val input::-webkit-outer-spin-button,.tpq__val input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-        .tpq__unit{font-size:13px;font-weight:600;color:#6b7280}
-        .tpq__tiles{margin:10px 0 0;font-size:13.5px;font-weight:600;color:#1a1d24}
-        .tpq__waste{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;font-weight:600;color:#1a1d24;cursor:pointer}
-        .tpq__waste input{width:16px;height:16px;accent-color:#c8102e;cursor:pointer;margin:0}
-        .tpq__waste em{font-style:normal;color:#6b7280;font-weight:500}
-        .tpq__total{display:flex;align-items:flex-end;justify-content:space-between;margin-top:16px;padding-top:16px;border-top:1px solid #e6e8eb}
-        .tpq__total .lab{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;padding-bottom:8px}
-        .tpq__total .amt{font-size:36px;font-weight:800;color:#c8102e;letter-spacing:-.02em;line-height:1}
-        .tpq__total .vat{font-size:12px;font-weight:600;color:#6b7280;margin-left:5px}
-        .tpq__link{display:inline-flex;align-items:center;gap:7px;margin-top:13px;font-size:13px;font-weight:600;color:#1a1d24;text-decoration:none}
-        .tpq__link:hover{color:#c8102e;text-decoration:underline}
-        .tpq__ess{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;text-decoration:none;background:#f7f8f9;border:1px solid #e6e8eb;border-radius:11px;padding:13px 16px;transition:border-color .15s,background .15s}
-        .tpq__ess:hover{border-color:#c8102e;background:#fff}
-        .tpq__ess b{display:block;font-size:13px;font-weight:800;color:#1a1d24}
-        .tpq__ess em{display:block;font-style:normal;font-size:11.5px;color:#6b7280;margin-top:2px}
-        .tpq__ess .arr{flex:0 0 auto;font-size:18px;color:#c8102e;font-weight:700}
-      </style>
+      <div class="tp-calc-container" id="tp-calc-{{ product.id }}">
+        <div class="tp-calc-main-row" style="display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
+          <div class="tp-calc-inputs" style="display: flex; align-items: flex-end; gap: 16px;">
+            <div class="tp-calc-group">
+              <span class="tp-calc-label">boxes</span>
+              <div class="tp-calc-stepper">
+                <input type="number" data-role="boxes" min="1" step="1" value="1">
+                <div class="tp-calc-arrows">
+                  <button type="button" data-act="plus" aria-label="Increase">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                  </button>
+                  <button type="button" data-act="minus" aria-label="Decrease">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tp-calc-or">or</div>
+            
+            <div class="tp-calc-group">
+              <div class="tp-calc-stepper tp-calc-stepper-m2">
+                <input type="number" data-role="sqm" min="0" step="0.01" value="0.00">
+                <span class="tp-calc-unit">metre&sup2;</span>
+                <div class="tp-calc-arrows">
+                  <button type="button" data-act="plus-sqm" aria-label="Increase">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                  </button>
+                  <button type="button" data-act="minus-sqm" aria-label="Decrease">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <div class="tpq" id="tpq-{{ product.id }}">
-        <span class="tpq__lab">Area to cover</span>
-        <div class="tpq__stepper">
-          <button type="button" data-act="minus" aria-label="Decrease">&minus;</button>
-          <div class="tpq__val"><input type="number" data-role="sqm" min="0" step="1" placeholder="0"><span class="tpq__unit">m&sup2;</span></div>
-          <button type="button" data-act="plus" aria-label="Increase">+</button>
-        </div>
-        <p class="tpq__tiles"><b data-role="tiles">0</b> tiles</p>
-        <label class="tpq__waste"><input type="checkbox" data-role="waste" checked> Add 10% for cuts &amp; breakage <em>(recommended)</em></label>
-
-        <div class="tpq__total">
-          <span class="lab">Total</span>
-          <span><span class="amt">&pound;<span data-role="price">0.00</span></span><span class="vat">inc VAT</span></span>
+          <div class="tp-calc-total">
+            Total: <span class="tp-calc-total-amount">&pound;<span data-role="price">0.00</span></span>
+          </div>
         </div>
 
-        <a class="tpq__link" href="/pages/tile-calculator">▦ How many tiles do I need?</a>
+        <div class="tp-calc-help">
+          <a href="/pages/tile-calculator" class="link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>
+            How many tiles do I need?
+          </a>
+        </div>
 
-        <input type="hidden" name="quantity" id="tpq-qty-{{ product.id }}" value="1">
+        <input type="hidden" name="quantity" id="tp-qty-{{ product.id }}" value="1">
       </div>
 
       <script>
       (function(){
-        var root=document.getElementById("tpq-{{ product.id }}"); if(!root) return;
+        var root = document.getElementById("tp-calc-{{ product.id }}"); if(!root) return;
         var pricePerM2 = {{ product.price | divided_by: 100.0 | json }};
-        var sqmPerTile = parseFloat("{{ product.metafields.custom.tiles_per_sq | default: 0.72 }}".replace(',','.'))||0.72;
-        var sqm=root.querySelector('[data-role="sqm"]'), tilesEl=root.querySelector('[data-role="tiles"]'),
-            priceEl=root.querySelector('[data-role="price"]'), waste=root.querySelector('[data-role="waste"]'), qty=document.getElementById("tpq-qty-{{ product.id }}");
-        function setQty(v){ qty.value=v; qty.dispatchEvent(new Event('input',{bubbles:true})); qty.dispatchEvent(new Event('change',{bubbles:true})); }
-        function recalc(){
-          var a=parseFloat(sqm.value)||0; if(a<0)a=0;
-          if(a<=0){ tilesEl.textContent='0'; priceEl.textContent='0.00'; setQty(1); return; }
-          var need=waste.checked ? a*1.10 : a;                // +10% for cuts & breakage
-          var tiles=Math.max(1, Math.floor(need/sqmPerTile)); // round DOWN, odd is fine
-          var charge=Math.max(1, Math.round(need));
-          tilesEl.textContent=tiles;
-          priceEl.textContent=(charge*pricePerM2).toFixed(2);
+        var boxQty = parseInt("{{ product.metafields.custom.box_quantity | default: 1 }}", 10) || 1;
+        var sqmPerTile = parseFloat("{{ product.metafields.custom.tiles_per_sq | default: 0.72 }}".replace(',','.')) || 0.72;
+        var m2PerBox = boxQty * sqmPerTile;
+        var pricePerBox = pricePerM2 * m2PerBox;
+
+        var boxesInput = root.querySelector('[data-role="boxes"]');
+        var sqmInput = root.querySelector('[data-role="sqm"]');
+        var priceEl = root.querySelector('[data-role="price"]');
+        var qtyHidden = document.getElementById("tp-qty-{{ product.id }}");
+        
+        function setQty(v){ 
+          qtyHidden.value = v; 
+          qtyHidden.dispatchEvent(new Event('input',{bubbles:true})); 
+          qtyHidden.dispatchEvent(new Event('change',{bubbles:true})); 
+        }
+
+        function updateFromBoxes() {
+          var boxes = parseInt(boxesInput.value, 10) || 1;
+          if (boxes < 1) { boxes = 1; boxesInput.value = 1; }
+          var totalM2 = boxes * m2PerBox;
+          var totalPrice = boxes * pricePerBox;
+          
+          sqmInput.value = totalM2.toFixed(2);
+          priceEl.textContent = totalPrice.toFixed(2);
+          
+          // Set shopify cart quantity to the number of m2 or boxes depending on what the shop uses.
+          // Since the previous script used Math.round(need) which is m2, we will use totalM2 rounded.
+          var charge = Math.max(1, Math.round(totalM2));
           setQty(charge);
         }
-        root.querySelector('[data-act="plus"]').onclick=function(){ sqm.value=((parseFloat(sqm.value)||0)+1); recalc(); };
-        root.querySelector('[data-act="minus"]').onclick=function(){ var v=(parseFloat(sqm.value)||0)-1; sqm.value=v>0?v:0; recalc(); };
-        sqm.addEventListener('input',recalc);
-        waste.addEventListener('change',recalc);
-        recalc();
+
+        function updateFromSqm() {
+          var sqm = parseFloat(sqmInput.value) || 0;
+          if (sqm <= 0) { sqm = m2PerBox; sqmInput.value = sqm.toFixed(2); }
+          var boxes = Math.ceil(sqm / m2PerBox);
+          if (boxes < 1) boxes = 1;
+          
+          boxesInput.value = boxes;
+          var totalPrice = boxes * pricePerBox;
+          priceEl.textContent = totalPrice.toFixed(2);
+          
+          var charge = Math.max(1, Math.round(boxes * m2PerBox));
+          setQty(charge);
+        }
+
+        // Event Listeners for Boxes
+        boxesInput.addEventListener('change', updateFromBoxes);
+        root.querySelector('[data-act="plus"]').onclick = function() { boxesInput.value = parseInt(boxesInput.value, 10) + 1; updateFromBoxes(); };
+        root.querySelector('[data-act="minus"]').onclick = function() { boxesInput.value = Math.max(1, parseInt(boxesInput.value, 10) - 1); updateFromBoxes(); };
+
+        // Event Listeners for Sqm
+        sqmInput.addEventListener('change', updateFromSqm);
+        root.querySelector('[data-act="plus-sqm"]').onclick = function() { sqmInput.value = (parseFloat(sqmInput.value) + m2PerBox).toFixed(2); updateFromSqm(); };
+        root.querySelector('[data-act="minus-sqm"]').onclick = function() { sqmInput.value = Math.max(m2PerBox, parseFloat(sqmInput.value) - m2PerBox).toFixed(2); updateFromSqm(); };
+
+        // Init
+        sqmInput.value = m2PerBox.toFixed(2);
+        updateFromBoxes();
       })();
       </script>
       {%- comment -%} =================== /TILES =================== {%- endcomment -%}

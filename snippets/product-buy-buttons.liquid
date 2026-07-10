@@ -273,13 +273,14 @@ document.addEventListener("DOMContentLoaded", function () {
     <span class="klarna-arrow">›</span>
   </a>{% endcomment %}
 
+  {% comment %}
   <div class="delivery-row">
     <span class="delivery-icon">✓</span>
     <span class="delivery-text">
-   <div class="estimator-message--manual"></div> 
-   
+      <div class="estimator-message--manual"></div> 
     </span>
   </div>
+  {% endcomment %}
 
 {% if settings.delivery %}
 <div class="delivery-row second"style="flex-direction:column; align-items: start;">
@@ -407,8 +408,11 @@ $(".custom_product_calculation .quantity-selector--product .quantity-selector__b
   .product-form__add-button,
   .product-form__add-button.button--primary{
     background:var(--tp-green) !important;border-color:var(--tp-green) !important;color:#fff !important;
-    border-radius:12px !important;padding:17px !important;font-size:16px !important;font-weight:800 !important;
+    border-radius:12px !important;font-size:15px !important;font-weight:800 !important;
     box-shadow:0 4px 12px rgba(31,138,76,.25) !important;transition:background .15s,border-color .15s !important;
+    width: 100% !important; max-width: 100% !important; margin: 0 !important; box-sizing: border-box !important;
+    height: 46px !important; min-height: 46px !important; padding: 0 !important;
+    display: flex !important; align-items: center !important; justify-content: center !important;
   }
   .product-form__add-button:hover{
     background:var(--tp-green-dark) !important;border-color:var(--tp-green-dark) !important;color:#fff !important;
@@ -417,8 +421,70 @@ $(".custom_product_calculation .quantity-selector--product .quantity-selector__b
     filter:brightness(0) invert(1);height:18px;width:auto;margin-right:8px;vertical-align:middle;
   }
 
+  /* ---- Dynamic Checkout Button Consistency ---- */
+  .shopify-payment-button {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 12px 0 0 0 !important; /* Only top margin */
+    padding: 0 !important;
+    z-index: 1;
+    position: relative;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
+  .shopify-payment-button__button {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    min-height: 46px !important;
+    height: 46px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .shopify-payment-button__button--unbranded {
+    background-color: var(--tp-ink) !important;
+    color: #fff !important;
+    padding: 0 !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+  }
+  .shopify-payment-button__button--unbranded:hover {
+    background-color: #000 !important;
+  }
+  
+  /* Target branded iframes and shadow DOM wrappers to force height/width */
+  .shopify-payment-button shopify-accelerated-checkout,
+  .shopify-payment-button shopify-buy-it-now-button {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 46px !important;
+    height: 46px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
+  .shopify-payment-button iframe {
+    border-radius: 12px !important;
+    min-height: 46px !important;
+    height: 46px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
+
   /* ---- Delivery card -> green "Get It Between" row ---- */
-  .finance-delivery-card{border-radius:12px !important;overflow:hidden !important;}
+  .finance-delivery-card{border-radius:12px !important;overflow:hidden !important;margin-top:15px !important;}
   .finance-delivery-card .delivery-row:first-child{
     background:#f3faf5 !important;border-top:0 !important;padding:14px 16px !important;
   }

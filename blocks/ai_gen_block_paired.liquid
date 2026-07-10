@@ -408,7 +408,7 @@
   class="ai-product-carousel-{{ ai_gen_id }}"
   {{ block.shopify_attributes }}
 >
-  {% if block.settings.collection != blank %}
+  {% if block.settings.collection_handles != blank %}
     <div class="ai-product-carousel__header-{{ ai_gen_id }}">
       {% if block.settings.title != blank %}
         <h2 class="ai-product-carousel__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
@@ -457,8 +457,13 @@
 
     <div class="ai-product-carousel__wrapper-{{ ai_gen_id }}">
       <div class="ai-product-carousel__track-{{ ai_gen_id }}">
-        {% for product in block.settings.collection.products limit: block.settings.products_limit %}
-          <div class="ai-product-carousel__item-{{ ai_gen_id }}">
+        {% assign handles = block.settings.collection_handles | split: ',' %}
+        {% for handle in handles %}
+          {% assign clean_handle = handle | strip %}
+          {% assign coll = collections[clean_handle] %}
+          {% if coll != blank %}
+            {% for product in coll.products limit: block.settings.per_collection %}
+              <div class="ai-product-carousel__item-{{ ai_gen_id }}">
             <div class="ai-product-carousel__card-{{ ai_gen_id }}">
               <div class="ai-product-carousel__image-wrapper-{{ ai_gen_id }}">
                 {% if product.featured_image %}
@@ -552,6 +557,8 @@
               </div>
             </div>
           </div>
+            {% endfor %}
+          {% endif %}
         {% endfor %}
       </div>
     </div>
@@ -670,18 +677,19 @@
       "content": "Collection"
     },
     {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
+      "type": "text",
+      "id": "collection_handles",
+      "label": "Collection Handles (comma separated)",
+      "default": "led-mirrors,stylish-radiators-heated-towel-rails,luxury-shower-sets,toilets"
     },
     {
       "type": "range",
-      "id": "products_limit",
-      "label": "Maximum products",
-      "min": 4,
-      "max": 20,
+      "id": "per_collection",
+      "label": "Products per collection",
+      "min": 1,
+      "max": 10,
       "step": 1,
-      "default": 12
+      "default": 3
     },
     {
       "type": "header",

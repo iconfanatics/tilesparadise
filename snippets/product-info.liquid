@@ -84,6 +84,53 @@
               </div>
             {% endif %}
 
+          {%- when 'delivery_options' -%}
+            <div class="tp-del-container" {{ block.shopify_attributes }}>
+              <!-- ROW 1: Get It -->
+              <div class="tp-del-row">
+                <div class="tp-del-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2a873b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="tp-del-content">
+                  <span class="tp-del-strong">{{ block.settings.get_it_text }}</span> 
+                  <span class="tp-del-blue">{{ block.settings.order_in_text }}</span>
+                </div>
+              </div>
+              
+              <!-- ROW 2: Delivery Options -->
+              <div class="tp-del-row tp-del-border-top tp-del-col">
+                <button type="button" class="tp-del-title-wrap" onclick="event.preventDefault(); event.stopPropagation(); document.getElementById('drawer-delivery-options-{{ block.id }}').setAttribute('aria-hidden', 'false'); document.documentElement.classList.add('is-locked');" style="width: 100%; border: none; background: transparent; text-align: left; padding: 0; margin: 0; outline: none; cursor: pointer;">
+                  <div class="tp-del-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18" fill="#3fa33f"><path d="M495.2 245.8l-87.9-105.5c-4.4-5.3-10.9-8.3-17.7-8.3H288V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h20.6c7.7 39.5 41.7 64 81.4 64s73.7-24.5 81.4-64h159.2c7.7 39.5 41.7 64 81.4 64s73.7-24.5 81.4-64H512v-98.3c0-10.5-3.6-20.7-10.8-28.7zM150 448c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm226-252h73.7l60 72H376v-72zm96 252c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/></svg>
+                  </div>
+                  <div class="tp-del-content">
+                    <span class="tp-del-strong">{{ block.settings.delivery_options_title }}</span> 
+                    <span class="tp-del-grey">{{ block.settings.delivery_options_subtitle }}</span>
+                  </div>
+                  <div class="tp-del-arrow">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </div>
+                </button>
+                
+                <div class="tp-del-list-wrap">
+                  {{ block.settings.delivery_options_list }}
+                </div>
+              </div>
+              
+              <!-- ROW 3: FAQs -->
+              <button type="button" class="tp-del-row tp-del-border-top tp-del-clickable" onclick="event.preventDefault(); event.stopPropagation(); document.getElementById('drawer-faq-{{ block.id }}').setAttribute('aria-hidden', 'false'); document.documentElement.classList.add('is-locked');" style="width: 100%; border: none; background: transparent; text-align: left; margin: 0; outline: none; cursor: pointer;">
+                <div class="tp-del-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18" fill="#3fa33f"><path d="M495.2 245.8l-87.9-105.5c-4.4-5.3-10.9-8.3-17.7-8.3H288V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h20.6c7.7 39.5 41.7 64 81.4 64s73.7-24.5 81.4-64h159.2c7.7 39.5 41.7 64 81.4 64s73.7-24.5 81.4-64H512v-98.3c0-10.5-3.6-20.7-10.8-28.7zM150 448c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm226-252h73.7l60 72H376v-72zm96 252c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/></svg>
+                </div>
+                <div class="tp-del-content">
+                  <span class="tp-del-strong">{{ block.settings.faq_text }}</span>
+                </div>
+                <div class="tp-del-arrow">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+              </button>
+            </div>
+
           {%- when 'text' -%}
             {%- if block.settings.content != blank -%}
               <div class="product-meta__text rte " {{ block.shopify_attributes }}>{{- block.settings.content -}}</div>

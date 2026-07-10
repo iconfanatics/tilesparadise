@@ -27,71 +27,88 @@
   {%- endcapture -%}
 {%- endif -%}
 
-<div class="product-meta">
+<div class="product-meta new-design-meta">
   {%- if template.name == 'product' and template != 'product.quick-view' -%}
     <h1 class="product-meta__title heading h1">{{ product.title }}</h1>
-
-{% comment %}Start automatically added Judge.me widget{% endcomment %}
- 
-{% comment %}End automatically added Judge.me widget{% endcomment %}
-
   {%- else -%}
     <h3 class="product-meta__title heading h2">
       <a href="{{ product.url }}">{{ product.title }}</a>
     </h3>
   {%- endif -%}
-  {% if product.metafields.custom.next_incoming_date != blank %}
-  <div class="restock_date">
-<p>Re-stocking on {{ product.metafields.custom.next_incoming_date.value | date: " %b %d, %Y" }}</p>
-  </div>
-    {% endif %}
-  {% if template == 'product.new-template' %}
-<div class="product-info_badgec"><span class="badge badge--primary">Free Attached Underlay</span></div>
-  {% endif %}
 
-  <div class="rev_quat" ">
-<div class="inventory-count">
-    {% if product.variants.first.inventory_management == "shopify" %}
-        {% if product.variants.first.inventory_quantity > 100 %}
-             <span class="inventory_full">In Stock</span>
-       {% elsif product.variants.first.inventory_quantity < 1 %}
-            <span class="low-inventory">Sold Out</span>
-        {% elsif product.variants.first.inventory_quantity <= 100 %}
-        <span class="inventory--low">Only {{ product.variants.first.inventory_quantity }} sqm left</span>
-        
-        {% endif %}
+  {%- if product.metafields.custom.size != blank -%}
+    <div class="product-meta__size-subtitle">{{ product.metafields.custom.size }}</div>
+  {%- endif -%}
 
-    {% endif %}
-</div>
-      </div>
-<div class="AirReviews-Widget AirReviews-Widget--Stars"></div>
+  {%- if product.metafields.custom.box_quantity != blank -%}
+    <div class="product-meta__pack-subtitle">Pack of {{ product.metafields.custom.box_quantity }}</div>
+  {%- endif -%}
 
-  {%- if block.settings.show_vendor or block.settings.show_sku -%}
-    <div class="product-meta__reference">
-      {%- if block.settings.show_vendor -%}
-        {%- assign vendor_handle = product.vendor | handle -%}
-        {%- assign collection_for_vendor = collections[vendor_handle] -%}
-
-        {%- unless collection_for_vendor.empty? -%}
-          <a class="product-meta__vendor link link--accented" href="{{ collection_for_vendor.url }}">{{ product.vendor }}</a>
-        {%- else -%}
-          <a class="product-meta__vendor link link--accented" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>
-        {%- endunless -%}
-      {%- endif -%}
-
-      {%- if block.settings.show_sku -%}
-        <span class="product-meta__sku" {% if selected_variant.sku == blank %}style="display: none"{% endif %}>
-          {{- 'product.general.sku' | t -}} <span class="product-meta__sku-number">{{ selected_variant.sku }}</span>
-        </span>
-      {%- endif -%}
+  {%- if block.settings.show_sku -%}
+    <div class="product-meta__sku-subtitle" {% if selected_variant.sku == blank %}style="display: none"{% endif %}>
+      <strong>Part No:</strong> <span class="product-meta__sku-number">{{ selected_variant.sku }}</span>
     </div>
   {%- endif -%}
 
-  {%- if block.settings.show_reviews_badge -%}
-    <a href="{% if template.name != 'product' or template == 'product.quick-view' %}{{ product.url }}{% endif %}#product-reviews" class="product-meta__reviews-badge link" data-offset="30">
-      {%- render 'product-rating', product: product -%}
-    </a>
+  {%- comment -%} PRICE SECTION (ONLY FOR TILES) {%- endcomment -%}
+  {%- if product.metafields.custom.tiles_per_sq != blank -%}
+  <div class="product-meta__price-section">
+    {%- assign price_per_m2 = selected_variant.price -%}
+    {%- assign box_qty = product.metafields.custom.box_quantity | default: 1 -%}
+    {%- assign sqm_per_tile = product.metafields.custom.tiles_per_sq | default: 0.72 | replace: ',', '.' | times: 1.0 -%}
+    {%- assign m2_per_box = box_qty | times: sqm_per_tile -%}
+    {%- assign price_per_box = price_per_m2 | times: m2_per_box -%}
+
+    <div class="price-large">
+      <span class="price-large-amount">{{ price_per_m2 | money }}</span>
+      <span class="price-large-unit">/m²</span>
+      {%- if selected_variant.compare_at_price > selected_variant.price -%}
+        <span class="price-large-rrp" style="font-size: 16px; color: #666; text-decoration: line-through; margin-left: 10px;">RRP {{ selected_variant.compare_at_price | money }}</span>
+        {%- assign savings_amount = selected_variant.compare_at_price | minus: selected_variant.price -%}
+        {%- assign savings_percent = savings_amount | times: 100.0 | divided_by: selected_variant.compare_at_price | round -%}
+        <span class="save_amount" style="font-size: 14px; margin-left: 10px; background: #eaf6ee; color: #1f8a4c; padding: 4px 8px; border-radius: 4px; font-weight: bold;">Save {{ savings_percent }}%</span>
+      {%- endif -%}
+    </div>
+
+    <div class="price-box-info">
+      <span>Price per box: <strong>{{ price_per_box | money }}</strong></span>
+      <span class="price-divider">|</span>
+      <span>Tiles per box: <strong>{{ box_qty }}</strong></span>
+    </div>
+  </div>
   {%- endif -%}
+
+  {%- comment -%} IN STOCK & REVIEWS ROW {%- endcomment -%}
+  <div class="product-meta__stock-reviews-row">
+    <div class="product-meta__stock-status">
+      {%- if selected_variant.inventory_management == "shopify" -%}
+        {%- if selected_variant.inventory_quantity > 0 -%}
+          <span class="stock-badge in-stock">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="white"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+          </span>
+          <span class="stock-text">In Stock</span>
+        {%- else -%}
+          <span class="stock-badge out-of-stock"></span>
+          <span class="stock-text" style="color: #c8102e;">Out of Stock</span>
+        {%- endif -%}
+      {%- else -%}
+        <span class="stock-badge in-stock">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="white"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+        </span>
+        <span class="stock-text">In Stock</span>
+      {%- endif -%}
+    </div>
+
+    {%- if block.settings.show_reviews_badge -%}
+      <div class="product-meta__reviews">
+        <a href="#product-reviews" class="product-meta__reviews-badge link" data-offset="30">
+          {%- render 'product-rating', product: product -%}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <hr class="product-meta__divider">
 
   {%- if block.settings.show_share_buttons -%}
     <div class="product-meta__share-buttons hidden-phone">

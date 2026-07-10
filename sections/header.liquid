@@ -395,11 +395,7 @@
     position: relative;
     z-index: 5;
 
-    {%- if section.settings.enable_sticky_header -%}
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-    {%- endif -%}
+
   }
 
   {%- if section.settings.logo -%}
@@ -674,6 +670,58 @@ display:block;
   document.documentElement.style.setProperty('--header-height', document.getElementById('shopify-section-{{ section.id }}').clientHeight + 'px');
 </script>
 
+<style>
+  @media screen and (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      position: -webkit-sticky !important;
+      position: sticky !important;
+      top: calc(-1 * var(--nav-offset, 120px)) !important;
+      z-index: 99999 !important;
+    }
+    /* Move the tabs down inside the container when stuck */
+    #shopify-section-{{ section.id }}.is-stuck .tabbed-mega-nav {
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+      transition: padding-top 0.2s ease;
+    }
+    #shopify-section-{{ section.id }} .nav-dropdown {
+      top: 100% !important;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var headerSection = document.getElementById('shopify-section-{{ section.id }}');
+    var nav = headerSection ? headerSection.querySelector('.tabbed-mega-nav') : null;
+    
+    function updateSticky() {
+      if (headerSection && nav) {
+        var sectionTop = headerSection.getBoundingClientRect().top;
+        var navTop = nav.getBoundingClientRect().top;
+        var offset = navTop - sectionTop;
+        
+        // Update offset if it's a valid positive number
+        if (offset > 0 && offset < 500) {
+          headerSection.style.setProperty('--nav-offset', offset + 'px');
+        }
+        
+        // Read current offset to check if stuck
+        var currentOffset = parseFloat(getComputedStyle(headerSection).getPropertyValue('--nav-offset')) || offset;
+        if (sectionTop <= -currentOffset + 1) {
+          headerSection.classList.add('is-stuck');
+        } else {
+          headerSection.classList.remove('is-stuck');
+        }
+      }
+    }
+    
+    window.addEventListener('scroll', updateSticky);
+    window.addEventListener('resize', updateSticky);
+    document.addEventListener('DOMContentLoaded', updateSticky);
+    setTimeout(updateSticky, 500);
+  })();
+</script>
 {% schema %}
 {
   "name": "Header",
