@@ -3947,6 +3947,12 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
 }
 
 @media screen and (max-width: 999px) {
+  .shopify-section__header .header > .container,
+  [data-section-type="header"] .header > .container {
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+  }
+
   .shopify-section__header .header__inner,
   [data-section-type="header"] .header__inner {
     display: flex !important;
@@ -3975,6 +3981,17 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
     justify-content: flex-end !important;
     gap: 12px !important;
     grid-template-columns: none !important;
+  }
+  
+  /* Ensure phone is hidden without hiding search */
+  .shopify-section__header .custom-header-final .ch-phone,
+  [data-section-type="header"] .custom-header-final .ch-phone {
+    display: none !important;
+  }
+
+  .shopify-section__header .custom-header-final .ch-item:first-child,
+  [data-section-type="header"] .custom-header-final .ch-item:first-child {
+    display: flex !important;
   }
   
   .shopify-section__header .custom-header-final .ch-item,
