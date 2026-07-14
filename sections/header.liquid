@@ -24,14 +24,14 @@
         {%- endcomment -%}
 
         {%- if navigation_menu.links.size > 0 -%}
-          <nav class="header__mobile-nav hidden-lap-and-up">
-            <button class="header__mobile-nav-toggle icon-state touch-area" data-action="toggle-menu" aria-expanded="false" aria-haspopup="true" aria-controls="mobile-menu" aria-label="{{ 'header.navigation.open_menu' | t }}">
+          <div class="header__mobile-nav hidden-lap-and-up">
+            <button class="header__mobile-nav-toggle icon-state touch-area" aria-expanded="false" aria-haspopup="true" aria-controls="mobile-menu" aria-label="{{ 'header.navigation.open_menu' | t }}">
               <span class="icon-state__primary">{%- render 'icon', icon: 'hamburger-mobile' -%}</span>
               <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
             </button>
 
             {%- render 'mobile-menu', menu: navigation_mobile_menu -%}
-          </nav>
+          </div>
         {%- endif -%}
 
         {%- comment -%}
@@ -627,16 +627,16 @@ display:block;
       justify-content: flex-end;
       gap: 10px;
   }
-  
+  } /* Close max-width:767px */
+
+  @media screen and (max-width: 999px) {
   /* Ensure hamburger menu is clickable */
   .header__mobile-nav,
   .header__mobile-nav-toggle {
       position: relative;
       z-index: 99999999 !important; /* 8 nines to sit above the menu overlay */
   }
-  } /* Close max-width:767px */
 
-  @media screen and (max-width: 999px) {
     /* Mobile Menu Drawer Fallback CSS (Since it's missing from theme.css) */
     .mobile-menu {
         position: fixed !important;
@@ -1101,9 +1101,37 @@ display:block;
 {% endschema %}
 
 <script>
-// Mobile menu remains in its original DOM location to prevent theme.js from crashing
-
 (function(){
+  // Custom Mobile Menu Toggle (Bypasses theme.js)
+  const mobileToggle = document.querySelector('.header__mobile-nav-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if(mobileToggle && mobileMenu) {
+    mobileToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+      mobileToggle.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.setAttribute('aria-hidden', isExpanded ? 'true' : 'false');
+      
+      // Toggle class for animation state
+      if(!isExpanded) {
+        document.body.classList.add('no-mobile-scroll');
+      } else {
+        document.body.classList.remove('no-mobile-scroll');
+      }
+    });
+
+    // Close menu when clicking on the overlay background
+    mobileMenu.addEventListener('click', function(e) {
+      if(e.target === mobileMenu) {
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('no-mobile-scroll');
+      }
+    });
+  }
+
   // Mobile search toggle
   const searchBtn = document.querySelector('.header__search-button');
   const searchWrapper = document.querySelector('.header__search-bar-wrapper');
@@ -1111,6 +1139,7 @@ display:block;
   if(searchBtn && searchWrapper) {
     searchBtn.addEventListener('click', function(e){
       e.preventDefault();
+      e.stopPropagation();
       searchWrapper.classList.toggle('active');
       if(searchWrapper.classList.contains('active')){
         const input = searchWrapper.querySelector('.search-bar__input');
