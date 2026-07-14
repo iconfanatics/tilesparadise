@@ -1101,13 +1101,9 @@ display:block;
 {% endschema %}
 
 <script>
-// Move mobile menu to body to avoid ANY CSS clipping or transform issues from the header
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (mobileMenu && mobileMenu.parentElement !== document.body) {
-    document.body.appendChild(mobileMenu);
-  }
+// Mobile menu remains in its original DOM location to prevent theme.js from crashing
 
+(function(){
   // Mobile search toggle
   const searchBtn = document.querySelector('.header__search-button');
   const searchWrapper = document.querySelector('.header__search-bar-wrapper');
@@ -1128,7 +1124,5 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-});
-
-
+})();
 </script>
