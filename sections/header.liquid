@@ -654,6 +654,8 @@ display:block;
     .mobile-menu[aria-hidden="false"] {
         visibility: visible !important;
         pointer-events: auto !important;
+        display: block !important;
+        opacity: 1 !important;
     }
     .mobile-menu__inner {
         position: absolute !important;
@@ -1102,56 +1104,68 @@ display:block;
 
 <script>
 (function(){
-  // Custom Mobile Menu Toggle (Bypasses theme.js)
-  const mobileToggle = document.querySelector('.header__mobile-nav-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  if(mobileToggle && mobileMenu) {
-    mobileToggle.addEventListener('click', function(e) {
+  // Event delegation to handle clicks on cloned sticky headers
+  document.addEventListener('click', function(e) {
+    // 1. Mobile Menu Toggle
+    const mobileToggle = e.target.closest('.header__mobile-nav-toggle');
+    if (mobileToggle) {
       e.preventDefault();
-      e.stopPropagation();
-      const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-      mobileToggle.setAttribute('aria-expanded', !isExpanded);
-      mobileMenu.setAttribute('aria-hidden', isExpanded ? 'true' : 'false');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileMenu) {
+        const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+        // Toggle all instances of the button in case of cloned headers
+        document.querySelectorAll('.header__mobile-nav-toggle').forEach(btn => {
+          btn.setAttribute('aria-expanded', !isExpanded);
+        });
+        mobileMenu.setAttribute('aria-hidden', isExpanded ? 'true' : 'false');
+        
+        if(!isExpanded) {
+          document.body.classList.add('no-mobile-scroll');
+        } else {
+          document.body.classList.remove('no-mobile-scroll');
+        }
+      }
+      return;
+    }
+
+    // 2. Mobile Menu Backdrop Close
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu && e.target === mobileMenu) {
+      document.querySelectorAll('.header__mobile-nav-toggle').forEach(btn => {
+        btn.setAttribute('aria-expanded', 'false');
+      });
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-mobile-scroll');
+      return;
+    }
+
+    // 3. Search Toggle
+    const searchBtn = e.target.closest('.header__search-button');
+    if (searchBtn) {
+      e.preventDefault();
+      // Find the search wrapper in the same header (or global)
+      const headerInner = searchBtn.closest('.header__inner') || searchBtn.closest('.header');
+      const searchWrapper = headerInner ? headerInner.parentNode.querySelector('.header__search-bar-wrapper') || document.querySelector('.header__search-bar-wrapper') : document.querySelector('.header__search-bar-wrapper');
       
-      // Toggle class for animation state
-      if(!isExpanded) {
-        document.body.classList.add('no-mobile-scroll');
-      } else {
-        document.body.classList.remove('no-mobile-scroll');
+      if (searchWrapper) {
+        searchWrapper.classList.toggle('active');
+        if(searchWrapper.classList.contains('active')){
+          const input = searchWrapper.querySelector('.search-bar__input');
+          if(input) input.focus();
+        }
       }
-    });
+      return;
+    }
 
-    // Close menu when clicking on the overlay background
-    mobileMenu.addEventListener('click', function(e) {
-      if(e.target === mobileMenu) {
-        mobileToggle.setAttribute('aria-expanded', 'false');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('no-mobile-scroll');
+    // 4. Click outside search to close
+    const activeSearch = document.querySelector('.header__search-bar-wrapper.active');
+    if (activeSearch) {
+      const clickedInsideSearch = e.target.closest('.header__search-bar-wrapper');
+      const clickedSearchBtn = e.target.closest('.header__search-button');
+      if (!clickedInsideSearch && !clickedSearchBtn) {
+        activeSearch.classList.remove('active');
       }
-    });
-  }
-
-  // Mobile search toggle
-  const searchBtn = document.querySelector('.header__search-button');
-  const searchWrapper = document.querySelector('.header__search-bar-wrapper');
-
-  if(searchBtn && searchWrapper) {
-    searchBtn.addEventListener('click', function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      searchWrapper.classList.toggle('active');
-      if(searchWrapper.classList.contains('active')){
-        const input = searchWrapper.querySelector('.search-bar__input');
-        if(input) input.focus();
-      }
-    });
-
-    document.addEventListener('click', function(e){
-      if(!searchWrapper.contains(e.target) && !searchBtn.contains(e.target)){
-        searchWrapper.classList.remove('active');
-      }
-    });
-  }
+    }
+  });
 })();
 </script>
