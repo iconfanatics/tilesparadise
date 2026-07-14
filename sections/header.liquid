@@ -743,7 +743,6 @@ display:block;
     .tabbed-mega-nav__tab svg {
         display: none !important;
     }
-  }
   
   /* Hide all text labels under icons */
   .ch-text {
@@ -778,7 +777,6 @@ display:block;
   .header__search-bar-wrapper.active{
     display:block !important;
   }
-
 }
 </style>
 
@@ -1109,6 +1107,27 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenu = document.getElementById('mobile-menu');
   if (mobileMenu && mobileMenu.parentElement !== document.body) {
     document.body.appendChild(mobileMenu);
+  }
+
+  // Mobile search toggle
+  const searchBtn = document.querySelector('.header__search-button');
+  const searchWrapper = document.querySelector('.header__search-bar-wrapper');
+
+  if(searchBtn && searchWrapper) {
+    searchBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      searchWrapper.classList.toggle('active');
+      if(searchWrapper.classList.contains('active')){
+        const input = searchWrapper.querySelector('.search-bar__input');
+        if(input) input.focus();
+      }
+    });
+
+    document.addEventListener('click', function(e){
+      if(!searchWrapper.contains(e.target) && !searchBtn.contains(e.target)){
+        searchWrapper.classList.remove('active');
+      }
+    });
   }
 });
 

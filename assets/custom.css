@@ -4074,7 +4074,7 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
     box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
   }
   
-  #shopify-section-header .header.header--search-expanded .header__search-bar-wrapper {
+  #shopify-section-header .header__search-bar-wrapper.active {
     display: block !important;
   }
 
