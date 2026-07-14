@@ -4081,6 +4081,27 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
   #shopify-section-header .header__search-bar-wrapper.is-visible {
     display: block !important;
   }
+
+  /* Make sure search input and button are visible */
+  #shopify-section-header .search-bar__top {
+    border: 1px solid #111 !important;
+    border-radius: 4px !important;
+    background: #fff !important;
+  }
+  
+  #shopify-section-header .search-bar__submit {
+    background: #000 !important;
+    color: #fff !important;
+    border-radius: 0 4px 4px 0 !important;
+  }
+  
+  #shopify-section-header .search-bar__submit svg {
+    fill: #fff !important;
+  }
+  
+  #shopify-section-header .search-bar__input {
+    color: #333 !important;
+  }
 }
 
 
