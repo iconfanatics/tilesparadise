@@ -4060,6 +4060,10 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
   }
 
   /* Fix mobile search bar wrapper visibility and positioning */
+  #shopify-section-header .header {
+    position: relative !important;
+  }
+  
   #shopify-section-header .header__search-bar-wrapper {
     display: none !important;
     position: absolute !important;
@@ -4071,7 +4075,8 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
     background: #fff !important;
     z-index: 9999 !important;
     border-top: 1px solid #eee !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+    border-radius: 0 0 10px 10px !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
   }
   
   #shopify-section-header .header__search-bar-wrapper.active {
