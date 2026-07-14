@@ -354,7 +354,7 @@ body {
   }
 
   .tabbed-mega-nav {
-    display: none !important;
+    /* display: none !important; - Removed to allow mobile tabs on all pages */
   }
 }
 
@@ -2176,7 +2176,7 @@ nav.nav-bar.tabbed-mega-nav li:hover {
   }
 
   nav.nav-bar.tabbed-mega-nav {
-    display: none !important;
+    /* display: none !important; - Removed second duplicate to allow mobile tabs globally */
   }
 }
 
@@ -3610,6 +3610,26 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
   object-fit: contain !important;
   width: 100% !important;
   height: 100% !important;
+}
+
+@media screen and (max-width: 767px) {
+  .product-gallery__thumbnail-list {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 10px !important;
+    padding: 5px 0 10px 0 !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  .product-gallery__thumbnail-list::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  .product-gallery__thumbnail {
+    flex: 0 0 65px !important;
+    width: 65px !important;
+    height: 65px !important;
+  }
 }
 
 /* New Product Meta Design */

@@ -149,11 +149,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <div class="product-form__payment-container" {{ block.shopify_attributes }}>
   <p class="line-item-property__field">
-  <input required class="required" id="meter" type="hidden" name="properties[meter]">
-</p>
-    <p class="line-item-property__field">
-  <input required class="required" id="tiles" type="hidden" name="properties[nu of tiles]">
-</p>
+    <input id="meter" type="hidden" name="properties[meter]">
+  </p>
+  <p class="line-item-property__field">
+    <input id="tiles" type="hidden" name="properties[nu of tiles]">
+  </p>
   {%- if product.template_suffix != 'contact' -%}
     {%- if product.selected_or_first_available_variant.available -%}
       {%- if product.template_suffix == 'pre-order' -%}

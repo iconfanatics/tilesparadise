@@ -287,7 +287,7 @@
   </header>
 
   {%- if section.settings.desktop_navigation_layout == 'inline' and navigation_menu.links.size > 0 -%}
-    <nav class="nav-bar tabbed-mega-nav hidden-pocket" aria-label="{{ 'header.navigation.menu' | t }}">
+    <nav class="nav-bar tabbed-mega-nav" aria-label="{{ 'header.navigation.menu' | t }}">
       <div class="tabbed-mega-nav__outer">
         <div class="container tabbed-mega-nav__container">
           <ul class="tabbed-mega-nav__tabs list--unstyled" role="list">
@@ -627,8 +627,124 @@ display:block;
       align-items: center;
       justify-content: flex-end;
       gap: 10px;
-      margin-left: auto;
   }
+  
+  /* Ensure hamburger menu is clickable */
+  .header__mobile-nav,
+  .header__mobile-nav-toggle {
+      position: relative;
+      z-index: 99999999 !important; /* 8 nines to sit above the menu overlay */
+  }
+  } /* Close max-width:767px */
+
+  @media screen and (max-width: 999px) {
+    /* Mobile Menu Drawer Fallback CSS (Since it's missing from theme.css) */
+    .mobile-menu {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        z-index: 9999999 !important;
+        visibility: hidden;
+        pointer-events: none;
+        transition: visibility 0.4s linear;
+        background: rgba(0, 0, 0, 0.5); /* Overlay */
+    }
+    .mobile-menu[aria-hidden="false"] {
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+    .mobile-menu__inner {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 85vw !important;
+        max-width: 380px !important;
+        height: 100% !important;
+        background: #ffffff !important; /* Drawer background */
+        transform: translateX(-100%) !important;
+        transition: transform 0.4s cubic-bezier(0.18, 1.25, 0.4, 1) !important;
+        overflow-y: auto !important;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1) !important;
+    }
+    .mobile-menu[aria-hidden="false"] .mobile-menu__inner {
+        transform: translateX(0) !important;
+    }
+    
+    /* Mobile Tabs Layout Fix */
+    .tabbed-mega-nav {
+        display: block !important; /* Force show on mobile on all pages, overriding hidden-pocket */
+        padding-bottom: 45px !important; /* Space for the visible flyout menu */
+        background: transparent !important;
+    }
+    .tabbed-mega-nav__outer {
+        background: transparent !important;
+    }
+    .tabbed-mega-nav__tabs {
+        display: flex !important;
+        width: 100% !important; /* Force full width */
+        justify-content: space-between !important;
+        overflow-x: visible !important;
+        flex-wrap: nowrap !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        gap: 0 !important;
+        border-bottom: 4px solid var(--tabbed-menu-active) !important; /* Beautiful anchor base */
+    }
+    
+    /* Hide "All" tab completely on mobile */
+    .tabbed-mega-nav__tab-item:first-child {
+        display: none !important;
+    }
+    
+    /* Make the 2nd child (Bathroom) flyout visible by default */
+    .tabbed-mega-nav__tab-item:nth-child(2) .tabbed-mega-nav__flyout {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Make the 2nd child tab look active */
+    .tabbed-mega-nav__tab-item:nth-child(2) .tabbed-mega-nav__tab {
+        background: var(--tabbed-menu-active) !important;
+    }
+
+    /* Remaining tabs styling */
+    .tabbed-mega-nav__tab-item {
+        position: static !important; /* So flyout can span full screen width */
+        flex: 1 !important; /* Grow to fill available space */
+        width: 100% !important; /* Force them to stretch */
+        max-width: none !important; /* CRITICAL: Override the max-width: 20% from custom.css */
+        margin-right: 2px !important; /* 2px separator so tabs don't blend into one giant brick */
+        border-radius: 8px 8px 0 0 !important;
+        overflow: hidden !important;
+    }
+    .tabbed-mega-nav__tab-item:last-child {
+        margin-right: 0 !important;
+    }
+    .tabbed-mega-nav__tab {
+        width: 100% !important;
+        height: 54px !important;
+        padding: 0 2px !important; 
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .tabbed-mega-nav__tab span {
+        font-size: 15px !important; 
+        width: 100% !important;
+        text-align: center !important;
+        font-weight: 600 !important;
+    }
+    .tabbed-mega-nav__tab svg {
+        display: none !important;
+    }
+  }
+  
   /* Hide all text labels under icons */
   .ch-text {
     display: none !important;
@@ -988,32 +1104,13 @@ display:block;
 {% endschema %}
 
 <script>
-document.addEventListener('DOMContentLoaded', function(){
-
-  const btn = document.querySelector('.header__search-button');
-  const search = document.querySelector('.header__search-bar-wrapper');
-
-  if(!btn || !search) return;
-
-  btn.addEventListener('click', function(e){
-    e.preventDefault();
-
-    search.classList.toggle('active');
-
-    if(search.classList.contains('active')){
-      const input = search.querySelector('.search-bar__input');
-      if(input) input.focus();
-    }
-  });
-
-  document.addEventListener('click', function(e){
-    if(
-      !search.contains(e.target) &&
-      !btn.contains(e.target)
-    ){
-      search.classList.remove('active');
-    }
-  });
-
+// Move mobile menu to body to avoid ANY CSS clipping or transform issues from the header
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (mobileMenu && mobileMenu.parentElement !== document.body) {
+    document.body.appendChild(mobileMenu);
+  }
 });
+
+
 </script>

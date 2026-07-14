@@ -118,63 +118,18 @@
     </div>
   </div>
 
-  <!-- Right Column: Sticky Product Card -->
-  <div class="tp-right-col">
-    <div class="tp-sticky-card">
-      <div class="tp-card-header">Current Item</div>
-      <div class="tp-card-body">
-        {%- if product.featured_image != blank -%}
-          <div class="tp-card-img">
-            <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy" width="300" height="300" style="object-fit: contain;">
-          </div>
-        {%- endif -%}
-        <div class="tp-card-title">{{ product.title }}</div>
-        <div class="tp-card-price">{{ product.price | money }}</div>
-        
-        <div class="tp-card-stock">
-          {%- if product.available -%}
-            <span class="tp-stock-in">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 4px; position: relative; top: -1px;">
-                <rect width="24" height="24" rx="4" fill="#3bb346"/>
-                <path d="M7 12L10.5 15.5L18 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              In Stock
-            </span>
-          {%- else -%}
-            <span class="tp-stock-out">Out of Stock</span>
-          {%- endif -%}
-        </div>
-
-        {%- form 'product', product -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          <button type="submit" class="tp-card-btn" {% unless product.available %}disabled{% endunless %}>
-            {% if product.available %}ADD TO BASKET{% else %}SOLD OUT{% endif %}
-          </button>
-        {%- endform -%}
-      </div>
-    </div>
   </div>
 </div>
 
 <style>
   /* Layout */
   .tp-two-col-layout {
-    display: flex;
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 15px;
-    gap: 40px;
-    align-items: flex-start;
   }
   .tp-left-col {
-    flex: 1 1 65%;
-    min-width: 0;
-  }
-  .tp-right-col {
-    flex: 0 0 35%;
-    position: sticky;
-    top: 140px; /* Increased to clear sticky site headers */
-    z-index: 10;
+    width: 100%;
   }
 
   /* Right Column Card Styles */
