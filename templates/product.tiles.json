@@ -304,6 +304,34 @@
     },
     "product_tabs": {
       "type": "product-tabs",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I measure my room for tiles?",
+            "answer": "Measure the length and width of the room and multiply them together to get the square meterage. We recommend adding 10% for cuts and wastage."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Are these tiles suitable for underfloor heating?",
+            "answer": "Yes, most of our porcelain and ceramic tiles are suitable for underfloor heating. Please check the 'Product Details' tab for specific confirmation on this product."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need to seal these tiles?",
+            "answer": "Porcelain and glazed ceramic tiles do not require sealing. Natural stone and some unglazed tiles may require sealing before and after grouting."
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
       "settings": {
         "tab_1_title": "Product Information",
         "tab_2_title": "Product Details"
