@@ -4088,3 +4088,176 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
 }
 
 
+
+/* =========================================================
+   Redesign Global Product Card (Match AI Carousel Style)
+   ========================================================= */
+
+/* Make Collection Grid 3 columns on tablet/desktop */
+@media screen and (min-width: 750px) {
+  .product-list--collection {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+  }
+  .product-list--collection .product-item {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+/* Card Container */
+.product-item {
+  background-color: #ffffff !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+  border: 1px solid #eaeaea !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Image Background */
+.product-item__image-wrapper {
+  background-color: #f4f4f4 !important;
+  position: relative !important;
+}
+
+/* Badge (SAVE %) - Match AI style */
+span.custom-sale-badge {
+  position: absolute !important;
+  top: 10px !important;
+  left: 10px !important;
+  background: #e40012 !important;
+  color: #fff !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  border-radius: 2px !important;
+  padding: 4px 8px !important;
+  z-index: 10 !important;
+  border: none !important;
+  width: auto !important;
+  height: auto !important;
+  display: inline-block !important;
+}
+span.custom-sale-badge::after {
+  display: none !important;
+}
+span.custom-sale-badge .save-text {
+  display: inline !important;
+}
+span.custom-sale-badge .save-value {
+  display: inline !important;
+}
+.product-item .product-item__label-list span.product-label.product-label--on-sale {
+  display: none !important; /* Hide the old giant square badge */
+}
+.new_sale p {
+  display: none !important; /* Hide old overlapping tags if any */
+}
+
+/* Product Info Container */
+.product-item__info {
+  padding: 15px 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+}
+
+/* Vendor & Stars Row */
+.product-item__info-inner {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.AirReviews-Widget.AirReviews-Widget--Stars {
+  margin-bottom: 8px !important;
+}
+
+/* Product Title */
+.product-item__title {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #1e2d7d !important;
+  line-height: 1.4 !important;
+  margin-bottom: 8px !important;
+  text-transform: capitalize !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+.product-item__title:hover {
+  color: #e40012 !important;
+}
+
+/* Price Row */
+.product-item__price-list.price-list {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  margin-bottom: 8px !important;
+}
+.product-item__price-list .price.price--highlight {
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #e40012 !important;
+  margin: 0 !important;
+}
+.product-item__price-list .price.price--compare {
+  font-size: 12px !important;
+  color: #888 !important;
+  text-decoration: line-through !important;
+  margin: 0 !important;
+}
+
+/* Stock Status */
+span.inventory_full, span.inventory--low {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  margin-bottom: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding-left: 0 !important;
+}
+span.inventory_full::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 14px !important;
+  height: 14px !important;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%233fa33f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  margin-right: 4px !important;
+}
+span.inventory--low::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 14px !important;
+  height: 14px !important;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23e40012" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>') !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  margin-right: 4px !important;
+}
+
+/* Buttons Area */
+.product-item__action-list {
+  margin-top: auto !important; /* Push to bottom */
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 8px !important;
+}
+.product-item__action-list .product-item__action-button {
+  border-radius: 2px !important;
+  font-weight: 700 !important;
+  flex: 1 !important;
+}
+/* Ensure the form stack for samples works too */
+.card__section form.product-form.cst {
+  position: static !important;
+  margin-top: 10px !important;
+}
+
