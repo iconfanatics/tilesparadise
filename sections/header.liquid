@@ -25,7 +25,20 @@
 
         {%- if navigation_menu.links.size > 0 -%}
           <div class="header__mobile-nav hidden-lap-and-up">
-            <button class="header__mobile-nav-toggle icon-state touch-area" data-action="toggle-menu" aria-expanded="false" aria-haspopup="true" aria-controls="mobile-menu" aria-label="{{ 'header.navigation.open_menu' | t }}">
+            <button class="header__mobile-nav-toggle icon-state touch-area"
+              data-action="toggle-menu"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="mobile-menu"
+              aria-label="{{ 'header.navigation.open_menu' | t }}"
+              onclick="(function(btn){
+                var m=document.getElementById('mobile-menu');
+                if(!m)return;
+                var open=m.getAttribute('aria-hidden')==='false';
+                m.setAttribute('aria-hidden',open?'true':'false');
+                btn.setAttribute('aria-expanded',open?'false':'true');
+                document.body.classList.toggle('no-mobile-scroll',!open);
+              })(this);">
               <span class="icon-state__primary">{%- render 'icon', icon: 'hamburger-mobile' -%}</span>
               <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
             </button>
@@ -226,7 +239,14 @@
             <button
               type="button"
               class="header__search-button"
-              data-action="toggle-search">
+              data-action="toggle-search"
+              onclick="(function(btn){
+                var w=document.querySelector('.header__search-bar-wrapper');
+                if(!w)return;
+                var open=w.classList.contains('is-visible');
+                w.classList.toggle('is-visible',!open);
+                if(!open){var i=w.querySelector('input[name=q]');if(i)i.focus();}
+              })(this);">
               {% render 'icon', icon: 'search' %}
             </button>
           </div>
