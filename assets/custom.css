@@ -4090,6 +4090,27 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
     opacity: 1 !important;
   }
 
+  /* Ensure the inner form is completely visible */
+  #shopify-section-header .header__search-bar-wrapper.is-visible .search-bar {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  #shopify-section-header .header__search-bar-wrapper.is-visible .search-bar__top-wrapper,
+  #shopify-section-header .header__search-bar-wrapper.is-visible .search-bar__top,
+  #shopify-section-header .header__search-bar-wrapper.is-visible .search-bar__input-wrapper {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 100% !important;
+  }
+  #shopify-section-header .header__search-bar-wrapper.is-visible .search-bar__input {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 100% !important;
+  }
+
   /* Make sure search input and button are visible */
   #shopify-section-header .search-bar__top {
     border: 1px solid #111 !important;
