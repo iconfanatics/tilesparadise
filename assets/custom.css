@@ -4088,6 +4088,8 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
   /* Show ONLY when mobile-active class is present */
   #shopify-section-header .header__search-bar-wrapper.mobile-active {
     display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   /* Make sure search input and button are visible */
