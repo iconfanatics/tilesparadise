@@ -4065,23 +4065,27 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
   }
 
   /* Fix mobile search bar wrapper visibility and positioning */
-  #shopify-section-header .header {
+  #shopify-section-header {
     position: relative !important;
   }
-  
+
+  #shopify-section-header .header {
+    position: static !important;
+  }
+
   #shopify-section-header .header__search-bar-wrapper {
     display: none !important;
     position: absolute !important;
-    top: 100% !important;
+    top: 70px !important;
     left: 0 !important;
     width: 100% !important;
     max-width: none !important;
-    padding: 15px 20px !important;
+    padding: 12px 16px !important;
     background: #fff !important;
-    z-index: 9999 !important;
-    border-top: 1px solid #eee !important;
-    border-radius: 0 0 10px 10px !important;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    z-index: 999999 !important;
+    border-top: 2px solid #016FD0 !important;
+    border-radius: 0 0 12px 12px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
   }
   
   #shopify-section-header .header__search-bar-wrapper.is-visible {
