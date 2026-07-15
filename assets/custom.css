@@ -4077,6 +4077,7 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
     top: 100% !important;
     bottom: auto !important;
     margin-bottom: 0 !important;
+    z-index: 99999 !important;
   }
   
   .header__search-bar-wrapper.is-fixed .search-bar__inner {
