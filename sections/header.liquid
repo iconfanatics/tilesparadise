@@ -243,9 +243,9 @@
               onclick="(function(btn){
                 var w=document.querySelector('.header__search-bar-wrapper');
                 if(!w)return;
-                var open=w.classList.contains('is-visible');
-                w.classList.toggle('is-visible',!open);
-                if(!open){var i=w.querySelector('input[name=q]');if(i)i.focus();}
+                var open=w.classList.contains('mobile-active');
+                w.classList.toggle('mobile-active',!open);
+                if(!open){var i=w.querySelector('input[name=q]');if(i)setTimeout(function(){i.focus();},50);}
               })(this);">
               {% render 'icon', icon: 'search' %}
             </button>
