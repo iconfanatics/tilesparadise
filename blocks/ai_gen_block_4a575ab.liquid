@@ -62,8 +62,9 @@
 
   .ai-related-collections__image-wrapper-{{ ai_gen_id }} {
     position: relative;
-    width: {{ block.settings.circle_size }}px;
-    height: {{ block.settings.circle_size }}px;
+    width: 100%;
+    max-width: {{ block.settings.circle_size }}px;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     overflow: hidden;
     background-color: #f4f4f4;
@@ -131,11 +132,6 @@
     .ai-related-collections__grid-{{ ai_gen_id }} {
       grid-template-columns: repeat({{ block.settings.tablet_columns }}, 1fr);
     }
-
-    .ai-related-collections__image-wrapper-{{ ai_gen_id }} {
-      width: calc({{ block.settings.circle_size }}px * 0.85);
-      height: calc({{ block.settings.circle_size }}px * 0.85);
-    }
   }
 
   @media screen and (max-width: 749px) {
@@ -145,11 +141,6 @@
       {% else %}
         grid-template-columns: repeat(2, 1fr);
       {% endif %}
-    }
-
-    .ai-related-collections__image-wrapper-{{ ai_gen_id }} {
-      width: calc({{ block.settings.circle_size }}px * 0.7);
-      height: calc({{ block.settings.circle_size }}px * 0.7);
     }
 
     .ai-related-collections__title-{{ ai_gen_id }} {
