@@ -25,7 +25,7 @@
 
         {%- if navigation_menu.links.size > 0 -%}
           <div class="header__mobile-nav hidden-lap-and-up">
-            <button class="header__mobile-nav-toggle icon-state touch-area" aria-expanded="false" aria-haspopup="true" aria-controls="mobile-menu" aria-label="{{ 'header.navigation.open_menu' | t }}">
+            <button class="header__mobile-nav-toggle icon-state touch-area" data-action="toggle-menu" aria-expanded="false" aria-haspopup="true" aria-controls="mobile-menu" aria-label="{{ 'header.navigation.open_menu' | t }}">
               <span class="icon-state__primary">{%- render 'icon', icon: 'hamburger-mobile' -%}</span>
               <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
             </button>
@@ -225,7 +225,8 @@
           <div class="ch-item">
             <button
               type="button"
-              class="header__search-button">
+              class="header__search-button"
+              data-action="toggle-search">
               {% render 'icon', icon: 'search' %}
             </button>
           </div>
@@ -775,7 +776,7 @@ display:block;
     border-top:1px solid #eee;
   }
 
-  .header__search-bar-wrapper.active{
+  .header__search-bar-wrapper.is-visible{
     display:block !important;
   }
 }
@@ -1103,69 +1104,6 @@ display:block;
 {% endschema %}
 
 <script>
-(function(){
-  // Event delegation to handle clicks on cloned sticky headers
-  document.addEventListener('click', function(e) {
-    // 1. Mobile Menu Toggle
-    const mobileToggle = e.target.closest('.header__mobile-nav-toggle');
-    if (mobileToggle) {
-      e.preventDefault();
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (mobileMenu) {
-        const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-        // Toggle all instances of the button in case of cloned headers
-        document.querySelectorAll('.header__mobile-nav-toggle').forEach(btn => {
-          btn.setAttribute('aria-expanded', !isExpanded);
-        });
-        mobileMenu.setAttribute('aria-hidden', isExpanded ? 'true' : 'false');
-        
-        if(!isExpanded) {
-          document.body.classList.add('no-mobile-scroll');
-        } else {
-          document.body.classList.remove('no-mobile-scroll');
-        }
-      }
-      return;
-    }
-
-    // 2. Mobile Menu Backdrop Close
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenu && e.target === mobileMenu) {
-      document.querySelectorAll('.header__mobile-nav-toggle').forEach(btn => {
-        btn.setAttribute('aria-expanded', 'false');
-      });
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('no-mobile-scroll');
-      return;
-    }
-
-    // 3. Search Toggle
-    const searchBtn = e.target.closest('.header__search-button');
-    if (searchBtn) {
-      e.preventDefault();
-      // Find the search wrapper in the same header (or global)
-      const headerInner = searchBtn.closest('.header__inner') || searchBtn.closest('.header');
-      const searchWrapper = headerInner ? headerInner.parentNode.querySelector('.header__search-bar-wrapper') || document.querySelector('.header__search-bar-wrapper') : document.querySelector('.header__search-bar-wrapper');
-      
-      if (searchWrapper) {
-        searchWrapper.classList.toggle('active');
-        if(searchWrapper.classList.contains('active')){
-          const input = searchWrapper.querySelector('.search-bar__input');
-          if(input) input.focus();
-        }
-      }
-      return;
-    }
-
-    // 4. Click outside search to close
-    const activeSearch = document.querySelector('.header__search-bar-wrapper.active');
-    if (activeSearch) {
-      const clickedInsideSearch = e.target.closest('.header__search-bar-wrapper');
-      const clickedSearchBtn = e.target.closest('.header__search-button');
-      if (!clickedInsideSearch && !clickedSearchBtn) {
-        activeSearch.classList.remove('active');
-      }
-    }
-  });
-})();
+// Theme.js handles hamburger (data-action="toggle-menu") and search (data-action="toggle-search") natively.
+// No custom JS needed here — this file intentionally left minimal.
 </script>
