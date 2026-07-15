@@ -4064,6 +4064,13 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
     right: -5px !important;
   }
 
+  /* Fix search bar top cut-off by increasing the slide-out distance */
+  .header--search-expanded {
+    margin-bottom: 75px !important;
+  }
+  .header__search-bar-wrapper.is-visible {
+    margin-bottom: -75px !important;
+  }
 
 }
 
