@@ -4072,6 +4072,8 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
     height: auto !important;
     max-width: 100% !important;
     margin-left: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
   }
   
   .header__search-bar-wrapper.is-fixed .search-bar__inner {
