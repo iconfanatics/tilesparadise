@@ -1,10 +1,6 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -44,10 +40,18 @@
     "recently-viewed-products": {
       "type": "recently-viewed-products",
       "settings": {}
+    },
+    "recently_viewed_paired_new": {
+      "type": "recently-viewed-paired",
+      "settings": {
+        "title": "Recently Viewed Products",
+        "section_bg": "#f8f7f5"
+      }
     }
   },
   "order": [
     "main",
+    "recently_viewed_paired_new",
     "product-recommendations",
     "recently-viewed-products"
   ]

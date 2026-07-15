@@ -1,10 +1,6 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -259,7 +255,7 @@
           "settings": {
             "image": "shopify://shop_images/3008-Wet-Feet.jpg",
             "title": "100% WATERPROOF",
-            "content": "<p><strong>Our SPC flooring is engineered for complete water resistance—perfect for bathrooms, kitchens, and outdoor areas. It stands up flawlessly to splashes, spills, and steam without warping, staining, or damage</strong><br/><br/></p>"
+            "content": "<p><strong>Our SPC flooring is engineered for complete water resistance\u2014perfect for bathrooms, kitchens, and outdoor areas. It stands up flawlessly to splashes, spills, and steam without warping, staining, or damage</strong><br/><br/></p>"
           }
         },
         "offer_6Geke8": {
@@ -275,7 +271,7 @@
           "settings": {
             "image": "shopify://shop_images/3008-Plank-Back.webp",
             "title": "Easy Installation & Low Maintenance",
-            "content": "<p><strong>Click-lock installation requires no glue or grout, and the non-porous surface wipes clean effortlessly—ideal for busy households and high-traffic environments.<br/></strong><br/></p>"
+            "content": "<p><strong>Click-lock installation requires no glue or grout, and the non-porous surface wipes clean effortlessly\u2014ideal for busy households and high-traffic environments.<br/></strong><br/></p>"
           }
         },
         "offer_Qgp3T3": {
@@ -414,6 +410,13 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "recently_viewed_paired_new": {
+      "type": "recently-viewed-paired",
+      "settings": {
+        "title": "Recently Viewed Products",
+        "section_bg": "#f8f7f5"
+      }
     }
   },
   "order": [
@@ -426,6 +429,7 @@
     "16962541374c589cf5",
     "recently-viewed-products",
     "097930f0-3b82-40af-b1da-488b0158137f",
-    "1702171093fecd8e8b"
+    "1702171093fecd8e8b",
+    "recently_viewed_paired_new"
   ]
 }

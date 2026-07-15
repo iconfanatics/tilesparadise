@@ -1,10 +1,6 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -52,7 +48,7 @@
           "settings": {
             "icon": "shopify://shop_images/refund_3.png",
             "heading": "Pay with PayPal",
-            "text": "Fast, secure checkout — no card needed."
+            "text": "Fast, secure checkout \u2014 no card needed."
           }
         },
         "usp_rzM3KU": {
@@ -67,8 +63,8 @@
           "type": "usp",
           "settings": {
             "icon": "shopify://shop_images/refund_2.png",
-            "heading": "Free Delivery Over £499",
-            "text": "To most of the UK — no hidden fees."
+            "heading": "Free Delivery Over \u00a3499",
+            "text": "To most of the UK \u2014 no hidden fees."
           }
         }
       },
@@ -118,6 +114,13 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "recently_viewed_paired_new": {
+      "type": "recently-viewed-paired",
+      "settings": {
+        "title": "Recently Viewed Products",
+        "section_bg": "#f8f7f5"
+      }
     }
   },
   "order": [
@@ -126,6 +129,7 @@
     "section_1",
     "related",
     "product_reviews_aP8Rwm",
-    "product_reviews_apps"
+    "product_reviews_apps",
+    "recently_viewed_paired_new"
   ]
 }

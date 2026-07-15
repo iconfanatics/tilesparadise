@@ -1,10 +1,6 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -215,6 +211,13 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "recently_viewed_paired_new": {
+      "type": "recently-viewed-paired",
+      "settings": {
+        "title": "Recently Viewed Products",
+        "section_bg": "#f8f7f5"
+      }
     }
   },
   "order": [
@@ -224,6 +227,7 @@
     "16962541374c589cf5",
     "recently-viewed-products",
     "097930f0-3b82-40af-b1da-488b0158137f",
-    "1702171093fecd8e8b"
+    "1702171093fecd8e8b",
+    "recently_viewed_paired_new"
   ]
 }
