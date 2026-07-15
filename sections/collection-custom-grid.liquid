@@ -171,32 +171,32 @@
                     <strong>SAVE {{ percent }}%</strong>
                   </span>
                 {% endif %}
-
-                {% if product.available %}
-                  <span class="stock-pill">In stock</span>
-                {% endif %}
               </a>
 
               <div class="content">
+
+                <div class="brand-row">
+                  <span class="vendor">{{ product.vendor }}</span>
+                  <div class="rating-wrapper">
+                    {%- assign r = product.metafields.reviews.rating.value -%}
+                    {%- assign rc = product.metafields.reviews.rating_count.value | default: 0 -%}
+                    {% if rc > 0 and r %}
+                      {%- assign rating = r.rating | round: 1 -%}
+                      <a href="{{ product.url }}" class="card-rating" aria-label="Rated {{ rating }} out of 5 from {{ rc }} reviews">
+                        <span class="card-stars" style="--rating: {{ rating }};"></span>
+                        <span class="card-rating-count">({{ rc }})</span>
+                      </a>
+                    {% else %}
+                      <div class="vitals-collection-rating" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}"></div>
+                    {% endif %}
+                  </div>
+                </div>
 
                 <h3>
                   <a href="{{ product.url }}" class="product-title-link">
                     {{ product.title }}
                   </a>
                 </h3>
-
-                {%- comment -%} Review stars: native from Shopify review metafields; falls back to Vitals slot if absent {%- endcomment -%}
-                {%- assign r = product.metafields.reviews.rating.value -%}
-                {%- assign rc = product.metafields.reviews.rating_count.value | default: 0 -%}
-                {% if rc > 0 and r %}
-                  {%- assign rating = r.rating | round: 1 -%}
-                  <a href="{{ product.url }}" class="card-rating" aria-label="Rated {{ rating }} out of 5 from {{ rc }} reviews">
-                    <span class="card-stars" style="--rating: {{ rating }};"></span>
-                    <span class="card-rating-count">({{ rc }})</span>
-                  </a>
-                {% else %}
-                  <div class="vitals-collection-rating" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}"></div>
-                {% endif %}
 
                 <div class="price">
 
@@ -218,6 +218,23 @@
                     </div>
                   {% endif %}
 
+                </div>
+
+                <div class="card-footer">
+                  {% if product.available %}
+                    <span class="stock-status">
+                      <span class="stock-icon">✓</span>
+                      In Stock
+                    </span>
+                  {% else %}
+                    <span class="stock-status stock--out">
+                      Out of Stock
+                    </span>
+                  {% endif %}
+                  
+                  <button type="button" class="wishlist-btn" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}" aria-label="Add to wishlist">
+                    {% render 'icon', icon: 'heart' %}
+                  </button>
                 </div>
 
                 <div class="actions">
@@ -406,32 +423,68 @@
   font-weight: 800;
 }
 
-/* In-stock pill */
-.stock-pill {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #fff;
-  color: #3fa33f;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 10px;
-  border-radius: 999px;
-  box-shadow: 0 2px 5px rgba(0,0,0,.15);
-  display: inline-flex;
+/* ================= NEW CARD FOOTER ELEMENTS ================= */
+.brand-row {
+  display: flex;
   align-items: center;
-  gap: 5px;
-  z-index: 2;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.vendor {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+}
+.rating-wrapper {
+  display: flex;
+  align-items: center;
 }
 
-.stock-pill::before {
-  content: "";
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%233fa33f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>');
-  background-size: contain;
-  background-repeat: no-repeat;
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  margin-bottom: 12px;
+}
+
+.stock-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #3fa33f;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 600;
+}
+.stock-icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  background: rgba(63,163,63,0.15);
+  color: #3fa33f;
+  font-weight: 900;
+}
+.stock--out {
+  color: #e40012;
+}
+
+.wishlist-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: #888;
+}
+.wishlist-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* Content */
@@ -467,14 +520,14 @@
 /* ================= REVIEW STARS ================= */
 .vitals-collection-rating {
   min-height: 16px;
-  margin: 7px 0 2px;
+  margin: 0;
 }
 
 .card-rating {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin: 7px 0 2px;
+  margin: 0;
   text-decoration: none;
 }
 
@@ -553,8 +606,8 @@
 .actions {
   display: flex;
   gap: 8px;
-  margin-top: auto;
-  padding-top: 14px;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .actions .btn {
