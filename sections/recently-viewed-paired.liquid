@@ -459,13 +459,8 @@
 
     <div class="ai-product-carousel__wrapper-rvp">
       <div class="ai-product-carousel__track-rvp">
-        <!-- Debug: search.terms = {{ search.terms }} -->
-        {% assign parsed_terms = search.terms | split: ' OR ' %}
-        {% for parsed_term in parsed_terms %}
-          {% assign id = parsed_term | split: 'id:' | last | times: 1 %}
-          {% for product in search.results %}
-            {% if product.id == id %}
-<div class="ai-product-carousel__item-rvp">
+        {% for product in search.results %}
+          <div class="ai-product-carousel__item-rvp">
             <div class="ai-product-carousel__card-rvp">
               <div class="ai-product-carousel__image-wrapper-rvp">
                 {% if product.featured_image %}
@@ -559,9 +554,6 @@
               </div>
             </div>
           </div>
-              {% break %}
-            {% endif %}
-          {% endfor %}
         {% endfor %}
 </div>
     </div>
