@@ -381,6 +381,8 @@ body{
 
 button.search-bar__submit {
     background: #000 !important;
+    flex-shrink: 0 !important;
+    min-width: 45px !important;
     border-radius: 0px 10px 10px 0px;
 }
 
