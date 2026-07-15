@@ -4068,6 +4068,11 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
     z-index: 99 !important;
   }
   
+  /* Hide the old close button in the header to prevent it from overlapping the drawer */
+  .header__mobile-nav-toggle .icon-state__secondary {
+    display: none !important;
+  }
+
   /* Prevent the search bar from becoming a full-screen fixed sidebar on focus */
   .header__search-bar-wrapper.is-fixed {
     position: absolute !important;

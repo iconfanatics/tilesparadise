@@ -4,6 +4,11 @@
   {%- render 'icon', icon: 'nav-triangle-borderless' -%}
 
   <div class="mobile-menu__inner">
+    <div style="display: flex; justify-content: flex-end; padding: 15px 20px;">
+      <button type="button" data-action="toggle-menu" aria-controls="mobile-menu" style="background: none; border: none; padding: 5px; cursor: pointer;">
+        <span style="display: inline-block; width: 24px; height: 24px;">{% render 'icon', icon: 'close' %}</span>
+      </button>
+    </div>
     <div class="mobile-menu__panel">
       <div class="mobile-menu__section">
         <ul class="mobile-menu__nav" data-type="menu" role="list">
