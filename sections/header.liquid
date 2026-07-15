@@ -239,13 +239,7 @@
             <button
               type="button"
               class="header__search-button"
-              onclick="(function(btn){
-                var w=document.querySelector('.header__search-bar-wrapper');
-                if(!w)return;
-                var open=w.classList.contains('mobile-active');
-                w.classList.toggle('mobile-active',!open);
-                if(!open){var i=w.querySelector('input[name=q]');if(i)setTimeout(function(){i.focus();},50);}
-              })(this);">
+              data-action="toggle-search">
               {% render 'icon', icon: 'search' %}
             </button>
           </div>
@@ -725,16 +719,6 @@ display:block;
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto !important;
-        left: 0 !important;
-        width: 100% !important;
-        position: relative !important;
-        top: auto !important;
-    }
-
-    /* CRITICAL: The flyout default state must NOT block header clicks on mobile */
-    .tabbed-mega-nav__flyout {
-        position: relative !important;
-        top: auto !important;
     }
     
     /* Make the 2nd child tab look active */

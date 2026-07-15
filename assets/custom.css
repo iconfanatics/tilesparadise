@@ -145,13 +145,11 @@ body {
   background: var(--tabbed-menu-dark);
 }
 
-@media screen and (min-width: 1000px) {
 .tabbed-mega-nav__tab-item:first-child .tabbed-mega-nav__flyout {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
   transform: none;
-}
 }
 
 .tabbed-mega-nav__tabs:hover .tabbed-mega-nav__tab-item:first-child:not(:hover) .tabbed-mega-nav__flyout {
@@ -4085,8 +4083,8 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
     box-shadow: 0 8px 24px rgba(0,0,0,0.18) !important;
   }
 
-  /* Show ONLY when mobile-active class is present */
-  #shopify-section-header .header__search-bar-wrapper.mobile-active {
+  /* Show ONLY when is-visible class is present (toggled by theme.js) */
+  #shopify-section-header .header__search-bar-wrapper.is-visible {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
