@@ -4070,6 +4070,7 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
   }
   .header__search-bar-wrapper.is-visible {
     margin-bottom: -75px !important;
+    z-index: 99 !important;
   }
 
 }
