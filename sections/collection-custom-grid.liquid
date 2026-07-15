@@ -166,10 +166,9 @@
 
                 {% if product.compare_at_price > product.price %}
                   {% assign discount = product.compare_at_price | minus: product.price %}
-                  {% assign percent = discount | times: 100 | divided_by: product.compare_at_price %}
+                  {% assign percent = discount | times: 100.0 | divided_by: product.compare_at_price | round %}
                   <span class="badge">
-                    <small>Save</small>
-                    <strong>{{ percent }}%</strong>
+                    <strong>SAVE {{ percent }}%</strong>
                   </span>
                 {% endif %}
 
@@ -342,15 +341,15 @@
 /* ================= PRODUCT GRID ================= */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   align-items: stretch;
 }
 
 .product-card {
   background: #fff;
-  border-radius: 12px;
-  border: 1px solid #e6e8eb;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -385,27 +384,26 @@
 /* Save badge */
 .badge {
   position: absolute;
-  top: 0;
-  left: 0;
-  background: #e60023;
+  top: 10px;
+  left: 10px;
+  background: #e40012;
   color: #fff;
-  border-radius: 0 0 10px 0;
-  padding: 6px 10px;
+  border-radius: 2px;
+  padding: 4px 8px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   line-height: 1;
   z-index: 2;
 }
 
 .badge small {
-  font-size: 10px;
-  font-weight: 500;
+  display: none;
 }
 
 .badge strong {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
 }
 
 /* In-stock pill */
@@ -414,12 +412,12 @@
   top: 10px;
   right: 10px;
   background: #fff;
-  color: #19733f;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 9px;
+  color: #3fa33f;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
   border-radius: 999px;
-  box-shadow: 0 1px 4px rgba(0,0,0,.12);
+  box-shadow: 0 2px 5px rgba(0,0,0,.15);
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -428,10 +426,12 @@
 
 .stock-pill::before {
   content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #1f8a4c;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%233fa33f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 /* Content */
@@ -446,9 +446,9 @@
   margin: 0;
   font-family: Roboto, sans-serif;
   font-weight: 700;
-  font-size: 15px;
-  line-height: 1.35;
-  color: #1a1d24;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #1e2d7d;
 }
 
 .product-card .content h3 a {
@@ -457,11 +457,11 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 41px;
+  text-transform: capitalize;
 }
 
 .product-card .content h3 a:hover {
-  color: #016FD0;
+  color: #e40012;
 }
 
 /* ================= REVIEW STARS ================= */
@@ -506,10 +506,9 @@
 .product-card span.current {
   font-family: Roboto, sans-serif;
   font-weight: 800;
-  font-size: 23px;
+  font-size: 18px;
   line-height: 1.1;
-  letter-spacing: -.01em;
-  color: #016FD0;
+  color: #e40012;
   display: inline-flex;
   align-items: baseline;
   gap: 5px;
@@ -524,11 +523,11 @@
 .compare-wrapper {
   margin-top: 5px;
   font-family: Roboto, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .product-card span.compare {
-  color: #6b7280;
+  color: #888;
   font-weight: 500;
 }
 
@@ -569,7 +568,7 @@
   padding: 10px;
   display: block;
   text-align: center;
-  border-radius: 8px;
+  border-radius: 2px;
   font-family: Roboto, sans-serif;
   font-weight: 700;
   font-size: 13.5px;
