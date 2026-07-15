@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -116,9 +107,18 @@
         "vitals_back_in_stock_mkJRGa": {
           "type": "shopify://apps/vitals/blocks/back-in-stock/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
           "settings": {}
+        },
+        "calculator_block": {
+          "type": "liquid",
+          "settings": {
+            "title": "",
+            "liquid": "{%- comment -%}\n  Liquid block (no title needed; set Display mode \"Show all\").\n  Banner linking to your standalone /pages/tile-calculator.\n{%- endcomment -%}\n<a class=\"tp-calcb\" href=\"/pages/tile-calculator\">\n  <div class=\"tp-calcb__txt\">\n    <h3>Doing a whole room?</h3>\n    <p>Use our free Tile Calculator \u2014 enter your wall and floor measurements, deduct doors and windows, and we'll work out exactly how many boxes you need, plus 10% for wastage.</p>\n  </div>\n  <span class=\"tp-calcb__btn\">Open the Tile Calculator &rarr;</span>\n</a>\n<style>\n  .tp-calcb{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;\n    background:linear-gradient(120deg,#1a1d24,#2a3340);color:#fff;border-radius:14px;padding:24px 26px;\n    text-decoration:none;font-family:\"Open Sans\",sans-serif;}\n  .tp-calcb__txt h3{font-size:18px;font-weight:800;margin:0;}\n  .tp-calcb__txt p{font-size:13px;opacity:.85;margin:5px 0 0;max-width:560px;line-height:1.5;}\n  .tp-calcb__btn{background:#fff;color:#1a1d24;font-weight:800;font-size:14px;padding:13px 22px;border-radius:10px;white-space:nowrap;}\n  .tp-calcb:hover .tp-calcb__btn{background:#c8102e;color:#fff;}\n</style>",
+            "display_mode": "show_all"
+          }
         }
       },
       "block_order": [
+        "calculator_block",
         "liquid_QbWTND",
         "judge_me_reviews_preview_badge_R8ywae",
         "vitals_reviews_stars_z94Nry",
@@ -266,15 +266,6 @@
       ],
       "name": "Paired With Carousel",
       "settings": {}
-    },
-    "custom_liquid_6YVggk": {
-      "type": "custom-liquid",
-      "name": "CALCULATOR",
-      "settings": {
-        "title": "",
-        "include_margins": true,
-        "liquid": "{%- comment -%}\n  Liquid block (no title needed; set Display mode \"Show all\").\n  Banner linking to your standalone /pages/tile-calculator.\n{%- endcomment -%}\n<a class=\"tp-calcb\" href=\"/pages/tile-calculator\">\n  <div class=\"tp-calcb__txt\">\n    <h3>Doing a whole room?</h3>\n    <p>Use our free Tile Calculator \u2014 enter your wall and floor measurements, deduct doors and windows, and we'll work out exactly how many boxes you need, plus 10% for wastage.</p>\n  </div>\n  <span class=\"tp-calcb__btn\">Open the Tile Calculator &rarr;</span>\n</a>\n<style>\n  .tp-calcb{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;\n    background:linear-gradient(120deg,#1a1d24,#2a3340);color:#fff;border-radius:14px;padding:24px 26px;\n    text-decoration:none;font-family:\"Open Sans\",sans-serif;}\n  .tp-calcb__txt h3{font-size:18px;font-weight:800;margin:0;}\n  .tp-calcb__txt p{font-size:13px;opacity:.85;margin:5px 0 0;max-width:560px;line-height:1.5;}\n  .tp-calcb__btn{background:#fff;color:#1a1d24;font-weight:800;font-size:14px;padding:13px 22px;border-radius:10px;white-space:nowrap;}\n  .tp-calcb:hover .tp-calcb__btn{background:#c8102e;color:#fff;}\n</style>"
-      }
     },
     "custom_liquid_WhPNfa": {
       "type": "custom-liquid",
@@ -448,7 +439,6 @@
     "related_categories_new",
     "recently_viewed_paired_new",
     "1780773500431ccfd2",
-    "custom_liquid_6YVggk",
     "custom_liquid_WhPNfa"
   ]
 }

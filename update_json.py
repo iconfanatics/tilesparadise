@@ -1,29 +1,37 @@
 import json
-import glob
+import re
 
-for filename in glob.glob('templates/product*.json'):
-    try:
-        with open(filename, 'r') as f:
-            data = json.load(f)
-        
-        changed = False
-        for section_id, section in data.get('sections', {}).items():
-            for block_id, block in section.get('blocks', {}).items():
-                if block.get('type') == 'delivery_options':
-                    if 'settings' not in block:
-                        block['settings'] = {}
-                    
-                    if 'delivery_drawer_content' not in block['settings']:
-                        block['settings']['delivery_drawer_content'] = "<h3>Standard Delivery</h3><p>We deliver using a pallet network. Delivery takes 2-7 working days.</p><h3>Next Day Delivery</h3><p>Available on orders placed before 12pm.</p><h3>Returns</h3><p>We accept returns within 30 days of purchase.</p>"
-                        changed = True
-                    
-                    if 'faq_drawer_content' not in block['settings']:
-                        block['settings']['faq_drawer_content'] = "<h3>Frequently Asked Questions</h3><p><strong>How long does delivery take?</strong><br>Delivery typically takes between 2 to 7 working days depending on your location.</p><p><strong>Do you offer next day delivery?</strong><br>Yes, we offer next day pallet service for £39.95 if ordered before noon.</p><p><strong>What is your return policy?</strong><br>You can return items within 30 days in their original condition.</p>"
-                        changed = True
-                        
-        if changed:
-            with open(filename, 'w') as f:
-                json.dump(data, f, indent=2)
-            print(f"Updated {filename}")
-    except Exception as e:
-        print(f"Error processing {filename}: {e}")
+with open('templates/product.tiles.json', 'r') as f:
+    text = f.read()
+
+# Strip JS style comments (only block comments at top)
+text_no_comments = re.sub(r'/\*.*?\*/', '', text, flags=re.DOTALL)
+
+data = json.loads(text_no_comments)
+
+# Get the calculator block
+calc = data['sections']['custom_liquid_6YVggk']
+
+# Format it as a block for main
+new_block = {
+    "type": "liquid",
+    "settings": {
+        "title": "Calculator",
+        "liquid": calc['settings']['liquid'],
+        "display_mode": "show_all"
+    }
+}
+
+# Add to main blocks
+data['sections']['main']['blocks']['calculator_block'] = new_block
+
+# Add to main block_order (at the top so it's right under the slider)
+data['sections']['main']['block_order'].insert(0, "calculator_block")
+
+# Delete old section
+del data['sections']['custom_liquid_6YVggk']
+data['order'].remove('custom_liquid_6YVggk')
+
+with open('templates/product.tiles.json', 'w') as f:
+    json.dump(data, f, indent=2)
+

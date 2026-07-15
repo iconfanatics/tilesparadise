@@ -262,9 +262,9 @@
               {%- assign title = block.settings.title -%}
               {%- assign liquid = block.settings.liquid -%}
 
-              {%- if title != blank and liquid != blank -%}
+              {%- if liquid != blank -%}
                 <div class="product-block-list__item product-block-list__item--content cstm_prod" {{ block.shopify_attributes }}>
-                  <div class="card">
+                  <div class="card" {% if title == blank %}style="background: transparent; box-shadow: none; border: none;"{% endif %}>
                     {%- if block.settings.display_mode == 'collapse' -%}
                       <button class="card__collapsible-button" data-action="toggle-collapsible" aria-expanded="false" aria-controls="block-{{ section.id }}-{{ block.id }}">
                         <span class="card__title heading h3">{{ title }}</span>
@@ -273,18 +273,20 @@
 
                       <div id="block-{{ section.id }}-{{ block.id }}" class="card__collapsible">
                         <div class="card__collapsible-content">
-                          <div class="rte text--pull">
+                          <div class="rte text--pull" style="margin-top:0;">
                             {{ liquid }}
                           </div>
                         </div>
                       </div>
                     {%- else -%}
-                      <div class="card__header">
-                        <h2 class="card__title heading h3">{{ title }}</h2>
-                      </div>
+                      {%- if title != blank -%}
+                        <div class="card__header">
+                          <h2 class="card__title heading h3">{{ title }}</h2>
+                        </div>
+                      {%- endif -%}
 
-                      <div class="card__section {% if block.settings.display_mode == 'view_more' %}expandable-content{% endif %}" {% if block.settings.display_mode == 'view_more' %}aria-expanded="false"{% endif %}>
-                        <div class="rte text--pull">
+                      <div class="card__section {% if block.settings.display_mode == 'view_more' %}expandable-content{% endif %}" {% if block.settings.display_mode == 'view_more' %}aria-expanded="false"{% endif %} {% if title == blank %}style="padding:0; margin-top:24px;"{% endif %}>
+                        <div class="rte text--pull" style="margin-top:0;">
                           {{ liquid }}
                         </div>
 
