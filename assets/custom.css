@@ -389,10 +389,6 @@ button.search-bar__submit {
     border-radius: 10px 0px 0px 10px;
 }
 
-.header__search-bar-wrapper.is-fixed {
-    max-width: 350px!important;
-    margin-left: 110px !important;
-}
 .custom-product-buttons {
   display: flex;
   gap: 10px;
@@ -441,9 +437,6 @@ nav.nav-bar {
     color: #fff;
 }
 
-.header__search-bar-wrapper.is-fixed {
-  max-width: 400px !important;
-}
 
 .needsclick.kl-private-reset-css-Xuajs1 {
     display: none !important;
@@ -4071,6 +4064,22 @@ body.template-index .collection-list-shop-by-color .collection-item__title {
   .header__search-bar-wrapper.is-visible {
     margin-bottom: -75px !important;
     z-index: 99 !important;
+  }
+  
+  /* Prevent the search bar from becoming a full-screen fixed sidebar on focus */
+  .header__search-bar-wrapper.is-fixed {
+    position: absolute !important;
+    height: auto !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+  }
+  
+  .header__search-bar-wrapper.is-fixed .search-bar__inner {
+    max-height: 60vh !important;
+    overflow-y: auto !important;
+    background: #fff !important;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
 
 }
