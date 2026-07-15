@@ -145,11 +145,13 @@ body {
   background: var(--tabbed-menu-dark);
 }
 
+@media screen and (min-width: 1000px) {
 .tabbed-mega-nav__tab-item:first-child .tabbed-mega-nav__flyout {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
   transform: none;
+}
 }
 
 .tabbed-mega-nav__tabs:hover .tabbed-mega-nav__tab-item:first-child:not(:hover) .tabbed-mega-nav__flyout {
