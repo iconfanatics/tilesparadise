@@ -429,6 +429,45 @@
         "title": "Recently Viewed Products",
         "section_bg": "#f8f7f5"
       }
+    },
+    "blocks_JPq7Pd": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4a575ab_wPqaDw": {
+          "type": "ai_gen_block_4a575ab",
+          "settings": {
+            "heading": "Shop Related Collections",
+            "heading_alignment": "center",
+            "max_collections": 6,
+            "show_product_count": false,
+            "product_singular_text": "product",
+            "product_plural_text": "products",
+            "empty_message": "This product is not in any collections yet.",
+            "desktop_columns": 6,
+            "tablet_columns": 3,
+            "mobile_columns": "2",
+            "grid_gap": 30,
+            "section_padding": 40,
+            "heading_spacing": 30,
+            "content_spacing": 20,
+            "circle_size": 180,
+            "background_color": "#ffffff",
+            "heading_color": "#3b3337",
+            "collection_name_color": "#3b3337",
+            "product_count_color": "#616161",
+            "heading_size": 32,
+            "collection_name_size": 18,
+            "product_count_size": 14,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4a575ab_wPqaDw"
+      ],
+      "name": "Related collections",
+      "settings": {}
     }
   },
   "order": [
@@ -436,6 +475,7 @@
     "custom_liquid_xki7ez",
     "product_tabs",
     "custom_liquid_t77pJf",
+    "blocks_JPq7Pd",
     "related_categories_new",
     "recently_viewed_paired_new",
     "1780773500431ccfd2",
