@@ -201,19 +201,13 @@
                 <div class="price">
 
                   <span class="current">
-                    {{ product.price | money }}{% if show_per_m2 %}<small class="unit">Per m²</small>{% endif %}
+                    {{ product.price | money }}
                   </span>
 
                   {% if product.compare_at_price > product.price %}
                     <div class="compare-wrapper">
                       <span class="compare">
-                        <s>RRP {{ product.compare_at_price | money }}</s>{% if show_per_m2 %} <span class="unit">Per m²</span>{% endif %}
-                      </span>
-                      <span class="save-line">
-                        Save
-                        <span class="save-amount">
-                          {{ product.compare_at_price | minus: product.price | money }}
-                        </span>
+                        <s>{{ product.compare_at_price | money }}</s>
                       </span>
                     </div>
                   {% endif %}
@@ -223,7 +217,9 @@
                 <div class="card-footer">
                   {% if product.available %}
                     <span class="stock-status">
-                      <span class="stock-icon">✓</span>
+                      <span class="stock-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </span>
                       In Stock
                     </span>
                   {% else %}
@@ -231,10 +227,6 @@
                       Out of Stock
                     </span>
                   {% endif %}
-                  
-                  <button type="button" class="wishlist-btn" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}" aria-label="Add to wishlist">
-                    {% render 'icon', icon: 'heart' %}
-                  </button>
                 </div>
 
                 <div class="actions">
@@ -431,9 +423,12 @@
   margin-bottom: 8px;
 }
 .vendor {
-  font-size: 12px;
-  color: #666;
+  font-size: 11px;
+  color: #fff;
+  background: #000;
+  padding: 3px 6px;
   text-transform: uppercase;
+  font-weight: 700;
 }
 .rating-wrapper {
   display: flex;
@@ -453,38 +448,26 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #3fa33f;
-  font-size: 12px;
+  color: #1e2d7d;
+  font-size: 15px;
   line-height: 1;
-  font-weight: 600;
+  font-weight: 400;
 }
 .stock-icon {
   display: inline-flex;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   align-items: center;
   justify-content: center;
   border-radius: 3px;
-  background: rgba(63,163,63,0.15);
-  color: #3fa33f;
-  font-weight: 900;
+  background: #3fa33f;
+}
+.stock-icon svg {
+  width: 14px;
+  height: 14px;
 }
 .stock--out {
   color: #e40012;
-}
-
-.wishlist-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  color: #888;
-}
-.wishlist-btn svg {
-  width: 20px;
-  height: 20px;
 }
 
 /* Content */
@@ -554,6 +537,9 @@
 /* ================= PRICE ================= */
 .price {
   margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .product-card span.current {
@@ -574,13 +560,12 @@
 }
 
 .compare-wrapper {
-  margin-top: 5px;
   font-family: Roboto, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .product-card span.compare {
-  color: #888;
+  color: #a3a3a3;
   font-weight: 500;
 }
 
