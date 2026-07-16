@@ -212,24 +212,14 @@
 
     if (!stickyBar) return;
 
-    // Detect when main ATC scrolls out of view
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting && entry.boundingClientRect.top < window.innerHeight / 2) {
-          stickyBar.classList.add('is-visible');
-        } else {
-          stickyBar.classList.remove('is-visible');
-        }
-      });
-    }, {
-      root: null,
-      threshold: 0,
-      rootMargin: "0px"
+    // Bulletproof scroll detection
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        stickyBar.classList.add('is-visible');
+      } else {
+        stickyBar.classList.remove('is-visible');
+      }
     });
-
-    if (mainAtcBtn) {
-      observer.observe(mainAtcBtn);
-    }
 
     // Function to robustly trigger add to cart
     const triggerAddToCart = () => {
