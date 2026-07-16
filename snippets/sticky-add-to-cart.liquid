@@ -1,293 +1,135 @@
-{%- assign current_variant = product.selected_or_first_available_variant -%}
-
 <style>
-  .ai-sticky-atc {
+  #ai-sticky-bar {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    border-top: 2px solid #e5e5e5;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
     z-index: 99999;
     transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.35s ease;
     padding: 12px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
   }
-
-  .ai-sticky-atc.is-visible {
+  #ai-sticky-bar.show {
     transform: translateY(0);
   }
-
-  .ai-sticky-atc__inner {
-    max-width: 1350px;
+  #ai-sticky-bar .sbar-inner {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .ai-sticky-atc__product {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .ai-sticky-atc__image {
-    width: 50px;
-    height: 50px;
-    border-radius: 4px;
-    object-fit: cover;
-    background: #f4f4f4;
-    flex-shrink: 0;
-  }
-
-  .ai-sticky-atc__info {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-  }
-
-  .ai-sticky-atc__title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #111;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.2;
-  }
-
-  .ai-sticky-atc__price-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 4px;
-  }
-
-  .ai-sticky-atc__price {
-    font-size: 14px;
-    font-weight: 800;
-    color: #111;
-  }
-
-  .ai-sticky-atc__compare-price {
-    font-size: 12px;
-    color: #888;
-    text-decoration: line-through;
-  }
-
-  .ai-sticky-atc__actions {
+    max-width: 1200px;
     display: flex;
     align-items: center;
     gap: 12px;
-    flex-shrink: 0;
+    justify-content: flex-end;
   }
-
-  .ai-sticky-atc__button {
-    height: 48px;
-    padding: 0 24px;
+  #ai-sticky-bar .sbar-title {
+    flex: 1;
+    font-weight: 700;
+    font-size: 15px;
+    color: #111;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #ai-sticky-bar .sbar-atc {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
     font-size: 14px;
     font-weight: 700;
     border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  #ai-sticky-bar .sbar-atc:hover { background: #333; }
+  #ai-sticky-bar .sbar-buy {
+    background: #1e2d7d;
+    color: #fff;
     border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
   }
-
-  .ai-sticky-atc__button--add {
-    background: #111;
-    color: #fff;
-  }
-
-  .ai-sticky-atc__button--add:hover {
-    background: #333;
-  }
-
-  .ai-sticky-atc__button--buy {
-    background: #5a31f4;
-    color: #fff;
-  }
-
-  .ai-sticky-atc__button--buy:hover {
-    background: #4726d1;
-  }
-  
-  .ai-sticky-atc__button--disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  /* Responsive Adjustments */
-  @media screen and (max-width: 768px) {
-    .ai-sticky-atc {
-      padding: 10px 16px;
-      padding-bottom: calc(10px + env(safe-area-inset-bottom));
-    }
-    
-    .ai-sticky-atc__product {
-      display: none; /* Hide product info on mobile to save space */
-    }
-
-    .ai-sticky-atc__inner {
-      justify-content: center;
-    }
-    
-    .ai-sticky-atc__actions {
-      width: 100%;
-      gap: 10px;
-    }
-    
-    .ai-sticky-atc__button {
-      flex: 1;
-      padding: 0 10px;
-      height: 44px;
-      font-size: 13px;
-    }
+  #ai-sticky-bar .sbar-buy:hover { background: #16226b; }
+  @media (max-width: 640px) {
+    #ai-sticky-bar { padding: 10px 12px; }
+    #ai-sticky-bar .sbar-title { display: none; }
+    #ai-sticky-bar .sbar-inner { justify-content: center; }
+    #ai-sticky-bar .sbar-atc,
+    #ai-sticky-bar .sbar-buy { flex: 1; text-align: center; padding: 12px 10px; }
   }
 </style>
 
-<div class="ai-sticky-atc" id="aiStickyAtc">
-  <div class="ai-sticky-atc__inner">
-    <div class="ai-sticky-atc__product">
-      {%- if product.featured_image -%}
-        <img src="{{ product.featured_image | image_url: width: 100 }}" alt="{{ product.title | escape }}" class="ai-sticky-atc__image" width="50" height="50" loading="lazy">
-      {%- endif -%}
-      <div class="ai-sticky-atc__info">
-        <h4 class="ai-sticky-atc__title">{{ product.title }}</h4>
-        <div class="ai-sticky-atc__price-wrapper">
-          <span class="ai-sticky-atc__price js-sticky-price">{{ current_variant.price | money }}</span>
-          {%- if current_variant.compare_at_price > current_variant.price -%}
-            <span class="ai-sticky-atc__compare-price js-sticky-compare-price">{{ current_variant.compare_at_price | money }}</span>
-          {%- else -%}
-            <span class="ai-sticky-atc__compare-price js-sticky-compare-price" style="display: none;"></span>
-          {%- endif -%}
-        </div>
-      </div>
-    </div>
-    
-    <div class="ai-sticky-atc__actions">
-      {%- if current_variant.available -%}
-        <button type="button" class="ai-sticky-atc__button ai-sticky-atc__button--add js-sticky-add-btn">
-          {{ 'product.form.add_to_cart' | t }}
-        </button>
-        {%- if section.settings.show_payment_button or block.settings.show_payment_button != false -%}
-          <button type="button" class="ai-sticky-atc__button ai-sticky-atc__button--buy js-sticky-buy-btn">
-            Buy Now
-          </button>
-        {%- endif -%}
-      {%- else -%}
-        <button type="button" class="ai-sticky-atc__button ai-sticky-atc__button--add ai-sticky-atc__button--disabled">
-          {{ 'product.form.sold_out' | t }}
-        </button>
-      {%- endif -%}
-    </div>
+<div id="ai-sticky-bar">
+  <div class="sbar-inner">
+    <span class="sbar-title">{{ product.title }}</span>
+    <button class="sbar-atc" id="sbarAtcBtn">Add to Basket</button>
+    <button class="sbar-buy" id="sbarBuyBtn">Buy Now</button>
   </div>
 </div>
 
 <script>
-  (function() {
-    const stickyBar = document.getElementById('aiStickyAtc');
-    if (stickyBar && stickyBar.parentElement !== document.body) {
-      document.body.appendChild(stickyBar);
+(function() {
+  var bar = document.getElementById('ai-sticky-bar');
+  if (!bar) return;
+
+  // Move to body to avoid stacking context issues
+  document.body.appendChild(bar);
+
+  // Show on scroll
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      bar.classList.add('show');
+    } else {
+      bar.classList.remove('show');
     }
-    
-    const mainAtcBtn = document.querySelector('button.product-form__add-button') || document.querySelector('button[data-action="add-to-cart"]') || document.querySelector('button.add-to-cart') || document.querySelector('form.product-form__add-button');
-    const stickyAddBtn = document.querySelector('.js-sticky-add-btn');
-    const stickyBuyBtn = document.querySelector('.js-sticky-buy-btn');
-    const paymentButtonContainer = document.querySelector('.shopify-payment-button');
+  });
 
-    if (!stickyBar) return;
+  // Find the real ATC button - try all known selectors
+  function getRealAtcBtn() {
+    return document.querySelector('button.product-form__add-button')
+      || document.querySelector('button[data-action="add-to-cart"]')
+      || document.querySelector('button.add-to-cart')
+      || document.querySelector('.product-form__submit')
+      || document.querySelector('[name="add"]');
+  }
 
-    // Bulletproof scroll detection
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) {
-        stickyBar.classList.add('is-visible');
-      } else {
-        stickyBar.classList.remove('is-visible');
-      }
-    });
-
-    // Function to robustly trigger add to cart
-    const triggerAddToCart = () => {
-      if (!mainAtcBtn) return;
-      if (mainAtcBtn.tagName === 'FORM') {
-        const submitEvent = new Event('submit', { cancelable: true, bubbles: true });
-        mainAtcBtn.dispatchEvent(submitEvent);
-        if (!submitEvent.defaultPrevented) mainAtcBtn.submit();
-      } else {
-        mainAtcBtn.click();
-      }
-    };
-
-    // Sync Click - Add to Cart
-    if (stickyAddBtn) {
-      stickyAddBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        triggerAddToCart();
-      });
+  // Add to Basket click
+  document.getElementById('sbarAtcBtn').addEventListener('click', function() {
+    var btn = getRealAtcBtn();
+    if (btn) {
+      btn.click();
+    } else {
+      // Fallback: submit the product form directly
+      var form = document.querySelector('form[action="/cart/add"]')
+        || document.querySelector('form.product-form')
+        || document.querySelector('form[method="post"]');
+      if (form) form.submit();
     }
+  });
 
-    // Sync Click - Buy Now
-    if (stickyBuyBtn) {
-      stickyBuyBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const mainBuyBtn = paymentButtonContainer ? paymentButtonContainer.querySelector('button') : null;
-        if (mainBuyBtn) {
-          mainBuyBtn.click();
-        } else {
-          triggerAddToCart(); // fallback
-        }
-      });
+  // Buy Now click
+  document.getElementById('sbarBuyBtn').addEventListener('click', function() {
+    // Try Shopify dynamic checkout button first
+    var buyBtn = document.querySelector('.shopify-payment-button button')
+      || document.querySelector('[data-testid="Checkout-button"]')
+      || document.querySelector('.shopify-payment-button__button');
+    if (buyBtn) {
+      buyBtn.click();
+    } else {
+      // Fallback to add to cart
+      var btn = getRealAtcBtn();
+      if (btn) btn.click();
     }
-
-    // Sync Price when variant changes
-    document.addEventListener('theme:variant:changed', function(e) {
-      const variant = e.detail.variant;
-      if (!variant) return;
-
-      const priceEl = stickyBar.querySelector('.js-sticky-price');
-      const comparePriceEl = stickyBar.querySelector('.js-sticky-compare-price');
-
-      if (priceEl && variant.price) {
-        priceEl.innerHTML = Shopify.formatMoney(variant.price, window.theme.moneyFormat);
-      }
-
-      if (comparePriceEl) {
-        if (variant.compare_at_price > variant.price) {
-          comparePriceEl.innerHTML = Shopify.formatMoney(variant.compare_at_price, window.theme.moneyFormat);
-          comparePriceEl.style.display = 'inline';
-        } else {
-          comparePriceEl.style.display = 'none';
-        }
-      }
-      
-      // Update buttons if available / unavailable
-      const addBtn = stickyBar.querySelector('.ai-sticky-atc__button--add');
-      const buyBtn = stickyBar.querySelector('.ai-sticky-atc__button--buy');
-      
-      if (variant.available) {
-        addBtn.classList.remove('ai-sticky-atc__button--disabled');
-        addBtn.innerHTML = window.theme.strings.addToCart || 'Add to cart';
-        if(buyBtn) buyBtn.style.display = 'flex';
-      } else {
-        addBtn.classList.add('ai-sticky-atc__button--disabled');
-        addBtn.innerHTML = window.theme.strings.soldOut || 'Sold out';
-        if(buyBtn) buyBtn.style.display = 'none';
-      }
-    });
-  })();
+  });
+})();
 </script>
