@@ -198,8 +198,12 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  (function() {
     const stickyBar = document.getElementById('aiStickyAtc');
+    if (stickyBar && stickyBar.parentElement !== document.body) {
+      document.body.appendChild(stickyBar);
+    }
+    
     const mainAtcBtn = document.querySelector('.product-form__add-button') || document.querySelector('[data-action="add-to-cart"]');
     const stickyAddBtn = document.querySelector('.js-sticky-add-btn');
     const stickyBuyBtn = document.querySelector('.js-sticky-buy-btn');
@@ -284,5 +288,5 @@
         if(buyBtn) buyBtn.style.display = 'none';
       }
     });
-  });
+  })();
 </script>
