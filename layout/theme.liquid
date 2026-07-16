@@ -473,104 +473,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
   {%- if request.page_type == 'product' -%}
-  <style>
-    #ai-sticky-bar{
-      position:fixed;
-      bottom:0;
-      left:0;
-      width:100%;
-      background:#1e2d7d;
-      z-index:2147483647;
-      padding:14px 20px;
-      box-sizing:border-box;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      box-shadow:0 -4px 20px rgba(0,0,0,.2);
-    }
-    #ai-sticky-bar.show{ display:flex !important; }
-    #sbAtcBtn{background:#fff;color:#1e2d7d;border:none;padding:12px 32px;font-size:15px;font-weight:700;border-radius:6px;cursor:pointer;}
-    #sbBuyBtn{background:#ff6128;color:#fff;border:none;padding:12px 32px;font-size:15px;font-weight:700;border-radius:6px;cursor:pointer;}
-  </style>
-  <div id="ai-sticky-bar">
-    <button id="sbAtcBtn">🛒 Add to Basket</button>
-    <button id="sbBuyBtn">⚡ Buy Now</button>
+  <div id="ai-sticky-bar" style="position:fixed;bottom:0;left:0;width:100%;background:#1e2d7d;z-index:2147483647;padding:14px 20px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:12px;box-shadow:0 -4px 20px rgba(0,0,0,.2);">
+    <style>#sbAtcBtn,#sbBuyBtn{border:none;padding:12px 28px;font-size:15px;font-weight:700;border-radius:6px;cursor:pointer;}#sbAtcBtn{background:#fff;color:#1e2d7d;}#sbBuyBtn{background:#ff6128;color:#fff;}</style>
+    <button id="sbAtcBtn">&#x1F6D2; Add to Basket</button>
+    <button id="sbBuyBtn">&#x26A1; Buy Now</button>
   </div>
   <script>
-  (function(){
-    var bar = document.getElementById('ai-sticky-bar');
-    if(!bar) return;
-
-    // Show bar when page ATC button scrolls out of view
-    var atcAnchor = document.querySelector('button.add-to-cart, button.product-form__add-button, button[data-action="add-to-cart"]');
-    if(atcAnchor){
-      var obs = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(!e.isIntersecting){ bar.classList.add('show'); }
-          else { bar.classList.remove('show'); }
-        });
-      }, {threshold:0, rootMargin:'0px 0px 0px 0px'});
-      obs.observe(atcAnchor);
-    } else {
-      // fallback: show after 300px scroll on any scrollable container
-      var scrollEl = document.scrollingElement || document.documentElement || window;
-      function checkScroll(){ 
-        var sy = scrollEl.scrollTop || window.scrollY || window.pageYOffset || 0;
-        if(sy > 300){ bar.classList.add('show'); } else { bar.classList.remove('show'); }
-      }
-      window.addEventListener('scroll', checkScroll, true);
-      document.addEventListener('scroll', checkScroll, true);
-    }
-
-    // Find the real ATC button (tries multiple selectors)
-    function getAtcBtn(){
-      return document.querySelector('button.add-to-cart')
-        || document.querySelector('button.product-form__add-button')
-        || document.querySelector('button[data-action="add-to-cart"]')
-        || document.querySelector('[name="add"]');
-    }
-
-    // Find the product form
-    function getProductForm(){
-      var btn = getAtcBtn();
-      if(btn) return btn.closest('form');
-      return document.querySelector('form[action*="/cart/add"]')
-        || document.querySelector('form.product-form');
-    }
-
-    document.getElementById('sbAtcBtn').addEventListener('click', function(){
-      // First try clicking the real button (best for Shopify theme JS hooks)
-      var btn = getAtcBtn();
-      if(btn && !btn.disabled){
-        btn.click();
-        return;
-      }
-      // Fallback: submit the form directly
-      var form = getProductForm();
-      if(form){
-        var fakeBtn = form.querySelector('button[type="submit"]');
-        if(fakeBtn) fakeBtn.click();
-        else form.submit();
-      }
-    });
-
-    document.getElementById('sbBuyBtn').addEventListener('click', function(){
-      var buyBtn = document.querySelector('.shopify-payment-button button')
-        || document.querySelector('.shopify-payment-button__button--unbranded')
-        || document.querySelector('[data-testid="Checkout-button"]');
-      if(buyBtn){
-        buyBtn.click();
-      } else {
-        // No Buy Now button found - just add to cart and go to checkout
-        var btn = getAtcBtn();
-        if(btn && !btn.disabled){
-          btn.click();
-          setTimeout(function(){ window.location.href = '/checkout'; }, 600);
-        }
-      }
-    });
-  })();
+  document.getElementById('sbAtcBtn').onclick=function(){
+    var b=document.querySelector('button.add-to-cart')||document.querySelector('button.product-form__add-button')||document.querySelector('button[data-action="add-to-cart"]');
+    if(b&&!b.disabled){b.click();}
+    else{var f=document.querySelector('form[action*="/cart"]');if(f){var s=f.querySelector('button[type="submit"]');if(s)s.click();else f.submit();}}
+  };
+  document.getElementById('sbBuyBtn').onclick=function(){
+    var b=document.querySelector('.shopify-payment-button button');
+    if(b){b.click();}else{document.getElementById('sbAtcBtn').click();setTimeout(function(){location.href='/checkout';},600);}
+  };
   </script>
   {%- endif -%}
   </body>
