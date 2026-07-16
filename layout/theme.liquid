@@ -488,7 +488,10 @@ document.addEventListener('DOMContentLoaded', function() {
       justify-content:center;
       gap:12px;
       box-shadow:0 -4px 20px rgba(0,0,0,.2);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
     }
+    #ai-sticky-bar.show{ transform: translateY(0); }
     #sbAtcBtn{background:#fff;color:#1e2d7d;border:none;padding:12px 32px;font-size:15px;font-weight:700;border-radius:6px;cursor:pointer;}
     #sbBuyBtn{background:#ff6128;color:#fff;border:none;padding:12px 32px;font-size:15px;font-weight:700;border-radius:6px;cursor:pointer;}
   </style>
@@ -498,25 +501,61 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
   <script>
   (function(){
+    var bar = document.getElementById('ai-sticky-bar');
+    if(!bar) return;
+
+    // Show on scroll
+    window.addEventListener('scroll', function(){
+      if(window.scrollY > 300){ bar.classList.add('show'); }
+      else { bar.classList.remove('show'); }
+    });
+
+    // Find the real ATC button (tries multiple selectors)
     function getAtcBtn(){
-      return document.querySelector('button.product-form__add-button')
-        ||document.querySelector('button[data-action="add-to-cart"]')
-        ||document.querySelector('button.add-to-cart')
-        ||document.querySelector('[name="add"]');
+      return document.querySelector('button.add-to-cart')
+        || document.querySelector('button.product-form__add-button')
+        || document.querySelector('button[data-action="add-to-cart"]')
+        || document.querySelector('[name="add"]');
     }
-    document.getElementById('sbAtcBtn').addEventListener('click',function(){
-      var btn=getAtcBtn();
-      if(btn){btn.click();}
-      else{
-        var form=document.querySelector('form[action="/cart/add"]')||document.querySelector('form.product-form');
-        if(form)form.submit();
+
+    // Find the product form
+    function getProductForm(){
+      var btn = getAtcBtn();
+      if(btn) return btn.closest('form');
+      return document.querySelector('form[action*="/cart/add"]')
+        || document.querySelector('form.product-form');
+    }
+
+    document.getElementById('sbAtcBtn').addEventListener('click', function(){
+      // First try clicking the real button (best for Shopify theme JS hooks)
+      var btn = getAtcBtn();
+      if(btn && !btn.disabled){
+        btn.click();
+        return;
+      }
+      // Fallback: submit the form directly
+      var form = getProductForm();
+      if(form){
+        var fakeBtn = form.querySelector('button[type="submit"]');
+        if(fakeBtn) fakeBtn.click();
+        else form.submit();
       }
     });
-    document.getElementById('sbBuyBtn').addEventListener('click',function(){
-      var buyBtn=document.querySelector('.shopify-payment-button button')
-        ||document.querySelector('.shopify-payment-button__button');
-      if(buyBtn){buyBtn.click();}
-      else{var btn=getAtcBtn();if(btn)btn.click();}
+
+    document.getElementById('sbBuyBtn').addEventListener('click', function(){
+      var buyBtn = document.querySelector('.shopify-payment-button button')
+        || document.querySelector('.shopify-payment-button__button--unbranded')
+        || document.querySelector('[data-testid="Checkout-button"]');
+      if(buyBtn){
+        buyBtn.click();
+      } else {
+        // No Buy Now button found - just add to cart and go to checkout
+        var btn = getAtcBtn();
+        if(btn && !btn.disabled){
+          btn.click();
+          setTimeout(function(){ window.location.href = '/checkout'; }, 600);
+        }
+      }
     });
   })();
   </script>
