@@ -577,7 +577,12 @@
             items.splice(items.indexOf(currentIdNum), 1);
           }
           if (items.length === 0) {
-            this.style.display = 'none';
+            this.innerHTML = `
+              <div class="ai-product-carousel-rvp" style="padding: 40px 0; text-align: center; background: #f8f7f5;">
+                <h2 style="margin-bottom: 10px; font-size: 24px;">Recently Viewed</h2>
+                <p style="color: #666; font-size: 16px;">You haven't viewed any other products yet. Browse our store to see your history here!</p>
+              </div>
+            `;
             return;
           }
           items = items.slice(0, 10);
@@ -593,7 +598,12 @@
               if (content && content.querySelector('.ai-product-carousel__item-rvp')) {
                 this.innerHTML = content.outerHTML;
               } else {
-                this.style.display = 'none';
+                this.innerHTML = `
+                  <div class="ai-product-carousel-rvp" style="padding: 40px 0; text-align: center; background: #f8f7f5;">
+                    <h2 style="margin-bottom: 10px; font-size: 24px;">Recently Viewed</h2>
+                    <p style="color: #666; font-size: 16px;">You haven't viewed any other products yet. Browse our store to see your history here!</p>
+                  </div>
+                `;
               }
             });
         }
