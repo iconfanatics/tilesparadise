@@ -479,15 +479,38 @@ document.addEventListener('DOMContentLoaded', function() {
     <button id="sbBuyBtn">&#x26A1; Buy Now</button>
   </div>
   <script>
-  document.getElementById('sbAtcBtn').onclick=function(){
-    var b=document.querySelector('button.add-to-cart')||document.querySelector('button.product-form__add-button')||document.querySelector('button[data-action="add-to-cart"]');
-    if(b&&!b.disabled){b.click();}
-    else{var f=document.querySelector('form[action*="/cart"]');if(f){var s=f.querySelector('button[type="submit"]');if(s)s.click();else f.submit();}}
-  };
-  document.getElementById('sbBuyBtn').onclick=function(){
-    var b=document.querySelector('.shopify-payment-button button');
-    if(b){b.click();}else{document.getElementById('sbAtcBtn').click();setTimeout(function(){location.href='/checkout';},600);}
-  };
+  function sbGetVariantId(){
+    // Try multiple ways to get variant ID
+    var sel = document.querySelector('.product-variant-id') || document.querySelector('input[name="id"]') || document.querySelector('select[name="id"]');
+    if(sel) return sel.value;
+    // Try from URL
+    var m = location.search.match(/variant=(\d+)/);
+    if(m) return m[1];
+    return null;
+  }
+  function sbGetQty(){
+    var q = document.getElementById('real-quantity-input') || document.querySelector('input[name="quantity"]');
+    return q ? (parseInt(q.value)||1) : 1;
+  }
+  function sbAddToCart(goCheckout){
+    var id = sbGetVariantId();
+    if(!id){ alert('Could not find product variant. Please select options.'); return; }
+    var qty = sbGetQty();
+    fetch('/cart/add.js',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest'},
+      body:JSON.stringify({id:parseInt(id),quantity:qty})
+    }).then(function(r){ return r.json(); }).then(function(data){
+      if(data.id){
+        if(goCheckout){ location.href='/checkout'; }
+        else { location.href='/cart'; }
+      } else {
+        alert(data.description || 'Could not add to cart');
+      }
+    }).catch(function(e){ console.error(e); alert('Error adding to cart'); });
+  }
+  document.getElementById('sbAtcBtn').onclick=function(){ sbAddToCart(false); };
+  document.getElementById('sbBuyBtn').onclick=function(){ sbAddToCart(true); };
   </script>
   {%- endif -%}
   </body>
