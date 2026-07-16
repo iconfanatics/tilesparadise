@@ -214,18 +214,17 @@
     // Detect when main ATC scrolls out of view
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-          // Button has scrolled UP out of view
+        // If it's not intersecting and it's in the upper half of the viewport, it scrolled up
+        if (!entry.isIntersecting && entry.boundingClientRect.top < window.innerHeight / 2) {
           stickyBar.classList.add('is-visible');
         } else {
-          // Button is visible or below fold
           stickyBar.classList.remove('is-visible');
         }
       });
     }, {
       root: null,
       threshold: 0,
-      rootMargin: "-100px 0px 0px 0px" // Slight buffer
+      rootMargin: "0px"
     });
 
     observer.observe(mainAtcBtn);
