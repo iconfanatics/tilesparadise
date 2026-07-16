@@ -472,5 +472,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 </script>
-</body>
+    {%- if request.page_type == 'product' -%}
+      {%- render 'sticky-add-to-cart', product: product -%}
+    {%- endif -%}
+  </body>
 </html>

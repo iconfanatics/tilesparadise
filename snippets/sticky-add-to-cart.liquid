@@ -209,7 +209,7 @@
     const stickyBuyBtn = document.querySelector('.js-sticky-buy-btn');
     const paymentButtonContainer = document.querySelector('.shopify-payment-button');
 
-    if (!stickyBar || !mainAtcBtn) return;
+    if (!stickyBar) return;
 
     // Detect when main ATC scrolls out of view
     const observer = new IntersectionObserver((entries) => {
@@ -227,7 +227,9 @@
       rootMargin: "0px"
     });
 
-    observer.observe(mainAtcBtn);
+    if (mainAtcBtn) {
+      observer.observe(mainAtcBtn);
+    }
 
     // Sync Click - Add to Cart
     if (stickyAddBtn) {
