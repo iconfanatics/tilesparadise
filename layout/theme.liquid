@@ -474,35 +474,30 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
   {%- if request.page_type == 'product' -%}
   <style>
-    #ai-sticky-bar{position:fixed;bottom:0;left:0;width:100%;background:#fff;border-top:2px solid #ddd;box-shadow:0 -4px 20px rgba(0,0,0,.15);z-index:9999999;transform:translateY(100%);transition:transform .3s ease;padding:12px 20px;box-sizing:border-box}
-    #ai-sticky-bar.show{transform:translateY(0)}
-    #ai-sticky-bar .sb-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px}
-    #ai-sticky-bar .sb-title{flex:1;font-weight:700;font-size:15px;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    #ai-sticky-bar .sb-atc{background:#1a1a1a;color:#fff;border:none;padding:13px 30px;font-size:14px;font-weight:700;border-radius:6px;cursor:pointer}
-    #ai-sticky-bar .sb-atc:hover{background:#333}
-    #ai-sticky-bar .sb-buy{background:#1e2d7d;color:#fff;border:none;padding:13px 30px;font-size:14px;font-weight:700;border-radius:6px;cursor:pointer}
-    #ai-sticky-bar .sb-buy:hover{background:#16226b}
-    @media(max-width:640px){
-      #ai-sticky-bar .sb-title{display:none}
-      #ai-sticky-bar .sb-inner{justify-content:center}
-      #ai-sticky-bar .sb-atc,#ai-sticky-bar .sb-buy{flex:1;padding:13px 8px;font-size:13px}
+    #ai-sticky-bar{
+      position:fixed;
+      bottom:0;
+      left:0;
+      width:100%;
+      background:#1e2d7d;
+      z-index:2147483647;
+      padding:14px 20px;
+      box-sizing:border-box;
+      display:flex !important;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      box-shadow:0 -4px 20px rgba(0,0,0,.2);
     }
+    #sbAtcBtn{background:#fff;color:#1e2d7d;border:none;padding:12px 32px;font-size:15px;font-weight:700;border-radius:6px;cursor:pointer;}
+    #sbBuyBtn{background:#ff6128;color:#fff;border:none;padding:12px 32px;font-size:15px;font-weight:700;border-radius:6px;cursor:pointer;}
   </style>
   <div id="ai-sticky-bar">
-    <div class="sb-inner">
-      <span class="sb-title">{{ product.title }}</span>
-      <button class="sb-atc" id="sbAtcBtn">Add to Basket</button>
-      <button class="sb-buy" id="sbBuyBtn">Buy Now</button>
-    </div>
+    <button id="sbAtcBtn">🛒 Add to Basket</button>
+    <button id="sbBuyBtn">⚡ Buy Now</button>
   </div>
   <script>
   (function(){
-    var bar=document.getElementById('ai-sticky-bar');
-    if(!bar)return;
-    window.addEventListener('scroll',function(){
-      if(window.scrollY>300){bar.classList.add('show');}
-      else{bar.classList.remove('show');}
-    });
     function getAtcBtn(){
       return document.querySelector('button.product-form__add-button')
         ||document.querySelector('button[data-action="add-to-cart"]')
