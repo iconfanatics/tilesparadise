@@ -613,6 +613,8 @@ $(document).ready(function(){
   {%- endif -%}
 {%- endfor -%}
 
+{%- render 'sticky-add-to-cart', product: product -%}
+
 {% schema %}
 {
   "name": "Product",

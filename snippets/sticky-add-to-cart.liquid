@@ -1,0 +1,288 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<style>
+  .ai-sticky-atc {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+    z-index: 999;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .ai-sticky-atc.is-visible {
+    transform: translateY(0);
+  }
+
+  .ai-sticky-atc__inner {
+    max-width: 1350px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .ai-sticky-atc__product {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ai-sticky-atc__image {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    object-fit: cover;
+    background: #f4f4f4;
+    flex-shrink: 0;
+  }
+
+  .ai-sticky-atc__info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .ai-sticky-atc__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+  }
+
+  .ai-sticky-atc__price-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .ai-sticky-atc__price {
+    font-size: 14px;
+    font-weight: 800;
+    color: #111;
+  }
+
+  .ai-sticky-atc__compare-price {
+    font-size: 12px;
+    color: #888;
+    text-decoration: line-through;
+  }
+
+  .ai-sticky-atc__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .ai-sticky-atc__button {
+    height: 48px;
+    padding: 0 24px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-sticky-atc__button--add {
+    background: #111;
+    color: #fff;
+  }
+
+  .ai-sticky-atc__button--add:hover {
+    background: #333;
+  }
+
+  .ai-sticky-atc__button--buy {
+    background: #5a31f4;
+    color: #fff;
+  }
+
+  .ai-sticky-atc__button--buy:hover {
+    background: #4726d1;
+  }
+  
+  .ai-sticky-atc__button--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Responsive Adjustments */
+  @media screen and (max-width: 768px) {
+    .ai-sticky-atc {
+      padding: 10px 16px;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    }
+    
+    .ai-sticky-atc__product {
+      display: none; /* Hide product info on mobile to save space */
+    }
+
+    .ai-sticky-atc__inner {
+      justify-content: center;
+    }
+    
+    .ai-sticky-atc__actions {
+      width: 100%;
+      gap: 10px;
+    }
+    
+    .ai-sticky-atc__button {
+      flex: 1;
+      padding: 0 10px;
+      height: 44px;
+      font-size: 13px;
+    }
+  }
+</style>
+
+<div class="ai-sticky-atc" id="aiStickyAtc">
+  <div class="ai-sticky-atc__inner">
+    <div class="ai-sticky-atc__product">
+      {%- if product.featured_image -%}
+        <img src="{{ product.featured_image | image_url: width: 100 }}" alt="{{ product.title | escape }}" class="ai-sticky-atc__image" width="50" height="50" loading="lazy">
+      {%- endif -%}
+      <div class="ai-sticky-atc__info">
+        <h4 class="ai-sticky-atc__title">{{ product.title }}</h4>
+        <div class="ai-sticky-atc__price-wrapper">
+          <span class="ai-sticky-atc__price js-sticky-price">{{ current_variant.price | money }}</span>
+          {%- if current_variant.compare_at_price > current_variant.price -%}
+            <span class="ai-sticky-atc__compare-price js-sticky-compare-price">{{ current_variant.compare_at_price | money }}</span>
+          {%- else -%}
+            <span class="ai-sticky-atc__compare-price js-sticky-compare-price" style="display: none;"></span>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+    
+    <div class="ai-sticky-atc__actions">
+      {%- if current_variant.available -%}
+        <button type="button" class="ai-sticky-atc__button ai-sticky-atc__button--add js-sticky-add-btn">
+          {{ 'product.form.add_to_cart' | t }}
+        </button>
+        {%- if section.settings.show_payment_button or block.settings.show_payment_button != false -%}
+          <button type="button" class="ai-sticky-atc__button ai-sticky-atc__button--buy js-sticky-buy-btn">
+            Buy Now
+          </button>
+        {%- endif -%}
+      {%- else -%}
+        <button type="button" class="ai-sticky-atc__button ai-sticky-atc__button--add ai-sticky-atc__button--disabled">
+          {{ 'product.form.sold_out' | t }}
+        </button>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const stickyBar = document.getElementById('aiStickyAtc');
+    const mainAtcBtn = document.querySelector('.product-form__add-button') || document.querySelector('[data-action="add-to-cart"]');
+    const stickyAddBtn = document.querySelector('.js-sticky-add-btn');
+    const stickyBuyBtn = document.querySelector('.js-sticky-buy-btn');
+    const paymentButtonContainer = document.querySelector('.shopify-payment-button');
+
+    if (!stickyBar || !mainAtcBtn) return;
+
+    // Detect when main ATC scrolls out of view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+          // Button has scrolled UP out of view
+          stickyBar.classList.add('is-visible');
+        } else {
+          // Button is visible or below fold
+          stickyBar.classList.remove('is-visible');
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0,
+      rootMargin: "-100px 0px 0px 0px" // Slight buffer
+    });
+
+    observer.observe(mainAtcBtn);
+
+    // Sync Click - Add to Cart
+    if (stickyAddBtn) {
+      stickyAddBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        mainAtcBtn.click();
+      });
+    }
+
+    // Sync Click - Buy Now
+    if (stickyBuyBtn) {
+      stickyBuyBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Look for the dynamic checkout button
+        const dynamicBtn = paymentButtonContainer ? paymentButtonContainer.querySelector('button') : null;
+        if (dynamicBtn) {
+          dynamicBtn.click();
+        } else {
+          // Fallback to normal add to cart if no dynamic button
+          mainAtcBtn.click();
+        }
+      });
+    }
+
+    // Sync Price when variant changes
+    document.addEventListener('theme:variant:changed', function(e) {
+      const variant = e.detail.variant;
+      if (!variant) return;
+
+      const priceEl = stickyBar.querySelector('.js-sticky-price');
+      const comparePriceEl = stickyBar.querySelector('.js-sticky-compare-price');
+
+      if (priceEl && variant.price) {
+        priceEl.innerHTML = Shopify.formatMoney(variant.price, window.theme.moneyFormat);
+      }
+
+      if (comparePriceEl) {
+        if (variant.compare_at_price > variant.price) {
+          comparePriceEl.innerHTML = Shopify.formatMoney(variant.compare_at_price, window.theme.moneyFormat);
+          comparePriceEl.style.display = 'inline';
+        } else {
+          comparePriceEl.style.display = 'none';
+        }
+      }
+      
+      // Update buttons if available / unavailable
+      const addBtn = stickyBar.querySelector('.ai-sticky-atc__button--add');
+      const buyBtn = stickyBar.querySelector('.ai-sticky-atc__button--buy');
+      
+      if (variant.available) {
+        addBtn.classList.remove('ai-sticky-atc__button--disabled');
+        addBtn.innerHTML = window.theme.strings.addToCart || 'Add to cart';
+        if(buyBtn) buyBtn.style.display = 'flex';
+      } else {
+        addBtn.classList.add('ai-sticky-atc__button--disabled');
+        addBtn.innerHTML = window.theme.strings.soldOut || 'Sold out';
+        if(buyBtn) buyBtn.style.display = 'none';
+      }
+    });
+  });
+</script>
