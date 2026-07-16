@@ -3,16 +3,16 @@
 <style>
   .ai-sticky-atc {
     position: fixed;
-    bottom: 50px;
+    bottom: 0;
     left: 0;
     width: 100%;
-    background: red !important;
+    background: rgba(255, 255, 255, 0.95);
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
-    z-index: 999999;
-    transform: translateY(0) !important;
+    z-index: 99999;
+    transform: translateY(100%);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     padding: 12px 20px;
     display: flex;
@@ -205,7 +205,7 @@
       document.body.appendChild(stickyBar);
     }
     
-    const mainAtcBtn = document.querySelector('.product-form__add-button') || document.querySelector('[data-action="add-to-cart"]') || document.querySelector('.add-to-cart');
+    const mainAtcBtn = document.querySelector('button.product-form__add-button') || document.querySelector('button[data-action="add-to-cart"]') || document.querySelector('button.add-to-cart') || document.querySelector('form.product-form__add-button');
     const stickyAddBtn = document.querySelector('.js-sticky-add-btn');
     const stickyBuyBtn = document.querySelector('.js-sticky-buy-btn');
     const paymentButtonContainer = document.querySelector('.shopify-payment-button');
@@ -215,7 +215,6 @@
     // Detect when main ATC scrolls out of view
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        // If it's not intersecting and it's in the upper half of the viewport, it scrolled up
         if (!entry.isIntersecting && entry.boundingClientRect.top < window.innerHeight / 2) {
           stickyBar.classList.add('is-visible');
         } else {
@@ -232,25 +231,35 @@
       observer.observe(mainAtcBtn);
     }
 
+    // Function to robustly trigger add to cart
+    const triggerAddToCart = () => {
+      if (!mainAtcBtn) return;
+      if (mainAtcBtn.tagName === 'FORM') {
+        const submitEvent = new Event('submit', { cancelable: true, bubbles: true });
+        mainAtcBtn.dispatchEvent(submitEvent);
+        if (!submitEvent.defaultPrevented) mainAtcBtn.submit();
+      } else {
+        mainAtcBtn.click();
+      }
+    };
+
     // Sync Click - Add to Cart
     if (stickyAddBtn) {
-      stickyAddBtn.addEventListener('click', function(e) {
+      stickyAddBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        mainAtcBtn.click();
+        triggerAddToCart();
       });
     }
 
     // Sync Click - Buy Now
     if (stickyBuyBtn) {
-      stickyBuyBtn.addEventListener('click', function(e) {
+      stickyBuyBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        // Look for the dynamic checkout button
-        const dynamicBtn = paymentButtonContainer ? paymentButtonContainer.querySelector('button') : null;
-        if (dynamicBtn) {
-          dynamicBtn.click();
+        const mainBuyBtn = paymentButtonContainer ? paymentButtonContainer.querySelector('button') : null;
+        if (mainBuyBtn) {
+          mainBuyBtn.click();
         } else {
-          // Fallback to normal add to cart if no dynamic button
-          mainAtcBtn.click();
+          triggerAddToCart(); // fallback
         }
       });
     }
