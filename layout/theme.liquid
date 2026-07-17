@@ -473,49 +473,28 @@ document.addEventListener('DOMContentLoaded', function() {
     <button id="sbBuyBtn">&#x26A1; Buy Now</button>
   </div>
   <script>
-  function sbGetVariantId(){
-    // Try multiple ways to get variant ID
-    var sel = document.querySelector('.product-variant-id') || document.querySelector('input[name="id"]') || document.querySelector('select[name="id"]');
-    if(sel) return sel.value;
-    // Try from URL
-    var m = location.search.match(/variant=(\d+)/);
-    if(m) return m[1];
-    return null;
-  }
-  function sbGetQty(){
-    var q = document.getElementById('real-quantity-input') || document.querySelector('input[name="quantity"]');
-    return q ? (parseInt(q.value)||1) : 1;
-  }
-  function sbAddToCart(goCheckout){
-    var id = sbGetVariantId();
-    if(!id){ alert('Could not find product variant. Please select options.'); return; }
-    var qty = sbGetQty();
-    fetch('/cart/add.js',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest'},
-      body:JSON.stringify({id:parseInt(id),quantity:qty})
-    }).then(function(r){ return r.json(); }).then(function(data){
-      if(data.id){
-        if(goCheckout){ location.href='/checkout'; }
-        else { 
-          // Dispatch event to update theme cart
-          document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
-          
-          // Open the mini-cart drawer by clicking the cart icon
-          var cartIcon = document.querySelector('.header__cart-toggle');
-          if(cartIcon) cartIcon.click();
-          
-          // Fallback if the theme's drawer doesn't open via click
-          var miniCart = document.getElementById('mini-cart');
-          if(miniCart) miniCart.setAttribute('aria-hidden', 'false');
-        }
-      } else {
-        alert(data.description || 'Could not add to cart');
-      }
-    }).catch(function(e){ console.error(e); alert('Error adding to cart'); });
-  }
-  document.getElementById('sbAtcBtn').onclick=function(){ sbAddToCart(false); };
-  document.getElementById('sbBuyBtn').onclick=function(){ sbAddToCart(true); };
+  document.getElementById('sbAtcBtn').onclick=function(e){ 
+    e.preventDefault();
+    var mainBtn = document.querySelector('.product-form__add-button, .cst_add, .metafield_button');
+    if(mainBtn) { 
+      mainBtn.click(); 
+    } else {
+      var form = document.querySelector('form[action*="/cart/add"]');
+      if(form) form.submit();
+    }
+  };
+  document.getElementById('sbBuyBtn').onclick=function(e){ 
+    e.preventDefault();
+    var mainBtn = document.querySelector('.product-form__add-button, .cst_add, .metafield_button');
+    if(mainBtn) {
+      // For Buy Now, maybe redirect to checkout after small delay
+      mainBtn.click();
+      setTimeout(function(){ window.location.href = '/checkout'; }, 1000);
+    } else {
+      var form = document.querySelector('form[action*="/cart/add"]');
+      if(form) form.submit();
+    }
+  };
   </script>
   {%- endif -%}
   </body>
