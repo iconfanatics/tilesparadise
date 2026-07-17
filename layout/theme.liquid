@@ -113,57 +113,51 @@ You can learn more about this (and learn how to cleanly revert these changes) at
 
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
-    {% comment %}
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const addToCartBtn = document.querySelector('.product-form__add-button');
-
-  if (addToCartBtn) {
-    addToCartBtn.addEventListener('click', function (event) {
+  const addToCartBtns = document.querySelectorAll('.product-form__add-button, .cst_add, .metafield_button');
+  
+  addToCartBtns.forEach(function(btn) {
+    btn.addEventListener('click', function (event) {
       event.preventDefault(); // prevent default form submit
 
-      const form = addToCartBtn.closest('form');
+      const form = btn.closest('form');
+      if (!form) return;
+      
       const formData = new FormData(form);
 
-      // Step 1: Add to cart via AJAX
+      // Add to cart via AJAX
       fetch('/cart/add.js', {
         method: 'POST',
         body: formData,
       })
       .then(response => {
         if (response.ok) {
-          // Step 2: Reload the page
-          // But first set a flag in localStorage to trigger cart icon click after reload
-          localStorage.setItem('openCartAfterReload', 'true');
-          location.reload();
+          // Dispatch event to update theme cart
+          document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+          
+          // Open the mini-cart drawer by clicking the cart icon
+          var cartIcon = document.querySelector('.header__cart-toggle');
+          if(cartIcon) cartIcon.click();
+          
+          // Fallback if the theme's drawer doesn't open via click
+          var miniCart = document.getElementById('mini-cart');
+          if(miniCart) miniCart.setAttribute('aria-hidden', 'false');
         } else {
           return response.json().then(err => {
             console.error("Add to cart failed:", err);
+            alert(err.description || 'Could not add to cart');
           });
         }
       })
       .catch(err => {
         console.error("Add to cart error:", err);
+        alert('Error adding to cart');
       });
     });
-  }
-
-  // Step 3: After reload, click cart icon if flag is set
-  if (localStorage.getItem('openCartAfterReload') === 'true') {
-    localStorage.removeItem('openCartAfterReload'); // clear the flag
-
-    // Wait a little to ensure cart icon exists
-    setTimeout(() => {
-      const cartIcon = document.querySelector('.header__cart-toggle');
-      if (cartIcon) {
-        cartIcon.click();
-      }
-    }, 1000); // wait 1 second after reload
-  }
+  });
 });
 </script>
-
-{% endcomment %}
 
 
     {%- if request.page_type == 'customers/addresses' -%}
