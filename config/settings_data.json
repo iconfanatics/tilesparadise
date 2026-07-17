@@ -56,7 +56,7 @@
     "low_inventory_threshold": 0,
     "sale_text": "<span> Xmas Sale </span>",
     "sale_collection": "",
-    "cart_type": "page",
+    "cart_type": "drawer",
     "cart_empty_button_link": "shopify://collections/all",
     "cart_show_checkout_button": false,
     "cart_show_free_shipping_threshold": true,
