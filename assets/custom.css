@@ -4261,3 +4261,9 @@ span.inventory--low::before {
   margin-top: 10px !important;
 }
 
+
+/* Fix blog post text width to match image */
+.article__inner {
+    max-width: 100% !important;
+    margin: 0 !important;
+}
