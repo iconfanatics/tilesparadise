@@ -466,36 +466,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 </script>
-  {%- if request.page_type == 'product' -%}
-  <div id="ai-sticky-bar" style="position:fixed;bottom:0;left:0;width:100%;background:#1e2d7d;z-index:2147483647;padding:14px 20px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:12px;box-shadow:0 -4px 20px rgba(0,0,0,.2);">
-    <style>#sbAtcBtn,#sbBuyBtn{border:none;padding:12px 28px;font-size:15px;font-weight:700;border-radius:6px;cursor:pointer;}#sbAtcBtn{background:#fff;color:#1e2d7d;}#sbBuyBtn{background:#ff6128;color:#fff;}</style>
-    <button id="sbAtcBtn">&#x1F6D2; Add to Basket</button>
-    <button id="sbBuyBtn">&#x26A1; Buy Now</button>
-  </div>
-  <script>
-  document.getElementById('sbAtcBtn').onclick=function(e){ 
-    e.preventDefault();
-    var mainBtn = document.querySelector('.product-form__add-button, .cst_add, .metafield_button');
-    if(mainBtn) { 
-      mainBtn.click(); 
-    } else {
-      var form = document.querySelector('form[action*="/cart/add"]');
-      if(form) form.submit();
-    }
-  };
-  document.getElementById('sbBuyBtn').onclick=function(e){ 
-    e.preventDefault();
-    var mainBtn = document.querySelector('.product-form__add-button, .cst_add, .metafield_button');
-    if(mainBtn) {
-      // For Buy Now, maybe redirect to checkout after small delay
-      mainBtn.click();
-      setTimeout(function(){ window.location.href = '/checkout'; }, 1000);
-    } else {
-      var form = document.querySelector('form[action*="/cart/add"]');
-      if(form) form.submit();
-    }
-  };
-  </script>
-  {%- endif -%}
   </body>
 </html>
