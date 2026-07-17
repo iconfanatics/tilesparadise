@@ -4267,3 +4267,16 @@ span.inventory--low::before {
     max-width: 100% !important;
     margin: 0 !important;
 }
+
+/* Fix header cart count badge */
+.header__cart-count {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 24px !important;
+    height: 24px !important;
+    width: auto !important;
+    padding: 0 6px !important;
+    border-radius: 12px !important;
+    line-height: 1 !important;
+}
