@@ -277,6 +277,12 @@ body {
   flex-direction: column;
 }
 
+@media (min-width: 1000px) {
+  .tabbed-mega-nav__columns > .tabbed-mega-nav__column:first-child {
+    flex: 3;
+  }
+}
+
 .tabbed-mega-nav__link-grid {
   column-count: 3;
   column-gap: 34px;
