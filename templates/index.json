@@ -392,10 +392,12 @@
         "slide_1": {
           "type": "image",
           "settings": {
-            "title": "Welcome to Tiles Paradise",
-            "content": "Discover our new collections",
-            "button_text": "Shop Now",
-            "link": "shopify://collections/all"
+            "image": "shopify://shop_images/sale-banner-summer-desktop_8411e12b-39f9-459a-8504-219959f0a214.jpg",
+            "mobile_image": "shopify://shop_images/sale-banner-summer-mobile_3cbe65a5-b2f0-4968-b690-f27d4c5d87ac.jpg",
+            "title": "",
+            "content": "",
+            "button_text": "",
+            "link": "shopify://collections/tile-sale"
           }
         },
         "slide_2": {
