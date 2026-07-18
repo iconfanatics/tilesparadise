@@ -267,7 +267,8 @@ body {
 .tabbed-mega-nav__columns {
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 34px;
 }
 
 .tabbed-mega-nav__column {
@@ -281,6 +282,12 @@ body {
   column-gap: 34px;
   column-rule: 1px solid #1e73be;
   flex: 1;
+}
+@media (min-width: 1000px) {
+  .tabbed-mega-nav__columns > .tabbed-mega-nav__column:not(:first-child) .tabbed-mega-nav__link-grid {
+      column-count: 1;
+      column-rule: none;
+  }
 }
 
 .tabbed-mega-nav__link-grid li {

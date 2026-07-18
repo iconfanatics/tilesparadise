@@ -72,7 +72,7 @@
         "mega_menu_sample2": {
           "type": "mega_menu",
           "settings": {
-            "menu_item": "Basins",
+            "menu_item": "Type",
             "custom_title_1": "Sample Custom Menu 1",
             "custom_linklist_1": "main-menu",
             "custom_title_2": "Sample Custom Menu 2",
