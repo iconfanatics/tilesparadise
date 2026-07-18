@@ -11,6 +11,7 @@
   "sections": {
     "custom_liquid_8mBCBz": {
       "type": "custom-liquid",
+      "disabled": true,
       "name": "Custom Liquid",
       "settings": {
         "title": "",
@@ -387,8 +388,32 @@
     "slideshow_qt7hFy": {
       "type": "slideshow",
       "name": "Slideshow",
+      "blocks": {
+        "slide_1": {
+          "type": "image",
+          "settings": {
+            "title": "Welcome to Tiles Paradise",
+            "content": "Discover our new collections",
+            "button_text": "Shop Now",
+            "link": "shopify://collections/all"
+          }
+        },
+        "slide_2": {
+          "type": "image",
+          "settings": {
+            "title": "Summer Sale",
+            "content": "Up to 50% off on selected items",
+            "button_text": "View Offers",
+            "link": "shopify://collections/tile-sale"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2"
+      ],
       "settings": {
-        "edge_to_edge": false,
+        "edge_to_edge": true,
         "section_size": "preserve_ratio",
         "carousel_effect": "slide",
         "autoplay": true,
@@ -793,6 +818,7 @@
     }
   },
   "order": [
+    "slideshow_qt7hFy",
     "custom_liquid_8mBCBz",
     "usp_bar_T3dt7A",
     "best_selling_products_PjyGVK",
@@ -804,7 +830,6 @@
     "rich_text_NrganX",
     "apps_TetGGX",
     "custom_tabs_1",
-    "slideshow_qt7hFy",
     "image_with_text_PLTMEU",
     "blog_posts_rYkFhT",
     "instagram_feed_kpMBKB",
