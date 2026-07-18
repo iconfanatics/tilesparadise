@@ -345,7 +345,7 @@
                             {%- assign has_panel = true -%}
                           {%- endif -%}
                           {%- if child_promo_block != blank -%}
-                            {%- if child_promo_block.settings.custom_linklist_1 != blank or child_promo_block.settings.custom_linklist_2 != blank -%}
+                            {%- if child_promo_block.settings.custom_linklist_1 != blank or child_promo_block.settings.custom_linklist_2 != blank or child_promo_block.settings.manual_link_1_text != blank or child_promo_block.settings.manual2_link_1_text != blank -%}
                               {%- assign has_panel = true -%}
                             {%- endif -%}
                           {%- endif -%}
@@ -376,38 +376,75 @@
                                       </div>
                                     {%- endif -%}
 
-                                    {%- if child_promo_block != blank and child_promo_block.settings.custom_linklist_1 != blank -%}
-                                      <div class="tabbed-mega-nav__column">
-                                        {%- if child_promo_block.settings.custom_title_1 != blank -%}
-                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_1 }}</span>
-                                        {%- endif -%}
+                                    {%- if child_promo_block != blank -%}
+                                      {%- if child_promo_block.settings.custom_linklist_1 != blank or child_promo_block.settings.manual_link_1_text != blank -%}
+                                        <div class="tabbed-mega-nav__column">
+                                          {%- if child_promo_block.settings.custom_title_1 != blank -%}
+                                            <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_1 }}</span>
+                                          {%- endif -%}
                                         <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                          {%- for custom_link in child_promo_block.settings.custom_linklist_1.links -%}
-                                            <li>
-                                              <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
-                                                {{ custom_link.title }}
-                                              </a>
-                                            </li>
-                                          {%- endfor -%}
+                                          {%- if child_promo_block.settings.custom_linklist_1 != blank -%}
+                                            {%- for custom_link in child_promo_block.settings.custom_linklist_1.links -%}
+                                              <li>
+                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                  {{ custom_link.title }}
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.manual_link_1_text != blank -%}
+                                            <li><a href="{{ child_promo_block.settings.manual_link_1_url }}" class="tabbed-mega-nav__panel-link">{{ child_promo_block.settings.manual_link_1_text }}</a></li>
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.manual_link_2_text != blank -%}
+                                            <li><a href="{{ child_promo_block.settings.manual_link_2_url }}" class="tabbed-mega-nav__panel-link">{{ child_promo_block.settings.manual_link_2_text }}</a></li>
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.manual_link_3_text != blank -%}
+                                            <li><a href="{{ child_promo_block.settings.manual_link_3_url }}" class="tabbed-mega-nav__panel-link">{{ child_promo_block.settings.manual_link_3_text }}</a></li>
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.manual_link_4_text != blank -%}
+                                            <li><a href="{{ child_promo_block.settings.manual_link_4_url }}" class="tabbed-mega-nav__panel-link">{{ child_promo_block.settings.manual_link_4_text }}</a></li>
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.manual_link_5_text != blank -%}
+                                            <li><a href="{{ child_promo_block.settings.manual_link_5_url }}" class="tabbed-mega-nav__panel-link">{{ child_promo_block.settings.manual_link_5_text }}</a></li>
+                                          {%- endif -%}
                                         </ul>
                                       </div>
                                     {%- endif -%}
 
-                                    {%- if child_promo_block != blank and child_promo_block.settings.custom_linklist_2 != blank -%}
-                                      <div class="tabbed-mega-nav__column">
+                                    {%- if child_promo_block != blank -%}
+                                      {%- if child_promo_block.settings.custom_linklist_2 != blank or child_promo_block.settings.manual2_link_1_text != blank -%}
+                                        <div class="tabbed-mega-nav__column">
                                         {%- if child_promo_block.settings.custom_title_2 != blank -%}
                                           <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_2 }}</span>
                                         {%- endif -%}
                                         <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                          {%- for custom_link in child_promo_block.settings.custom_linklist_2.links -%}
-                                            <li>
-                                              <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
-                                                {{ custom_link.title }}
-                                              </a>
-                                            </li>
-                                          {%- endfor -%}
+                                          {%- if child_promo_block.settings.custom_linklist_2 != blank -%}
+                                            {%- for custom_link in child_promo_block.settings.custom_linklist_2.links -%}
+                                              <li>
+                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                  {{ custom_link.title }}
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.manual2_link_1_text != blank -%}
+                                            <li><a href="{{ child_promo_block.settings.manual2_link_1_url }}" class="tabbed-mega-nav__panel-link">{{ child_promo_block.settings.manual2_link_1_text }}</a></li>
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.manual2_link_2_text != blank -%}
+                                            <li><a href="{{ child_promo_block.settings.manual2_link_2_url }}" class="tabbed-mega-nav__panel-link">{{ child_promo_block.settings.manual2_link_2_text }}</a></li>
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.manual2_link_3_text != blank -%}
+                                            <li><a href="{{ child_promo_block.settings.manual2_link_3_url }}" class="tabbed-mega-nav__panel-link">{{ child_promo_block.settings.manual2_link_3_text }}</a></li>
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.manual2_link_4_text != blank -%}
+                                            <li><a href="{{ child_promo_block.settings.manual2_link_4_url }}" class="tabbed-mega-nav__panel-link">{{ child_promo_block.settings.manual2_link_4_text }}</a></li>
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.manual2_link_5_text != blank -%}
+                                            <li><a href="{{ child_promo_block.settings.manual2_link_5_url }}" class="tabbed-mega-nav__panel-link">{{ child_promo_block.settings.manual2_link_5_text }}</a></li>
+                                          {%- endif -%}
                                         </ul>
                                       </div>
+                                      {%- endif -%}
                                     {%- endif -%}
                                   </div>
 
@@ -1105,7 +1142,61 @@ display:block;
         {
           "type": "link_list",
           "id": "custom_linklist_1",
-          "label": "Menu"
+          "label": "Select Menu (Optional)"
+        },
+        {
+          "type": "header",
+          "content": "OR Add Manual Links 1"
+        },
+        {
+          "type": "text",
+          "id": "manual_link_1_text",
+          "label": "Manual Link 1 Text"
+        },
+        {
+          "type": "url",
+          "id": "manual_link_1_url",
+          "label": "Manual Link 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "manual_link_2_text",
+          "label": "Manual Link 2 Text"
+        },
+        {
+          "type": "url",
+          "id": "manual_link_2_url",
+          "label": "Manual Link 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "manual_link_3_text",
+          "label": "Manual Link 3 Text"
+        },
+        {
+          "type": "url",
+          "id": "manual_link_3_url",
+          "label": "Manual Link 3 URL"
+        },
+        {
+          "type": "text",
+          "id": "manual_link_4_text",
+          "label": "Manual Link 4 Text"
+        },
+        {
+          "type": "url",
+          "id": "manual_link_4_url",
+          "label": "Manual Link 4 URL"
+        },
+        {
+          "type": "text",
+          "id": "manual_link_5_text",
+          "label": "Manual Link 5 Text"
+        },
+        {
+          "type": "url",
+          "id": "manual_link_5_url",
+          "label": "Manual Link 5 URL"
         },
         {
           "type": "header",
@@ -1119,7 +1210,61 @@ display:block;
         {
           "type": "link_list",
           "id": "custom_linklist_2",
-          "label": "Menu"
+          "label": "Select Menu (Optional)"
+        },
+        {
+          "type": "header",
+          "content": "OR Add Manual Links 2"
+        },
+        {
+          "type": "text",
+          "id": "manual2_link_1_text",
+          "label": "Manual Link 1 Text"
+        },
+        {
+          "type": "url",
+          "id": "manual2_link_1_url",
+          "label": "Manual Link 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "manual2_link_2_text",
+          "label": "Manual Link 2 Text"
+        },
+        {
+          "type": "url",
+          "id": "manual2_link_2_url",
+          "label": "Manual Link 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "manual2_link_3_text",
+          "label": "Manual Link 3 Text"
+        },
+        {
+          "type": "url",
+          "id": "manual2_link_3_url",
+          "label": "Manual Link 3 URL"
+        },
+        {
+          "type": "text",
+          "id": "manual2_link_4_text",
+          "label": "Manual Link 4 Text"
+        },
+        {
+          "type": "url",
+          "id": "manual2_link_4_url",
+          "label": "Manual Link 4 URL"
+        },
+        {
+          "type": "text",
+          "id": "manual2_link_5_text",
+          "label": "Manual Link 5 Text"
+        },
+        {
+          "type": "url",
+          "id": "manual2_link_5_url",
+          "label": "Manual Link 5 URL"
         },
         {
           "type": "header",
