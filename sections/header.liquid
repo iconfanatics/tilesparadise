@@ -340,29 +340,75 @@
                             {%- endif -%}
                           {%- endfor -%}
 
-                          <li class="tabbed-mega-nav__secondary-item {% if child_link.links.size > 0 %}has-panel{% endif %} {% if child_title_downcase == 'offers' %}is-offers{% endif %}">
+                          {%- assign has_panel = false -%}
+                          {%- if child_link.links.size > 0 -%}
+                            {%- assign has_panel = true -%}
+                          {%- endif -%}
+                          {%- if child_promo_block != blank -%}
+                            {%- if child_promo_block.settings.custom_linklist_1 != blank or child_promo_block.settings.custom_linklist_2 != blank -%}
+                              {%- assign has_panel = true -%}
+                            {%- endif -%}
+                          {%- endif -%}
+
+                          <li class="tabbed-mega-nav__secondary-item {% if has_panel %}has-panel{% endif %} {% if child_title_downcase == 'offers' %}is-offers{% endif %}">
                             <a href="{{ child_link.url }}" class="tabbed-mega-nav__secondary-link">
                               {{ child_link.title }}
                             </a>
 
-                            {%- if child_link.links.size > 0 -%}
+                            {%- if has_panel -%}
                               <div class="tabbed-mega-nav__panel">
                                 <div class="tabbed-mega-nav__panel-inner {% if child_promo_block != blank and child_promo_block.settings.image_1 != blank %}has-promo{% endif %}">
                                   <div class="tabbed-mega-nav__columns">
-                                    <div class="tabbed-mega-nav__column">
-                                      <a href="{{ child_link.url }}" class="tabbed-mega-nav__column-title">
-                                        {{ child_link.title }}
-                                      </a>
-                                      <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                        {%- for grandchild_link in child_link.links -%}
-                                          <li>
-                                            <a href="{{ grandchild_link.url }}" class="tabbed-mega-nav__panel-link">
-                                              {{ grandchild_link.title }}
-                                            </a>
-                                          </li>
-                                        {%- endfor -%}
-                                      </ul>
-                                    </div>
+                                    {%- if child_link.links.size > 0 -%}
+                                      <div class="tabbed-mega-nav__column">
+                                        <a href="{{ child_link.url }}" class="tabbed-mega-nav__column-title">
+                                          {{ child_link.title }}
+                                        </a>
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- for grandchild_link in child_link.links -%}
+                                            <li>
+                                              <a href="{{ grandchild_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                {{ grandchild_link.title }}
+                                              </a>
+                                            </li>
+                                          {%- endfor -%}
+                                        </ul>
+                                      </div>
+                                    {%- endif -%}
+
+                                    {%- if child_promo_block != blank and child_promo_block.settings.custom_linklist_1 != blank -%}
+                                      <div class="tabbed-mega-nav__column">
+                                        {%- if child_promo_block.settings.custom_title_1 != blank -%}
+                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_1 }}</span>
+                                        {%- endif -%}
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- for custom_link in child_promo_block.settings.custom_linklist_1.links -%}
+                                            <li>
+                                              <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                {{ custom_link.title }}
+                                              </a>
+                                            </li>
+                                          {%- endfor -%}
+                                        </ul>
+                                      </div>
+                                    {%- endif -%}
+
+                                    {%- if child_promo_block != blank and child_promo_block.settings.custom_linklist_2 != blank -%}
+                                      <div class="tabbed-mega-nav__column">
+                                        {%- if child_promo_block.settings.custom_title_2 != blank -%}
+                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_2 }}</span>
+                                        {%- endif -%}
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- for custom_link in child_promo_block.settings.custom_linklist_2.links -%}
+                                            <li>
+                                              <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                {{ custom_link.title }}
+                                              </a>
+                                            </li>
+                                          {%- endfor -%}
+                                        </ul>
+                                      </div>
+                                    {%- endif -%}
                                   </div>
 
                                   {%- if child_promo_block != blank and child_promo_block.settings.image_1 != blank -%}
@@ -1046,6 +1092,34 @@ display:block;
           "id": "menu_item",
           "label": "Menu item",
           "info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
+        },
+        {
+          "type": "header",
+          "content": "Custom Linklist 1"
+        },
+        {
+          "type": "text",
+          "id": "custom_title_1",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "custom_linklist_1",
+          "label": "Menu"
+        },
+        {
+          "type": "header",
+          "content": "Custom Linklist 2"
+        },
+        {
+          "type": "text",
+          "id": "custom_title_2",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "custom_linklist_2",
+          "label": "Menu"
         },
         {
           "type": "header",

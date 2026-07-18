@@ -73,6 +73,10 @@
           "type": "mega_menu",
           "settings": {
             "menu_item": "Basins",
+            "custom_title_1": "Sample Custom Menu 1",
+            "custom_linklist_1": "main-menu",
+            "custom_title_2": "Sample Custom Menu 2",
+            "custom_linklist_2": "footer",
             "image_1": "shopify://shop_images/Logo-01.png",
             "image_1_heading": "BASIN SALE",
             "image_1_text": "Huge Discounts",
