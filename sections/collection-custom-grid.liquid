@@ -176,7 +176,9 @@
               <div class="content">
 
                 <div class="brand-row">
-                  <span class="vendor">{{ product.vendor }}</span>
+                  {%- if false -%}
+                    <span class="vendor">{{ product.vendor }}</span>
+                  {%- endif -%}
                   <div class="rating-wrapper">
                     {%- assign r = product.metafields.reviews.rating.value -%}
                     {%- assign rc = product.metafields.reviews.rating_count.value | default: 0 -%}
