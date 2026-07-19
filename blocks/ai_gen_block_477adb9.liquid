@@ -424,11 +424,25 @@
   }
 {% endstyle %}
 
+<dynamic-recommendations-{{ ai_gen_id }}
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.products_limit }}&intent=related"
+>
 <product-carousel-{{ ai_gen_id }}
   class="ai-product-carousel-{{ ai_gen_id }}"
   {{ block.shopify_attributes }}
 >
-  {% if block.settings.collection != blank %}
+  {% assign has_products = false %}
+  {% if block.settings.use_recommendations %}
+    {% if recommendations.performed and recommendations.products_count > 0 %}
+      {% assign has_products = true %}
+      {% assign items = recommendations.products %}
+    {% endif %}
+  {% elsif block.settings.collection != blank %}
+    {% assign has_products = true %}
+    {% assign items = block.settings.collection.products %}
+  {% endif %}
+  
+  {% if has_products %}
     <div class="ai-product-carousel__header-{{ ai_gen_id }}">
       {% if block.settings.title != blank %}
         <h2 class="ai-product-carousel__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
@@ -477,7 +491,7 @@
 
     <div class="ai-product-carousel__wrapper-{{ ai_gen_id }}">
       <div class="ai-product-carousel__track-{{ ai_gen_id }}">
-        {% for product in block.settings.collection.products limit: block.settings.products_limit %}
+        {% for product in items limit: block.settings.products_limit %}
           <div class="ai-product-carousel__item-{{ ai_gen_id }}">
             <div class="ai-product-carousel__card-{{ ai_gen_id }}">
               <a href="{{ product.url }}" class="ai-product-carousel__image-wrapper-{{ ai_gen_id }} {% if product.media.size > 1 %}has-secondary-image{% endif %}">
@@ -586,11 +600,38 @@
       </div>
     </div>
   {% else %}
-    <div class="ai-product-carousel__empty-{{ ai_gen_id }}">
-      <p>Select a collection to display products</p>
-    </div>
+    {% unless block.settings.use_recommendations and recommendations.performed == false %}
+      <div class="ai-product-carousel__empty-{{ ai_gen_id }}">
+        <p>No products to display</p>
+      </div>
+    {% endunless %}
   {% endif %}
 </product-carousel-{{ ai_gen_id }}>
+</dynamic-recommendations-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    if (customElements.get('dynamic-recommendations-{{ ai_gen_id }}')) return;
+    class DynamicRecommendations{{ ai_gen_id }} extends HTMLElement {
+      connectedCallback() {
+        if (!this.dataset.url) return;
+        
+        fetch(this.dataset.url)
+          .then(response => response.text())
+          .then(html => {
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            const recommendations = div.querySelector('dynamic-recommendations-{{ ai_gen_id }}');
+            if (recommendations && recommendations.innerHTML.trim().length) {
+              this.innerHTML = recommendations.innerHTML;
+            }
+          })
+          .catch(e => console.error(e));
+      }
+    }
+    customElements.define('dynamic-recommendations-{{ ai_gen_id }}', DynamicRecommendations{{ ai_gen_id }});
+  })();
+</script>
 
 <script>
   (function() {
@@ -712,6 +753,13 @@
       "max": 20,
       "step": 1,
       "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "use_recommendations",
+      "label": "Use dynamic product recommendations",
+      "info": "Overrides the collection selection with dynamic recommendations based on the current product.",
+      "default": true
     },
     {
       "type": "header",
