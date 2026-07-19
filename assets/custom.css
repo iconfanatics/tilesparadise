@@ -268,13 +268,19 @@ body {
   height: 100%;
   display: flex;
   flex-direction: row;
-  gap: 34px;
+  /* Remove gap so we can control it with padding/margin for borders */
 }
 
 .tabbed-mega-nav__column {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+.tabbed-mega-nav__column:not(:last-child) {
+  border-right: 1px solid #1e73be;
+  padding-right: 17px;
+  margin-right: 17px;
 }
 
 @media (min-width: 1000px) {
