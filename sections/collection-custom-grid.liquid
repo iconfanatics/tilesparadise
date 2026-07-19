@@ -201,19 +201,41 @@
                 </h3>
 
                 <div class="price">
-
-                  <span class="current">
-                    {{ product.price | money }}
-                  </span>
+                  <div class="price--highlight">
+                    <span class="current actual-price-value">
+                      {%- if settings.currency_code_enabled -%}
+                        {{- product.price | money_with_currency -}} 
+                      {%- else -%}
+                        {{- product.price | money -}}
+                      {%- endif -%}
+                    </span>
+                    {% if show_per_m2 %}
+                      <span class="per-m-text">Per m²</span>
+                    {% endif %}
+                  </div>
 
                   {% if product.compare_at_price > product.price %}
-                    <div class="compare-wrapper">
-                      <span class="compare">
-                        <s>{{ product.compare_at_price | money }}</s>
+                    <div class="price--compare">
+                      <span class="rrp-strike">
+                        <s>
+                        {%- if settings.currency_code_enabled -%}
+                          {{- product.compare_at_price | money_with_currency -}} 
+                        {%- else -%}
+                          {{- product.compare_at_price | money -}}
+                        {%- endif -%}
+                        </s>
+                      </span>
+                      {% assign saving = product.compare_at_price | minus: product.price %}
+                      <span class="save_amount">
+                        Save 
+                        {%- if settings.currency_code_enabled -%}
+                          {{ saving | money_with_currency }}
+                        {%- else -%}
+                          {{ saving | money }}
+                        {%- endif -%}
                       </span>
                     </div>
                   {% endif %}
-
                 </div>
 
                 <div class="card-footer">
@@ -540,53 +562,49 @@
 .price {
   margin-top: 6px;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 
-.product-card span.current {
-  font-family: Roboto, sans-serif;
-  font-weight: 800;
-  font-size: 18px;
-  line-height: 1.1;
-  color: #e40012;
+.price--highlight {
   display: inline-flex;
   align-items: baseline;
   gap: 5px;
 }
 
-.product-card .current .unit {
-  font-size: 12px;
-  font-weight: 600;
-  color: #6b7280;
-}
-
-.compare-wrapper {
+.product-card span.actual-price-value {
   font-family: Roboto, sans-serif;
-  font-size: 14px;
-}
-
-.product-card span.compare {
-  color: #a3a3a3;
-  font-weight: 500;
-}
-
-.product-card span.compare s {
-  text-decoration: line-through;
-}
-
-.compare .unit {
-  font-size: 11px;
-}
-
-.save-line {
-  color: #19733f;
-  font-weight: 600;
-  margin-left: 4px;
-}
-
-.save-amount {
   font-weight: 800;
+  font-size: 26px;
+  color: #055ba6;
+  letter-spacing: -0.5px;
+}
+
+.product-card span.per-m-text {
+  color: #777;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.price--compare {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #777;
+  margin-top: 2px;
+}
+
+.price--compare .rrp-strike {
+  color: #888;
+  margin-right: 8px;
+}
+
+.price--compare .save_amount {
+  color: #108548;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 /* ================= ACTIONS ================= */
