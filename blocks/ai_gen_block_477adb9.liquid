@@ -430,7 +430,7 @@
 {% endif %}
 
 {% if use_recommendations %}
-<dynamic-recommendations-{{ ai_gen_id }}
+<div class="dynamic-recommendations-wrapper-{{ ai_gen_id }}"
   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.products_limit }}&intent=related"
 >
 {% endif %}
@@ -620,32 +620,32 @@
   {% endif %}
 </product-carousel-{{ ai_gen_id }}>
 {% if use_recommendations %}
-</dynamic-recommendations-{{ ai_gen_id }}>
-{% endif %}
+</div>
 
 <script>
-  (function() {
-    if (customElements.get('dynamic-recommendations-{{ ai_gen_id }}')) return;
-    class DynamicRecommendations{{ ai_gen_id }} extends HTMLElement {
-      connectedCallback() {
-        if (!this.dataset.url) return;
+  document.addEventListener('DOMContentLoaded', function() {
+    var wrapper = document.querySelector('.dynamic-recommendations-wrapper-{{ ai_gen_id }}');
+    if (!wrapper || !wrapper.dataset.url) return;
+    
+    // Only fetch if it hasn't been fetched yet
+    if (wrapper.dataset.fetched === 'true') return;
+    wrapper.dataset.fetched = 'true';
+
+    fetch(wrapper.dataset.url)
+      .then(function(response) { return response.text(); })
+      .then(function(html) {
+        var tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        var fetchedWrapper = tempDiv.querySelector('.dynamic-recommendations-wrapper-{{ ai_gen_id }}');
         
-        fetch(this.dataset.url)
-          .then(response => response.text())
-          .then(html => {
-            const div = document.createElement('div');
-            div.innerHTML = html;
-            const recommendations = div.querySelector('dynamic-recommendations-{{ ai_gen_id }}');
-            if (recommendations && recommendations.innerHTML.trim().length) {
-              this.innerHTML = recommendations.innerHTML;
-            }
-          })
-          .catch(e => console.error(e));
-      }
-    }
-    customElements.define('dynamic-recommendations-{{ ai_gen_id }}', DynamicRecommendations{{ ai_gen_id }});
-  })();
+        if (fetchedWrapper && fetchedWrapper.innerHTML.trim().length > 0) {
+          wrapper.innerHTML = fetchedWrapper.innerHTML;
+        }
+      })
+      .catch(function(e) { console.error('Error fetching recommendations:', e); });
+  });
 </script>
+{% endif %}
 
 <script>
   (function() {
