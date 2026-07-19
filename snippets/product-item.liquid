@@ -159,6 +159,7 @@
                   {%- endif -%}
                 </span>
               </span>
+            {%- endif -%}
           {%- elsif product.price_varies -%}
             {%- if settings.currency_code_enabled -%}
               {%- capture price_min -%}{{ product.price_min | money_with_currency }}{%- endcapture -%}
