@@ -4207,27 +4207,7 @@ span.custom-sale-badge .save-value {
   color: #e40012 !important;
 }
 
-/* Price Row */
-.product-item__price-list.price-list {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 8px !important;
-  margin-bottom: 8px !important;
-}
-.product-item__price-list .price.price--highlight {
-  font-size: 18px !important;
-  font-weight: 800 !important;
-  color: #e40012 !important;
-  margin: 0 !important;
-}
-.product-item__price-list .price.price--compare {
-  font-size: 12px !important;
-  color: #888 !important;
-  text-decoration: line-through !important;
-  margin: 0 !important;
-}
+/* Old Price Row removed to prevent conflicts */
 
 /* Stock Status */
 span.inventory_full, span.inventory--low {
