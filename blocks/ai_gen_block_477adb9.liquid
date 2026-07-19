@@ -424,15 +424,22 @@
   }
 {% endstyle %}
 
+{% assign use_recommendations = false %}
+{% if block.settings.use_recommendations and product != blank %}
+  {% assign use_recommendations = true %}
+{% endif %}
+
+{% if use_recommendations %}
 <dynamic-recommendations-{{ ai_gen_id }}
   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.products_limit }}&intent=related"
 >
+{% endif %}
 <product-carousel-{{ ai_gen_id }}
   class="ai-product-carousel-{{ ai_gen_id }}"
   {{ block.shopify_attributes }}
 >
   {% assign has_products = false %}
-  {% if block.settings.use_recommendations %}
+  {% if use_recommendations %}
     {% if recommendations.performed and recommendations.products_count > 0 %}
       {% assign has_products = true %}
       {% assign items = recommendations.products %}
@@ -600,14 +607,16 @@
       </div>
     </div>
   {% else %}
-    {% unless block.settings.use_recommendations and recommendations.performed == false %}
+    {% unless use_recommendations and recommendations.performed == false %}
       <div class="ai-product-carousel__empty-{{ ai_gen_id }}">
         <p>No products to display</p>
       </div>
     {% endunless %}
   {% endif %}
 </product-carousel-{{ ai_gen_id }}>
+{% if use_recommendations %}
 </dynamic-recommendations-{{ ai_gen_id }}>
+{% endif %}
 
 <script>
   (function() {
