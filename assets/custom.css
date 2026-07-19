@@ -2058,14 +2058,14 @@ span#actualPrice {
    section shares.  (To show full images instead of a slight crop,
    change the two "object-fit: cover" below to "object-fit: contain".)
    ============================================================ */
-.recently-viewed-products .swiper-wrapper { align-items: stretch !important; }
-.recently-viewed-products .swiper-slide {
+[data-section-type="recently-viewed-products"] .swiper-wrapper { align-items: stretch !important; }
+[data-section-type="recently-viewed-products"] .swiper-slide {
   left: 0 !important;
   margin-bottom: 0 !important;
   height: auto !important;
   display: flex !important;
 }
-.recently-viewed-products .product-item {
+[data-section-type="recently-viewed-products"] .product-item {
   height: auto !important;
   width: 100% !important;
   display: flex !important;
@@ -2075,10 +2075,10 @@ span#actualPrice {
   overflow: hidden !important;
   padding: 0 !important;
 }
-.recently-viewed-products .product-item::after { display: none !important; }
+[data-section-type="recently-viewed-products"] .product-item::after { display: none !important; }
 
 /* Wrapper: plain block container */
-.recently-viewed-products .product-item__image-wrapper {
+[data-section-type="recently-viewed-products"] .product-item__image-wrapper {
   position: relative !important;
   display: block !important;
   width: 100% !important;
@@ -2089,7 +2089,7 @@ span#actualPrice {
 }
 
 /* Force the container to 210px height, overriding the native padding trick */
-.recently-viewed-products .product-item__image-wrapper .aspect-ratio {
+[data-section-type="recently-viewed-products"] .product-item__image-wrapper .aspect-ratio {
   position: relative !important;
   width: 100% !important;
   height: 210px !important;
@@ -2097,7 +2097,7 @@ span#actualPrice {
 }
 
 /* Make both primary and secondary images fill the 210px container absolutely */
-.recently-viewed-products .product-item__image-wrapper img {
+[data-section-type="recently-viewed-products"] .product-item__image-wrapper img {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
@@ -2108,18 +2108,22 @@ span#actualPrice {
   margin: 0 !important;
 }
 
-.recently-viewed-products .product-item__info {
+[data-section-type="recently-viewed-products"] .product-item__image-wrapper {
+  flex-shrink: 0 !important;
+}
+
+[data-section-type="recently-viewed-products"] .product-item__info {
   display: flex !important;
   flex-direction: column !important;
   flex: 1 1 auto !important;
   padding: 14px !important;
 }
-.recently-viewed-products .product-item__info-inner {
+[data-section-type="recently-viewed-products"] .product-item__info-inner {
   display: flex !important;
   flex-direction: column !important;
   flex: 1 1 auto !important;
 }
-.recently-viewed-products .product-item__title {
+[data-section-type="recently-viewed-products"] .product-item__title {
   display: -webkit-box !important;
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
@@ -2129,8 +2133,8 @@ span#actualPrice {
   line-height: 1.4 !important;
   text-align: left !important;
 }
-.recently-viewed-products .product-item__action-list { margin-top: auto !important; }
-.recently-viewed-products .AirReviews-Widget { display: none !important; }
+[data-section-type="recently-viewed-products"] .product-item__action-list { margin-top: auto !important; }
+[data-section-type="recently-viewed-products"] .AirReviews-Widget { display: none !important; }
 
 /* Final boxed/menu guard: keep this at the end so older custom rules cannot win. */
 body {
