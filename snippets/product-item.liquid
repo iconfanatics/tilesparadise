@@ -106,133 +106,59 @@
               <span class="price price--highlight v ss">
                 <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
 
-                {%- if settings.currency_code_enabled -%}
-                  {{- product.price | money_with_currency -}} 
-{% if collection.title contains 'Adhesive'
-        or collection.title contains 'Underfloor Heating'
-        or collection.title contains 'Grout'
-        or collection.title contains 'Matting'
-        or collection.title contains 'Backerboards'
-        or collection.title contains 'Showers'
-            or collection.title contains 'LED Mirrors'
-             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
-        or collection.title contains 'Adhesives Checkout'    or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'  or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
-       
-            {% else %}
-            <span>Per m²</span>
+                <span class="actual-price-value">
+                  {%- if settings.currency_code_enabled -%}
+                    {{- product.price | money_with_currency -}} 
+                  {%- else -%}
+                    {{- product.price | money -}}
+                  {%- endif -%}
+                </span>
+
+                {% assign show_per_m = true %}
+                {% for collection in product.collections %}
+                  {% if collection.title contains 'Adhesive' or collection.title contains 'Underfloor Heating' or collection.title contains 'Grout' or collection.title contains 'Matting' or collection.title contains 'Backerboards' or collection.title contains 'Showers' or collection.title contains 'LED Mirrors' or collection.title == 'Stylish Radiators & Heated Towel Rails' or collection.title contains 'Adhesives Checkout' or collection.title contains 'Job Lot Deals' or collection.title contains 'Wholesale Pallet Deals' %}
+                    {% assign show_per_m = false %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+
+                {% if show_per_m %}
+                  <span class="per-m-text">Per m²</span>
                 {% endif %}
-                {%- else -%}
-
-{% if template.name == 'search' %}
-
-
-    {{- product.price | money -}}
-{% assign show_per_m = true %}
-           {% for collection in product.collections %}
-             
-{% if collection.title contains 'Adhesive'
-        or collection.title contains 'Underfloor Heating'
-        or collection.title contains 'Grout'
-        or collection.title contains 'Matting'
-        or collection.title contains 'Backerboards'
-        or collection.title contains 'Showers'
-            or collection.title contains 'LED Mirrors'
-             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
-        or collection.title contains 'Adhesives Checkout'    or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'  or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
-       
-    {% assign show_per_m = false %}
-    {% break %}
-  {% endif %}
-{% endfor %}
-            {% if show_per_m %}
-  <span>Per m²</span>
-{% endif %}
-  {% else %}
-                {{- product.price | money -}} 
-           {% assign show_per_m = true %}
-           {% for collection in product.collections %}
-{% if collection.title contains 'Adhesive'
-        or collection.title contains 'Underfloor Heating'
-        or collection.title contains 'Grout'
-        or collection.title contains 'Matting'
-        or collection.title contains 'Backerboards'
-        or collection.title contains 'Showers'
-            or collection.title contains 'LED Mirrors'
-             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
-        or collection.title contains 'Adhesives Checkout'    or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'  or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
-       
-    {% assign show_per_m = false %}
-    {% break %}
-  {% endif %}
-{% endfor %}
-                  {% if collection.title != 'LED Mirrors' %}
-            {% if show_per_m %}
-  <span>Per m²</span>
-{% endif %}
-                    {% else %}
-                    
-                    {% endif %}
-            {%- endif -%}
-                           {%- endif -%}
-   
-          </span>
+              </span>
 
               <span class="price price--compare n">
                 <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
-                {%- if settings.currency_code_enabled -%}
-           <b>   RRP   </b>  {{- product.compare_at_price | money_with_currency -}} 
-    {% assign show_per_m = true %}
-    {% for collection in product.collections %}
-      {% if collection.title contains 'Adhesive'
-        or collection.title contains 'Underfloor Heating'
-        or collection.title contains 'Grout'
-        or collection.title contains 'Matting'
-        or collection.title contains 'Backerboards'
-        or collection.title contains 'Showers'
-            or collection.title contains 'LED Mirrors'
-             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
-        or collection.title contains 'Adhesives Checkout'    or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'  or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
-        {% assign show_per_m = false %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-    {% if show_per_m %}
-      <span>Per m²</span>
-    {% endif %}
-  {%- else -%}
-                    <b>   RRP   </b>   {{- product.compare_at_price | money -}} 
-                        {% assign show_per_m = true %}
-    {% for collection in product.collections %}
-      {% if collection.title contains 'Adhesive'
-        or collection.title contains 'Underfloor Heating'
-        or collection.title contains 'Grout'
-        or collection.title contains 'Matting'
-            or collection.title contains 'LED Mirrors'
-        or collection.title contains 'Backerboards'
-        or collection.title contains 'Showers'
-        or collection.title contains 'Adhesives Checkout'   
-             or collection.title == 'Stylish Radiators & Heated Towel Rails'       
-         or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles'
-         or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles'%}
-        {% assign show_per_m = false %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-                  {% if collection.title != 'LED Mirrors' %}
-    {% if show_per_m %}
-      <span>Per m²</span>
-    {% endif %}
-                    {% else %}
-                    {% endif %}
-  {%- endif -%}
-<b>| Save</b>
+                <span class="rrp-strike">
+                  {%- if settings.currency_code_enabled -%}
+                    RRP {{- product.compare_at_price | money_with_currency -}} 
+                  {%- else -%}
+                    RRP {{- product.compare_at_price | money -}} 
+                  {%- endif -%}
+                </span>
+                
+                {% assign show_per_m = true %}
+                {% for collection in product.collections %}
+                  {% if collection.title contains 'Adhesive' or collection.title contains 'Underfloor Heating' or collection.title contains 'Grout' or collection.title contains 'Matting' or collection.title contains 'Backerboards' or collection.title contains 'Showers' or collection.title contains 'LED Mirrors' or collection.title == 'Stylish Radiators & Heated Towel Rails' or collection.title contains 'Adhesives Checkout' or collection.title contains 'Job Lot Deals' or collection.title contains 'Wholesale Pallet Deals' %}
+                    {% assign show_per_m = false %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+                
+                {% if show_per_m %}
+                  <span class="per-m-text">Per m²</span>
+                {% endif %}
+
                 <span class="save_amount"> 
-                 {% assign saving = product.compare_at_price | minus: product.price %}
-     {{ saving | money_with_currency }}
+                  Save 
+                  {% assign saving = product.compare_at_price | minus: product.price %}
+                  {%- if settings.currency_code_enabled -%}
+                    {{ saving | money_with_currency }}
+                  {%- else -%}
+                    {{ saving | money }}
+                  {%- endif -%}
                 </span>
               </span>
-          
-               {%- endif -%}
           {%- elsif product.price_varies -%}
             {%- if settings.currency_code_enabled -%}
               {%- capture price_min -%}{{ product.price_min | money_with_currency }}{%- endcapture -%}

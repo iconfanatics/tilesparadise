@@ -4297,3 +4297,43 @@ span.inventory--low::before {
     border-radius: 12px !important;
     line-height: 1 !important;
 }
+
+/* Updated Product Card Price Styles */
+.product-item__price-list .price--highlight {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 5px !important;
+}
+.product-item__price-list .price--highlight .actual-price-value {
+  color: #055ba6 !important;
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+}
+.product-item__price-list .price--highlight .per-m-text {
+  color: #777 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0;
+}
+.product-item__price-list .price--compare {
+  display: flex !important;
+  align-items: center !important;
+  font-size: 13px !important;
+  color: #777 !important;
+  margin-top: 5px;
+}
+.product-item__price-list .price--compare .rrp-strike {
+  text-decoration: line-through;
+  color: #888;
+}
+.product-item__price-list .price--compare .per-m-text {
+  color: #777;
+  margin-left: 3px;
+  margin-right: 5px;
+}
+.product-item__price-list .price--compare .save_amount {
+  color: #108548 !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+}
