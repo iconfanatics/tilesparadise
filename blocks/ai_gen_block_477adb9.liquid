@@ -443,6 +443,11 @@
     {% if recommendations.performed and recommendations.products_count > 0 %}
       {% assign has_products = true %}
       {% assign items = recommendations.products %}
+    {% elsif recommendations.performed and recommendations.products_count == 0 %}
+      {% if block.settings.collection != blank %}
+        {% assign has_products = true %}
+        {% assign items = block.settings.collection.products %}
+      {% endif %}
     {% endif %}
   {% elsif block.settings.collection != blank %}
     {% assign has_products = true %}
