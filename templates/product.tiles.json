@@ -147,7 +147,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_477adb9_new": {
-          "type": "ai_gen_block_477adb9",
+          "type": "similar_tiles_metafield",
           "settings": {
             "collection": "tile-sale",
             "products_limit": 12,
