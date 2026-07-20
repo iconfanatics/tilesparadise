@@ -1,6 +1,10 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -75,13 +79,6 @@
             "display_mode": "view_more"
           }
         },
-        "a3299db7-8617-4b3e-80dc-466e51c061b7": {
-          "type": "shopify://apps/avada-boost-sales-trust-badge/blocks/app-badge-v2-block/45454b7f-f6a7-4852-b770-8e0c3992a226",
-          "disabled": true,
-          "settings": {
-            "badge_id": "AVADA-99446876"
-          }
-        },
         "a9c560d5-40e3-4fee-934f-f6b7ef7a9739": {
           "type": "trust",
           "settings": {
@@ -115,7 +112,6 @@
         "buy_buttons",
         "9d4bfcf6-11bc-449b-8839-fd0dd9450aa9",
         "description",
-        "a3299db7-8617-4b3e-80dc-466e51c061b7",
         "a9c560d5-40e3-4fee-934f-f6b7ef7a9739",
         "html_FGDTgt",
         "vitals_back_in_stock_mkJRGa",
@@ -255,7 +251,7 @@
           "settings": {
             "image": "shopify://shop_images/3008-Wet-Feet.jpg",
             "title": "100% WATERPROOF",
-            "content": "<p><strong>Our SPC flooring is engineered for complete water resistance\u2014perfect for bathrooms, kitchens, and outdoor areas. It stands up flawlessly to splashes, spills, and steam without warping, staining, or damage</strong><br/><br/></p>"
+            "content": "<p><strong>Our SPC flooring is engineered for complete water resistance—perfect for bathrooms, kitchens, and outdoor areas. It stands up flawlessly to splashes, spills, and steam without warping, staining, or damage</strong><br/><br/></p>"
           }
         },
         "offer_6Geke8": {
@@ -271,7 +267,7 @@
           "settings": {
             "image": "shopify://shop_images/3008-Plank-Back.webp",
             "title": "Easy Installation & Low Maintenance",
-            "content": "<p><strong>Click-lock installation requires no glue or grout, and the non-porous surface wipes clean effortlessly\u2014ideal for busy households and high-traffic environments.<br/></strong><br/></p>"
+            "content": "<p><strong>Click-lock installation requires no glue or grout, and the non-porous surface wipes clean effortlessly—ideal for busy households and high-traffic environments.<br/></strong><br/></p>"
           }
         },
         "offer_Qgp3T3": {

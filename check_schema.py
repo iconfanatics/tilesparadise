@@ -1,17 +1,16 @@
+import re
 import json
 
-with open('sections/recently-viewed-paired.liquid', 'r') as f:
+with open('sections/header.liquid', 'r') as f:
     content = f.read()
 
-schema_start = content.find('{% schema %}')
-schema_end = content.find('{% endschema %}')
-
-if schema_start != -1 and schema_end != -1:
-    schema_str = content[schema_start+12:schema_end]
+match = re.search(r'\{%\s*schema\s*%\}(.*?)\{%\s*endschema\s*%\}', content, re.DOTALL)
+if match:
+    schema_text = match.group(1)
     try:
-        data = json.loads(schema_str)
+        json.loads(schema_text)
         print("Schema is valid JSON.")
     except Exception as e:
-        print("Schema JSON error:", e)
+        print("Schema error:", e)
 else:
-    print("Schema not found.")
+    print("Schema block not found.")

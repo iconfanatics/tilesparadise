@@ -1,6 +1,10 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -46,13 +50,6 @@
             "display_mode": "view_more"
           }
         },
-        "a3299db7-8617-4b3e-80dc-466e51c061b7": {
-          "type": "shopify://apps/avada-boost-sales-trust-badge/blocks/app-badge-v2-block/45454b7f-f6a7-4852-b770-8e0c3992a226",
-          "disabled": true,
-          "settings": {
-            "badge_id": "AVADA-99446876"
-          }
-        },
         "a9c560d5-40e3-4fee-934f-f6b7ef7a9739": {
           "type": "trust",
           "settings": {
@@ -82,7 +79,6 @@
         "delivery_estimator_app_block_H7eJFc",
         "buy_buttons",
         "description",
-        "a3299db7-8617-4b3e-80dc-466e51c061b7",
         "a9c560d5-40e3-4fee-934f-f6b7ef7a9739",
         "html_FGDTgt",
         "vitals_back_in_stock_mkJRGa",

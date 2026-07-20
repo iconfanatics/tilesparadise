@@ -92,15 +92,54 @@
         "custom_class": "custom-collectio-grid-sec"
       }
     },
-    "recently_viewed_carousel_tebAwQ": {
-      "type": "recently-viewed-carousel",
-      "name": "Recently Viewed Carousel",
+    "recently_viewed_paired_mKRzeH": {
+      "type": "recently-viewed-paired",
+      "name": "Recently Viewed Products",
       "settings": {
-        "title": "Recently viewed",
-        "show_quick_buy": true,
-        "slides_desktop": 4,
-        "slides_tablet": 3,
-        "slides_mobile": 1.2
+        "title": "Recently Viewed",
+        "products_per_row_desktop": 5,
+        "products_per_row_mobile": "2",
+        "product_gap": 20,
+        "section_padding": 20,
+        "desktop_width_percent": 100,
+        "container_width": 1350,
+        "side_padding": 20,
+        "section_bg": "#f1eee8",
+        "title_size": 28,
+        "title_spacing": 24,
+        "title_color": "#3b3337",
+        "nav_button_bg": "#ffffff",
+        "nav_button_color": "#111111",
+        "nav_button_hover_bg": "#f1f1f1",
+        "nav_button_hover_color": "#111111",
+        "card_bg": "#ffffff",
+        "image_bg": "#f5f5f5",
+        "card_padding": 16,
+        "card_border_radius": 0,
+        "product_title_size": 14,
+        "product_title_color": "#111111",
+        "price_size": 18,
+        "price_color": "#e40012",
+        "sale_price_color": "#e40012",
+        "compare_price_color": "#6f6f6f",
+        "accent_color": "#3070b7",
+        "badge_bg": "#e40012",
+        "badge_text_color": "#ffffff",
+        "badge_size": 13,
+        "vendor_bg": "#171717",
+        "vendor_text_color": "#ffffff",
+        "review_star_color": "#ff9d00",
+        "stock_text_color": "#111111",
+        "stock_size": 14,
+        "stock_icon_bg": "#31ad45",
+        "stock_icon_color": "#ffffff",
+        "out_of_stock_color": "#cf0e0e",
+        "wishlist_color": "#2e8f3d",
+        "button_text": "View product",
+        "button_bg": "#df3653",
+        "button_hover_bg": "#c72e47",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 4
       }
     },
     "178048021769c9fb35": {
@@ -125,7 +164,7 @@
     "rich_text_CxGCgf",
     "usp_bar_deGHRm",
     "main",
-    "recently_viewed_carousel_tebAwQ",
+    "recently_viewed_paired_mKRzeH",
     "178048021769c9fb35"
   ]
 }

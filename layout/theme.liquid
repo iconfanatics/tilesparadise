@@ -115,7 +115,7 @@ You can learn more about this (and learn how to cleanly revert these changes) at
     </script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const addToCartBtns = document.querySelectorAll('.product-form__add-button, .cst_add, .metafield_button');
+  const addToCartBtns = document.querySelectorAll('.cst_add, .metafield_button');
   
   addToCartBtns.forEach(function(btn) {
     btn.addEventListener('click', function (event) {
@@ -136,13 +136,25 @@ document.addEventListener("DOMContentLoaded", function () {
           // Dispatch event to update theme cart
           document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
           
-          // Open the mini-cart drawer by clicking the cart icon
-          var cartIcon = document.querySelector('.header__cart-toggle');
-          if(cartIcon) cartIcon.click();
-          
-          // Fallback if the theme's drawer doesn't open via click
-          var miniCart = document.getElementById('mini-cart');
-          if(miniCart) miniCart.setAttribute('aria-hidden', 'false');
+          if (window.theme.cartType === 'message') {
+            var btnOriginalText = btn.innerHTML;
+            btn.innerHTML = window.languages.productAddedShort || 'Added to cart';
+            setTimeout(function() {
+              btn.innerHTML = btnOriginalText;
+            }, 2000);
+          } else if (window.theme.cartType === 'page') {
+            window.location.href = '/cart';
+          } else {
+            // Open the mini-cart drawer by clicking the cart icon
+            var cartIcon = document.querySelector('.header__cart-toggle');
+            if(cartIcon && cartIcon.hasAttribute('data-action')) {
+              cartIcon.click();
+            } else {
+              // Fallback if the theme's drawer doesn't open via click
+              var miniCart = document.getElementById('mini-cart');
+              if(miniCart) miniCart.setAttribute('aria-hidden', 'false');
+            }
+          }
         } else {
           return response.json().then(err => {
             console.error("Add to cart failed:", err);

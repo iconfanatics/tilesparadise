@@ -2096,16 +2096,20 @@ span#actualPrice {
   position: relative !important;
   display: block !important;
   width: 100% !important;
+  max-width: none !important;
   padding: 0 !important;
   background: #f7f8f9 !important;
   overflow: hidden !important;
   line-height: 0 !important;
+  flex-shrink: 0 !important;
+  align-self: stretch !important;
 }
 
 /* Force the container to 210px height, overriding the native padding trick */
 [data-section-type="recently-viewed-products"] .product-item__image-wrapper .aspect-ratio {
   position: relative !important;
   width: 100% !important;
+  max-width: none !important;
   height: 210px !important;
   padding-bottom: 0 !important;
 }
@@ -2118,12 +2122,9 @@ span#actualPrice {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
+  object-position: center !important;
   max-width: none !important;
   margin: 0 !important;
-}
-
-[data-section-type="recently-viewed-products"] .product-item__image-wrapper {
-  flex-shrink: 0 !important;
 }
 
 [data-section-type="recently-viewed-products"] .product-item__info {
@@ -4332,4 +4333,104 @@ span.inventory--low::before {
   color: #108548 !important;
   font-weight: 700 !important;
   font-size: 14px !important;
+}
+
+/* Fix cart page gap */
+.template-cart #main {
+    margin-top: 0 !important;
+    padding-top: 25px !important;
+}
+.template-cart .shopify-section:first-child .section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Disable sticky right column on product page */
+.template-product .product-block-list__item--info .card--sticky {
+    position: static !important;
+}
+
+/* Product page inline pricing */
+.template-product .product-form__info-content .price-list {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+.template-product .product-form__info-content .price-list .price--highlight {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #1a1d24 !important;
+    display: flex !important;
+    align-items: baseline !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+.template-product .product-form__info-content .price-list .price--highlight > span:not(.visually-hidden) {
+    font-size: 15px !important;
+    color: #777 !important;
+    font-weight: 600 !important;
+    margin-left: 4px !important;
+    white-space: nowrap !important;
+}
+.template-product .product-form__info-content .price-list .price--compare {
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    color: #555 !important;
+    display: flex !important;
+    align-items: baseline !important;
+    line-height: 1 !important;
+    text-decoration: line-through !important;
+    margin: 0 !important;
+}
+.template-product .product-form__info-content .price-list .price--compare > b {
+    text-decoration: line-through !important;
+    margin-right: 4px !important;
+    color: #555 !important;
+}
+.template-product .product-form__info-content .price-list .price--compare > span:not(.visually-hidden) {
+    font-size: 15px !important;
+    color: #777 !important;
+    font-weight: 600 !important;
+    margin-left: 4px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+}
+.template-product .product-form__info-content .price-list .save_amount {
+    background: #e6f2ec !important;
+    color: #108548 !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+    font-weight: 800 !important;
+    font-size: 14px !important;
+    display: inline-block !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+}
+
+/* Comprehensive fix for recently viewed images */
+.recently-viewed-products .product-item__image-wrapper,
+.recently-viewed-products .product-item__image-wrapper .aspect-ratio,
+[data-section-type='recently-viewed-products'] .product-item__image-wrapper,
+[data-section-type='recently-viewed-products'] .product-item__image-wrapper .aspect-ratio {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  display: block !important;
+  flex: 0 0 auto !important;
+  position: relative !important;
+}
+.recently-viewed-products .product-item__image-wrapper img,
+[data-section-type='recently-viewed-products'] .product-item__image-wrapper img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  margin: 0 !important;
 }

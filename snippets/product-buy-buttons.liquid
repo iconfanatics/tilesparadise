@@ -224,7 +224,21 @@ document.addEventListener("DOMContentLoaded", function () {
           body: JSON.stringify({ items: [{ id: id, quantity: 1 }] })
         })
         .then(function(r){ if(!r.ok){ throw new Error('add failed'); } return r.json(); })
-        .then(function(){ window.location.href = '/cart'; })
+        .then(function(){ 
+          btn.disabled = false;
+          if(lbl){ lbl.textContent = original; }
+          document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+          if (window.theme.cartType === 'message') {
+            var btnOriginalHtml = btn.innerHTML;
+            btn.innerHTML = 'Added to cart';
+            setTimeout(function() { btn.innerHTML = btnOriginalHtml; }, 2000);
+          } else if (window.theme.cartType === 'page') {
+            window.location.href = '/cart';
+          } else {
+            var cartIcon = document.querySelector('.header__cart-toggle');
+            if(cartIcon && cartIcon.hasAttribute('data-action')) cartIcon.click();
+          }
+        })
         .catch(function(){
           btn.disabled = false;
           if(lbl){ lbl.textContent = original; }

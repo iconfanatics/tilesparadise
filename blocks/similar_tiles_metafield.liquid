@@ -1,0 +1,111 @@
+{%- assign heading     = block.settings.title | default: 'Not quite the right look? Browse similar tiles' -%}
+{%- assign uid         = 'browsesim' -%}
+{%- assign button_text = 'View product' -%}
+
+{%- comment -%} Pull related products from metafield {%- endcomment -%}
+{%- assign similar_products = product.metafields.custom.similar_products.value -%}
+
+{%- if similar_products != blank -%}
+<style>
+  .tpc-{{ uid }}{display:block;width:100%;font-family:"Open Sans",system-ui,sans-serif;padding:8px 0;margin-top:30px;}
+  .tpc-{{ uid }} .tpc__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+  .tpc-{{ uid }} .tpc__title{font-size:22px;font-weight:800;letter-spacing:-.01em;color:#1a1d24;margin:0;}
+  .tpc-{{ uid }} .tpc__nav{display:flex;gap:10px;}
+  .tpc-{{ uid }} .tpc__btn{width:40px;height:40px;border-radius:50%;background:#f7f8f9;color:#1a1d24;border:1px solid #e6e8eb;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background-color .2s;}
+  .tpc-{{ uid }} .tpc__btn:hover{background:#ececef;}
+  .tpc-{{ uid }} .tpc__btn:disabled{opacity:.3;cursor:not-allowed;}
+  .tpc-{{ uid }} .tpc__track{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;}
+  .tpc-{{ uid }} .tpc__track::-webkit-scrollbar{display:none;}
+  .tpc-{{ uid }} .tpc__item{flex:0 0 calc((100% - 48px) / 4);min-width:0;}
+  .tpc-{{ uid }} .tpc__card{background:#fff;border:1px solid #e6e8eb;border-radius:12px;overflow:hidden;height:100%;display:flex;flex-direction:column;}
+  .tpc-{{ uid }} .tpc__img{position:relative;width:100%;padding-bottom:100%;background:#f7f8f9;overflow:hidden;display:block;}
+  .tpc-{{ uid }} .tpc__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .tpc-{{ uid }} .tpc__body{padding:14px;flex-grow:1;display:flex;flex-direction:column;}
+  .tpc-{{ uid }} .tpc__name{font-size:13px;font-weight:700;line-height:1.35;color:#1a1d24;margin:0 0 8px;text-decoration:none;display:block;min-height:38px;}
+  .tpc-{{ uid }} .tpc__name:hover{color:#1f8a4c;}
+  .tpc-{{ uid }} .tpc__price{font-size:14px;font-weight:800;color:#1a1d24;margin-bottom:12px;}
+  .tpc-{{ uid }} .tpc__price.is-sale{color:#c8102e;}
+  .tpc-{{ uid }} .tpc__price small{color:#6b7280;font-weight:600;font-size:11px;}
+  .tpc-{{ uid }} .tpc__rrp{text-decoration:line-through;opacity:.55;margin-left:8px;font-weight:500;font-size:13px;color:#6b7280;}
+  .tpc-{{ uid }} .tpc__cta{margin-top:auto;background:#c8102e;color:#fff;border:none;padding:12px 18px;border-radius:10px;font-weight:700;text-align:center;text-decoration:none;display:block;transition:background-color .2s;}
+  .tpc-{{ uid }} .tpc__cta:hover{background:#a50d26;}
+  @media(max-width:749px){
+    .tpc-{{ uid }} .tpc__item{flex:0 0 calc((100% - 16px) / 2);}
+    .tpc-{{ uid }} .tpc__title{font-size:18px;}
+    .tpc-{{ uid }} .tpc__nav{display:none;}
+  }
+</style>
+
+<tp-carousel-{{ uid }} class="tpc-{{ uid }}">
+  <div class="tpc__head">
+    <h2 class="tpc__title">{{ heading }}</h2>
+    <div class="tpc__nav">
+      <button class="tpc__btn tpc__prev" aria-label="Previous"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+      <button class="tpc__btn tpc__next" aria-label="Next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+    </div>
+  </div>
+  <div class="tpc__track">
+    {%- for p in similar_products -%}
+      <div class="tpc__item">
+        <div class="tpc__card">
+          <a href="{{ p.url }}" class="tpc__img">
+            {% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 600 }}" alt="{{ p.featured_image.alt | escape }}" loading="lazy" width="600" height="600">{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endif %}
+          </a>
+          <div class="tpc__body">
+            <a href="{{ p.url }}" class="tpc__name">{{ p.title }}</a>
+            <div class="tpc__price {% if p.compare_at_price > p.price %}is-sale{% endif %}">
+              {{ p.price | money }}{% if p.metafields.custom.sale_by != blank %} <small>{{ p.metafields.custom.sale_by }}</small>{% endif %}
+              {% if p.compare_at_price > p.price %}<span class="tpc__rrp">{{ p.compare_at_price | money }}</span>{% endif %}
+            </div>
+            <a href="{{ p.url }}" class="tpc__cta">{{ button_text }}</a>
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</tp-carousel-{{ uid }}>
+
+<script>
+  (function(){
+    class TpCarousel{{ uid }} extends HTMLElement {
+      connectedCallback(){
+        this.track = this.querySelector('.tpc__track');
+        this.prev  = this.querySelector('.tpc__prev');
+        this.next  = this.querySelector('.tpc__next');
+        if(!this.track || !this.prev || !this.next) return;
+        this.prev.addEventListener('click', () => this.scroll(-1));
+        this.next.addEventListener('click', () => this.scroll(1));
+        this.track.addEventListener('scroll', () => this.update());
+        this.update();
+      }
+      scroll(dir){ this.track.scrollLeft += dir * this.track.offsetWidth; }
+      update(){
+        this.prev.disabled = this.track.scrollLeft <= 0;
+        this.next.disabled = this.track.scrollLeft + this.track.offsetWidth >= this.track.scrollWidth - 1;
+      }
+    }
+    if(!customElements.get('tp-carousel-{{ uid }}')){
+      customElements.define('tp-carousel-{{ uid }}', TpCarousel{{ uid }});
+    }
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Similar Products Block",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Not quite the right look? Browse similar tiles"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Similar Products Block"
+    }
+  ]
+}
+{% endschema %}
