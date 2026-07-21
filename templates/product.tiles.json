@@ -163,6 +163,7 @@
     },
     "custom_liquid_mTpArt": {
       "type": "custom-liquid",
+      "disabled": true,
       "name": "Similar Product Custom Liquid",
       "settings": {
         "title": "",
@@ -173,16 +174,13 @@
     "custom_liquid_xki7ez": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_477adb9_new": {
-          "type": "similar_tiles_metafield",
-          "settings": {
-            "title": "Not quite the right look? Browse similar tiles"
-          },
-          "blocks": {}
+        "vitals_related_products_ifA4TC": {
+          "type": "shopify://apps/vitals/blocks/related-products/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
         }
       },
       "block_order": [
-        "ai_gen_block_477adb9_new"
+        "vitals_related_products_ifA4TC"
       ],
       "name": "Product carousel",
       "settings": {}
