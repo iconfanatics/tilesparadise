@@ -276,7 +276,7 @@
           </div>
 
           <!-- CART -->
-          <div class="ch-item ch-item-cart">
+          <div class="ch-item ch-item-cart header__action-item--cart">
             <a href="{{ routes.cart_url }}" class="ch-link header__cart-toggle" 
               {% if settings.cart_type != 'page' %}data-action="toggle-mini-cart"{% endif %}>
               
@@ -284,13 +284,14 @@
                 {% comment %} {% render 'icon', icon: 'cart' %} {% endcomment %}
                <img src="{{ 'cart.png' | file_url }}" alt="cart" width="24" height="24">
 
-                <span class="ch-cart-count">{{ cart.item_count }}</span>
+                <span class="ch-cart-count header__cart-count">{{ cart.item_count }}</span>
               </div>
 
               <div class="ch-text">
                 <span class="ch-title">Basket</span>
               </div>
             </a>
+            <div id="mini-cart" class="mini-cart" aria-hidden="true" style="display:none;"></div>
           </div>
 
         </div>
