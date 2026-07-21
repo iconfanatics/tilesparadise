@@ -12,6 +12,14 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "calculator_block": {
+          "type": "liquid",
+          "settings": {
+            "title": "",
+            "liquid": "{%- comment -%}\n  Liquid block (no title needed; set Display mode \"Show all\").\n  Banner linking to your standalone /pages/tile-calculator.\n{%- endcomment -%}\n<div class=\"tp-calcb\">\n  <div class=\"tp-calcb__txt\">\n    <h3>Doing a whole room?</h3>\n    <p>Use our free Tile Calculator &mdash; enter your wall and floor measurements, deduct doors and windows, and we'll work out exactly how many boxes you need, plus 10% for wastage.</p>\n  </div>\n  <a class=\"tp-calcb__btn\" href=\"/pages/tile-calculator\">Open the Tile Calculator &rarr;</a>\n</div>\n<div class=\"tp-usp-spacer\" style=\"height:40px; width:100%;\"></div>\n<style>\n  .tp-calcb{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;\n    background:linear-gradient(120deg,#1a1d24,#2a3340);color:#fff;border-radius:14px;padding:24px 26px;\n    text-decoration:none;font-family:\"Open Sans\",sans-serif;}\n  .tp-calcb__txt h3{font-size:18px;font-weight:800;margin:0;color:#fff;}\n  .tp-calcb__txt p{font-size:13px;opacity:.85;margin:5px 0 0;max-width:560px;line-height:1.5;color:#fff;}\n  a.tp-calcb__btn{background:#fff;color:#1a1d24;font-weight:800;font-size:14px;padding:13px 22px;border-radius:10px;white-space:nowrap;\n    text-decoration:none !important; box-shadow:none !important; border:none !important; outline:none !important; background-image:none !important;}\n  .tp-calcb:hover a.tp-calcb__btn{background:#c8102e;color:#fff;}\n</style>",
+            "display_mode": "show_all"
+          }
+        },
         "liquid_QbWTND": {
           "type": "liquid",
           "disabled": true,
@@ -63,7 +71,16 @@
         },
         "delivery_options_block": {
           "type": "delivery_options",
-          "settings": {}
+          "settings": {
+            "get_it_text": "Get It Friday",
+            "order_in_text": "Order in 21 hours and 4 minutes",
+            "delivery_options_title": "Delivery Options",
+            "delivery_options_subtitle": "Add postcode to view all options",
+            "delivery_options_list": "<p><ul><li><b>FREE Standard Pallet Delivery</b><br>Over £499 to UK mainland</li><li><b>Standard Pallet Delivery</b> £24.95 for 2-7 working days</li><li><b>Next Day Pallet Service</b> £39.95 for delivery on Friday</li><li><b>Day Specific Pallet</b> £44.95 for specific day</li></ul></p>",
+            "delivery_drawer_content": "<h3>Standard Delivery</h3><p>We deliver using a pallet network. Delivery takes 2-7 working days.</p><h3>Next Day Delivery</h3><p>Available on orders placed before 12pm.</p><h3>Returns</h3><p>We accept returns within 30 days of purchase. Please read our full terms.</p>",
+            "faq_text": "Delivery & Returns FAQs",
+            "faq_drawer_content": "<h3>Frequently Asked Questions</h3><p><strong>How long does delivery take?</strong><br>Delivery typically takes between 2 to 7 working days depending on your location.</p><p><strong>Do you offer next day delivery?</strong><br>Yes, we offer next day pallet service for £39.95 if ordered before noon.</p><p><strong>What is your return policy?</strong><br>You can return items within 30 days in their original condition.</p>"
+          }
         },
         "klarna_on_site_messaging_app_block_Dbqqrq": {
           "type": "shopify://apps/klarna-on-site-messaging/blocks/app-block/b95936a9-74b6-4a95-8103-6a1b6459c25e",
@@ -116,14 +133,6 @@
         "vitals_back_in_stock_mkJRGa": {
           "type": "shopify://apps/vitals/blocks/back-in-stock/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
           "settings": {}
-        },
-        "calculator_block": {
-          "type": "liquid",
-          "settings": {
-            "title": "",
-            "liquid": "{%- comment -%}\n  Liquid block (no title needed; set Display mode \"Show all\").\n  Banner linking to your standalone /pages/tile-calculator.\n{%- endcomment -%}\n<div class=\"tp-calcb\">\n  <div class=\"tp-calcb__txt\">\n    <h3>Doing a whole room?</h3>\n    <p>Use our free Tile Calculator &mdash; enter your wall and floor measurements, deduct doors and windows, and we'll work out exactly how many boxes you need, plus 10% for wastage.</p>\n  </div>\n  <a class=\"tp-calcb__btn\" href=\"/pages/tile-calculator\">Open the Tile Calculator &rarr;</a>\n</div>\n<div class=\"tp-usp-spacer\" style=\"height:40px; width:100%;\"></div>\n<style>\n  .tp-calcb{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;\n    background:linear-gradient(120deg,#1a1d24,#2a3340);color:#fff;border-radius:14px;padding:24px 26px;\n    text-decoration:none;font-family:\"Open Sans\",sans-serif;}\n  .tp-calcb__txt h3{font-size:18px;font-weight:800;margin:0;color:#fff;}\n  .tp-calcb__txt p{font-size:13px;opacity:.85;margin:5px 0 0;max-width:560px;line-height:1.5;color:#fff;}\n  a.tp-calcb__btn{background:#fff;color:#1a1d24;font-weight:800;font-size:14px;padding:13px 22px;border-radius:10px;white-space:nowrap;\n    text-decoration:none !important; box-shadow:none !important; border:none !important; outline:none !important; background-image:none !important;}\n  .tp-calcb:hover a.tp-calcb__btn{background:#c8102e;color:#fff;}\n</style>",
-            "display_mode": "show_all"
-          }
         }
       },
       "block_order": [
@@ -152,6 +161,15 @@
         "carousel_effect": "slide"
       }
     },
+    "custom_liquid_mTpArt": {
+      "type": "custom-liquid",
+      "name": "Similar Product Custom Liquid",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  CAROUSEL 2 of 2 - \"NOT QUITE THE RIGHT LOOK\"\n  Paste this whole thing into its OWN Liquid block (Customize > product page >\n  Add block > Liquid > Display mode \"Show all\").\n  ONLY THING TO CHECK: this is preset to your tile-sale collection - no change needed\n  (the bit after /collections/ in its URL). If it shows nothing, the handle is wrong.\n{%- endcomment -%}\n\n{%- assign coll_handle = 'tile-sale' -%}\n{%- assign heading     = 'Not quite the right look? Browse similar tiles' -%}\n{%- assign uid         = 'browsesim' -%}\n{%- assign button_text = 'View product' -%}\n{%- assign products_limit = 12 -%}\n\n{%- assign coll = collections[coll_handle] -%}\n{%- if coll != blank and coll.products.size > 0 -%}\n<style>\n  .tpc-{{ uid }}{display:block;width:100%;font-family:\"Open Sans\",system-ui,sans-serif;padding:8px 0;}\n  .tpc-{{ uid }} .tpc__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}\n  .tpc-{{ uid }} .tpc__title{font-size:22px;font-weight:800;letter-spacing:-.01em;color:#1a1d24;margin:0;}\n  .tpc-{{ uid }} .tpc__nav{display:flex;gap:10px;}\n  .tpc-{{ uid }} .tpc__btn{width:40px;height:40px;border-radius:50%;background:#f7f8f9;color:#1a1d24;border:1px solid #e6e8eb;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background-color .2s;}\n  .tpc-{{ uid }} .tpc__btn:hover{background:#ececef;}\n  .tpc-{{ uid }} .tpc__btn:disabled{opacity:.3;cursor:not-allowed;}\n  .tpc-{{ uid }} .tpc__track{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;}\n  .tpc-{{ uid }} .tpc__track::-webkit-scrollbar{display:none;}\n  .tpc-{{ uid }} .tpc__item{flex:0 0 calc((100% - 48px) / 4);min-width:0;}\n  .tpc-{{ uid }} .tpc__card{background:#fff;border:1px solid #e6e8eb;border-radius:12px;overflow:hidden;height:100%;display:flex;flex-direction:column;}\n  .tpc-{{ uid }} .tpc__img{position:relative;width:100%;padding-bottom:100%;background:#f7f8f9;overflow:hidden;display:block;}\n  .tpc-{{ uid }} .tpc__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}\n  .tpc-{{ uid }} .tpc__body{padding:14px;flex-grow:1;display:flex;flex-direction:column;}\n  .tpc-{{ uid }} .tpc__name{font-size:13px;font-weight:700;line-height:1.35;color:#1a1d24;margin:0 0 8px;text-decoration:none;display:block;min-height:38px;}\n  .tpc-{{ uid }} .tpc__name:hover{color:#1f8a4c;}\n  .tpc-{{ uid }} .tpc__price{font-size:14px;font-weight:800;color:#1a1d24;margin-bottom:12px;}\n  .tpc-{{ uid }} .tpc__price.is-sale{color:#c8102e;}\n  .tpc-{{ uid }} .tpc__price small{color:#6b7280;font-weight:600;font-size:11px;}\n  .tpc-{{ uid }} .tpc__rrp{text-decoration:line-through;opacity:.55;margin-left:8px;font-weight:500;font-size:13px;color:#6b7280;}\n  .tpc-{{ uid }} .tpc__cta{margin-top:auto;background:#c8102e;color:#fff;border:none;padding:12px 18px;border-radius:10px;font-weight:700;text-align:center;text-decoration:none;display:block;transition:background-color .2s;}\n  .tpc-{{ uid }} .tpc__cta:hover{background:#a50d26;}\n  @media(max-width:749px){\n    .tpc-{{ uid }} .tpc__item{flex:0 0 calc((100% - 16px) / 2);}\n    .tpc-{{ uid }} .tpc__title{font-size:18px;}\n    .tpc-{{ uid }} .tpc__nav{display:none;}\n  }\n</style>\n\n<tp-carousel-{{ uid }} class=\"tpc-{{ uid }}\">\n  <div class=\"tpc__head\">\n    <h2 class=\"tpc__title\">{{ heading }}</h2>\n    <div class=\"tpc__nav\">\n      <button class=\"tpc__btn tpc__prev\" aria-label=\"Previous\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"15 18 9 12 15 6\"></polyline></svg></button>\n      <button class=\"tpc__btn tpc__next\" aria-label=\"Next\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"9 18 15 12 9 6\"></polyline></svg></button>\n    </div>\n  </div>\n  <div class=\"tpc__track\">\n    {%- for p in coll.products limit: products_limit -%}\n      <div class=\"tpc__item\">\n        <div class=\"tpc__card\">\n          <a href=\"{{ p.url }}\" class=\"tpc__img\">\n            {% if p.featured_image %}<img src=\"{{ p.featured_image | image_url: width: 600 }}\" alt=\"{{ p.featured_image.alt | escape }}\" loading=\"lazy\" width=\"600\" height=\"600\">{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endif %}\n          </a>\n          <div class=\"tpc__body\">\n            <a href=\"{{ p.url }}\" class=\"tpc__name\">{{ p.title }}</a>\n            <div class=\"tpc__price {% if p.compare_at_price > p.price %}is-sale{% endif %}\">\n              {{ p.price | money }}{% if p.metafields.custom.sale_by != blank %} <small>{{ p.metafields.custom.sale_by }}</small>{% endif %}\n              {% if p.compare_at_price > p.price %}<span class=\"tpc__rrp\">{{ p.compare_at_price | money }}</span>{% endif %}\n            </div>\n            <a href=\"{{ p.url }}\" class=\"tpc__cta\">{{ button_text }}</a>\n          </div>\n        </div>\n      </div>\n    {%- endfor -%}\n  </div>\n</tp-carousel-{{ uid }}>\n\n<script>\n  (function(){\n    class TpCarousel{{ uid }} extends HTMLElement {\n      connectedCallback(){\n        this.track = this.querySelector('.tpc__track');\n        this.prev  = this.querySelector('.tpc__prev');\n        this.next  = this.querySelector('.tpc__next');\n        if(!this.track || !this.prev || !this.next) return;\n        this.prev.addEventListener('click', () => this.scroll(-1));\n        this.next.addEventListener('click', () => this.scroll(1));\n        this.track.addEventListener('scroll', () => this.update());\n        this.update();\n      }\n      scroll(dir){ this.track.scrollLeft += dir * this.track.offsetWidth; }\n      update(){\n        this.prev.disabled = this.track.scrollLeft <= 0;\n        this.next.disabled = this.track.scrollLeft + this.track.offsetWidth >= this.track.scrollWidth - 1;\n      }\n    }\n    if(!customElements.get('tp-carousel-{{ uid }}')){\n      customElements.define('tp-carousel-{{ uid }}', TpCarousel{{ uid }});\n    }\n  })();\n</script>\n{%- endif -%}"
+      }
+    },
     "custom_liquid_xki7ez": {
       "type": "_blocks",
       "blocks": {
@@ -159,7 +177,8 @@
           "type": "similar_tiles_metafield",
           "settings": {
             "title": "Not quite the right look? Browse similar tiles"
-          }
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -167,6 +186,42 @@
       ],
       "name": "Product carousel",
       "settings": {}
+    },
+    "product_tabs": {
+      "type": "product-tabs",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I measure my room for tiles?",
+            "answer": "Measure the length and width of the room and multiply them together to get the square meterage. We recommend adding 10% for cuts and wastage."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Are these tiles suitable for underfloor heating?",
+            "answer": "Yes, most of our porcelain and ceramic tiles are suitable for underfloor heating. Please check the 'Product Details' tab for specific confirmation on this product."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need to seal these tiles?",
+            "answer": "Porcelain and glazed ceramic tiles do not require sealing. Natural stone and some unglazed tiles may require sealing before and after grouting."
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
+      "settings": {
+        "tab_1_title": "Product Information",
+        "tab_2_title": "Product Details",
+        "tab_3_title": "Tile FAQs"
+      }
     },
     "custom_liquid_t77pJf": {
       "type": "_blocks",
@@ -221,7 +276,8 @@
             "button_hover_bg": "#c72e47",
             "button_text_color": "#ffffff",
             "button_border_radius": 4
-          }
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -229,169 +285,6 @@
       ],
       "name": "Paired With Carousel",
       "settings": {}
-    },
-    "custom_liquid_WhPNfa": {
-      "type": "custom-liquid",
-      "name": "Tile USP",
-      "settings": {
-        "title": "",
-        "include_margins": true,
-        "liquid": "{%- comment -%}\n  Liquid block (Display mode \"Show all\"), or paste into a Custom Liquid section\n  near the top of the page / under the header. Trust + USP bar.\n{%- endcomment -%}\n<div class=\"tp-usp\">\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 6h11v9H3z\"/><path d=\"M14 9h4l3 3v3h-7z\"/><circle cx=\"7\" cy=\"18\" r=\"1.6\"/><circle cx=\"17.5\" cy=\"18\" r=\"1.6\"/></svg>\n    Next-day UK delivery\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.8 5.7 21l1.3-6.7-5-4.6 6.8-.8z\"/></svg>\n    Rated Excellent on Trustpilot\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M3 10h18\"/></svg>\n    0% finance available\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16v12H4z\"/><path d=\"M9 20h6\"/></svg>\n    Free samples &middot; 14-day returns\n  </span>\n</div>\n<div class=\"tp-usp-spacer\" style=\"height:40px; width:100%;\"></div>\n<style>\n  .tp-usp{margin-bottom:24px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:center;\n    background:#1a1d24;color:#fff;padding:11px 18px;border-radius:10px;\n    font-family:\"Open Sans\",sans-serif;font-size:13px;font-weight:600;}\n  .tp-usp__i{display:flex;align-items:center;gap:8px;opacity:.94;}\n  .tp-usp__i svg{width:16px;height:16px;color:#7fd3a0;flex:0 0 auto;}\n</style>"
-      }
-    },
-    "1780773500431ccfd2": {
-      "type": "apps",
-      "blocks": {
-        "vitals_product_reviews_UkDaYU": {
-          "type": "shopify://apps/vitals/blocks/product-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
-          "settings": {
-            "hide_mock_data": false
-          }
-        }
-      },
-      "block_order": [
-        "vitals_product_reviews_UkDaYU"
-      ],
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "product_tabs": {
-      "type": "product-tabs",
-      "blocks": {
-        "faq_1": {
-          "type": "faq",
-          "settings": {
-            "question": "How do I measure my room for tiles?",
-            "answer": "Measure the length and width of the room and multiply them together to get the square meterage. We recommend adding 10% for cuts and wastage."
-          }
-        },
-        "faq_2": {
-          "type": "faq",
-          "settings": {
-            "question": "Are these tiles suitable for underfloor heating?",
-            "answer": "Yes, most of our porcelain and ceramic tiles are suitable for underfloor heating. Please check the 'Product Details' tab for specific confirmation on this product."
-          }
-        },
-        "faq_3": {
-          "type": "faq",
-          "settings": {
-            "question": "Do I need to seal these tiles?",
-            "answer": "Porcelain and glazed ceramic tiles do not require sealing. Natural stone and some unglazed tiles may require sealing before and after grouting."
-          }
-        }
-      },
-      "block_order": [
-        "faq_1",
-        "faq_2",
-        "faq_3"
-      ],
-      "settings": {
-        "tab_1_title": "Product Information",
-        "tab_2_title": "Product Details"
-      }
-    },
-    "related_categories_new": {
-      "type": "related-categories",
-      "blocks": {
-        "cat1": {
-          "type": "category_link",
-          "settings": {
-            "title": "Bathroom Wall Tiles"
-          }
-        },
-        "cat2": {
-          "type": "category_link",
-          "settings": {
-            "title": "Kitchen Wall Tiles"
-          }
-        },
-        "cat3": {
-          "type": "category_link",
-          "settings": {
-            "title": "Kitchen Splash Back Tiles"
-          }
-        },
-        "cat4": {
-          "type": "category_link",
-          "settings": {
-            "title": "Country Tiles"
-          }
-        },
-        "cat5": {
-          "type": "category_link",
-          "settings": {
-            "title": "Rustic Tiles"
-          }
-        },
-        "cat6": {
-          "type": "category_link",
-          "settings": {
-            "title": "Ceramic Tiles"
-          }
-        },
-        "cat7": {
-          "type": "category_link",
-          "settings": {
-            "title": "White Wall Tiles"
-          }
-        },
-        "cat8": {
-          "type": "category_link",
-          "settings": {
-            "title": "White Bathroom Tiles"
-          }
-        },
-        "cat9": {
-          "type": "category_link",
-          "settings": {
-            "title": "White Kitchen Tiles"
-          }
-        },
-        "cat10": {
-          "type": "category_link",
-          "settings": {
-            "title": "Zellige Effect Tiles"
-          }
-        },
-        "cat11": {
-          "type": "category_link",
-          "settings": {
-            "title": "Gloss Tiles"
-          }
-        },
-        "cat12": {
-          "type": "category_link",
-          "settings": {
-            "title": "Metro Tiles"
-          }
-        }
-      },
-      "block_order": [
-        "cat1",
-        "cat2",
-        "cat3",
-        "cat4",
-        "cat5",
-        "cat6",
-        "cat7",
-        "cat8",
-        "cat9",
-        "cat10",
-        "cat11",
-        "cat12"
-      ],
-      "settings": {
-        "title": "Related Popular Categories",
-        "bg_color": "#f8f7f5"
-      }
-    },
-    "recently_viewed_paired_new": {
-      "type": "recently-viewed-paired",
-      "settings": {
-        "title": "Recently Viewed Products",
-        "section_bg": "#f8f7f5"
-      }
     },
     "blocks_JPq7Pd": {
       "type": "_blocks",
@@ -431,10 +324,193 @@
       ],
       "name": "Related collections",
       "settings": {}
+    },
+    "related_categories_new": {
+      "type": "related-categories",
+      "blocks": {
+        "cat1": {
+          "type": "category_link",
+          "settings": {
+            "title": "Bathroom Wall Tiles",
+            "link": ""
+          }
+        },
+        "cat2": {
+          "type": "category_link",
+          "settings": {
+            "title": "Kitchen Wall Tiles",
+            "link": ""
+          }
+        },
+        "cat3": {
+          "type": "category_link",
+          "settings": {
+            "title": "Kitchen Splash Back Tiles",
+            "link": ""
+          }
+        },
+        "cat4": {
+          "type": "category_link",
+          "settings": {
+            "title": "Country Tiles",
+            "link": ""
+          }
+        },
+        "cat5": {
+          "type": "category_link",
+          "settings": {
+            "title": "Rustic Tiles",
+            "link": ""
+          }
+        },
+        "cat6": {
+          "type": "category_link",
+          "settings": {
+            "title": "Ceramic Tiles",
+            "link": ""
+          }
+        },
+        "cat7": {
+          "type": "category_link",
+          "settings": {
+            "title": "White Wall Tiles",
+            "link": ""
+          }
+        },
+        "cat8": {
+          "type": "category_link",
+          "settings": {
+            "title": "White Bathroom Tiles",
+            "link": ""
+          }
+        },
+        "cat9": {
+          "type": "category_link",
+          "settings": {
+            "title": "White Kitchen Tiles",
+            "link": ""
+          }
+        },
+        "cat10": {
+          "type": "category_link",
+          "settings": {
+            "title": "Zellige Effect Tiles",
+            "link": ""
+          }
+        },
+        "cat11": {
+          "type": "category_link",
+          "settings": {
+            "title": "Gloss Tiles",
+            "link": ""
+          }
+        },
+        "cat12": {
+          "type": "category_link",
+          "settings": {
+            "title": "Metro Tiles",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "cat1",
+        "cat2",
+        "cat3",
+        "cat4",
+        "cat5",
+        "cat6",
+        "cat7",
+        "cat8",
+        "cat9",
+        "cat10",
+        "cat11",
+        "cat12"
+      ],
+      "settings": {
+        "title": "Related Popular Categories",
+        "bg_color": "#f8f7f5"
+      }
+    },
+    "recently_viewed_paired_new": {
+      "type": "recently-viewed-paired",
+      "settings": {
+        "title": "Recently Viewed Products",
+        "products_per_row_desktop": 5,
+        "products_per_row_mobile": "2",
+        "product_gap": 20,
+        "section_padding": 20,
+        "desktop_width_percent": 100,
+        "container_width": 1350,
+        "side_padding": 20,
+        "section_bg": "#f8f7f5",
+        "title_size": 28,
+        "title_spacing": 24,
+        "title_color": "#3b3337",
+        "nav_button_bg": "#ffffff",
+        "nav_button_color": "#111111",
+        "nav_button_hover_bg": "#f1f1f1",
+        "nav_button_hover_color": "#111111",
+        "card_bg": "#ffffff",
+        "image_bg": "#f5f5f5",
+        "card_padding": 16,
+        "card_border_radius": 0,
+        "product_title_size": 14,
+        "product_title_color": "#111111",
+        "price_size": 18,
+        "price_color": "#e40012",
+        "sale_price_color": "#e40012",
+        "compare_price_color": "#6f6f6f",
+        "accent_color": "#3070b7",
+        "badge_bg": "#e40012",
+        "badge_text_color": "#ffffff",
+        "badge_size": 13,
+        "vendor_bg": "#171717",
+        "vendor_text_color": "#ffffff",
+        "review_star_color": "#ff9d00",
+        "stock_text_color": "#111111",
+        "stock_size": 14,
+        "stock_icon_bg": "#31ad45",
+        "stock_icon_color": "#ffffff",
+        "out_of_stock_color": "#cf0e0e",
+        "wishlist_color": "#2e8f3d",
+        "button_text": "View product",
+        "button_bg": "#df3653",
+        "button_hover_bg": "#c72e47",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 4
+      }
+    },
+    "1780773500431ccfd2": {
+      "type": "apps",
+      "blocks": {
+        "vitals_product_reviews_UkDaYU": {
+          "type": "shopify://apps/vitals/blocks/product-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {
+            "hide_mock_data": false
+          }
+        }
+      },
+      "block_order": [
+        "vitals_product_reviews_UkDaYU"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "custom_liquid_WhPNfa": {
+      "type": "custom-liquid",
+      "name": "Tile USP",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  Liquid block (Display mode \"Show all\"), or paste into a Custom Liquid section\n  near the top of the page / under the header. Trust + USP bar.\n{%- endcomment -%}\n<div class=\"tp-usp\">\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 6h11v9H3z\"/><path d=\"M14 9h4l3 3v3h-7z\"/><circle cx=\"7\" cy=\"18\" r=\"1.6\"/><circle cx=\"17.5\" cy=\"18\" r=\"1.6\"/></svg>\n    Next-day UK delivery\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.8 5.7 21l1.3-6.7-5-4.6 6.8-.8z\"/></svg>\n    Rated Excellent on Trustpilot\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M3 10h18\"/></svg>\n    0% finance available\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16v12H4z\"/><path d=\"M9 20h6\"/></svg>\n    Free samples &middot; 14-day returns\n  </span>\n</div>\n<div class=\"tp-usp-spacer\" style=\"height:40px; width:100%;\"></div>\n<style>\n  .tp-usp{margin-bottom:24px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:center;\n    background:#1a1d24;color:#fff;padding:11px 18px;border-radius:10px;\n    font-family:\"Open Sans\",sans-serif;font-size:13px;font-weight:600;}\n  .tp-usp__i{display:flex;align-items:center;gap:8px;opacity:.94;}\n  .tp-usp__i svg{width:16px;height:16px;color:#7fd3a0;flex:0 0 auto;}\n</style>"
+      }
     }
   },
   "order": [
     "main",
+    "custom_liquid_mTpArt",
     "custom_liquid_xki7ez",
     "product_tabs",
     "custom_liquid_t77pJf",
