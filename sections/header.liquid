@@ -277,8 +277,7 @@
 
           <!-- CART -->
           <div class="ch-item ch-item-cart header__action-item--cart">
-            <a href="{{ routes.cart_url }}" class="ch-link header__cart-toggle" 
-              {% if settings.cart_type != 'page' %}data-action="toggle-mini-cart"{% endif %}>
+            <a href="{{ routes.cart_url }}" class="ch-link header__cart-toggle">
               
               <div class="ch-icon-cart">
                 {% comment %} {% render 'icon', icon: 'cart' %} {% endcomment %}
