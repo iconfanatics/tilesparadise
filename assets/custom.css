@@ -2878,6 +2878,7 @@ nav.nav-bar.tabbed-mega-nav li:hover {
 .tabbed-mega-nav__secondary-list {
   width: min(100%, var(--site-boxed-width)) !important;
   justify-content: center !important;
+  flex-wrap: wrap !important;
 }
 
 /* Stable tab ribbon: no jumping, no colour flash, centered tab labels */
@@ -2942,6 +2943,7 @@ nav.nav-bar.tabbed-mega-nav li:hover {
   background: var(--tabbed-menu-dark) !important;
   transform: none !important;
   transition: none !important;
+  flex-wrap: wrap !important;
 }
 
 .tabbed-mega-nav__secondary-item {
