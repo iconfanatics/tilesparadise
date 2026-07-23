@@ -4448,3 +4448,9 @@ span.inventory--low::before {
   left: 0 !important;
   margin: 0 !important;
 }
+
+@media screen and (max-width: 999px) {
+  .tabbed-mega-nav__flyout {
+    display: none !important;
+  }
+}
