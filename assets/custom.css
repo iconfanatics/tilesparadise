@@ -15,6 +15,9 @@
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
+  .template-product .product-form__info-content .price-list {
+    flex-wrap: wrap !important;
+  }
 }
 .price-list {
   display: flex !important;
@@ -4395,7 +4398,7 @@ span.inventory--low::before {
 /* Product page inline pricing */
 .template-product .product-form__info-content .price-list {
     display: flex !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     align-items: center !important;
     gap: 8px !important;
 }
