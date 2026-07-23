@@ -2931,6 +2931,7 @@ nav.nav-bar.tabbed-mega-nav li:hover {
   background: var(--tabbed-menu-dark) !important;
   transform: none !important;
   transition: none !important;
+  z-index: 99 !important;
 }
 
 .tabbed-mega-nav__secondary-wrap,
@@ -2949,15 +2950,16 @@ nav.nav-bar.tabbed-mega-nav li:hover {
 }
 
 .tabbed-mega-nav__secondary-link {
-  height: 100% !important;
+  height: auto !important;
   min-height: 44px !important;
   transition: color .12s ease, background-color .12s ease !important;
   font-size: clamp(10px, 1vw, 14px) !important;
   white-space: normal !important;
-  line-height: 1.2 !important;
-  padding: 5px !important;
+  line-height: 1.3 !important;
+  padding: 10px 5px !important;
   display: flex !important;
   align-items: center !important;
+  justify-content: center !important;
   justify-content: center !important;
   text-align: center !important;
 }
