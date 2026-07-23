@@ -293,7 +293,7 @@ body {
 
 @media (min-width: 1000px) {
   .tabbed-mega-nav__columns > .tabbed-mega-nav__column:first-child {
-    flex: 3;
+    flex: 1;
   }
 }
 
@@ -312,7 +312,7 @@ body {
 
 .tabbed-mega-nav__link-grid li {
   break-inside: avoid;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 .tabbed-mega-nav__panel-link {
@@ -320,7 +320,7 @@ body {
   color: #4f4f4f;
   font-size: 14px;
   font-weight: 500;
-  line-height: 1.45;
+  line-height: 1.2;
   transition: all 0.2s ease;
 }
 
