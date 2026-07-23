@@ -4397,7 +4397,7 @@ span.inventory--low::before {
 /* Product page inline pricing */
 .template-product .product-form__info-content .price-list {
     display: flex !important;
-    flex-wrap: nowrap !important;
+    flex-wrap: wrap !important;
     align-items: center !important;
     gap: 8px !important;
 }
