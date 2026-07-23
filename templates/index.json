@@ -9,6 +9,111 @@
  */
 {
   "sections": {
+    "slideshow_qt7hFy": {
+      "type": "slideshow",
+      "blocks": {
+        "image_GVyn3c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Job_Lot_Deals.webp",
+            "mobile_image": "shopify://shop_images/Job_Lot_Deals.webp",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "link": "https://tilesparadiseuk.com/collections/job-lot-deals-unbeatable-prices-on-quality-tiles"
+          }
+        },
+        "image_fWczYz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Pallet_Deals.webp",
+            "mobile_image": "shopify://shop_images/Pallet_Deals.webp",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "link": "https://tilesparadiseuk.com/collections/pallet-deals-1"
+          }
+        },
+        "image_NW6r8F": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Radiator_Offers.webp",
+            "mobile_image": "shopify://shop_images/Radiator_Offers.webp",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "link": "https://tilesparadiseuk.com/collections/stylish-radiators-heated-towel-rails"
+          }
+        },
+        "image_q9yLUw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Mirror_Offers.webp",
+            "mobile_image": "shopify://shop_images/Mirror_Offers.webp",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "link": "shopify://collections/led-mirrors"
+          }
+        },
+        "slide_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Tile_Ranges_11726d73-4a34-4976-96db-f9dfa1b93f2f.webp",
+            "mobile_image": "shopify://shop_images/Tile_Ranges_11726d73-4a34-4976-96db-f9dfa1b93f2f.webp",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "link": "shopify://collections/tile-sale"
+          }
+        }
+      },
+      "block_order": [
+        "image_GVyn3c",
+        "image_fWczYz",
+        "image_NW6r8F",
+        "image_q9yLUw",
+        "slide_1"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "edge_to_edge": true,
+        "section_size": "preserve_ratio",
+        "carousel_effect": "slide",
+        "autoplay": true,
+        "cycle_speed": 5
+      }
+    },
     "custom_liquid_8mBCBz": {
       "type": "custom-liquid",
       "disabled": true,
@@ -100,6 +205,70 @@
         "columns_mobile": 1,
         "custom_class": "home-best-selling-sec"
       }
+    },
+    "blocks_4HkYkr": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_YEeeb6": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "60x120cm-rectangular-large-tiles",
+            "products_limit": 12,
+            "use_recommendations": true,
+            "title": "We Think You'll Love",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 15,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_YEeeb6"
+      ],
+      "name": "Product carousel",
+      "settings": {}
     },
     "collection_list_pb9YTb": {
       "type": "collection-list",
@@ -223,7 +392,64 @@
         "link": "shopify://collections",
         "round_images": false,
         "show_collection_title": true,
-        "custom_class": "home-shop-by-color-sec shop-by-room-grid"
+        "custom_class": "home-shop-by-color-sec shop-by-room-grid",
+        "collections_to_show": 20
+      }
+    },
+    "trending_styles_xyz": {
+      "type": "collection-list",
+      "blocks": {
+        "block_1": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title_override": "Onyx Tiles",
+            "image": "shopify://shop_images/Onyx_Real_Porcelain_60x120cm_Blue_Polished_Wall_Floor_Tile_368effd7-9e6b-4f81-9660-2b6ab73d2093.webp",
+            "link": "https://tilesparadiseuk.com/collections/onyx-tiles-1"
+          }
+        },
+        "block_2": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title_override": "Marble Effect Tiles",
+            "image": "shopify://shop_images/sky-gold-white-marble-effect-polished-porcelain-60x120cm-wall-and-floor-tile-9981495.jpg",
+            "link": "shopify://collections/marble-effect-tiles"
+          }
+        },
+        "block_3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title_override": "Gold Tiles",
+            "image": "shopify://shop_images/gold-marble-effect-tile-kitchen-bathroom-large-format.webp",
+            "link": "shopify://collections/gold-tiles"
+          }
+        },
+        "block_4": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title_override": "Black Tiles",
+            "image": "shopify://shop_images/dark-marble-effect-floor-tiles-maintenance.webp",
+            "link": "https://tilesparadiseuk.com/collections/gold-tiles"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
+      "settings": {
+        "title": "Trending styles",
+        "link_title": "",
+        "link": "",
+        "round_images": false,
+        "show_collection_title": true,
+        "custom_class": "trending-styles-sec",
+        "collections_to_show": 20
       }
     },
     "13830d8c-2d85-47ea-90e0-67f4d26a1478": {
@@ -294,7 +520,8 @@
         "link": "shopify://collections",
         "round_images": false,
         "show_collection_title": true,
-        "custom_class": "home-shop-by-color-sec"
+        "custom_class": "home-shop-by-color-sec",
+        "collections_to_show": 20
       }
     },
     "collection_list_iqmkDd": {
@@ -347,7 +574,8 @@
         "link": "shopify://collections",
         "round_images": false,
         "show_collection_title": true,
-        "custom_class": "home-shop-by-color-sec shop-bathrooms-sec"
+        "custom_class": "home-shop-by-color-sec shop-bathrooms-sec",
+        "collections_to_show": 20
       }
     },
     "rich_text_NrganX": {
@@ -385,55 +613,71 @@
         "include_margins": false
       }
     },
-    "slideshow_qt7hFy": {
-      "type": "slideshow",
-      "name": "Slideshow",
+    "custom_tabs_1": {
+      "type": "custom-tabs",
       "blocks": {
-        "slide_1": {
-          "type": "image",
+        "tab_1": {
+          "type": "tab",
           "settings": {
-            "image": "shopify://shop_images/sale-banner-summer-desktop_8411e12b-39f9-459a-8504-219959f0a214.jpg",
-            "mobile_image": "shopify://shop_images/sale-banner-summer-mobile_3cbe65a5-b2f0-4968-b690-f27d4c5d87ac.jpg",
-            "title": "",
-            "content": "",
-            "button_text": "",
-            "link": "shopify://collections/tile-sale"
+            "title": "About Tiles Paradise",
+            "heading": "",
+            "content": "<p>Four years ago, we started buying tiles straight from the factories that make them. No importer in the middle. No distributor. No showroom with a coffee machine charging you for the decor.</p><p>We bring the stock into our own UK warehouse and ship it to your door — usually the next working day.</p><p>1,000+ customers. 4.8 stars. Not because the brand looks good, but because what we say we'll deliver, we actually deliver.</p><p>Porcelain tiles, bathroom products, LED mirrors, heated towel rails, toilets, shower sets. Everything you need for a renovation, from one place, at prices the high street can't justify.</p>"
           }
         },
-        "slide_2": {
-          "type": "image",
+        "tab_2": {
+          "type": "tab",
           "settings": {
-            "title": "Summer Sale",
-            "content": "Up to 50% off on selected items",
-            "button_text": "View Offers",
-            "link": "shopify://collections/tile-sale"
+            "title": "Own the Room",
+            "heading": "",
+            "content": "<p>Most people spend weeks scrolling tile websites, overwhelmed by choice and let down by photos that look nothing like the tile in real life.</p><p>Here's what we do instead.</p><p>Order a sample. We cut it, we post it, you hold it in your actual room in your actual light. If it's right, you buy. If not, try another. We refund the sample cost against your order.</p><p>No guessing. No returns because the colour was wrong on screen.</p><p>200+ tiles in stock. Marble effect, onyx, gloss, matt, outdoor — ready to ship.</p>"
+          }
+        },
+        "tab_3": {
+          "type": "tab",
+          "settings": {
+            "title": "Ready to Renovate?",
+            "heading": "",
+            "content": "<p>Renovations go wrong for three reasons. Products take too long. Something arrives damaged and no one answers. Or you've ordered from five different websites and nothing matches when it gets there.</p><p>We fix all three.</p><p>Tiles, mirrors, toilets, radiators, shower sets — all held in our UK warehouse. Most orders ship the next working day. Tiles go out on fully-wrapped pallets because porcelain chips and we'd rather not deal with that.</p><p>If anything arrives damaged, photograph it while it's still on the pallet. Tell us within two working days. We'll sort a replacement — no argument.</p><p>One supplier. One delivery. One person to call.</p>"
+          }
+        },
+        "tab_4": {
+          "type": "tab",
+          "settings": {
+            "title": "One Change. Different Room.",
+            "heading": "",
+            "content": "<p>You don't always need to gut the bathroom.</p><p>Sometimes it's the floor tiles. Sometimes it's swapping the mirror for an LED one with anti-fog. Sometimes a brushed gold towel rail changes the whole feel of the room.</p><p>We sell exactly those things. Individual pieces that make a room look deliberate without the cost or mess of a full renovation.</p><p>Pick one thing. See what it does.</p>"
+          }
+        },
+        "tab_5": {
+          "type": "tab",
+          "settings": {
+            "title": "How Buying From Us Works",
+            "heading": "",
+            "content": "<p>Browse. Order a sample if you're unsure — we deliver it, you decide, we knock it off your first order.</p><p>When you're ready, check out with PayPal, Klarna, or card. 0% interest-free finance available if you want to spread the cost.</p><p>Your order ships from our UK warehouse within 1–3 working days. Tiles travel on pallets — not because we're overcautious, but because that's the only way to get porcelain to your door without it cracking.</p><p>If anything goes sideways, WhatsApp or live chat us. 24 hours a day, 7 days a week. A real person responds — not a bot reading from a script.</p>"
+          }
+        },
+        "tab_6": {
+          "type": "tab",
+          "settings": {
+            "title": "What We Actually Stand For",
+            "heading": "",
+            "content": "<p>We're four years old. We don't have a showroom or a 500-seat call centre.</p><p>What we have is a direct relationship with the factories, our own UK warehouse, and a team that replies in minutes — not working days.</p><p>Our goal is simple: fewer problems on delivery day, better prices, and someone who picks up when something goes wrong.</p><p>4.8 stars. 1,000+ reviews. Every one from a real customer who placed a real order.</p><p>Got a question before you buy? Ask on live chat, WhatsApp, or email. Same team. Same response time. Any hour.</p>"
           }
         }
       },
       "block_order": [
-        "slide_1",
-        "slide_2"
+        "tab_1",
+        "tab_2",
+        "tab_3",
+        "tab_4",
+        "tab_5",
+        "tab_6"
       ],
       "settings": {
-        "edge_to_edge": true,
-        "section_size": "preserve_ratio",
-        "carousel_effect": "slide",
-        "autoplay": true,
-        "cycle_speed": 5
-      }
-    },
-    "image_with_text_PLTMEU": {
-      "type": "image-with-text",
-      "name": "Image with text",
-      "settings": {
-        "image": "shopify://shop_images/image_3_1.png",
-        "image_position": "right",
-        "image_width": 40,
-        "title": "Why Choose Tiles Paradise UK",
-        "content": "<h2>Why shop with Tiles Paradise?</h2><p>We buy our tiles and bathroom products straight from the factories and hold the whole range in our own UK warehouse. So even though it's imported, it's sitting on a shelf here ready to go, not weeks away on a container ship. No middleman adding a markup, no long waits just <a href=\"/collections/porcelain-tiles\">porcelain tiles</a> and <a href=\"/collections/premium-bathroom-tiles\">bathroom ranges</a> below high-street prices, ready for next-day delivery.</p><h3>Proper quality, minus the markup</h3><p>Dealing directly means you get the looks you'd normally pay a lot more for  <a href=\"/collections/marble-effect-tiles\">marble and onyx</a>, <a href=\"/collections/outdoor-tiles\">outdoor paving</a>, our own <a href=\"/collections/led-mirrors\">LED bathroom mirrors</a> — without the showroom price tag.</p><h3>UK stock, out the door fast</h3><p>Because everything's stocked here in the UK, most orders ship the next working day. Tiles are heavy and they chip easily, so they go out on a solid, fully-wrapped pallet that's built for the trip. And if something does turn up damaged, don't stress take a photo while it's still on the pallet, tell us within two working days, and we'll get a replacement out to you. The full details are on our <a href=\"/pages/shipping-policy\">delivery</a> and <a href=\"/pages/damages\">damages</a> pages.</p><h3>Not sure yet? Order a sample first</h3><p>A screen never quite shows how a tile really looks — the veining, the colour, the finish in your own light. So order a cut <a href=\"/pages/tile-sample-service\">sample</a>, have a proper look, and we'll take the cost off your order when you buy. What arrives is exactly what you pictured, with no nasty surprises.</p><h3>Real people, any time of day</h3><p>We're rated Excellent on <a href=\"https://uk.trustpilot.com/review/tilesparadiseuk.com\">Trustpilot</a>  — and every bathroom product comes with a guarantee. If you ever get stuck, there's a real person ready to help on live chat, WhatsApp or email, 24 hours a day, 7 days a week. Not bad going for a company that's only four years old. Have a browse through our <a href=\"/collections/best-sellers\">best sellers</a>, or <a href=\"/pages/who-we-are\">get to know us a bit better</a>.</p>",
-        "button_text": "",
-        "button_link": "shopify://collections/all",
-        "custom_class": "home-image-text-sec"
+        "bg_color": "rgba(0,0,0,0)",
+        "active_color": "#016fd0",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "blog_posts_rYkFhT": {
@@ -450,69 +694,6 @@
         "show_excerpt": false,
         "stack_mobile": false
       }
-    },
-    "blocks_4HkYkr": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_477adb9_YEeeb6": {
-          "type": "ai_gen_block_477adb9",
-          "settings": {
-            "collection": "60x120cm-rectangular-large-tiles",
-            "products_limit": 12,
-            "title": "We Think You'll Love",
-            "products_per_row_desktop": 5,
-            "products_per_row_mobile": "2",
-            "product_gap": 20,
-            "section_padding": 20,
-            "desktop_width_percent": 100,
-            "container_width": 1200,
-            "side_padding": 22,
-            "section_bg": "#f1eee8",
-            "title_size": 24,
-            "title_spacing": 15,
-            "title_color": "#000000",
-            "nav_button_bg": "#f5f5f5",
-            "nav_button_hover_bg": "#e8e8e8",
-            "nav_button_color": "#3b3337",
-            "nav_button_hover_color": "#000000",
-            "nav_right_offset": 4,
-            "card_bg": "#ffffff",
-            "image_bg": "#f4f4f4",
-            "card_border_radius": 2,
-            "card_padding": 10,
-            "product_title_size": 15,
-            "product_title_color": "#151515",
-            "price_size": 19,
-            "price_color": "#e40012",
-            "sale_price_color": "#e40012",
-            "compare_price_color": "#6f6f6f",
-            "accent_color": "#3070b7",
-            "badge_bg": "#e40012",
-            "badge_text_color": "#ffffff",
-            "badge_size": 13,
-            "vendor_bg": "#171717",
-            "vendor_text_color": "#ffffff",
-            "review_star_color": "#ff9d00",
-            "stock_text_color": "#111111",
-            "stock_size": 14,
-            "stock_icon_bg": "#31ad45",
-            "stock_icon_color": "#ffffff",
-            "out_of_stock_color": "#cf0e0e",
-            "wishlist_color": "#2e8f3d",
-            "button_text": "View product",
-            "button_bg": "#df3653",
-            "button_hover_bg": "#c72e47",
-            "button_text_color": "#ffffff",
-            "button_border_radius": 4
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_477adb9_YEeeb6"
-      ],
-      "name": "Product carousel",
-      "settings": {}
     },
     "instagram_feed_kpMBKB": {
       "type": "instagram-feed",
@@ -657,152 +838,37 @@
         "contact_2_text": "<p>Email <a href=\"mailto:sales@tilesparadiseuk.com\">sales@tilesparadiseuk.com</a> any time and we'll get back to you as soon as possible</p>"
       }
     },
-    "trending_styles_xyz": {
-      "type": "collection-list",
-      "blocks": {
-        "block_1": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title_override": "Terrazzo Tiles",
-            "link": ""
-          }
-        },
-        "block_2": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title_override": "Patterned Tiles",
-            "link": ""
-          }
-        },
-        "block_3": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title_override": "Zellige Tiles",
-            "link": ""
-          }
-        },
-        "block_4": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title_override": "Checkerboard Tiles",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "block_1",
-        "block_2",
-        "block_3",
-        "block_4"
-      ],
-      "settings": {
-        "title": "Trending styles",
-        "link_title": "",
-        "link": "",
-        "round_images": false,
-        "show_collection_title": true,
-        "custom_class": "trending-styles-sec"
-      }
-    },
-    "custom_tabs_1": {
-      "type": "custom-tabs",
-      "blocks": {
-        "tab_1": {
-          "type": "tab",
-          "settings": {
-            "title": "About Tiles Paradise",
-            "heading": "Tiles from Tiles Paradise",
-            "content": "<p>Tiles Paradise is the UK's premier tiles retailer. We sell a huge range of modern and traditional products.</p>"
-          }
-        },
-        "tab_2": {
-          "type": "tab",
-          "settings": {
-            "title": "Boss Your Bathroom",
-            "heading": "Boss Your Bathroom",
-            "content": "<p>When you're ready to boss your bathroom, we have everything you need. From stunning freestanding baths to sleek walk-in showers, our wide range of products ensures that you can design a space that truly reflects your style. We work with top brands and designers to bring you the best quality fixtures.</p><p>Our team of experts has handpicked every item so you can shop with confidence. Discover how easy it is to transform your space with our curated collections.</p>"
-          }
-        },
-        "tab_3": {
-          "type": "tab",
-          "settings": {
-            "title": "Renovate Your Bathroom",
-            "heading": "Renovate Your Bathroom",
-            "content": "<p>Renovating your bathroom doesn't have to be a stressful experience. With our comprehensive selection of tiles, vanity units, and bathroom suites, you can find exactly what you need all in one place. We offer complete solutions for every budget, whether you are doing a quick refresh or a full-scale remodel.</p><p>Explore our extensive guides and inspiration galleries to help you plan your perfect renovation. We are here to help you every step of the way.</p>"
-          }
-        },
-        "tab_4": {
-          "type": "tab",
-          "settings": {
-            "title": "Fresh New Look",
-            "heading": "Fresh New Look",
-            "content": "<p>Give your home a fresh new look with our latest tile collections. From bold patterns and vibrant colours to minimalist designs and natural textures, we have the perfect tiles to elevate any room. Adding a new backsplash to your kitchen or updating your hallway floor has never been easier.</p><p>Stay up to date with the latest trends and discover new ways to bring life to your living spaces. A small change can make a massive difference.</p>"
-          }
-        },
-        "tab_5": {
-          "type": "tab",
-          "settings": {
-            "title": "Shopping Made Easy",
-            "heading": "Shopping Made Easy",
-            "content": "<p>We believe that shopping for your home should be as relaxing as living in it. That's why we've designed our website to be user-friendly, with detailed product descriptions, high-quality images, and easy navigation. You can order samples directly to your door to see how our tiles look in your space before making a decision.</p><p>With fast delivery and excellent customer support, we ensure your shopping experience is completely hassle-free from start to finish.</p>"
-          }
-        },
-        "tab_6": {
-          "type": "tab",
-          "settings": {
-            "title": "Customer First Thinking",
-            "heading": "Customer First Thinking",
-            "content": "<p>Our customers are at the heart of everything we do. We are committed to providing outstanding service, expert advice, and high-quality products that stand the test of time. Our dedicated support team is always ready to answer your questions and help you find the perfect solutions for your home projects.</p><p>We listen to your feedback and constantly strive to improve our offerings, ensuring that you always receive the best possible experience when shopping with us.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "tab_1",
-        "tab_2",
-        "tab_3",
-        "tab_4",
-        "tab_5",
-        "tab_6"
-      ],
-      "settings": {
-        "bg_color": "transparent",
-        "active_color": "#016fd0",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
     "custom_help_xyz": {
       "type": "custom-help",
       "blocks": {
         "column_1": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/create-contact-us-image.png",
             "title": "Contact Us",
             "text": "<p>Chat, email, call or WhatsApp - our team will help with any tile query.</p>",
             "link_text": "Chat to Us",
-            "link_url": "/"
+            "link_url": "shopify://pages/contact-us"
           }
         },
         "column_2": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/generate-image-for-help-advice-this-topic-with-maintain-600x-600-pixel-1-1-ration.png",
             "title": "Help & Advice",
             "text": "<p>Guides on choosing, installing and caring for your tiles - all in one place.</p>",
             "link_text": "Read More",
-            "link_url": "/"
+            "link_url": "shopify://blogs/tiles"
           }
         },
         "column_3": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/generate-imge-for-inspiration-topic-in-600x600-pixel-in-1-1-ration.png",
             "title": "Inspiration",
             "text": "<p>Browse real homes, style ideas and design tips to spark your next project.</p>",
             "link_text": "Get Inspired",
-            "link_url": "/"
+            "link_url": "shopify://blogs/tiles"
           }
         }
       },
@@ -832,7 +898,6 @@
     "rich_text_NrganX",
     "apps_TetGGX",
     "custom_tabs_1",
-    "image_with_text_PLTMEU",
     "blog_posts_rYkFhT",
     "instagram_feed_kpMBKB",
     "faq_tDXLaa",

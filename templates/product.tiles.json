@@ -76,10 +76,10 @@
             "order_in_text": "Order in 21 hours and 4 minutes",
             "delivery_options_title": "Delivery Options",
             "delivery_options_subtitle": "Add postcode to view all options",
-            "delivery_options_list": "<p><ul><li><b>FREE Standard Pallet Delivery</b><br>Over £499 to UK mainland</li><li><b>Standard Pallet Delivery</b> £24.95 for 2-7 working days</li><li><b>Next Day Pallet Service</b> £39.95 for delivery on Friday</li><li><b>Day Specific Pallet</b> £44.95 for specific day</li></ul></p>",
-            "delivery_drawer_content": "<h3>Standard Delivery</h3><p>We deliver using a pallet network. Delivery takes 2-7 working days.</p><h3>Next Day Delivery</h3><p>Available on orders placed before 12pm.</p><h3>Returns</h3><p>We accept returns within 30 days of purchase. Please read our full terms.</p>",
-            "faq_text": "Delivery & Returns FAQs",
-            "faq_drawer_content": "<h3>Frequently Asked Questions</h3><p><strong>How long does delivery take?</strong><br>Delivery typically takes between 2 to 7 working days depending on your location.</p><p><strong>Do you offer next day delivery?</strong><br>Yes, we offer next day pallet service for £39.95 if ordered before noon.</p><p><strong>What is your return policy?</strong><br>You can return items within 30 days in their original condition.</p>"
+            "delivery_options_list": "<p></p><ul><li><strong>FREE Standard Pallet Delivery</strong><br/>Over £500 to UK mainland, 2-7 working days</li><li><strong>Standard Pallet Delivery</strong> <br/>£39.99 for orders £100-£499, 2-7 working days</li><li><strong>Next Day Pallet Service</strong> <br/>Available at checkout, subject to postcode</li><li><strong>Day Specific Pallet</strong> <br/>Available at checkout, subject to postcode</li></ul><p></p>",
+            "delivery_drawer_content": "<p><strong>Free Standard Pallet Delivery</strong></p><p>Free on all orders over £500 to UK mainland. Estimated 2-7 working days.</p><p><strong>Standard Pallet Delivery</strong></p><p>£39.99 on orders between £100 and £499. Estimated 2-7 working days.</p><p><strong>Express / Next Day</strong></p><p>Available at checkout depending on your postcode.</p><p><strong>Day Specific Pallet</strong></p><p>Available at checkout depending on your postcode.</p><p><strong>Saturday Delivery</strong></p><p>Available at checkout depending on your postcode.</p><p>All tile and SPC flooring orders are delivered kerbside on a pallet. The driver cannot bring goods inside or unpack on your behalf, so please make sure someone is home on the day. You can add Extended Delivery Protection for £9.99 at checkout, which extends your damage reporting window from 2 to 4 working days.</p>",
+            "faq_text": "Delivery, Damage & Returns",
+            "faq_drawer_content": "<p><strong>Pallet Delivery (Tiles & SPC)</strong></p><p>Delivered on a pallet (kerbside only). Driver cannot unpack or move goods inside.</p><p><strong>Damage / Incorrect Delivery</strong></p><p>Notify us within 2 working days of delivery for replacements or refunds. Please provide photos while items are still on the pallet. If you added Extended Delivery Protection (£9.99), you have 4 working days. Do not dispose of goods or packaging.</p><p>Email: <a href=\"mailto:sales@tilesparadiseuk.com\">sales@tilesparadiseuk.com</a></p><p><strong>Check Before Installation</strong></p><p>Please inspect all tiles before cutting or installation. Claims cannot be accepted after cutting or installation. We recommend ordering a minimum 10% extra for cuts and wastage.</p><p><strong>Returns (Change of mind)</strong></p><p>You may cancel your entire order within 14 days of delivery. Returns must be unused, in original packaging and re-saleable. Tile & SPC returns are subject to a handling/restocking fee. No returns on leftovers.</p><p>View full policies: <a href=\"https://tilesparadiseuk.com/pages/shipping-policy\">Delivery</a>, <a href=\"https://tilesparadiseuk.com/pages/damages\">Damages</a> & <a href=\"https://tilesparadiseuk.com/pages/refund-policy\">Returns</a></p>"
           }
         },
         "klarna_on_site_messaging_app_block_Dbqqrq": {
@@ -116,14 +116,6 @@
             "display_mode": "show_all"
           }
         },
-        "liquid_c9mGyU": {
-          "type": "liquid",
-          "settings": {
-            "title": "Delivery, Damage & Returns",
-            "liquid": "<!-- DELIVERY, DAMAGE & RETURNS — PRODUCT PAGE DROPDOWN -->\n<div style=\"font-family: Arial,Helvetica,sans-serif; line-height: 1.55; color: #101828;\">\n<div style=\"border: 1px solid #eaecf0; border-radius: 12px; padding: 12px;\">\n<div style=\"font-weight: 800; font-size: 14px; margin-bottom: 8px;\">🚚 Delivery, Damage &amp; Returns</div>\n<div style=\"margin-bottom: 10px;\">\n<div style=\"font-weight: 800;\">🚛 Pallet Delivery (Tiles &amp; SPC)</div>\n<div style=\"color: #475467; font-size: 14px;\">Delivered on a pallet (kerbside only). Driver cannot unpack or move goods inside.</div>\n</div>\n<div style=\"margin-bottom: 10px;\">\n<div style=\"font-weight: 800;\">💥 Damage / Incorrect Delivery</div>\n<div style=\"color: #475467; font-size: 14px;\">Notify us within <strong>2 working days</strong> of delivery for replacements or refunds. Please provide photos while items are <strong>still on the pallet</strong>. If you added <strong>Extended Delivery Protection (&pound;9.99)</strong>, you have <strong>4 working days</strong>. Do not dispose of goods or packaging.</div>\n<div style=\"margin-top: 6px; font-size: 14px;\">Email: <a style=\"color: #0b57d0; text-decoration: none; font-weight: 800;\" href=\"mailto:sales@tilesparadiseuk.com\"> sales@tilesparadiseuk.com </a></div>\n</div>\n<div style=\"margin-bottom: 10px;\">\n<div style=\"font-weight: 800;\">✅ Check Before Installation</div>\n<div style=\"color: #475467; font-size: 14px;\">Please inspect all tiles before cutting or installation. Claims cannot be accepted after cutting or installation. We recommend ordering a <strong>minimum 10% extra</strong> for cuts and wastage.</div>\n</div>\n<div style=\"margin-bottom: 10px;\">\n<div style=\"font-weight: 800;\">🔄 Returns (Change of mind)</div>\n<div style=\"color: #475467; font-size: 14px;\">You may cancel your <strong>entire order</strong> within <strong>14 days</strong> of delivery. Returns must be unused, in original packaging and re-saleable. Tile &amp; SPC returns are subject to a&nbsp;<strong>handling/restocking fee</strong>. No returns on leftovers.</div>\n</div>\n<!-- FULL POLICY LINKS -->\n<div style=\"margin-top: 10px; font-size: 13px; color: #475467;\">View full policies: <a style=\"color: #0b57d0; text-decoration: none; font-weight: 600;\" href=\"https://tilesparadiseuk.com/pages/shipping-policy\"> Delivery </a>, <a style=\"color: #0b57d0; text-decoration: none; font-weight: 600;\" href=\"https://tilesparadiseuk.com/pages/damages\"> Damages </a> &amp; <a style=\"color: #0b57d0; text-decoration: none; font-weight: 600;\" href=\"https://tilesparadiseuk.com/pages/refund-policy\"> Returns </a></div>\n</div>\n</div>",
-            "display_mode": "collapse"
-          }
-        },
         "html_FGDTgt": {
           "type": "html",
           "settings": {
@@ -149,7 +141,6 @@
         "a9c560d5-40e3-4fee-934f-f6b7ef7a9739",
         "description",
         "9d4bfcf6-11bc-449b-8839-fd0dd9450aa9",
-        "liquid_c9mGyU",
         "html_FGDTgt",
         "vitals_back_in_stock_mkJRGa"
       ],
