@@ -4453,8 +4453,10 @@ span.inventory--low::before {
   .tabbed-mega-nav__flyout {
     display: none !important;
   }
-  .tabbed-mega-nav {
+  .tabbed-mega-nav,
+  body.template-index nav.nav-bar.tabbed-mega-nav {
     height: 54px !important;
+    min-height: 54px !important;
     padding-bottom: 0 !important;
   }
 }
