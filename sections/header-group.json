@@ -216,6 +216,29 @@
             "image_1_text": "Huge Discounts",
             "image_1_link": ""
           }
+        },
+        "mega_menu_T7HRdy": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "All",
+            "custom_title_1": "Room",
+            "custom_linklist_1": "all-room",
+            "custom_title_2": "Suitability",
+            "custom_linklist_2": "all-suitability",
+            "custom_title_3": "Style",
+            "custom_linklist_3": "all-style",
+            "custom_title_4": "Colour",
+            "custom_linklist_4": "all-colour",
+            "custom_title_5": "Finish",
+            "custom_linklist_5": "all-finish",
+            "custom_title_6": "Material",
+            "custom_linklist_6": "all-material",
+            "custom_title_7": "Size",
+            "custom_linklist_7": "all-size",
+            "image_1_heading": "Your image",
+            "image_1_text": "Tell your story",
+            "image_1_link": ""
+          }
         }
       },
       "block_order": [
@@ -225,7 +248,8 @@
         "mega_menu_PYXCYT",
         "mega_menu_QBdGGg",
         "mega_menu_r43QLX",
-        "mega_menu_sample2"
+        "mega_menu_sample2",
+        "mega_menu_T7HRdy"
       ],
       "custom_css": [
         ".nav-bar__inner {text-align: center;}"
