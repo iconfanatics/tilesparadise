@@ -89,7 +89,7 @@
                   {%- capture mobile_list_id -%}mobile-list-{% increment mobile_list %}{%- endcapture -%}
 
                   <div class="mobile-menu__nav-list-item">
-                    {%- if sub_link.levels == 0 -%}
+                    {%- if sub_link.links == blank -%}
                       <a href="{{ sub_link.url }}" class="mobile-menu__nav-list-toggle text--strong">{{ sub_link.title }}</a>
                     {%- else -%}
                       <button class="mobile-menu__nav-list-toggle text--strong" aria-controls="{{ mobile_list_id }}" aria-expanded="false" data-action="toggle-collapsible" data-close-siblings="false">
