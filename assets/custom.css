@@ -2926,7 +2926,7 @@ nav.nav-bar.tabbed-mega-nav li:hover {
 
 .tabbed-mega-nav__flyout {
   top: 54px !important;
-  height: 44px !important;
+  height: auto !important;
   min-height: 44px !important;
   background: var(--tabbed-menu-dark) !important;
   transform: none !important;
@@ -2935,17 +2935,31 @@ nav.nav-bar.tabbed-mega-nav li:hover {
 
 .tabbed-mega-nav__secondary-wrap,
 .tabbed-mega-nav__secondary-list {
-  height: 44px !important;
+  height: auto !important;
   min-height: 44px !important;
-  max-height: 44px !important;
+  max-height: none !important;
   background: var(--tabbed-menu-dark) !important;
   transform: none !important;
   transition: none !important;
 }
 
+.tabbed-mega-nav__secondary-item {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+}
+
 .tabbed-mega-nav__secondary-link {
-  height: 44px !important;
+  height: 100% !important;
+  min-height: 44px !important;
   transition: color .12s ease, background-color .12s ease !important;
+  font-size: clamp(10px, 1vw, 14px) !important;
+  white-space: normal !important;
+  line-height: 1.2 !important;
+  padding: 5px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
 }
 
 .tabbed-mega-nav__tab-item:hover .tabbed-mega-nav__flyout,
