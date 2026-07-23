@@ -220,8 +220,28 @@
                 </li>
 
                 {%- for sub_link in link.links -%}
+                  {%- assign sub_title_downcase = sub_link.title | downcase | strip -%}
+                  {%- assign child_promo_block = blank -%}
+                  {%- for block in section.blocks -%}
+                    {%- assign block_menu_item_downcase = block.settings.menu_item | downcase | strip -%}
+                    {%- if block_menu_item_downcase == sub_title_downcase -%}
+                      {%- assign child_promo_block = block -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  {%- assign has_sub_links = false -%}
+                  {%- if sub_link.links.size > 0 -%}
+                    {%- assign has_sub_links = true -%}
+                  {%- endif -%}
+                  {%- if child_promo_block != blank -%}
+                    {%- if child_promo_block.settings.custom_linklist_1 != blank or child_promo_block.settings.custom_linklist_2 != blank or child_promo_block.settings.custom_linklist_3 != blank or child_promo_block.settings.custom_linklist_4 != blank or child_promo_block.settings.custom_linklist_5 != blank or child_promo_block.settings.custom_linklist_6 != blank or child_promo_block.settings.custom_linklist_7 != blank -%}
+                      {%- assign has_sub_links = true -%}
+                    {%- endif -%}
+                  {%- endif -%}
+
                   <li class="mobile-menu__nav-item">
-                    {%- if sub_link.links != blank -%}
+                    {%- if has_sub_links -%}
                       {%- capture mobile_list_id -%}mobile-list-non-mega-{{ forloop.parentloop.index0 }}-{{ forloop.index0 }}{%- endcapture -%}
 
                       <button class="mobile-menu__nav-link" data-type="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="{{ mobile_list_id }}" data-action="toggle-collapsible" data-close-siblings="false" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
@@ -236,6 +256,20 @@
                                 <a href="{{ sub_sub_link.url }}" class="mobile-menu__nav-link" data-type="menuitem" style="font-size: 14px;">{{ sub_sub_link.title }}</a>
                               </li>
                             {%- endfor -%}
+
+                            {%- if child_promo_block != blank -%}
+                              {%- for i in (1..7) -%}
+                                {%- capture linklist_name -%}custom_linklist_{{ i }}{%- endcapture -%}
+                                {%- assign custom_linklist = child_promo_block.settings[linklist_name] -%}
+                                {%- if custom_linklist != blank -%}
+                                  {%- for custom_link in custom_linklist.links -%}
+                                    <li class="mobile-menu__nav-item">
+                                      <a href="{{ custom_link.url }}" class="mobile-menu__nav-link" data-type="menuitem" style="font-size: 14px;">{{ custom_link.title }}</a>
+                                    </li>
+                                  {%- endfor -%}
+                                {%- endif -%}
+                              {%- endfor -%}
+                            {%- endif -%}
                           </ul>
                         </div>
                       </div>
