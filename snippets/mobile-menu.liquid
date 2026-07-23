@@ -137,8 +137,15 @@
                             {%- if child_promo_block != blank -%}
                               {%- for i in (1..7) -%}
                                 {%- capture linklist_name -%}custom_linklist_{{ i }}{%- endcapture -%}
+                                {%- capture custom_title_name -%}custom_title_{{ i }}{%- endcapture -%}
                                 {%- assign custom_linklist = child_promo_block.settings[linklist_name] -%}
+                                {%- assign custom_title = child_promo_block.settings[custom_title_name] -%}
                                 {%- if custom_linklist != blank -%}
+                                  {%- if custom_title != blank -%}
+                                    <li class="mobile-menu__nav-item" style="padding-top: 10px;">
+                                      <span class="mobile-menu__section-title heading h6" style="margin-bottom: 5px; font-weight: bold; color: var(--text-color); font-size: 14px;">{{ custom_title | escape }}</span>
+                                    </li>
+                                  {%- endif -%}
                                   {%- for custom_link in custom_linklist.links -%}
                                     <li class="mobile-menu__nav-item">
                                       <a href="{{ custom_link.url }}" class="mobile-menu__nav-link" data-type="menuitem">{{ custom_link.title }}</a>
@@ -260,8 +267,15 @@
                             {%- if child_promo_block != blank -%}
                               {%- for i in (1..7) -%}
                                 {%- capture linklist_name -%}custom_linklist_{{ i }}{%- endcapture -%}
+                                {%- capture custom_title_name -%}custom_title_{{ i }}{%- endcapture -%}
                                 {%- assign custom_linklist = child_promo_block.settings[linklist_name] -%}
+                                {%- assign custom_title = child_promo_block.settings[custom_title_name] -%}
                                 {%- if custom_linklist != blank -%}
+                                  {%- if custom_title != blank -%}
+                                    <li class="mobile-menu__nav-item" style="padding-top: 10px;">
+                                      <span class="mobile-menu__section-title heading h6" style="margin-bottom: 5px; font-weight: bold; color: var(--text-color); font-size: 14px;">{{ custom_title | escape }}</span>
+                                    </li>
+                                  {%- endif -%}
                                   {%- for custom_link in custom_linklist.links -%}
                                     <li class="mobile-menu__nav-item">
                                       <a href="{{ custom_link.url }}" class="mobile-menu__nav-link" data-type="menuitem" style="font-size: 14px;">{{ custom_link.title }}</a>
