@@ -1103,7 +1103,7 @@ button.product-item__action-button.button.button--small.button--primary {
 	align-items: center;
 	justify-content: center;
 }
-.usp-content h4 {
+.usp-content h4, .usp-content .h4 {
 	color: #ffffff;
 	margin: 0;
 	font-family: Roboto;
@@ -1936,7 +1936,7 @@ span#actualPrice {
   .usp-item:not(:last-child)::after { display: none !important; }   /* remove dividers */
   .usp-icon .icon-circle { width: 42px !important; height: 42px !important; }
   .usp-icon img { width: 26px !important; height: 26px !important; }
-  .usp-content h4 { font-size: 12.5px !important; line-height: 1.2 !important; }
+  .usp-content h4, .usp-content .h4 { font-size: 12.5px !important; line-height: 1.2 !important; }
   .usp-content p  { font-size: 11px !important; line-height: 1.3 !important; }
 }
 /* ============================================================
@@ -3144,7 +3144,8 @@ body.template-index .usp-bar .usp-icon img {
   height: 28px !important;
 }
 
-body.template-index .usp-bar .usp-content h4 {
+body.template-index .usp-bar .usp-content h4,
+body.template-index .usp-bar .usp-content .h4 {
   font-size: 15px !important;
   line-height: 1.2 !important;
   margin-bottom: 3px !important;
@@ -3203,7 +3204,8 @@ body.template-index .usp-bar .usp-item::before {
     width: 24px !important;
     height: 24px !important;
   }
-  body.template-index .usp-bar .usp-content h4 {
+  body.template-index .usp-bar .usp-content h4,
+  body.template-index .usp-bar .usp-content .h4 {
     font-size: 16px !important;
     margin-bottom: 3px !important;
   }
