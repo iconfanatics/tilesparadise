@@ -4577,15 +4577,3 @@ recently-viewed-paired {
   pointer-events: auto !important;
 }
 
-/* Fix for Tile Calculator position on mobile */
-@media screen and (max-width: 999px) {
-  .product-block-list__item.cstm_prod:has(.tp-calcb) {
-    order: 2 !important;
-  }
-  .product-block-list__item--info {
-    order: 3 !important;
-  }
-  .product-block-list__item {
-    order: 4 !important;
-  }
-}
