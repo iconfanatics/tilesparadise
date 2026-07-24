@@ -67,6 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
     slidesPerView: {{ section.settings.slides_desktop }},
     spaceBetween: 16,
     loop: false,
+    preventClicks: false,
+    preventClicksPropagation: false,
+    simulateTouch: false,
 
     navigation: {
       nextEl: '.special-offers-carousel .swiper-button-next',
@@ -80,13 +83,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     breakpoints: {
       320: {
-        slidesPerView: {{ section.settings.slides_mobile }}
+        slidesPerView: {{ section.settings.slides_mobile }},
+        simulateTouch: true
       },
       768: {
-        slidesPerView: {{ section.settings.slides_tablet }}
+        slidesPerView: {{ section.settings.slides_tablet }},
+        simulateTouch: false
       },
       1024: {
-        slidesPerView: {{ section.settings.slides_desktop }}
+        slidesPerView: {{ section.settings.slides_desktop }},
+        simulateTouch: false
       }
     }
   });

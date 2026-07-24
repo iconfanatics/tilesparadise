@@ -87,22 +87,24 @@
 
             <div class="product-card">
 
-              <!-- Image -->
-              <div class="image">
-                <img src="{{ product.featured_image | image_url: width: 600 }}">
+              <!-- Image — entire image area is now a link -->
+              <a href="{{ product.url }}" class="image-link" aria-label="{{ product.title | escape }}">
+                <div class="image">
+                  <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy">
 
-                <span class="quick">Quick look</span>
+                  <span class="quick">Quick look</span>
 
-                {% if product.compare_at_price > product.price %}
-                  <span class="save">
-                    Save {{ product.compare_at_price | minus: product.price | money }}
-                  </span>
-                {% endif %}
-              </div>
+                  {% if product.compare_at_price > product.price %}
+                    <span class="save">
+                      Save {{ product.compare_at_price | minus: product.price | money }}
+                    </span>
+                  {% endif %}
+                </div>
+              </a>
 
               <!-- Content -->
               <div class="content">
-                <h3>{{ product.title }}</h3>
+                <a href="{{ product.url }}" class="card-title-link"><h3>{{ product.title }}</h3></a>
 
                 <div class="price">
                   <span class="current">{{ product.price | money }} Per m²</span>
@@ -144,11 +146,19 @@
 }
 
 
+.product-card .image-link {
+    display: block;
+    text-decoration: none;
+    position: relative;
+}
+
 .product-card .image {
-    width: 388px;
+    width: 100%;
     opacity: 1;
     border-top-left-radius: 11px;
     border-top-right-radius: 10px;
+    overflow: hidden;
+    position: relative;
 }
 
 .product-card img {
@@ -157,7 +167,7 @@
   object-fit: cover;
 }
 
-/* Badges */
+/* Badges — pointer-events:none so they don't intercept clicks on the image link */
 .quick {
     position: absolute;
     top: 0px;
@@ -172,6 +182,8 @@
     letter-spacing: -2%;
     text-align: center;
     color: #000000;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .save {
@@ -189,10 +201,17 @@
     letter-spacing: 0%;
     text-align: center;
     color: #fff;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .product-card .content {
   padding: 15px;
+}
+
+.product-card .card-title-link {
+    text-decoration: none;
+    display: block;
 }
 
 .product-card h3 {
@@ -203,6 +222,9 @@
     font-size: 20px;
     line-height: 30px;
     letter-spacing: 0%;
+}
+.product-card .card-title-link:hover h3 {
+    color: #016FD0;
 }
 
 .price .current {
@@ -251,8 +273,10 @@ document.addEventListener('DOMContentLoaded', function () {
   new Swiper('.bestSellingSwiper', {
     loop: true,
     spaceBetween: 20,
-
     slidesPerView: {{ section.settings.columns_mobile }},
+    preventClicks: false,
+    preventClicksPropagation: false,
+    simulateTouch: false,
 
     navigation: {
       nextEl: '.bestSellingSwiper .swiper-button-next',
@@ -261,7 +285,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     breakpoints: {
       750: {
-        slidesPerView: {{ section.settings.columns_desktop }}
+        slidesPerView: {{ section.settings.columns_desktop }},
+        simulateTouch: false
       }
     }
   });
