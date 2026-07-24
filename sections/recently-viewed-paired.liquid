@@ -651,39 +651,6 @@
         this.track.addEventListener('scroll', () => this.updateButtonStates());
         window.addEventListener('resize', () => this.updateButtonStates());
 
-        this.track.addEventListener('pointerdown', (event) => {
-          if (event.pointerType === 'mouse' && event.button !== 0) return;
-          this.isDragging = true;
-          this.wasDragged = false;
-          this.startX = event.clientX;
-          this.startScrollLeft = this.track.scrollLeft;
-          this.track.classList.add('is-dragging');
-        });
-
-        this.track.addEventListener('pointermove', (event) => {
-          if (!this.isDragging) return;
-          const distance = event.clientX - this.startX;
-          if (Math.abs(distance) > 5) {
-            this.wasDragged = true;
-          }
-          event.preventDefault();
-          this.track.scrollLeft = this.startScrollLeft - distance;
-        });
-
-        ['pointerup', 'pointercancel', 'pointerleave'].forEach((eventName) => {
-          this.track.addEventListener(eventName, () => {
-            this.isDragging = false;
-            this.track.classList.remove('is-dragging');
-          });
-        });
-
-        this.track.addEventListener('click', (event) => {
-          if (this.wasDragged) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-        }, true);
-
         this.querySelectorAll('.ai-product-carousel__wishlist-rvp').forEach((button) => {
           button.addEventListener('click', () => {
             this.dispatchEvent(new CustomEvent('theme:wishlist:add', {
