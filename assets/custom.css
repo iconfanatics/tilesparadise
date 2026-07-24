@@ -182,7 +182,9 @@ body {
 .tabbed-mega-nav__tab-item:first-child .tabbed-mega-nav__flyout {
   visibility: visible;
   opacity: 1;
-  pointer-events: auto;
+  /* CRITICAL FIX: flyout is visually open by default but must NOT steal clicks
+     from content below (product cards etc.) unless user is actually hovering */
+  pointer-events: none;
   transform: none;
 }
 
@@ -198,7 +200,7 @@ body {
 .tabbed-mega-nav__flyout:hover {
   visibility: visible;
   opacity: 1;
-  pointer-events: auto;
+  pointer-events: auto !important;
   transform: none;
 }
 
