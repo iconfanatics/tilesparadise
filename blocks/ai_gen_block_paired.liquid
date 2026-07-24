@@ -465,7 +465,7 @@
             {% for product in coll.products limit: block.settings.per_collection %}
               <div class="ai-product-carousel__item-{{ ai_gen_id }}">
             <div class="ai-product-carousel__card-{{ ai_gen_id }}">
-              <div class="ai-product-carousel__image-wrapper-{{ ai_gen_id }}">
+              <a href="{{ product.url }}" class="ai-product-carousel__image-wrapper-{{ ai_gen_id }}">
                 {% if product.featured_image %}
                   <img
                     src="{{ product.featured_image | image_url: width: 600 }}"
@@ -485,7 +485,7 @@
                   {% assign savings_percent = savings_amount | times: 100 | divided_by: product.compare_at_price %}
                   <span class="ai-product-carousel__badge-{{ ai_gen_id }}">SAVE {{ savings_percent }}%</span>
                 {% endif %}
-              </div>
+              </a>
               <div class="ai-product-carousel__content-{{ ai_gen_id }}">
                 <div class="ai-product-carousel__brand-row-{{ ai_gen_id }}">
                   {% if false %}
@@ -599,17 +599,21 @@
         window.addEventListener('resize', () => this.updateButtonStates());
 
         this.track.addEventListener('pointerdown', (event) => {
+          if (event.pointerType === 'mouse' && event.button !== 0) return;
           this.isDragging = true;
+          this.wasDragged = false;
           this.startX = event.clientX;
           this.startScrollLeft = this.track.scrollLeft;
           this.track.classList.add('is-dragging');
-          this.track.setPointerCapture(event.pointerId);
         });
 
         this.track.addEventListener('pointermove', (event) => {
           if (!this.isDragging) return;
-          event.preventDefault();
           const distance = event.clientX - this.startX;
+          if (Math.abs(distance) > 5) {
+            this.wasDragged = true;
+          }
+          event.preventDefault();
           this.track.scrollLeft = this.startScrollLeft - distance;
         });
 
@@ -619,6 +623,13 @@
             this.track.classList.remove('is-dragging');
           });
         });
+
+        this.track.addEventListener('click', (event) => {
+          if (this.wasDragged) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
 
         this.querySelectorAll('.ai-product-carousel__wishlist-{{ ai_gen_id }}').forEach((button) => {
           button.addEventListener('click', () => {
