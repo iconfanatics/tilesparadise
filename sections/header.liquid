@@ -887,24 +887,13 @@ display:block;
     
     /* Mobile Tabs Layout Fix */
     .tabbed-mega-nav {
-        display: block !important; /* Force show on mobile on all pages, overriding hidden-pocket */
-        padding-bottom: 45px !important; /* Space for the visible flyout menu */
-        background: transparent !important;
+        display: none !important; /* Force hide on mobile as requested */
     }
     .tabbed-mega-nav__outer {
         background: transparent !important;
     }
     .tabbed-mega-nav__tabs {
-        display: flex !important;
-        width: 100% !important; /* Force full width */
-        justify-content: flex-start !important;
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-        flex-wrap: nowrap !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        gap: 0 !important;
-        border-bottom: 4px solid var(--tabbed-menu-active) !important; /* Beautiful anchor base */
+        display: none !important;
     }
     
     /* Hide "All" tab completely on mobile */

@@ -465,7 +465,7 @@
             {% for product in coll.products limit: block.settings.per_collection %}
               <div class="ai-product-carousel__item-{{ ai_gen_id }}">
             <div class="ai-product-carousel__card-{{ ai_gen_id }}">
-              <a href="{{ product.url }}" class="ai-product-carousel__image-wrapper-{{ ai_gen_id }}">
+              <a href="{{ product.url }}" onclick="window.location.href='{{ product.url }}'" style="cursor: pointer; position: relative; z-index: 9999; display: block;" class="ai-product-carousel__image-wrapper-{{ ai_gen_id }}">
                 {% if product.featured_image %}
                   <img
                     src="{{ product.featured_image | image_url: width: 600 }}"
@@ -499,6 +499,8 @@
                 </div>
                 <a
                   href="{{ product.url }}"
+                  onclick="window.location.href='{{ product.url }}'"
+                  style="cursor: pointer; position: relative; z-index: 9999;"
                   class="ai-product-carousel__product-title-{{ ai_gen_id }}"
                 >
                   {{ product.title }}
