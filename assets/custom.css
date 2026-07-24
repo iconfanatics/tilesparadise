@@ -4615,3 +4615,20 @@ recently-viewed-paired {
     z-index: 9;
   }
 }
+
+/* Fix mobile layout overflow for product form buttons and samples */
+@media screen and (max-width: 991px) {
+  .product-form__payment-container,
+  .tp-samples,
+  .tp-sample-btn,
+  .finance-delivery-card,
+  .card__section .btn_conts {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+  
+  /* Ensure padding doesn't cause overflow on width 100% */
+  .tp-sample-btn {
+    width: 100% !important;
+  }
+}
