@@ -655,6 +655,7 @@
       constructor() {
         super();
         this.isDragging = false;
+        this.wasDragged = false;
         this.startX = 0;
         this.startScrollLeft = 0;
       }
@@ -677,17 +678,21 @@
         window.addEventListener('resize', () => this.updateButtonStates());
 
         this.track.addEventListener('pointerdown', (event) => {
+          if (event.pointerType === 'mouse' && event.button !== 0) return;
           this.isDragging = true;
+          this.wasDragged = false;
           this.startX = event.clientX;
           this.startScrollLeft = this.track.scrollLeft;
           this.track.classList.add('is-dragging');
-          this.track.setPointerCapture(event.pointerId);
         });
 
         this.track.addEventListener('pointermove', (event) => {
           if (!this.isDragging) return;
-          event.preventDefault();
           const distance = event.clientX - this.startX;
+          if (Math.abs(distance) > 5) {
+            this.wasDragged = true;
+          }
+          event.preventDefault();
           this.track.scrollLeft = this.startScrollLeft - distance;
         });
 
@@ -697,6 +702,13 @@
             this.track.classList.remove('is-dragging');
           });
         });
+
+        this.track.addEventListener('click', (event) => {
+          if (this.wasDragged) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
 
         this.querySelectorAll('.ai-product-carousel__wishlist-{{ ai_gen_id }}').forEach((button) => {
           button.addEventListener('click', () => {
