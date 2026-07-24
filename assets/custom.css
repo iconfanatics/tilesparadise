@@ -4566,3 +4566,11 @@ span.inventory--low::before {
 [data-section-type="recently-viewed-products"] .product-item__image-wrapper img {
   pointer-events: none !important;
 }
+
+/* Force the entire paired carousel to be on top of any invisible overlays */
+.ai-product-carousel-rvp,
+recently-viewed-paired {
+  position: relative !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}

@@ -468,7 +468,7 @@
         {% for product in search.results %}
           <div class="ai-product-carousel__item-rvp">
             <div class="ai-product-carousel__card-rvp">
-              <a href="{{ product.url }}" class="ai-product-carousel__image-wrapper-rvp">
+              <a href="{{ product.url }}" onclick="window.location.href='{{ product.url }}'" style="cursor: pointer; position: relative; z-index: 9999; display: block;" class="ai-product-carousel__image-wrapper-rvp">
                 {% if product.featured_image %}
                   <img
                     src="{{ product.featured_image | image_url: width: 600 }}"
@@ -502,6 +502,8 @@
                 </div>
                 <a
                   href="{{ product.url }}"
+                  onclick="window.location.href='{{ product.url }}'"
+                  style="cursor: pointer; position: relative; z-index: 9999;"
                   class="ai-product-carousel__product-title-rvp"
                 >
                   {{ product.title }}
