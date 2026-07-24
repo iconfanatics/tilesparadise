@@ -4554,3 +4554,10 @@ span.inventory--low::before {
 .product-item > .product-form.cst a {
   pointer-events: auto !important;
 }
+
+/* Force links in recently viewed to be clickable and above overlays */
+[data-section-type="recently-viewed-products"] .product-item a {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 20;
+}
