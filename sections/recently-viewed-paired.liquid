@@ -127,10 +127,13 @@
 
   .ai-product-carousel__image-wrapper-rvp {
     position: relative;
+    z-index: 2;
+    pointer-events: auto !important;
     width: 100%;
     padding-bottom: 100%;
     background-color: {{ section.settings.image_bg }};
     overflow: hidden;
+    display: block;
   }
 
   .ai-product-carousel__image-rvp {
@@ -244,6 +247,9 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 2;
   }
 
   .ai-product-carousel__product-title-rvp:hover {
@@ -462,7 +468,7 @@
         {% for product in search.results %}
           <div class="ai-product-carousel__item-rvp">
             <div class="ai-product-carousel__card-rvp">
-              <div class="ai-product-carousel__image-wrapper-rvp">
+              <a href="{{ product.url }}" class="ai-product-carousel__image-wrapper-rvp">
                 {% if product.featured_image %}
                   <img
                     src="{{ product.featured_image | image_url: width: 600 }}"
@@ -482,7 +488,7 @@
                   {% assign savings_percent = savings_amount | times: 100 | divided_by: product.compare_at_price %}
                   <span class="ai-product-carousel__badge-rvp">SAVE {{ savings_percent }}%</span>
                 {% endif %}
-              </div>
+              </a>
               <div class="ai-product-carousel__content-rvp">
                 <div class="ai-product-carousel__brand-row-rvp">
                   {% if false %}

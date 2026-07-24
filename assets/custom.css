@@ -4561,3 +4561,8 @@ span.inventory--low::before {
   position: relative;
   z-index: 20;
 }
+
+/* Fix for Flickity stealing clicks on images in recently viewed */
+[data-section-type="recently-viewed-products"] .product-item__image-wrapper img {
+  pointer-events: none !important;
+}
