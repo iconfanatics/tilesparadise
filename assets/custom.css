@@ -4577,3 +4577,41 @@ recently-viewed-paired {
   pointer-events: auto !important;
 }
 
+
+/* Fix for mobile save badge */
+@media screen and (max-width: 767px) {
+  .product-item .product-item__label-list span.product-label.product-label--on-sale,
+  .product-block-list__item--gallery .product-item__label-list span.product-label.product-label--on-sale,
+  .product-block-list__item--gallery .product-item__label-list span {
+    width: auto !important;
+    height: auto !important;
+    padding: 3px 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+  }
+  
+  .product-item .product-item__label-list span.product-label.product-label--on-sale p,
+  .product-block-list__item--gallery .product-item__label-list span.product-label.product-label--on-sale p,
+  .product-block-list__item--gallery .product-item__label-list span p {
+    font-size: 11px !important;
+    line-height: normal !important;
+    margin: 0 !important;
+    display: inline !important;
+  }
+  
+  .product-item .product-item__label-list span.product-label.product-label--on-sale:after,
+  .product-block-list__item--gallery .product-item__label-list span.product-label.product-label--on-sale:after,
+  .product-block-list__item--gallery .product-item__label-list span:after {
+    display: none !important;
+  }
+  
+  .product-item__label-list {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 9;
+  }
+}
