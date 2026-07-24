@@ -4507,3 +4507,48 @@ span.inventory--low::before {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+/* ============================================================
+   CRITICAL FIX: Product card click blocking prevention
+   The .cst sample forms use negative top positioning which
+   makes them overlap the product image area and steal clicks.
+   We disable pointer events on those forms globally for
+   product listing pages, keeping only their buttons interactive.
+   ============================================================ */
+
+/* Product item must be position:relative for ::after pseudo to work correctly */
+.product-item {
+  position: relative !important;
+}
+
+/* The free-sample form sits with negative top on product/index pages
+   and overlaps the clickable image area — disable all pointer events on
+   the container itself but restore them for interactive children */
+.product-item .product-form.cst.collect,
+.template-index .card__section form.product-form.cst,
+.card__section form.product-form.cst {
+  pointer-events: none !important;
+}
+
+/* Restore clicks for the actual buttons/inputs inside */
+.product-item .product-form.cst.collect button,
+.product-item .product-form.cst.collect input,
+.product-item .product-form.cst.collect a,
+.template-index .card__section form.product-form.cst button,
+.template-index .card__section form.product-form.cst input,
+.template-index .card__section form.product-form.cst a,
+.card__section form.product-form.cst button,
+.card__section form.product-form.cst input,
+.card__section form.product-form.cst a {
+  pointer-events: auto !important;
+}
+
+/* The hidden free-sample form outside the card__section also must not block */
+.product-item > .product-form.cst {
+  pointer-events: none !important;
+}
+.product-item > .product-form.cst button,
+.product-item > .product-form.cst input,
+.product-item > .product-form.cst a {
+  pointer-events: auto !important;
+}
