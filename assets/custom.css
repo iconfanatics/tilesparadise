@@ -152,9 +152,7 @@ body {
   background: var(--tabbed-menu-active);
 }
 
-.tabbed-mega-nav__tabs:hover .tabbed-mega-nav__tab-item:first-child:not(:hover) .tabbed-mega-nav__tab {
-  background: var(--tabbed-menu-green-dark);
-}
+
 
 .tabbed-mega-nav__tab-item:hover .tabbed-mega-nav__tab,
 .tabbed-mega-nav__tab:focus {
@@ -180,16 +178,11 @@ body {
   opacity: 1;
   /* CRITICAL FIX: flyout is visually open by default but must NOT steal clicks
      from content below (product cards etc.) unless user is actually hovering */
-  pointer-events: none;
+  pointer-events: auto !important;
   transform: none;
 }
 
-.tabbed-mega-nav__tabs:hover .tabbed-mega-nav__tab-item:first-child:not(:hover) .tabbed-mega-nav__flyout {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transform: none;
-}
+
 
 .tabbed-mega-nav__tab-item:hover .tabbed-mega-nav__flyout,
 .tabbed-mega-nav__tab:focus + .tabbed-mega-nav__flyout,
@@ -4724,4 +4717,14 @@ recently-viewed-paired {
     overflow-x: hidden !important;
     max-width: 100vw !important;
   }
+}
+
+
+
+/* Fix height gaps safely */
+.tabbed-mega-nav__secondary-item {
+  display: flex !important;
+}
+.tabbed-mega-nav__secondary-link {
+  flex-grow: 1 !important;
 }
