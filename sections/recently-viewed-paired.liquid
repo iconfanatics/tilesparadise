@@ -470,14 +470,8 @@
             <div class="ai-product-carousel__card-rvp">
               <a href="{{ product.url }}" onclick="window.location.href='{{ product.url }}'" style="cursor: pointer; position: relative; z-index: 9999; display: block;" class="ai-product-carousel__image-wrapper-rvp">
                 {% if product.featured_image %}
-                  <img
-                    src="{{ product.featured_image | image_url: width: 600 }}"
-                    alt="{{ product.featured_image.alt | escape }}"
-                    class="ai-product-carousel__image-rvp"
-                    loading="lazy"
-                    width="600"
-                    height="600"
-                  >
+                  {% capture primary_class %}ai-product-carousel__image-{{ ai_gen_id }} ai-product-carousel__primary-image-{{ ai_gen_id }}{% endcapture %}
+                  {{ product.featured_image | image_tag: class: primary_class, loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
                 {% else %}
                   <div class="ai-product-carousel__image-placeholder-rvp">
                     {{ 'product-1' | placeholder_svg_tag }}
