@@ -9,12 +9,8 @@
               <div class="footer__block-item footer__block-item--logo" {{ block.shopify_attributes }}>
                 
                 {% if block.settings.logo %}
-                  <img 
-                    src="{{ block.settings.logo | image_url: width: 300 }}"
-                    alt="Logo"
-                    style="max-width: {{ block.settings.logo_width }}px;"
-                    class="footer-logo"
-                  >
+                  {% capture logo_style %}max-width: {{ block.settings.logo_width }}px;{% endcapture %}
+                  {{ block.settings.logo | image_tag: alt: 'Logo', class: 'footer-logo', loading: 'lazy', style: logo_style }}
                 {% endif %}
 
               </div>
@@ -23,11 +19,7 @@
 
                   {% if block.settings.logo %}
                     <div class="footer-logo-wrapper">
-                      <img 
-                        src="{{ block.settings.logo | image_url: width: 200 }}" 
-                        alt="Logo"
-                        class="footer-logo"
-                      >
+                      {{ block.settings.logo | image_tag: alt: 'Logo', class: 'footer-logo', loading: 'lazy' }}
                     </div>
                   {% endif %}
 
