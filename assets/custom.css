@@ -4486,8 +4486,9 @@ span.inventory--low::before {
   }
   .tabbed-mega-nav,
   body.template-index nav.nav-bar.tabbed-mega-nav {
-    height: 54px !important;
-    min-height: 54px !important;
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
     padding-bottom: 0 !important;
   }
 }
