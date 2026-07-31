@@ -509,10 +509,10 @@
               <a href="{{ product.url }}" class="ai-product-carousel__image-wrapper-{{ ai_gen_id }} {% if product.media.size > 1 %}has-secondary-image{% endif %}">
                 {% if product.featured_image %}
                   {% capture primary_class %}ai-product-carousel__image-{{ ai_gen_id }} ai-product-carousel__primary-image-{{ ai_gen_id }}{% endcapture %}
-                  {{ product.featured_image | image_url: width: 600 | image_tag: class: primary_class, loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
+                  {{ product.featured_image | image_tag: class: primary_class, loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
                   {% if product.media.size > 1 %}
                     {% capture secondary_class %}ai-product-carousel__image-{{ ai_gen_id }} ai-product-carousel__secondary-image-{{ ai_gen_id }}{% endcapture %}
-                    {{ product.media[1] | image_url: width: 600 | image_tag: class: secondary_class, loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
+                    {{ product.media[1] | image_tag: class: secondary_class, loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
                   {% endif %}
                 {% else %}
                   <div class="ai-product-carousel__image-placeholder-{{ ai_gen_id }}">
