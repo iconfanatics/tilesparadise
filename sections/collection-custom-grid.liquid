@@ -158,10 +158,10 @@
             <div class="product-card">
 
               <a href="{{ product.url }}" class="image">
-                <img class="primary-img" src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" width="600" height="600" loading="lazy">
+                {{ product.featured_image | image_tag: class: 'primary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
 
                 {% if product.images[1] %}
-                  <img class="secondary-img" src="{{ product.images[1] | image_url: width: 600 }}" alt="{{ product.title | escape }}" width="600" height="600" loading="lazy">
+                  {{ product.images[1] | image_tag: class: 'secondary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
                 {% endif %}
 
                 {% if product.compare_at_price > product.price %}
