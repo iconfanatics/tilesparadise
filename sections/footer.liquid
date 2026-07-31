@@ -10,7 +10,7 @@
                 
                 {% if block.settings.logo %}
                   {% capture logo_style %}max-width: {{ block.settings.logo_width }}px;{% endcapture %}
-                  {{ block.settings.logo | image_tag: alt: 'Logo', class: 'footer-logo', loading: 'lazy', style: logo_style }}
+                  {{ block.settings.logo | image_url: width: 300 | image_tag: alt: 'Logo', class: 'footer-logo', loading: 'lazy', style: logo_style }}
                 {% endif %}
 
               </div>
@@ -19,7 +19,7 @@
 
                   {% if block.settings.logo %}
                     <div class="footer-logo-wrapper">
-                      {{ block.settings.logo | image_tag: alt: 'Logo', class: 'footer-logo', loading: 'lazy' }}
+                      {{ block.settings.logo | image_url: width: 300 | image_tag: alt: 'Logo', class: 'footer-logo', loading: 'lazy' }}
                     </div>
                   {% endif %}
 

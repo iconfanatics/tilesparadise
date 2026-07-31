@@ -158,10 +158,10 @@
             <div class="product-card">
 
               <a href="{{ product.url }}" class="image">
-                {{ product.featured_image | image_tag: class: 'primary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
+                {{ product.featured_image | image_url: width: 600 | image_tag: class: 'primary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
 
                 {% if product.images[1] %}
-                  {{ product.images[1] | image_tag: class: 'secondary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
+                  {{ product.images[1] | image_url: width: 600 | image_tag: class: 'secondary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
                 {% endif %}
 
                 {% if product.compare_at_price > product.price %}

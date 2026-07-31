@@ -71,7 +71,7 @@
         <a href="{{ block.settings.link }}" class="insta-item" target="_blank">
           
           {% if block.settings.image %}
-            {{ block.settings.image | image_tag: loading: 'lazy', sizes: '(max-width: 768px) 100vw, 470px', widths: '470, 600' }}
+            {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(max-width: 768px) 100vw, 470px', widths: '470, 600' }}
           {% endif %}
 
             <div class="overlay">
