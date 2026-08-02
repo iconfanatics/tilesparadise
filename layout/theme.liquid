@@ -52,10 +52,8 @@ You can learn more about this (and learn how to cleanly revert these changes) at
     {%- endif -%}
 
     {%- comment -%}Few prefech to increase performance on commonly used third-parties{%- endcomment -%}
-    <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
-    <link rel="preload" as="script" href="{{ 'theme.js' | asset_url }}">
-    <link rel="preload" as="style" href="{{ 'custom.css' | asset_url }}">
-    <link rel="preconnect" href="https://cdn.shopify.com">
+        <link rel="preload" as="script" href="{{ 'theme.js' | asset_url }}">
+        <link rel="preconnect" href="https://cdn.shopify.com">
     <link rel="preconnect" href="https://fonts.shopifycdn.com">
     <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
     <link rel="dns-prefetch" href="https://ajax.googleapis.com">
