@@ -73,7 +73,6 @@
           <a href="{{ routes.root_url }}" class="header__logo-link">
             {%- if section.settings.logo != blank -%}
               {%- capture image_size -%}{{ section.settings.logo_max_width }}x{%- endcapture -%}
-              <span class="visually-hidden">{{ shop.name }}</span>
               <img class="header__logo-image"
                    style="max-width: {{ section.settings.logo_max_width }}px"
                    width="{{ section.settings.logo.width }}"
