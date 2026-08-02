@@ -15,7 +15,7 @@
           {% if block.settings.icon != blank %}
             <div class="usp-icon">
             <span class="icon-circle">
-                <img src="{{ block.settings.icon | image_url: width: 60 }}">
+                <img src="{{ block.settings.icon | image_url: width: 60 }}" alt="{{ block.settings.heading | escape | default: 'Icon' }}" width="60" height="{{ 60 | divided_by: block.settings.icon.aspect_ratio | round }}" loading="lazy">
             </span>
             </div>
           {% endif %}
