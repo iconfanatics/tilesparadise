@@ -71,8 +71,8 @@ You can learn more about this (and learn how to cleanly revert these changes) at
     <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="{{ 'theme.css' | asset_url }}"></noscript>
 
-    <link rel="stylesheet" href="{{ 'custom.css' | asset_url }}&v={{ 'now' | date: '%s' }}" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="{{ 'custom.css' | asset_url }}&v={{ 'now' | date: '%s' }}"></noscript>
+    <link rel="stylesheet" href="{{ 'custom.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ 'custom.css' | asset_url }}"></noscript>
 
     {% render 'microdata-schema' %}
 
