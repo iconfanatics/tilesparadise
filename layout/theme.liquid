@@ -238,7 +238,7 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
-  <body class="warehouse--v4 {% if settings.animation_image_zoom %}features--animate-zoom{% endif%} template-{{ request.page_type | handle }} {% if request.page_type contains '/' %}template-{{ request.page_type | split: '/' | last | handle }}{% endif %}" data-instant-intensity="viewport">
+  <body class="warehouse--v4 {% if settings.animation_image_zoom %}features--animate-zoom{% endif%} template-{{ request.page_type | handle }} {% if request.page_type contains '/' %}template-{{ request.page_type | split: '/' | last | handle }}{% endif %}">
    {% if additional_checkout_buttons %} 
   <div style="display: none !important"> 
     {{ content_for_additional_checkout_buttons }} 
@@ -293,7 +293,7 @@ $(window).scroll(function(){$(window).scrollTop()>=200?$(".nav-bar").addClass("s
 
 
  {% render 'globo.preorder.custom' %}
-{{'tiny-img-link-preloader.js' | asset_url | script_tag }}
+{% comment %}{{'tiny-img-link-preloader.js' | asset_url | script_tag }}{% endcomment %}
 
 
 <script>
