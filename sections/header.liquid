@@ -74,7 +74,7 @@
             {%- if section.settings.logo != blank -%}
               {%- capture image_size -%}{{ section.settings.logo_max_width }}x{%- endcapture -%}
               <img class="header__logo-image"
-                   style="max-width: {{ section.settings.logo_max_width }}px"
+                   style="max-width: {{ section.settings.logo_max_width }}px; height: auto;"
                    width="{{ section.settings.logo.width }}"
                    height="{{ section.settings.logo.height }}"
                    src="{{ section.settings.logo | img_url: image_size, scale: 2 }}"
