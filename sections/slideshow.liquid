@@ -10,6 +10,21 @@
 }
 {%- endcapture -%}
 
+{%- if section.settings.section_size == 'preserve_ratio' and section.blocks.first.settings.image != blank -%}
+  {%- assign first_image = section.blocks.first.settings.image -%}
+  {%- assign first_mobile_image = section.blocks.first.settings.mobile_image | default: first_image -%}
+  <style>
+    #shopify-section-{{ section.id }} .slideshow--preserve-ratio {
+      aspect-ratio: {{ first_mobile_image.aspect_ratio }};
+    }
+    @media screen and (min-width: 768px) {
+      #shopify-section-{{ section.id }} .slideshow--preserve-ratio {
+        aspect-ratio: {{ first_image.aspect_ratio }};
+      }
+    }
+  </style>
+{%- endif -%}
+
 <section data-section-id="{{ section.id }}" data-section-type="slideshow" data-section-settings='{{ section_settings }}'>
   <div {% unless section.settings.edge_to_edge %}class="container container--flush"{% endunless %}>
     <div class="slideshow slideshow--{{ section.settings.section_size | replace: '_', '-' }} {% if section.settings.edge_to_edge %}slideshow--edge2edge{% endif %}" style="color: {{ section.blocks.first.settings.text_color }}">
