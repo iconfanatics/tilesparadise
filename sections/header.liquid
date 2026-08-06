@@ -78,7 +78,7 @@
                    style="max-width: {{ section.settings.logo_max_width }}px; height: auto; aspect-ratio: {{ logo_aspect_ratio }};"
                    width="{{ section.settings.logo_max_width }}"
                    height="{{ section.settings.logo_max_width | divided_by: logo_aspect_ratio | round }}"
-                   src="{{ section.settings.logo | img_url: image_size, scale: 2 }}"
+                   src="{{ section.settings.logo | image_url: width: 400 }}"
                    alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
             {%- else -%}
               <span class="header__logo-text">{{ shop.name }}</span>
