@@ -12,11 +12,28 @@
     "slideshow_qt7hFy": {
       "type": "slideshow",
       "blocks": {
+        "slide_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Tile_Ranges_02157fc6-c4ab-428f-9b8a-d3f3d3b03e2a.webp",
+            "mobile_image": "shopify://shop_images/Tile_Ranges_02157fc6-c4ab-428f-9b8a-d3f3d3b03e2a.webp",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "link": "shopify://collections/tile-sale"
+          }
+        },
         "image_GVyn3c": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Job_Lot_Deals.webp",
-            "mobile_image": "shopify://shop_images/Job_Lot_Deals.webp",
+            "image": "shopify://shop_images/Trade_Deals.webp",
+            "mobile_image": "shopify://shop_images/Trade_Deals.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -29,45 +46,11 @@
             "link": "https://tilesparadiseuk.com/collections/job-lot-deals-unbeatable-prices-on-quality-tiles"
           }
         },
-        "image_fWczYz": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Pallet_Deals.webp",
-            "mobile_image": "shopify://shop_images/Pallet_Deals.webp",
-            "show_overlay": false,
-            "overlay_opacity": 30,
-            "text_color": "#ffffff",
-            "title": "",
-            "content": "",
-            "content_position": "middle_center",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "button_text": "",
-            "link": "https://tilesparadiseuk.com/collections/pallet-deals-1"
-          }
-        },
-        "image_NW6r8F": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Radiator_Offers.webp",
-            "mobile_image": "shopify://shop_images/Radiator_Offers.webp",
-            "show_overlay": false,
-            "overlay_opacity": 30,
-            "text_color": "#ffffff",
-            "title": "",
-            "content": "",
-            "content_position": "middle_center",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "button_text": "",
-            "link": "https://tilesparadiseuk.com/collections/stylish-radiators-heated-towel-rails"
-          }
-        },
         "image_q9yLUw": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Mirror_Offers.webp",
-            "mobile_image": "shopify://shop_images/Mirror_Offers.webp",
+            "image": "shopify://shop_images/premium_LED_Mirrors.webp",
+            "mobile_image": "shopify://shop_images/premium_LED_Mirrors.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -80,11 +63,11 @@
             "link": "shopify://collections/led-mirrors"
           }
         },
-        "slide_1": {
+        "image_NW6r8F": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Tile_Ranges_11726d73-4a34-4976-96db-f9dfa1b93f2f.webp",
-            "mobile_image": "shopify://shop_images/Tile_Ranges_11726d73-4a34-4976-96db-f9dfa1b93f2f.webp",
+            "image": "shopify://shop_images/Designer_Radiators.webp",
+            "mobile_image": "shopify://shop_images/Designer_Radiators.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -94,16 +77,33 @@
             "button_background": "#ffffff",
             "button_text_color": "#000000",
             "button_text": "",
-            "link": "shopify://collections/tile-sale"
+            "link": "https://tilesparadiseuk.com/collections/stylish-radiators-heated-towel-rails"
+          }
+        },
+        "image_KEKwdV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Luxury_Shower_Sets.webp",
+            "mobile_image": "shopify://shop_images/Luxury_Shower_Sets.webp",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "",
+            "link": "https://tilesparadiseuk.com/collections/luxury-shower-sets"
           }
         }
       },
       "block_order": [
+        "slide_1",
         "image_GVyn3c",
-        "image_fWczYz",
-        "image_NW6r8F",
         "image_q9yLUw",
-        "slide_1"
+        "image_NW6r8F",
+        "image_KEKwdV"
       ],
       "name": "Slideshow",
       "settings": {
