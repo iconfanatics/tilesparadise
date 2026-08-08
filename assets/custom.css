@@ -4729,3 +4729,9 @@ recently-viewed-paired {
 .tabbed-mega-nav__secondary-link {
   flex-grow: 1 !important;
 }
+
+/* Force Vitals widget down to prevent clipping under Recently Viewed */
+div[id*="__1780773500431ccfd2"],
+.vitals-reviews-wrapper {
+  margin-top: 100px !important;
+}
