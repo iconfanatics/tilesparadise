@@ -91,11 +91,51 @@
                 <div class="tp-del-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2a873b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
-                <div class="tp-del-content">
+                <div class="tp-del-content delivery-text-main-dynamic">
                   <span class="tp-del-strong">{{ block.settings.get_it_text }}</span> 
                   <span class="tp-del-blue">{{ block.settings.order_in_text }}</span>
                 </div>
               </div>
+              <script>
+              (function() {
+                function addBusinessDays(date, days) {
+                  let result = new Date(date);
+                  let added = 0;
+                  while (added < days) {
+                    result.setDate(result.getDate() + 1);
+                    if (result.getDay() !== 0) added++; // skip Sunday
+                  }
+                  return result;
+                }
+                function formatDate(date) {
+                  return date.toLocaleDateString('en-GB', { weekday: 'long', month: 'long', day: 'numeric' });
+                }
+                function runDeliveryUpdate() {
+                  const now = new Date();
+                  let startDays = 2, endDays = 3;
+                  if (now.getHours() >= 14) { startDays = 3; endDays = 4; }
+                  const start = addBusinessDays(now, startDays);
+                  const end = addBusinessDays(now, endDays);
+                  
+                  const cutoff = new Date();
+                  cutoff.setHours(14, 0, 0, 0);
+                  if (now > cutoff) cutoff.setDate(cutoff.getDate() + 1);
+                  const hours = Math.floor((cutoff - now) / (1000 * 60 * 60));
+                  
+                  const text = `<span class="tp-del-strong">Get it Between ${formatDate(start)} and ${formatDate(end)}</span> <span class="tp-del-blue">Order within ${hours} hour${hours !== 1 ? 's' : ''}</span>`;
+                  
+                  document.querySelectorAll(".delivery-text-main-dynamic").forEach(el => {
+                    el.innerHTML = text;
+                  });
+                }
+                
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', runDeliveryUpdate);
+                } else {
+                  runDeliveryUpdate();
+                }
+              })();
+              </script>
               
               <!-- ROW 2: Delivery Options -->
               <div class="tp-del-row tp-del-border-top tp-del-col">
