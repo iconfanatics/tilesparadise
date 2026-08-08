@@ -601,7 +601,7 @@
           const query = items.map(id => `id:${id}`).join(' OR ');
           
           let searchUrl = window.routes ? window.routes.searchUrl : '/search';
-          fetch(`${searchUrl}?section_id=recently-viewed-paired&type=product&q=${encodeURIComponent(query)}`)
+          fetch(`${searchUrl}?section_id=recently-viewed-paired&type=product&q=${encodeURIComponent(query)}&_t=${Date.now()}`)
             .then(res => res.text())
             .then(html => {
               const parser = new DOMParser();
