@@ -12,14 +12,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "calculator_block": {
-          "type": "liquid",
-          "settings": {
-            "title": "",
-            "liquid": "{%- comment -%}\n  Liquid block (no title needed; set Display mode \"Show all\").\n  Banner linking to your standalone /pages/tile-calculator.\n{%- endcomment -%}\n<div class=\"tp-calcb\">\n  <div class=\"tp-calcb__txt\">\n    <h3>Doing a whole room?</h3>\n    <p>Use our free Tile Calculator &mdash; enter your wall and floor measurements, deduct doors and windows, and we'll work out exactly how many boxes you need, plus 10% for wastage.</p>\n  </div>\n  <a class=\"tp-calcb__btn\" href=\"/pages/tile-calculator\">Open the Tile Calculator &rarr;</a>\n</div>\n<div class=\"tp-usp-spacer\" style=\"height:40px; width:100%;\"></div>\n<style>\n  .tp-calcb{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;\n    background:linear-gradient(120deg,#1a1d24,#2a3340);color:#fff;border-radius:14px;padding:24px 26px;\n    text-decoration:none;font-family:\"Open Sans\",sans-serif;}\n  .tp-calcb__txt h3{font-size:18px;font-weight:800;margin:0;color:#fff;}\n  .tp-calcb__txt p{font-size:13px;opacity:.85;margin:5px 0 0;max-width:560px;line-height:1.5;color:#fff;}\n  a.tp-calcb__btn{background:#fff;color:#1a1d24;font-weight:800;font-size:14px;padding:13px 22px;border-radius:10px;white-space:nowrap;\n    text-decoration:none !important; box-shadow:none !important; border:none !important; outline:none !important; background-image:none !important;}\n  .tp-calcb:hover a.tp-calcb__btn{background:#c8102e;color:#fff;}\n</style>",
-            "display_mode": "show_all"
-          }
-        },
         "liquid_QbWTND": {
           "type": "liquid",
           "disabled": true,
@@ -76,10 +68,10 @@
             "order_in_text": "Order in 21 hours and 4 minutes",
             "delivery_options_title": "Delivery Options",
             "delivery_options_subtitle": "Add postcode to view all options",
-            "delivery_options_list": "<p></p><ul><li><strong>FREE Standard Pallet Delivery</strong><br/>Over \u00a3499 to UK mainland, 2-4 working days</li><li><strong>Standard Pallet Delivery</strong> <br/>\u00a339.99 for orders \u00a3100-\u00a3499, 2-4 working days</li><li><strong>Next Day Pallet Service</strong> <br/>Available at checkout, subject to postcode</li><li><strong>Day Specific Pallet</strong> <br/>Available at checkout, subject to postcode</li></ul><p></p>",
-            "delivery_drawer_content": "<p><strong>Free Standard Pallet Delivery</strong></p><p>Free on all orders over \u00a3500 to UK mainland. Estimated 2-7 working days.</p><p><strong>Standard Pallet Delivery</strong></p><p>\u00a339.99 on orders between \u00a3100 and \u00a3499. Estimated 2-7 working days.</p><p><strong>Express / Next Day</strong></p><p>Available at checkout depending on your postcode.</p><p><strong>Day Specific Pallet</strong></p><p>Available at checkout depending on your postcode.</p><p><strong>Saturday Delivery</strong></p><p>Available at checkout depending on your postcode.</p><p>All tile and SPC flooring orders are delivered kerbside on a pallet. The driver cannot bring goods inside or unpack on your behalf, so please make sure someone is home on the day. You can add Extended Delivery Protection for \u00a39.99 at checkout, which extends your damage reporting window from 2 to 4 working days.</p>",
+            "delivery_options_list": "<p></p><ul><li><strong>FREE Standard Pallet Delivery</strong><br/>Over £499 to UK mainland, 2-4 working days</li><li><strong>Standard Pallet Delivery</strong> <br/>£39.99 for orders £100-£499, 2-4 working days</li><li><strong>Next Day Pallet Service</strong> <br/>Available at checkout, subject to postcode</li><li><strong>Day Specific Pallet</strong> <br/>Available at checkout, subject to postcode</li></ul><p></p>",
+            "delivery_drawer_content": "<p><strong>Free Standard Pallet Delivery</strong></p><p>Free on all orders over £500 to UK mainland. Estimated 2-7 working days.</p><p><strong>Standard Pallet Delivery</strong></p><p>£39.99 on orders between £100 and £499. Estimated 2-7 working days.</p><p><strong>Express / Next Day</strong></p><p>Available at checkout depending on your postcode.</p><p><strong>Day Specific Pallet</strong></p><p>Available at checkout depending on your postcode.</p><p><strong>Saturday Delivery</strong></p><p>Available at checkout depending on your postcode.</p><p>All tile and SPC flooring orders are delivered kerbside on a pallet. The driver cannot bring goods inside or unpack on your behalf, so please make sure someone is home on the day. You can add Extended Delivery Protection for £9.99 at checkout, which extends your damage reporting window from 2 to 4 working days.</p>",
             "faq_text": "Delivery, Damage & Returns",
-            "faq_drawer_content": "<p><strong>Pallet Delivery (Tiles & SPC)</strong></p><p>Delivered on a pallet (kerbside only). Driver cannot unpack or move goods inside.</p><p><strong>Damage / Incorrect Delivery</strong></p><p>Notify us within 2 working days of delivery for replacements or refunds. Please provide photos while items are still on the pallet. If you added Extended Delivery Protection (\u00a39.99), you have 4 working days. Do not dispose of goods or packaging.</p><p>Email: <a href=\"mailto:sales@tilesparadiseuk.com\">sales@tilesparadiseuk.com</a></p><p><strong>Check Before Installation</strong></p><p>Please inspect all tiles before cutting or installation. Claims cannot be accepted after cutting or installation. We recommend ordering a minimum 10% extra for cuts and wastage.</p><p><strong>Returns (Change of mind)</strong></p><p>You may cancel your entire order within 14 days of delivery. Returns must be unused, in original packaging and re-saleable. Tile & SPC returns are subject to a handling/restocking fee. No returns on leftovers.</p><p>View full policies: <a href=\"https://tilesparadiseuk.com/pages/shipping-policy\">Delivery</a>, <a href=\"https://tilesparadiseuk.com/pages/damages\">Damages</a> & <a href=\"https://tilesparadiseuk.com/pages/refund-policy\">Returns</a></p>"
+            "faq_drawer_content": "<p><strong>Pallet Delivery (Tiles & SPC)</strong></p><p>Delivered on a pallet (kerbside only). Driver cannot unpack or move goods inside.</p><p><strong>Damage / Incorrect Delivery</strong></p><p>Notify us within 2 working days of delivery for replacements or refunds. Please provide photos while items are still on the pallet. If you added Extended Delivery Protection (£9.99), you have 4 working days. Do not dispose of goods or packaging.</p><p>Email: <a href=\"mailto:sales@tilesparadiseuk.com\">sales@tilesparadiseuk.com</a></p><p><strong>Check Before Installation</strong></p><p>Please inspect all tiles before cutting or installation. Claims cannot be accepted after cutting or installation. We recommend ordering a minimum 10% extra for cuts and wastage.</p><p><strong>Returns (Change of mind)</strong></p><p>You may cancel your entire order within 14 days of delivery. Returns must be unused, in original packaging and re-saleable. Tile & SPC returns are subject to a handling/restocking fee. No returns on leftovers.</p><p>View full policies: <a href=\"https://tilesparadiseuk.com/pages/shipping-policy\">Delivery</a>, <a href=\"https://tilesparadiseuk.com/pages/damages\">Damages</a> & <a href=\"https://tilesparadiseuk.com/pages/refund-policy\">Returns</a></p>"
           }
         },
         "klarna_on_site_messaging_app_block_Dbqqrq": {
@@ -116,12 +108,6 @@
             "display_mode": "show_all"
           }
         },
-        "html_FGDTgt": {
-          "type": "html",
-          "settings": {
-            "title": "Need Extra? Buy it Loose"
-          }
-        },
         "vitals_back_in_stock_mkJRGa": {
           "type": "shopify://apps/vitals/blocks/back-in-stock/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
           "settings": {}
@@ -140,7 +126,6 @@
         "a9c560d5-40e3-4fee-934f-f6b7ef7a9739",
         "description",
         "9d4bfcf6-11bc-449b-8839-fd0dd9450aa9",
-        "html_FGDTgt",
         "vitals_back_in_stock_mkJRGa"
       ],
       "settings": {
@@ -149,16 +134,6 @@
         "enable_image_zoom": true,
         "zoom_effect": "inside",
         "carousel_effect": "slide"
-      }
-    },
-    "custom_liquid_mTpArt": {
-      "type": "custom-liquid",
-      "disabled": true,
-      "name": "Similar Product Custom Liquid",
-      "settings": {
-        "title": "",
-        "include_margins": true,
-        "liquid": "{%- comment -%}\n  CAROUSEL 2 of 2 - \"NOT QUITE THE RIGHT LOOK\"\n  Paste this whole thing into its OWN Liquid block (Customize > product page >\n  Add block > Liquid > Display mode \"Show all\").\n  ONLY THING TO CHECK: this is preset to your tile-sale collection - no change needed\n  (the bit after /collections/ in its URL). If it shows nothing, the handle is wrong.\n{%- endcomment -%}\n\n{%- assign coll_handle = 'tile-sale' -%}\n{%- assign heading     = 'Not quite the right look? Browse similar tiles' -%}\n{%- assign uid         = 'browsesim' -%}\n{%- assign button_text = 'View product' -%}\n{%- assign products_limit = 12 -%}\n\n{%- assign coll = collections[coll_handle] -%}\n{%- if coll != blank and coll.products.size > 0 -%}\n<style>\n  .tpc-{{ uid }}{display:block;width:100%;font-family:\"Open Sans\",system-ui,sans-serif;padding:8px 0;}\n  .tpc-{{ uid }} .tpc__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}\n  .tpc-{{ uid }} .tpc__title{font-size:22px;font-weight:800;letter-spacing:-.01em;color:#1a1d24;margin:0;}\n  .tpc-{{ uid }} .tpc__nav{display:flex;gap:10px;}\n  .tpc-{{ uid }} .tpc__btn{width:40px;height:40px;border-radius:50%;background:#f7f8f9;color:#1a1d24;border:1px solid #e6e8eb;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background-color .2s;}\n  .tpc-{{ uid }} .tpc__btn:hover{background:#ececef;}\n  .tpc-{{ uid }} .tpc__btn:disabled{opacity:.3;cursor:not-allowed;}\n  .tpc-{{ uid }} .tpc__track{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;}\n  .tpc-{{ uid }} .tpc__track::-webkit-scrollbar{display:none;}\n  .tpc-{{ uid }} .tpc__item{flex:0 0 calc((100% - 48px) / 4);min-width:0;}\n  .tpc-{{ uid }} .tpc__card{background:#fff;border:1px solid #e6e8eb;border-radius:12px;overflow:hidden;height:100%;display:flex;flex-direction:column;}\n  .tpc-{{ uid }} .tpc__img{position:relative;width:100%;padding-bottom:100%;background:#f7f8f9;overflow:hidden;display:block;}\n  .tpc-{{ uid }} .tpc__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}\n  .tpc-{{ uid }} .tpc__body{padding:14px;flex-grow:1;display:flex;flex-direction:column;}\n  .tpc-{{ uid }} .tpc__name{font-size:13px;font-weight:700;line-height:1.35;color:#1a1d24;margin:0 0 8px;text-decoration:none;display:block;min-height:38px;}\n  .tpc-{{ uid }} .tpc__name:hover{color:#1f8a4c;}\n  .tpc-{{ uid }} .tpc__price{font-size:14px;font-weight:800;color:#1a1d24;margin-bottom:12px;}\n  .tpc-{{ uid }} .tpc__price.is-sale{color:#c8102e;}\n  .tpc-{{ uid }} .tpc__price small{color:#6b7280;font-weight:600;font-size:11px;}\n  .tpc-{{ uid }} .tpc__rrp{text-decoration:line-through;opacity:.55;margin-left:8px;font-weight:500;font-size:13px;color:#6b7280;}\n  .tpc-{{ uid }} .tpc__cta{margin-top:auto;background:#c8102e;color:#fff;border:none;padding:12px 18px;border-radius:10px;font-weight:700;text-align:center;text-decoration:none;display:block;transition:background-color .2s;}\n  .tpc-{{ uid }} .tpc__cta:hover{background:#a50d26;}\n  @media(max-width:749px){\n    .tpc-{{ uid }} .tpc__item{flex:0 0 calc((100% - 16px) / 2);}\n    .tpc-{{ uid }} .tpc__title{font-size:18px;}\n    .tpc-{{ uid }} .tpc__nav{display:none;}\n  }\n</style>\n\n<tp-carousel-{{ uid }} class=\"tpc-{{ uid }}\">\n  <div class=\"tpc__head\">\n    <h2 class=\"tpc__title\">{{ heading }}</h2>\n    <div class=\"tpc__nav\">\n      <button class=\"tpc__btn tpc__prev\" aria-label=\"Previous\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"15 18 9 12 15 6\"></polyline></svg></button>\n      <button class=\"tpc__btn tpc__next\" aria-label=\"Next\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"9 18 15 12 9 6\"></polyline></svg></button>\n    </div>\n  </div>\n  <div class=\"tpc__track\">\n    {%- for p in coll.products limit: products_limit -%}\n      <div class=\"tpc__item\">\n        <div class=\"tpc__card\">\n          <a href=\"{{ p.url }}\" class=\"tpc__img\">\n            {% if p.featured_image %}<img src=\"{{ p.featured_image | image_url: width: 600 }}\" alt=\"{{ p.featured_image.alt | escape }}\" loading=\"lazy\" width=\"600\" height=\"600\">{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endif %}\n          </a>\n          <div class=\"tpc__body\">\n            <a href=\"{{ p.url }}\" class=\"tpc__name\">{{ p.title }}</a>\n            <div class=\"tpc__price {% if p.compare_at_price > p.price %}is-sale{% endif %}\">\n              {{ p.price | money }}{% if p.metafields.custom.sale_by != blank %} <small>{{ p.metafields.custom.sale_by }}</small>{% endif %}\n              {% if p.compare_at_price > p.price %}<span class=\"tpc__rrp\">{{ p.compare_at_price | money }}</span>{% endif %}\n            </div>\n            <a href=\"{{ p.url }}\" class=\"tpc__cta\">{{ button_text }}</a>\n          </div>\n        </div>\n      </div>\n    {%- endfor -%}\n  </div>\n</tp-carousel-{{ uid }}>\n\n<script>\n  (function(){\n    class TpCarousel{{ uid }} extends HTMLElement {\n      connectedCallback(){\n        this.track = this.querySelector('.tpc__track');\n        this.prev  = this.querySelector('.tpc__prev');\n        this.next  = this.querySelector('.tpc__next');\n        if(!this.track || !this.prev || !this.next) return;\n        this.prev.addEventListener('click', () => this.scroll(-1));\n        this.next.addEventListener('click', () => this.scroll(1));\n        this.track.addEventListener('scroll', () => this.update());\n        this.update();\n      }\n      scroll(dir){ this.track.scrollLeft += dir * this.track.offsetWidth; }\n      update(){\n        this.prev.disabled = this.track.scrollLeft <= 0;\n        this.next.disabled = this.track.scrollLeft + this.track.offsetWidth >= this.track.scrollWidth - 1;\n      }\n    }\n    if(!customElements.get('tp-carousel-{{ uid }}')){\n      customElements.define('tp-carousel-{{ uid }}', TpCarousel{{ uid }});\n    }\n  })();\n</script>\n{%- endif -%}"
       }
     },
     "custom_liquid_xki7ez": {
@@ -209,6 +184,15 @@
         "tab_1_title": "Product Information",
         "tab_2_title": "Product Details",
         "tab_3_title": "Tile FAQs"
+      }
+    },
+    "calculator_section": {
+      "type": "custom-liquid",
+      "name": "Tile Calculator",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  Liquid block (no title needed; set Display mode \"Show all\").\n  Banner linking to your standalone /pages/tile-calculator.\n{%- endcomment -%}\n<div class=\"tp-calcb\">\n  <div class=\"tp-calcb__txt\">\n    <h3>Doing a whole room?</h3>\n    <p>Use our free Tile Calculator &mdash; enter your wall and floor measurements, deduct doors and windows, and we'll work out exactly how many boxes you need, plus 10% for wastage.</p>\n  </div>\n  <a class=\"tp-calcb__btn\" href=\"/pages/tile-calculator\">Open the Tile Calculator &rarr;</a>\n</div>\n<div class=\"tp-usp-spacer\" style=\"height:40px; width:100%;\"></div>\n<style>\n  .tp-calcb{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;\n    background:linear-gradient(120deg,#1a1d24,#2a3340);color:#fff;border-radius:14px;padding:24px 26px;\n    text-decoration:none;font-family:\"Open Sans\",sans-serif;}\n  .tp-calcb__txt h3{font-size:18px;font-weight:800;margin:0;color:#fff;}\n  .tp-calcb__txt p{font-size:13px;opacity:.85;margin:5px 0 0;max-width:560px;line-height:1.5;color:#fff;}\n  a.tp-calcb__btn{background:#fff;color:#1a1d24;font-weight:800;font-size:14px;padding:13px 22px;border-radius:10px;white-space:nowrap;\n    text-decoration:none !important; box-shadow:none !important; border:none !important; outline:none !important; background-image:none !important;}\n  .tp-calcb:hover a.tp-calcb__btn{background:#c8102e;color:#fff;}\n</style>"
       }
     },
     "custom_liquid_t77pJf": {
@@ -495,20 +479,10 @@
         "include_margins": true,
         "liquid": "{%- comment -%}\n  Liquid block (Display mode \"Show all\"), or paste into a Custom Liquid section\n  near the top of the page / under the header. Trust + USP bar.\n{%- endcomment -%}\n<div class=\"tp-usp\">\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 6h11v9H3z\"/><path d=\"M14 9h4l3 3v3h-7z\"/><circle cx=\"7\" cy=\"18\" r=\"1.6\"/><circle cx=\"17.5\" cy=\"18\" r=\"1.6\"/></svg>\n    Next-day UK delivery\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.8 5.7 21l1.3-6.7-5-4.6 6.8-.8z\"/></svg>\n    Rated Excellent on Trustpilot\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M3 10h18\"/></svg>\n    0% finance available\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16v12H4z\"/><path d=\"M9 20h6\"/></svg>\n    Free samples &middot; 14-day returns\n  </span>\n</div>\n<div class=\"tp-usp-spacer\" style=\"height:40px; width:100%;\"></div>\n<style>\n  .tp-usp{margin-bottom:24px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:center;\n    background:#1a1d24;color:#fff;padding:11px 18px;border-radius:10px;\n    font-family:\"Open Sans\",sans-serif;font-size:13px;font-weight:600;}\n  .tp-usp__i{display:flex;align-items:center;gap:8px;opacity:.94;}\n  .tp-usp__i svg{width:16px;height:16px;color:#7fd3a0;flex:0 0 auto;}\n</style>"
       }
-    },
-    "calculator_section": {
-      "type": "custom-liquid",
-      "name": "Tile Calculator",
-      "settings": {
-        "title": "",
-        "include_margins": true,
-        "liquid": "{%- comment -%}\n  Liquid block (no title needed; set Display mode \"Show all\").\n  Banner linking to your standalone /pages/tile-calculator.\n{%- endcomment -%}\n<div class=\"tp-calcb\">\n  <div class=\"tp-calcb__txt\">\n    <h3>Doing a whole room?</h3>\n    <p>Use our free Tile Calculator &mdash; enter your wall and floor measurements, deduct doors and windows, and we'll work out exactly how many boxes you need, plus 10% for wastage.</p>\n  </div>\n  <a class=\"tp-calcb__btn\" href=\"/pages/tile-calculator\">Open the Tile Calculator &rarr;</a>\n</div>\n<div class=\"tp-usp-spacer\" style=\"height:40px; width:100%;\"></div>\n<style>\n  .tp-calcb{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;\n    background:linear-gradient(120deg,#1a1d24,#2a3340);color:#fff;border-radius:14px;padding:24px 26px;\n    text-decoration:none;font-family:\"Open Sans\",sans-serif;}\n  .tp-calcb__txt h3{font-size:18px;font-weight:800;margin:0;color:#fff;}\n  .tp-calcb__txt p{font-size:13px;opacity:.85;margin:5px 0 0;max-width:560px;line-height:1.5;color:#fff;}\n  a.tp-calcb__btn{background:#fff;color:#1a1d24;font-weight:800;font-size:14px;padding:13px 22px;border-radius:10px;white-space:nowrap;\n    text-decoration:none !important; box-shadow:none !important; border:none !important; outline:none !important; background-image:none !important;}\n  .tp-calcb:hover a.tp-calcb__btn{background:#c8102e;color:#fff;}\n</style>"
-      }
     }
   },
   "order": [
     "main",
-    "custom_liquid_mTpArt",
     "custom_liquid_xki7ez",
     "product_tabs",
     "calculator_section",

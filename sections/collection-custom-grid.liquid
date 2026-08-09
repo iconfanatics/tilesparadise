@@ -158,31 +158,15 @@
             <div class="product-card">
 
               <a href="{{ product.url }}" class="image">
-                {% assign parent = blank %}
-                {% assign img = product.featured_image %}
-                {% if img == blank and product.handle contains 'sample' %}
-                  {% assign parent_handle = product.handle | replace: 'free-sample-', '' | replace: 'sample-', '' %}
-                  {% assign parent = all_products[parent_handle] %}
-                  {% if parent != blank and parent.featured_image %}
-                    {% assign img = parent.featured_image %}
-                  {% endif %}
-                {% endif %}
-
-                {% if img %}
-                  {{ img | image_url: width: 600 | image_tag: class: 'primary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
+                {% if product.featured_image %}
+                  {{ product.featured_image | image_url: width: 600 | image_tag: class: 'primary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
                 {% else %}
-                  {{ 'image' | placeholder_svg_tag: 'primary-img' }}
+                  {{ 'product-1' | placeholder_svg_tag: 'primary-img' }}
                 {% endif %}
 
-                {% assign img2 = product.images[1] %}
-                {% if img2 == blank and parent != blank and parent.images[1] %}
-                  {% assign img2 = parent.images[1] %}
+                {% if product.images[1] %}
+                  {{ product.images[1] | image_url: width: 600 | image_tag: class: 'secondary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
                 {% endif %}
-
-                {% if img2 %}
-                  {{ img2 | image_url: width: 600 | image_tag: class: 'secondary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
-                {% endif %}
-              </a>
 
                 {% if product.compare_at_price > product.price %}
                   {% assign discount = product.compare_at_price | minus: product.price %}
