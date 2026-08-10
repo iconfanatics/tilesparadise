@@ -4735,3 +4735,11 @@ div[id*="__1780773500431ccfd2"],
 .vitals-reviews-wrapper {
   margin-top: 100px !important;
 }
+
+/* Fix predictive search dropdown appearing under main menu */
+.header__search-bar-wrapper,
+.search-bar__inner,
+.search-bar__results {
+  position: relative !important;
+  z-index: 9999999999 !important;
+}
