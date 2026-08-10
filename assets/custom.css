@@ -4737,7 +4737,7 @@ div[id*="__1780773500431ccfd2"],
 }
 
 /* Fix predictive search overlapping main menu */
-.search-bar__inner, 
-.search-bar__results {
-  z-index: 99999999 !important;
+header.header {
+  position: relative;
+  z-index: 9999 !important;
 }
