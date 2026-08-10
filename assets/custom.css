@@ -4741,3 +4741,16 @@ header.header {
   position: relative;
   z-index: 9999 !important;
 }
+
+/* Fix text alignment in search results */
+.search-bar__results,
+.search-bar__results .search-bar__result-category,
+.search-bar__results .search-bar__item-title,
+.search-bar__results .search-bar__item-price,
+.search-bar__results .search-bar__result-link,
+.search-bar__results .search-bar__view-all {
+  text-align: left !important;
+}
+.search-bar__item-info {
+  text-align: left !important;
+}
