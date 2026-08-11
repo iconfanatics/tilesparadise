@@ -231,5 +231,38 @@ data-namespace="PayPalSDK">
 
 
 
+<script>
+  (function() {
+    var lazyLoaded = false;
+    var userInteractionEvents = ["mouseover", "keydown", "touchmove", "touchstart", "wheel", "scroll"];
+    
+    function loadLazyScripts() {
+      if (lazyLoaded) return;
+      lazyLoaded = true;
+      var lazyScripts = document.querySelectorAll('script[type="text/lazyload"]');
+      for (var i = 0; i < lazyScripts.length; i++) {
+        var script = document.createElement("script");
+        for (var j = 0; j < lazyScripts[i].attributes.length; j++) {
+          var attr = lazyScripts[i].attributes[j];
+          if (attr.name !== "type") {
+            script.setAttribute(attr.name, attr.value);
+          }
+        }
+        script.innerHTML = lazyScripts[i].innerHTML;
+        lazyScripts[i].parentNode.replaceChild(script, lazyScripts[i]);
+      }
+      userInteractionEvents.forEach(function(e) {
+        window.removeEventListener(e, loadLazyScripts, { passive: true });
+      });
+    }
+
+    userInteractionEvents.forEach(function(e) {
+      window.addEventListener(e, loadLazyScripts, { passive: true });
+    });
+    
+    // Fallback: If no interaction after 8 seconds, load anyway
+    setTimeout(loadLazyScripts, 8000);
+  })();
+</script>
   </body>
 </html>
