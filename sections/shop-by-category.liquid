@@ -79,7 +79,7 @@
 
       {% if section.settings.view_all_link != blank %}
         <a href="{{ section.settings.view_all_link }}" class="view-all">
-          {{ section.settings.view_all_text }} <img class="right-arrow-icon" src="{{ 'right-arrow.png' | file_url }}" alt="arrow">
+          {{ section.settings.view_all_text }} <img class="right-arrow-icon" src="{{ 'right-arrow.png' | file_url }}" alt="arrow" loading="lazy">
         </a>
       {% endif %}
     </div>
@@ -95,9 +95,9 @@
                 
                 <div class="image">
                   {% if collection.image %}
-                    <img src="{{ collection.image | image_url: width: 600 }}">
+                    <img src="{{ collection.image | image_url: width: 600 }}" loading="lazy" alt="{{ collection.title | escape }}">
                   {% elsif collection.products.first.featured_image %}
-                    <img src="{{ collection.products.first.featured_image | image_url: width: 600 }}">
+                    <img src="{{ collection.products.first.featured_image | image_url: width: 600 }}" loading="lazy" alt="{{ collection.title | escape }}">
                   {% endif %}
                 </div>
 
