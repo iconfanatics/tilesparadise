@@ -5,11 +5,6 @@
 {%- assign modified_content_for_header = modified_content_for_header | replace: '<script data-ver=', '<script type="text/lazyload" data-ver=' -%}
 {%- assign modified_content_for_header = modified_content_for_header | replace: '<script id="vtlsAeb', '<script type="text/lazyload" id="vtlsAeb' -%}
 
-{%- comment -%} Delay Shopify Web Pixels, Trekkie, and GTM {%- endcomment -%}
-{%- assign modified_content_for_header = modified_content_for_header | replace: ' src="https://cdn.shopify.com/s/trekkie.storefront', ' type="text/lazyload" src="https://cdn.shopify.com/s/trekkie.storefront' -%}
-{%- assign modified_content_for_header = modified_content_for_header | replace: ' src="https://cdn.shopify.com/wpm', ' type="text/lazyload" src="https://cdn.shopify.com/wpm' -%}
-{%- assign modified_content_for_header = modified_content_for_header | replace: ' src="https://load.gtm', ' type="text/lazyload" src="https://load.gtm' -%}
-
 {%- comment -%} Async load all App and Shopify injected CSS (like accelerated-checkout) {%- endcomment -%}
 {%- assign modified_content_for_header = modified_content_for_header | replace: 'rel="stylesheet" type="text/css" media="all"', 'rel="stylesheet" type="text/css" media="print" onload="this.media=\'all\'"' -%}
 
