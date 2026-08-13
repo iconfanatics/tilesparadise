@@ -60,7 +60,13 @@
                       {%- assign data_zoom_width = 1800 | at_most: media.width -%}
 
                       <div class="aspect-ratio" style="padding-bottom: {{ 100.0 | divided_by: media.aspect_ratio }}%">
-                        {{- media | image_url: width: media.width | image_tag: loading: 'lazy', widths: '400,500,600,700,800,900,1000,1100,1200', class: 'product-gallery__image', data-zoom: data_zoom_url, data-zoom-width: data_zoom_width -}}
+                        {%- assign loading_attr = 'lazy' -%}
+                      {%- assign fetchpriority_attr = 'auto' -%}
+                      {%- if forloop.first -%}
+                        {%- assign loading_attr = 'eager' -%}
+                        {%- assign fetchpriority_attr = 'high' -%}
+                      {%- endif -%}
+                      {{- media | image_url: width: media.width | image_tag: loading: loading_attr, fetchpriority: fetchpriority_attr, widths: '400,500,600,700,800,900,1000,1100,1200', class: 'product-gallery__image', data-zoom: data_zoom_url, data-zoom-width: data_zoom_width -}}
                       </div>
                     </div>
 
