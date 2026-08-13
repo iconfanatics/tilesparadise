@@ -288,11 +288,11 @@
               {%- if section.settings.show_collection_image and collection.image and collection.all_products_count > 0 -%}
                 {%- if section.settings.collection_image_size == 'preserve_ratio' -%}
                   <div class="collection__image-wrapper collection__image-wrapper--preserve-ratio">
-                    {{- collection.image | image_url: width: collection.image.width | image_tag: loading: 'lazy', sizes: 'min(100vw, 1000px)', widths: '200,300,400,500,600,800,1000,1200,1400,1600' -}}
+                    {{- collection.image | image_url: width: collection.image.width | image_tag: loading: 'eager', fetchpriority: 'high', sizes: 'min(100vw, 1000px)', widths: '200,300,400,500,600,800,1000,1200,1400,1600' -}}
                   </div>
                 {%- else -%}
                   <div class="collection__image-wrapper collection__image-wrapper--{{ section.settings.collection_image_size }}">
-                    {{- collection.image | image_url: width: collection.image.width | image_tag: loading: 'lazy', sizes: 'min(100vw, 1000px)', widths: '200,300,400,500,600,800,1000,1200,1400,1600', class: 'image-background' -}}
+                    {{- collection.image | image_url: width: collection.image.width | image_tag: loading: 'eager', fetchpriority: 'high', sizes: 'min(100vw, 1000px)', widths: '200,300,400,500,600,800,1000,1200,1400,1600', class: 'image-background' -}}
                   </div>
                 {%- endif -%}
               {%- endif -%}
@@ -529,7 +529,7 @@
 
                     <div class="product-list product-list--collection {% if has_filters %}product-list--with-sidebar{% endif %}">
                       {%- for product in collection.products -%}
-                        {%- render 'product-item', product: product, list: show_as_list, grid_classes: grid_classes, show_shop_button: true, shop_button_label: 'Shop Now', enable_sample_button: true, sample_button_label: 'Order Sample' -%}
+                        {%- assign eager_load = false -%}{%- if forloop.index <= 4 -%}{%- assign eager_load = true -%}{%- endif -%}{%- render 'product-item', product: product, eager_load: eager_load, list: show_as_list, grid_classes: grid_classes, show_shop_button: true, shop_button_label: 'Shop Now', enable_sample_button: true, sample_button_label: 'Order Sample' -%}
                       {%- endfor -%}
                     </div>
 
