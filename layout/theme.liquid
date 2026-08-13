@@ -8,7 +8,7 @@ You can learn more about this (and learn how to cleanly revert these changes) at
   <head>{% render 'yoast-seo' %}
     <meta charset="utf-8">
     <meta property="og:locale" content="{{ request.locale.iso_code | replace: '-', '_' }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="{{ settings.accent_color }}">
     
     {%- capture seo_page_title -%}
@@ -232,7 +232,7 @@ data-namespace="PayPalSDK">
 
 
  {% render 'globo.preorder.custom' %}
-{% comment %}{{'tiny-img-link-preloader.js' | asset_url | script_tag }}{% endcomment %}
+{{'tiny-img-link-preloader.js' | asset_url | script_tag }}
 
 
 
