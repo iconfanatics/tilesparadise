@@ -159,7 +159,13 @@
 
               <a href="{{ product.url }}" class="image">
                 {% if product.featured_image %}
-                  {{ product.featured_image | image_url: width: 600 | image_tag: class: 'primary-img', loading: 'lazy', sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
+                  {%- assign loading_attr = 'lazy' -%}
+                  {%- assign fetchpriority_attr = 'auto' -%}
+                  {%- if forloop.index <= 4 -%}
+                    {%- assign loading_attr = 'eager' -%}
+                    {%- assign fetchpriority_attr = 'high' -%}
+                  {%- endif -%}
+                  {{ product.featured_image | image_url: width: 600 | image_tag: class: 'primary-img', loading: loading_attr, fetchpriority: fetchpriority_attr, sizes: '(max-width: 768px) 50vw, 315px', widths: '315, 600' }}
                 {% else %}
                   {{ 'product-1' | placeholder_svg_tag: 'primary-img' }}
                 {% endif %}
