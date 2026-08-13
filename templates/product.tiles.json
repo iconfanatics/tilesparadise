@@ -1,0 +1,496 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "liquid_QbWTND": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "title": "Reviews",
+            "liquid": "<div id=\"bundle-product_reviews\"></div> <script>\ndocument.addEventListener('DOMContentLoaded', function () {\n  const anchor = document.getElementById('bundle-product_reviews');\n  if (!anchor) return;\n\n  const card = anchor.closest('.card');\n  if (!card) return;\n\n  // Force visible initially (theme hides it)\n  card.style.setProperty('display', 'block', 'important'); \n\n  const MAX_WAIT_MS = 3000;\n  const START = Date.now();\n\n  function getWidget() {\n    return anchor.parentElement.querySelector('.vtl-pr-main-widget');\n  }\n\n  function hasRealReviews() {\n    const widget = getWidget();\n    if (!widget) return false;\n\n    return !!widget.querySelector(\n      '.vtl-pr-review, [data-review-id], .vtl-star, img, svg'\n    );\n  }\n\n  function decide(final = false) {\n    const widget = getWidget();\n\n    if (hasRealReviews()) {\n      card.style.setProperty('display', 'block', 'important');\n      observer.disconnect();\n      return;\n    }\n\n    if (final) {\n      card.style.display = 'none';\n      observer.disconnect();\n    }\n  }\n\n  const observer = new MutationObserver(() => {\n    decide(false);\n    if (Date.now() - START > MAX_WAIT_MS) decide(true);\n  });\n\n  observer.observe(anchor.parentElement, {\n    childList: true,\n    subtree: true\n  });\n\n  setTimeout(() => decide(true), MAX_WAIT_MS);\n});\n</script>",
+            "display_mode": "collapse"
+          }
+        },
+        "judge_me_reviews_preview_badge_R8ywae": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "vitals_reviews_stars_z94Nry": {
+          "type": "shopify://apps/vitals/blocks/reviews-stars/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        },
+        "product_meta": {
+          "type": "product_meta",
+          "settings": {
+            "show_vendor": false,
+            "show_sku": false,
+            "show_reviews_badge": false,
+            "show_share_buttons": false
+          }
+        },
+        "variant_selector": {
+          "type": "variant_selector",
+          "settings": {
+            "selector_mode": "block",
+            "color_mode": "dropdown",
+            "show_quantity_selector": true,
+            "show_taxes_included": false,
+            "show_inventory_quantity": false,
+            "low_inventory_threshold": 100
+          }
+        },
+        "delivery_estimator_app_block_H7eJFc": {
+          "type": "shopify://apps/delivery-estimator/blocks/app-block/2be8f45f-2937-4f60-b6b3-7488e231d668",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "image1": "shopify://shop_images/shopping-bag.png"
+          }
+        },
+        "delivery_options_block": {
+          "type": "delivery_options",
+          "settings": {
+            "get_it_text": "Get It Friday",
+            "order_in_text": "Order in 21 hours and 4 minutes",
+            "delivery_options_title": "Delivery Options",
+            "delivery_options_subtitle": "Add postcode to view all options",
+            "delivery_options_list": "<p></p><ul><li><strong>FREE Standard Pallet Delivery</strong><br/>Over £499 to UK mainland, 2-4 working days</li><li><strong>Standard Pallet Delivery</strong> <br/>£39.99 for orders £100-£499, 2-4 working days</li><li><strong>Next Day Pallet Service</strong> <br/>Available at checkout, subject to postcode</li><li><strong>Day Specific Pallet</strong> <br/>Available at checkout, subject to postcode</li></ul><p></p>",
+            "delivery_drawer_content": "<p><strong>Free Standard Pallet Delivery</strong></p><p>Free on all orders over £500 to UK mainland. Estimated 2-7 working days.</p><p><strong>Standard Pallet Delivery</strong></p><p>£39.99 on orders between £100 and £499. Estimated 2-7 working days.</p><p><strong>Express / Next Day</strong></p><p>Available at checkout depending on your postcode.</p><p><strong>Day Specific Pallet</strong></p><p>Available at checkout depending on your postcode.</p><p><strong>Saturday Delivery</strong></p><p>Available at checkout depending on your postcode.</p><p>All tile and SPC flooring orders are delivered kerbside on a pallet. The driver cannot bring goods inside or unpack on your behalf, so please make sure someone is home on the day. You can add Extended Delivery Protection for £9.99 at checkout, which extends your damage reporting window from 2 to 4 working days.</p>",
+            "faq_text": "Delivery, Damage & Returns",
+            "faq_drawer_content": "<p><strong>Pallet Delivery (Tiles & SPC)</strong></p><p>Delivered on a pallet (kerbside only). Driver cannot unpack or move goods inside.</p><p><strong>Damage / Incorrect Delivery</strong></p><p>Notify us within 2 working days of delivery for replacements or refunds. Please provide photos while items are still on the pallet. If you added Extended Delivery Protection (£9.99), you have 4 working days. Do not dispose of goods or packaging.</p><p>Email: <a href=\"mailto:sales@tilesparadiseuk.com\">sales@tilesparadiseuk.com</a></p><p><strong>Check Before Installation</strong></p><p>Please inspect all tiles before cutting or installation. Claims cannot be accepted after cutting or installation. We recommend ordering a minimum 10% extra for cuts and wastage.</p><p><strong>Returns (Change of mind)</strong></p><p>You may cancel your entire order within 14 days of delivery. Returns must be unused, in original packaging and re-saleable. Tile & SPC returns are subject to a handling/restocking fee. No returns on leftovers.</p><p>View full policies: <a href=\"https://tilesparadiseuk.com/pages/shipping-policy\">Delivery</a>, <a href=\"https://tilesparadiseuk.com/pages/damages\">Damages</a> & <a href=\"https://tilesparadiseuk.com/pages/refund-policy\">Returns</a></p>"
+          }
+        },
+        "klarna_on_site_messaging_app_block_Dbqqrq": {
+          "type": "shopify://apps/klarna-on-site-messaging/blocks/app-block/b95936a9-74b6-4a95-8103-6a1b6459c25e",
+          "settings": {
+            "data_key": "credit-promotion-badge",
+            "theme": "default",
+            "topPadding": "0",
+            "bottomPadding": "0",
+            "messagePrefix": ""
+          }
+        },
+        "a9c560d5-40e3-4fee-934f-f6b7ef7a9739": {
+          "type": "trust",
+          "settings": {
+            "trust_title": "Payment & Security",
+            "show_payment_icons": true,
+            "custom_security_badge_width": 200
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "display_mode": "view_more"
+          }
+        },
+        "9d4bfcf6-11bc-449b-8839-fd0dd9450aa9": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "title": "Product Details",
+            "liquid": "<div class=\"cstm_details\">\n<table>\n{% if product.first_available_variant.sku != blank %}\n<tr><td>SKU </td> \n<td>{{product.first_available_variant.sku}}</td> </tr>{%endif %}\n{% if product.metafields.custom.tile_material != blank %}\n<tr><td> Material</td> <td> {{product.metafields.custom.tile_material}}</td></tr>{%endif%}\n{% if product.metafields.custom.tile_color != blank %}\n<tr><td>Colour</td><td> {{product.metafields.custom.tile_color}}</td></tr>{%endif%}\n{% if product.metafields.custom.thickness != blank %}\n<tr><td>Thickness</td><td> {{product.metafields.custom.thickness}}</td></tr>{%endif%}\n{% if product.metafields.custom.slip_rating != blank %}\n<tr><td>Anti-Slip Rating</td><td> {{product.metafields.custom.slip_rating}}</td></tr>{%endif%}\n{% if product.metafields.custom.tile_finish != blank %}\n<tr><td>Finish</td><td> {{product.metafields.custom.tile_finish}}</td></tr>{%endif%}\n{% if product.metafields.custom.floor_or_wall != blank %}\n<tr><td>Floor or Wall</td><td> {{product.metafields.custom.floor_or_wall}}</td></tr>{%endif%}\n{% if product.metafields.custom.size != blank %}\n<tr><td>Size</td><td> {{product.metafields.custom.size}}</td></tr>{%endif%}\n</table>\n<table>\n\n{% if product.metafields.custom.rectified != blank %}\n<tr><td> Rectified</td> <td> {{product.metafields.custom.rectified}}</td></tr>{%endif%}\n{% if product.metafields.custom.suitable_for_underfloor_heating != blank %}\n<tr><td>Suitable for Underfloor Heating </td><td> {{ product.metafields.custom.suitable_for_underfloor_heating}}</td></tr>{%endif%}\n{% if product.metafields.custom.box_quantity != blank %}\n<tr><td>Box Quantity</td><td> {{product.metafields.custom.box_quantity}}</td></tr>{%endif%}\n{% if product.metafields.custom.weight != blank %}\n<tr><td>Weight</td><td> {{product.metafields.custom.weight}}</td></tr>{%endif%}\n{% if product.metafields.custom.pattern_repeats != blank %}\n<tr><td>Pattern Repeats</td><td> {{product.metafields.custom.pattern_repeats}}</td></tr>{%endif%}\n{% if product.metafields.custom.sale_by != blank %}\n<tr><td>Sale By</td><td> {{product.metafields.custom.sale_by}}</td></tr>{%endif%}\n</table>\n</div>",
+            "display_mode": "show_all"
+          }
+        },
+        "vitals_back_in_stock_mkJRGa": {
+          "type": "shopify://apps/vitals/blocks/back-in-stock/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "liquid_QbWTND",
+        "judge_me_reviews_preview_badge_R8ywae",
+        "vitals_reviews_stars_z94Nry",
+        "product_meta",
+        "variant_selector",
+        "delivery_estimator_app_block_H7eJFc",
+        "buy_buttons",
+        "delivery_options_block",
+        "klarna_on_site_messaging_app_block_Dbqqrq",
+        "a9c560d5-40e3-4fee-934f-f6b7ef7a9739",
+        "description",
+        "9d4bfcf6-11bc-449b-8839-fd0dd9450aa9",
+        "vitals_back_in_stock_mkJRGa"
+      ],
+      "settings": {
+        "image_size": "large",
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "zoom_effect": "inside",
+        "carousel_effect": "slide"
+      }
+    },
+    "custom_liquid_xki7ez": {
+      "type": "_blocks",
+      "blocks": {
+        "vitals_related_products_ifA4TC": {
+          "type": "shopify://apps/vitals/blocks/related-products/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vitals_related_products_ifA4TC"
+      ],
+      "name": "Product carousel",
+      "settings": {}
+    },
+    "product_tabs": {
+      "type": "product-tabs",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I measure my room for tiles?",
+            "answer": "Measure the length and width of the room and multiply them together to get the square meterage. We recommend adding 10% for cuts and wastage."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Are these tiles suitable for underfloor heating?",
+            "answer": "Yes, most of our porcelain and ceramic tiles are suitable for underfloor heating. Please check the 'Product Details' tab for specific confirmation on this product."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need to seal these tiles?",
+            "answer": "Porcelain and glazed ceramic tiles do not require sealing. Natural stone and some unglazed tiles may require sealing before and after grouting."
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
+      "settings": {
+        "tab_1_title": "Product Information",
+        "tab_2_title": "Product Details",
+        "tab_3_title": "Tile FAQs"
+      }
+    },
+    "calculator_section": {
+      "type": "custom-liquid",
+      "name": "Tile Calculator",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  Liquid block (no title needed; set Display mode \"Show all\").\n  Banner linking to your standalone /pages/tile-calculator.\n{%- endcomment -%}\n<div class=\"tp-calcb\">\n  <div class=\"tp-calcb__txt\">\n    <h3>Doing a whole room?</h3>\n    <p>Use our free Tile Calculator &mdash; enter your wall and floor measurements, deduct doors and windows, and we'll work out exactly how many boxes you need, plus 10% for wastage.</p>\n  </div>\n  <a class=\"tp-calcb__btn\" href=\"/pages/tile-calculator\">Open the Tile Calculator &rarr;</a>\n</div>\n<div class=\"tp-usp-spacer\" style=\"height:40px; width:100%;\"></div>\n<style>\n  .tp-calcb{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;\n    background:linear-gradient(120deg,#1a1d24,#2a3340);color:#fff;border-radius:14px;padding:24px 26px;\n    text-decoration:none;font-family:\"Open Sans\",sans-serif;}\n  .tp-calcb__txt h3{font-size:18px;font-weight:800;margin:0;color:#fff;}\n  .tp-calcb__txt p{font-size:13px;opacity:.85;margin:5px 0 0;max-width:560px;line-height:1.5;color:#fff;}\n  a.tp-calcb__btn{background:#fff;color:#1a1d24;font-weight:800;font-size:14px;padding:13px 22px;border-radius:10px;white-space:nowrap;\n    text-decoration:none !important; box-shadow:none !important; border:none !important; outline:none !important; background-image:none !important;}\n  .tp-calcb:hover a.tp-calcb__btn{background:#c8102e;color:#fff;}\n</style>"
+      }
+    },
+    "custom_liquid_t77pJf": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_paired_new": {
+          "type": "ai_gen_block_paired",
+          "settings": {
+            "collection_handles": "led-mirrors,stylish-radiators-heated-towel-rails,luxury-shower-sets,toilets",
+            "per_collection": 3,
+            "title": "Customers Paired With",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 15,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_paired_new"
+      ],
+      "name": "Paired With Carousel",
+      "settings": {}
+    },
+    "blocks_JPq7Pd": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4a575ab_wPqaDw": {
+          "type": "ai_gen_block_4a575ab",
+          "settings": {
+            "heading": "Shop Related Collections",
+            "heading_alignment": "center",
+            "max_collections": 6,
+            "show_product_count": false,
+            "product_singular_text": "product",
+            "product_plural_text": "products",
+            "empty_message": "This product is not in any collections yet.",
+            "desktop_columns": 6,
+            "tablet_columns": 3,
+            "mobile_columns": "2",
+            "grid_gap": 30,
+            "section_padding": 40,
+            "heading_spacing": 30,
+            "content_spacing": 20,
+            "circle_size": 180,
+            "background_color": "#ffffff",
+            "heading_color": "#3b3337",
+            "collection_name_color": "#3b3337",
+            "product_count_color": "#616161",
+            "heading_size": 32,
+            "collection_name_size": 18,
+            "product_count_size": 14,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4a575ab_wPqaDw"
+      ],
+      "name": "Related collections",
+      "settings": {}
+    },
+    "related_categories_new": {
+      "type": "related-categories",
+      "blocks": {
+        "cat1": {
+          "type": "category_link",
+          "settings": {
+            "title": "Bathroom Wall Tiles",
+            "link": ""
+          }
+        },
+        "cat2": {
+          "type": "category_link",
+          "settings": {
+            "title": "Kitchen Wall Tiles",
+            "link": ""
+          }
+        },
+        "cat3": {
+          "type": "category_link",
+          "settings": {
+            "title": "Kitchen Splash Back Tiles",
+            "link": ""
+          }
+        },
+        "cat4": {
+          "type": "category_link",
+          "settings": {
+            "title": "Country Tiles",
+            "link": ""
+          }
+        },
+        "cat5": {
+          "type": "category_link",
+          "settings": {
+            "title": "Rustic Tiles",
+            "link": ""
+          }
+        },
+        "cat6": {
+          "type": "category_link",
+          "settings": {
+            "title": "Ceramic Tiles",
+            "link": ""
+          }
+        },
+        "cat7": {
+          "type": "category_link",
+          "settings": {
+            "title": "White Wall Tiles",
+            "link": ""
+          }
+        },
+        "cat8": {
+          "type": "category_link",
+          "settings": {
+            "title": "White Bathroom Tiles",
+            "link": ""
+          }
+        },
+        "cat9": {
+          "type": "category_link",
+          "settings": {
+            "title": "White Kitchen Tiles",
+            "link": ""
+          }
+        },
+        "cat10": {
+          "type": "category_link",
+          "settings": {
+            "title": "Zellige Effect Tiles",
+            "link": ""
+          }
+        },
+        "cat11": {
+          "type": "category_link",
+          "settings": {
+            "title": "Gloss Tiles",
+            "link": ""
+          }
+        },
+        "cat12": {
+          "type": "category_link",
+          "settings": {
+            "title": "Metro Tiles",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "cat1",
+        "cat2",
+        "cat3",
+        "cat4",
+        "cat5",
+        "cat6",
+        "cat7",
+        "cat8",
+        "cat9",
+        "cat10",
+        "cat11",
+        "cat12"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Related Popular Categories",
+        "bg_color": "#f8f7f5"
+      }
+    },
+    "recently_viewed_paired_new": {
+      "type": "recently-viewed-paired",
+      "settings": {
+        "title": "Recently Viewed Products",
+        "products_per_row_desktop": 5,
+        "products_per_row_mobile": "2",
+        "product_gap": 20,
+        "section_padding": 20,
+        "desktop_width_percent": 100,
+        "container_width": 1350,
+        "side_padding": 20,
+        "section_bg": "#f8f7f5",
+        "title_size": 28,
+        "title_spacing": 24,
+        "title_color": "#3b3337",
+        "nav_button_bg": "#ffffff",
+        "nav_button_color": "#111111",
+        "nav_button_hover_bg": "#f1f1f1",
+        "nav_button_hover_color": "#111111",
+        "card_bg": "#ffffff",
+        "image_bg": "#f5f5f5",
+        "card_padding": 16,
+        "card_border_radius": 0,
+        "product_title_size": 14,
+        "product_title_color": "#111111",
+        "price_size": 18,
+        "price_color": "#e40012",
+        "sale_price_color": "#e40012",
+        "compare_price_color": "#6f6f6f",
+        "accent_color": "#3070b7",
+        "badge_bg": "#e40012",
+        "badge_text_color": "#ffffff",
+        "badge_size": 13,
+        "vendor_bg": "#171717",
+        "vendor_text_color": "#ffffff",
+        "review_star_color": "#ff9d00",
+        "stock_text_color": "#111111",
+        "stock_size": 14,
+        "stock_icon_bg": "#31ad45",
+        "stock_icon_color": "#ffffff",
+        "out_of_stock_color": "#cf0e0e",
+        "wishlist_color": "#2e8f3d",
+        "button_text": "View product",
+        "button_bg": "#df3653",
+        "button_hover_bg": "#c72e47",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 4
+      }
+    },
+    "1780773500431ccfd2": {
+      "type": "apps",
+      "blocks": {
+        "vitals_product_reviews_UkDaYU": {
+          "type": "shopify://apps/vitals/blocks/product-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {
+            "hide_mock_data": false
+          }
+        }
+      },
+      "block_order": [
+        "vitals_product_reviews_UkDaYU"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "custom_liquid_WhPNfa": {
+      "type": "custom-liquid",
+      "name": "Tile USP",
+      "settings": {
+        "title": "",
+        "include_margins": true,
+        "liquid": "{%- comment -%}\n  Liquid block (Display mode \"Show all\"), or paste into a Custom Liquid section\n  near the top of the page / under the header. Trust + USP bar.\n{%- endcomment -%}\n<div class=\"tp-usp\">\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 6h11v9H3z\"/><path d=\"M14 9h4l3 3v3h-7z\"/><circle cx=\"7\" cy=\"18\" r=\"1.6\"/><circle cx=\"17.5\" cy=\"18\" r=\"1.6\"/></svg>\n    Next-day UK delivery\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.8 5.7 21l1.3-6.7-5-4.6 6.8-.8z\"/></svg>\n    Rated Excellent on Trustpilot\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M3 10h18\"/></svg>\n    0% finance available\n  </span>\n  <span class=\"tp-usp__i\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16v12H4z\"/><path d=\"M9 20h6\"/></svg>\n    Free samples &middot; 14-day returns\n  </span>\n</div>\n<div class=\"tp-usp-spacer\" style=\"height:40px; width:100%;\"></div>\n<style>\n  .tp-usp{margin-bottom:24px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:center;\n    background:#1a1d24;color:#fff;padding:11px 18px;border-radius:10px;\n    font-family:\"Open Sans\",sans-serif;font-size:13px;font-weight:600;}\n  .tp-usp__i{display:flex;align-items:center;gap:8px;opacity:.94;}\n  .tp-usp__i svg{width:16px;height:16px;color:#7fd3a0;flex:0 0 auto;}\n</style>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_xki7ez",
+    "product_tabs",
+    "calculator_section",
+    "custom_liquid_t77pJf",
+    "blocks_JPq7Pd",
+    "related_categories_new",
+    "recently_viewed_paired_new",
+    "1780773500431ccfd2",
+    "custom_liquid_WhPNfa"
+  ]
+}

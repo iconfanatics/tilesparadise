@@ -1,0 +1,1442 @@
+{%- capture section_settings -%}
+{
+  "navigationLayout": {{ section.settings.desktop_navigation_layout | json }},
+  "desktopOpenTrigger": {{ section.settings.desktop_navigation_open_trigger | json }},
+  "useStickyHeader": {{ section.settings.enable_sticky_header | json }}
+}
+{%- endcapture -%}
+
+{%- assign navigation_menu_handle = section.settings.navigation_menu | default: 'main-menu' -%}
+{%- assign navigation_menu = linklists[navigation_menu_handle] -%}
+
+{%- assign navigation_mobile_menu_handle = section.settings.navigation_mobile_menu | default: navigation_menu_handle -%}
+{%- assign navigation_mobile_menu = linklists[navigation_mobile_menu_handle] -%}
+
+<section data-section-id="{{ section.id }}" data-section-type="header" data-section-settings='{{ section_settings }}'>
+  <header class="header header--{{ section.settings.desktop_navigation_layout }} {% unless section.settings.show_condensed_search %}header--search-expanded{% endunless %}" role="banner">
+    <div class="container">
+ 
+      <div class="header__inner">
+        {%- comment -%}
+        --------------------------------------------------------------------------------------
+        MOBILE NAV
+        --------------------------------------------------------------------------------------
+        {%- endcomment -%}
+
+        {%- if navigation_menu.links.size > 0 -%}
+          <div class="header__mobile-nav hidden-lap-and-up">
+            <button class="header__mobile-nav-toggle icon-state touch-area"
+              data-action="toggle-menu"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="mobile-menu"
+              aria-label="{{ 'header.navigation.open_menu' | t }}"
+              onclick="(function(btn){
+                var m=document.getElementById('mobile-menu');
+                if(!m)return;
+                var open=m.getAttribute('aria-hidden')==='false';
+                m.setAttribute('aria-hidden',open?'true':'false');
+                btn.setAttribute('aria-expanded',open?'false':'true');
+                document.body.classList.toggle('no-mobile-scroll',!open);
+              })(this);">
+              <span class="icon-state__primary">{%- render 'icon', icon: 'hamburger-mobile' -%}</span>
+              <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
+            </button>
+
+            {%- render 'mobile-menu', menu: navigation_mobile_menu -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%}
+          --------------------------------------------------------------------------------------
+          DESKTOP NAV
+          --------------------------------------------------------------------------------------
+        {%- endcomment -%}
+
+        {%- if section.settings.desktop_navigation_layout == 'condensed' and navigation_menu.links.size > 0 -%}
+          <nav class="header__desktop-nav hidden-pocket">
+            <button class="header__desktop-nav-toggle" data-action="toggle-menu" aria-expanded="false" aria-haspopup="true" aria-label="{{ 'header.navigation.open_menu' | t }}">
+              <span>{%- render 'icon', icon: 'hamburger' -%} <span class="header__desktop-nav-text">{{- 'header.navigation.menu' | t -}}</span></span>
+            </button>
+
+            {%- render 'desktop-menu', menu: navigation_menu, index: 'desktop-menu-0' -%}
+          </nav>
+        {%- endif -%}
+
+        {%- comment -%}
+        --------------------------------------------------------------------------------------
+        LOGO COMPONENT
+        --------------------------------------------------------------------------------------
+        {%- endcomment -%}
+
+        {%- capture header_logo -%}
+          <a href="{{ routes.root_url }}" class="header__logo-link">
+            {%- if section.settings.logo != blank -%}
+              {%- capture image_size -%}{{ section.settings.logo_max_width }}x{%- endcapture -%}
+              {%- assign logo_aspect_ratio = section.settings.logo.aspect_ratio | default: 1.0 -%}
+              <img class="header__logo-image"
+                   style="max-width: {{ section.settings.logo_max_width }}px; height: auto; aspect-ratio: {{ logo_aspect_ratio }};"
+                   width="{{ section.settings.logo_max_width }}"
+                   height="{{ section.settings.logo_max_width | divided_by: logo_aspect_ratio | round }}"
+                   src="{{ section.settings.logo | image_url: width: 400 }}"
+                   alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+            {%- else -%}
+              <span class="header__logo-text">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+        {%- endcapture -%}
+
+
+        <div class="header__logo">
+          {{ header_logo }}
+        </div>
+          <div class="header-inner-search-and-action">
+        {%- comment -%}
+        --------------------------------------------------------------------------------------
+        SEARCH COMPONENT
+        --------------------------------------------------------------------------------------
+        {%- endcomment -%}
+
+        <div class="header__search-bar-wrapper {% unless section.settings.show_condensed_search %}is-visible{% endunless %}">
+          <form action="{{ routes.search_url }}" method="get" role="search" class="search-bar">
+            {%- assign search_menu = linklists[section.settings.search_menu] -%}
+
+            <div class="search-bar__top-wrapper">
+              <div class="search-bar__top">
+                <input type="hidden" name="type" value="product">
+
+                <div class="search-bar__input-wrapper">
+                  <input class="search-bar__input" type="text" name="q" autocomplete="off" autocorrect="off" aria-label="{{ 'header.search.input_placeholder' | t }}" placeholder="{{ 'header.search.input_placeholder' | t }}">
+                  <button type="button" class="search-bar__input-clear hidden-lap-and-up" data-action="clear-input">
+                    <span class="visually-hidden">{{ 'header.search.clear' | t }}</span>
+                    {% render 'icon', icon: 'close' %}
+                  </button>
+                </div>
+
+                {%- comment -%}The type detection is sometimes a bit inaccurate as it returns empty type, so we do an additional logic{%- endcomment -%}
+
+                {%- assign has_at_least_one_type = false -%}
+                {%- for product_type in shop.types -%}
+                  {%- if product_type != blank -%}
+                    {%- assign has_at_least_one_type = true -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- if section.settings.show_search_filter and has_at_least_one_type -%}
+                  <div class="search-bar__filter">
+                    <label for="search-product-type" class="search-bar__filter-label">
+                      <span class="search-bar__filter-active">{{ 'header.search.all_categories' | t }}</span> {%- render 'icon', icon: 'arrow-bottom' -%}
+                    </label>
+
+                    <select id="search-product-type">
+                      <option value="" selected="selected">{{ 'header.search.all_categories' | t }}</option>
+
+                      {%- for product_type in shop.types -%}
+                        {%- if product_type != blank -%}
+                          <option value="{{ product_type | escape }}">{{ product_type | escape }}</option>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </select>
+                  </div>
+                {%- endif -%}
+
+                <button type="submit" class="search-bar__submit" aria-label="{{ 'header.search.submit' | t }}">
+                  {%- render 'icon', icon: 'search' -%}
+                  {%- render 'icon', icon: 'search-loader' -%}
+                </button>
+              </div>
+
+              <button type="button" class="search-bar__close-button hidden-tablet-and-up" data-action="unfix-search" style="padding-left: 10px;">
+                <span class="search-bar__close-icon" style="display: inline-block; width: 24px; height: 24px; margin-left: 15px;">{%- render 'icon', icon: 'close' -%}</span>
+              </button>
+            </div>
+
+            <div class="search-bar__inner">
+              <div class="search-bar__results" aria-hidden="true">
+                <div class="skeleton-container">
+                  {%- for i in (1..3) -%}
+                    <div class="search-bar__result-item search-bar__result-item--skeleton">
+                      <div class="search-bar__image-container">
+                        <div class="aspect-ratio aspect-ratio--square">
+                          <div class="skeleton-image"></div>
+                        </div>
+                      </div>
+
+                      <div class="search-bar__item-info">
+                        <div class="skeleton-paragraph">
+                          <div class="skeleton-text"></div>
+                          <div class="skeleton-text"></div>
+                        </div>
+                      </div>
+                    </div>
+                  {%- endfor -%}
+                </div>
+
+                <div class="search-bar__results-inner">
+                  {%- comment -%}Placeholder div for real results{%- endcomment -%}
+                </div>
+              </div>
+
+              {%- if search_menu.links.size > 0 -%}
+                <div class="search-bar__menu-wrapper" aria-hidden="true">
+                  {%- if section.settings.show_search_menu_title -%}
+                    <p class="search-bar__menu-title heading">{{ search_menu.title }}</p>
+                  {%- endif -%}
+
+                  <ul class="search-bar__menu-linklist list--unstyled" role="list">
+                    {%- for link in search_menu.links -%}
+                      <li>
+                        <a href="{{ link.url }}" class="search-bar__menu-link">{{ link.title }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+            </div>
+          </form>
+        </div>
+
+
+        {%- comment -%}
+        --------------------------------------------------------------------------------------
+        HEADER ACTIONS
+        --------------------------------------------------------------------------------------
+        {%- endcomment -%}
+
+        {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+          {%- assign country_selector = true -%}
+        {%- endif -%}
+
+        {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
+          {%- assign locale_selector = true -%}
+        {%- endif -%}
+
+        <div class="header__action-list custom-header-final">
+
+          <!-- PHONE -->
+          {% if section.settings.show_mobile_contact %}
+            <div class="ch-item ch-phone">
+
+              {% if section.settings.mobile_icon != blank %}
+                <img 
+                  src="{{ section.settings.mobile_icon | image_url: width: 40 }}" 
+                  alt="Phone"
+                >
+              {% endif %}
+
+              <div class="ch-text">
+                <a href="tel:{{ section.settings.mobile_phone | remove: ' ' }}" class="ch-title">
+                  {{ section.settings.mobile_phone }}
+                </a>
+                <span class="ch-sub">{{ section.settings.mobile_timing }}</span>
+              </div>
+            </div>
+          {% endif %}
+
+          <!-- SEARCH -->
+          <div class="ch-item">
+            <button
+              type="button"
+              class="header__search-button"
+              data-action="toggle-search">
+              {% render 'icon', icon: 'search' %}
+            </button>
+          </div>
+
+          <!-- ACCOUNT -->
+          <div class="ch-item">
+            <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="ch-link">
+              
+              {% comment %} {% render 'icon', icon: 'account' %} {% endcomment %}
+               <img src="{{ 'account.png' | file_url }}" alt="Account" width="24" height="24">
+
+              <div class="ch-text">
+                <span class="ch-title">Account</span>
+                <span class="ch-sub">
+                  {% if customer %}
+                    {{ customer.first_name }}
+                  {% else %}
+                    Sign In
+                  {% endif %}
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <!-- WISHLIST -->
+          <div class="ch-item ch-item-heart">
+            <a href="/pages/wishlist" class="ch-link">
+              {% comment %} {% render 'icon', icon: 'heart' %} {% endcomment %}
+               <img src="{{ 'wishlist.png' | file_url }}" alt="wishlist" width="24" height="24">
+              <div class="ch-text">
+                <span class="ch-title">Wishlist</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- CART -->
+          <div class="ch-item ch-item-cart header__action-item--cart">
+            <a href="{{ routes.cart_url }}" class="ch-link header__cart-toggle">
+              
+              <div class="ch-icon-cart">
+                {% comment %} {% render 'icon', icon: 'cart' %} {% endcomment %}
+               <img src="{{ 'cart.png' | file_url }}" alt="cart" width="24" height="24">
+
+                <span class="ch-cart-count header__cart-count">{{ cart.item_count }}</span>
+              </div>
+
+              <div class="ch-text">
+                <span class="ch-title">Basket</span>
+              </div>
+            </a>
+            <div id="mini-cart" class="mini-cart" aria-hidden="true" style="display:none;"></div>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {%- if section.settings.desktop_navigation_layout == 'inline' and navigation_menu.links.size > 0 -%}
+    <nav class="nav-bar tabbed-mega-nav" aria-label="{{ 'header.navigation.menu' | t }}">
+      <div class="tabbed-mega-nav__outer">
+        <div class="container tabbed-mega-nav__container">
+          <ul class="tabbed-mega-nav__tabs list--unstyled" role="list">
+            {%- for link in navigation_menu.links -%}
+              {%- assign top_title_downcase = link.title | downcase | strip -%}
+              {%- assign menu_promo_block = blank -%}
+
+              {%- for block in section.blocks -%}
+                {%- assign block_menu_item_downcase = block.settings.menu_item | downcase | strip -%}
+                {%- if block_menu_item_downcase == top_title_downcase -%}
+                  {%- assign menu_promo_block = block -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+
+              <li class="tabbed-mega-nav__tab-item {% if link.links.size > 0 %}has-children{% endif %}">
+                <a href="{{ link.url }}" class="tabbed-mega-nav__tab">
+                  <span>{{ link.title }}</span>
+                  {%- if link.links.size > 0 -%}
+                    {%- render 'icon', icon: 'arrow-bottom' -%}
+                  {%- endif -%}
+                </a>
+
+                {%- if link.links.size > 0 -%}
+                  <div class="tabbed-mega-nav__flyout">
+                    <div class="tabbed-mega-nav__secondary-wrap">
+                      <ul class="tabbed-mega-nav__secondary-list list--unstyled" role="list">
+                        {%- for child_link in link.links -%}
+                          {%- assign child_title_downcase = child_link.title | downcase | strip -%}
+                          
+                          {%- assign child_promo_block = menu_promo_block -%}
+                          {%- for block in section.blocks -%}
+                            {%- assign block_menu_item_downcase = block.settings.menu_item | downcase | strip -%}
+                            {%- if block_menu_item_downcase == child_title_downcase -%}
+                              {%- assign child_promo_block = block -%}
+                              {%- break -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+
+                          {%- assign has_panel = false -%}
+                          {%- if child_link.links.size > 0 -%}
+                            {%- assign has_panel = true -%}
+                          {%- endif -%}
+                          {%- if child_promo_block != blank -%}
+                            {%- if child_promo_block.settings.custom_linklist_1 != blank or child_promo_block.settings.custom_linklist_2 != blank or child_promo_block.settings.custom_linklist_3 != blank or child_promo_block.settings.custom_linklist_4 != blank or child_promo_block.settings.custom_linklist_5 != blank or child_promo_block.settings.custom_linklist_6 != blank or child_promo_block.settings.custom_linklist_7 != blank -%}
+                              {%- assign has_panel = true -%}
+                            {%- endif -%}
+                          {%- endif -%}
+
+                          <li class="tabbed-mega-nav__secondary-item {% if has_panel %}has-panel{% endif %} {% if child_title_downcase == 'offers' %}is-offers{% endif %}">
+                            <a href="{{ child_link.url }}" class="tabbed-mega-nav__secondary-link">
+                              {{ child_link.title }}
+                            </a>
+
+                            {%- if has_panel -%}
+                              <div class="tabbed-mega-nav__panel">
+                                <div class="tabbed-mega-nav__panel-inner {% if child_promo_block != blank and child_promo_block.settings.image_1 != blank %}has-promo{% endif %}">
+                                  <div class="tabbed-mega-nav__columns">
+                                    {%- if child_link.links.size > 0 -%}
+                                      <div class="tabbed-mega-nav__column">
+                                        <a href="{{ child_link.url }}" class="tabbed-mega-nav__column-title">
+                                          {{ child_link.title }}
+                                        </a>
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- for grandchild_link in child_link.links -%}
+                                            <li>
+                                              <a href="{{ grandchild_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                {{ grandchild_link.title }}
+                                              </a>
+                                            </li>
+                                          {%- endfor -%}
+                                        </ul>
+                                      </div>
+                                    {%- endif -%}
+
+                                    {%- if child_promo_block != blank -%}
+                                      {%- if child_promo_block.settings.custom_linklist_1 != blank -%}
+                                        <div class="tabbed-mega-nav__column">
+                                          {%- if child_promo_block.settings.custom_title_1 != blank -%}
+                                            <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_1 }}</span>
+                                          {%- endif -%}
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- if child_promo_block.settings.custom_linklist_1 != blank -%}
+                                            {%- for custom_link in child_promo_block.settings.custom_linklist_1.links -%}
+                                              <li>
+                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                  {{ custom_link.title }}
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          {%- endif -%}
+                                          
+                                          
+                                          
+                                          
+                                          
+                                        </ul>
+                                      </div>
+                                      {%- endif -%}
+                                    {%- endif -%}
+
+                                    {%- if child_promo_block != blank -%}
+                                      {%- if child_promo_block.settings.custom_linklist_2 != blank -%}
+                                        <div class="tabbed-mega-nav__column">
+                                        {%- if child_promo_block.settings.custom_title_2 != blank -%}
+                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_2 }}</span>
+                                        {%- endif -%}
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- if child_promo_block.settings.custom_linklist_2 != blank -%}
+                                            {%- for custom_link in child_promo_block.settings.custom_linklist_2.links -%}
+                                              <li>
+                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                  {{ custom_link.title }}
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          {%- endif -%}
+                                          
+                                          
+                                          
+                                          
+                                          
+                                        </ul>
+                                      </div>
+                                      {%- endif -%}
+                                    {%- endif -%}
+                                    {%- if child_promo_block != blank -%}
+                                      {%- if child_promo_block.settings.custom_linklist_3 != blank -%}
+                                        <div class="tabbed-mega-nav__column">
+                                        {%- if child_promo_block.settings.custom_title_3 != blank -%}
+                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_3 }}</span>
+                                        {%- endif -%}
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- if child_promo_block.settings.custom_linklist_3 != blank -%}
+                                            {%- for custom_link in child_promo_block.settings.custom_linklist_3.links -%}
+                                              <li>
+                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                  {{ custom_link.title }}
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          {%- endif -%}
+                                          
+                                          
+                                          
+                                          
+                                          
+                                        </ul>
+                                      </div>
+                                      {%- endif -%}
+                                    {%- endif -%}
+                                    {%- if child_promo_block != blank -%}
+                                      {%- if child_promo_block.settings.custom_linklist_4 != blank -%}
+                                        <div class="tabbed-mega-nav__column">
+                                        {%- if child_promo_block.settings.custom_title_4 != blank -%}
+                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_4 }}</span>
+                                        {%- endif -%}
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- if child_promo_block.settings.custom_linklist_4 != blank -%}
+                                            {%- for custom_link in child_promo_block.settings.custom_linklist_4.links -%}
+                                              <li>
+                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                  {{ custom_link.title }}
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          {%- endif -%}
+                                          
+                                          
+                                          
+                                          
+                                          
+                                        </ul>
+                                      </div>
+                                      {%- endif -%}
+                                    {%- endif -%}
+                                    {%- if child_promo_block != blank -%}
+                                      {%- if child_promo_block.settings.custom_linklist_5 != blank -%}
+                                        <div class="tabbed-mega-nav__column">
+                                        {%- if child_promo_block.settings.custom_title_5 != blank -%}
+                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_5 }}</span>
+                                        {%- endif -%}
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- if child_promo_block.settings.custom_linklist_5 != blank -%}
+                                            {%- for custom_link in child_promo_block.settings.custom_linklist_5.links -%}
+                                              <li>
+                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                  {{ custom_link.title }}
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          {%- endif -%}
+                                          
+                                          
+                                          
+                                          
+                                          
+                                        </ul>
+                                      </div>
+                                      {%- endif -%}
+                                    {%- endif -%}
+                                    {%- if child_promo_block != blank -%}
+                                      {%- if child_promo_block.settings.custom_linklist_6 != blank -%}
+                                        <div class="tabbed-mega-nav__column">
+                                        {%- if child_promo_block.settings.custom_title_6 != blank -%}
+                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_6 }}</span>
+                                        {%- endif -%}
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- if child_promo_block.settings.custom_linklist_6 != blank -%}
+                                            {%- for custom_link in child_promo_block.settings.custom_linklist_6.links -%}
+                                              <li>
+                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                  {{ custom_link.title }}
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          {%- endif -%}
+                                          
+                                          
+                                          
+                                          
+                                          
+                                        </ul>
+                                      </div>
+                                      {%- endif -%}
+                                    {%- endif -%}
+                                    {%- if child_promo_block != blank -%}
+                                      {%- if child_promo_block.settings.custom_linklist_7 != blank -%}
+                                        <div class="tabbed-mega-nav__column">
+                                        {%- if child_promo_block.settings.custom_title_7 != blank -%}
+                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_7 }}</span>
+                                        {%- endif -%}
+                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                          {%- if child_promo_block.settings.custom_linklist_7 != blank -%}
+                                            {%- for custom_link in child_promo_block.settings.custom_linklist_7.links -%}
+                                              <li>
+                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                  {{ custom_link.title }}
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          {%- endif -%}
+                                          
+                                          
+                                          
+                                          
+                                          
+                                        </ul>
+                                      </div>
+                                      {%- endif -%}
+                                    {%- endif -%}
+
+                                  </div>
+
+                                  {%- if child_promo_block != blank and child_promo_block.settings.image_1 != blank -%}
+                                    <a href="{{ child_promo_block.settings.image_1_link | default: link.url }}" class="tabbed-mega-nav__promo">
+                                      {{ child_promo_block.settings.image_1 | image_url: width: 520 | image_tag: loading: 'lazy', sizes: '292px', widths: '292,420,520', alt: child_promo_block.settings.image_1_heading }}
+                                      {%- if child_promo_block.settings.image_1_heading != blank or child_promo_block.settings.image_1_text != blank -%}
+                                        <span class="tabbed-mega-nav__promo-copy">
+                                          {%- if child_promo_block.settings.image_1_heading != blank -%}
+                                            <strong>{{ child_promo_block.settings.image_1_heading }}</strong>
+                                          {%- endif -%}
+                                          {%- if child_promo_block.settings.image_1_text != blank -%}
+                                            <small>{{ child_promo_block.settings.image_1_text }}</small>
+                                          {%- endif -%}
+                                        </span>
+                                      {%- endif -%}
+                                    </a>
+                                  {%- endif -%}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  </div>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  {%- endif -%}
+</section>
+
+<style>
+  :root {
+    --header-is-sticky: {% if section.settings.enable_sticky_header %}1{% else %}0{% endif %};
+    --header-inline-navigation: {% if section.settings.desktop_navigation_layout == 'inline' %}1{% else %}0{% endif %};
+  }
+
+  #shopify-section-{{ section.id }} {
+    position: relative;
+    z-index: 5;
+
+
+  }
+
+  {%- if section.settings.logo -%}
+    .header__logo-image {
+      max-width: {{ section.settings.mobile_logo_max_width }}px !important;
+    }
+
+    @media screen and (min-width: 641px) {
+      .header__logo-image {
+        max-width: {{ section.settings.logo_max_width }}px !important;
+      }
+    }
+  {%- endif -%}
+
+  {%- if settings.header_background == settings.secondary_background -%}
+    .search-bar__top {
+      box-shadow: 1px 1px var(--header-border-color) inset, -1px -1px var(--header-border-color) inset;
+    }
+
+    @media screen and (min-width: 1000px) {
+      /* This allows to reduce the padding if header background is the same as secondary background to avoid space that is too big */
+      .header:not(.header--condensed) {
+        padding-bottom: 0;
+      }
+    }
+  {%- else -%}
+    @media screen and (min-width: 1000px) {
+      .search-bar.is-expanded .search-bar__top {
+        box-shadow: 0 -1px var(--border-color) inset;
+      }
+    }
+  {%- endif -%}
+
+  .mobile-number-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-left: 1px solid #e5e5e5;
+}
+
+/* ICON */
+.mobile-number-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-number-icon img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/* TEXT BLOCK */
+.mobile-number-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+/* PHONE NUMBER */
+.mobile-number {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* TIMING */
+.mobile-timing {
+  font-size: 11px;
+  color: #666;
+}
+
+.custom-header-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* EACH ITEM */
+.custom-header-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  position: relative;
+}
+
+/* VERTICAL DIVIDER */
+.custom-header-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 24px;
+  width: 1px;
+  background: #e5e5e5;
+}
+
+/* ICON */
+.custom-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* TEXT BLOCK */
+.custom-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+/* MAIN LABEL */
+.custom-text .title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* SUB TEXT */
+.custom-text .sub {
+  font-size: 11px;
+  color: #777;
+}
+
+.custom-header-final {
+  display: flex;
+  align-items: center;
+}
+
+/* ITEM */
+.ch-item {
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  position: relative;
+}
+
+/* DIVIDER */
+.ch-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 26px;
+  width: 1px;
+  background: #e5e5e5;
+}
+
+/* LINK */
+.ch-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ICON */
+.ch-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* TEXT */
+.ch-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+/* TITLE */
+.ch-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* SUBTEXT */
+.ch-sub {
+  font-size: 11px;
+  color: #777;
+}
+
+/* PHONE */
+.ch-phone img {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+}
+
+/* CART COUNT */
+.ch-icon-cart {
+  position: relative;
+}
+
+.ch-cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #016FD0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+
+.header__search-button{
+display:none;
+}
+
+/* MOBILE HEADER */
+@media (max-width:767px){
+.header__search-button{
+display:block;
+}
+.header-inner-search-and-action{
+      margin-left: auto;
+      width: auto !important;
+      gap: 0 !important;
+      justify-content: flex-end !important;
+      flex: 1;
+  }
+
+  .custom-header-final{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+  }
+  } /* Close max-width:767px */
+
+  @media screen and (max-width: 999px) {
+  /* Ensure hamburger menu is clickable */
+  .header__mobile-nav,
+  .header__mobile-nav-toggle {
+      position: relative;
+      z-index: 99999999 !important; /* 8 nines to sit above the menu overlay */
+  }
+
+    /* Mobile Menu Drawer Fallback CSS (Since it's missing from theme.css) */
+    .mobile-menu {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        z-index: 9999999 !important;
+        visibility: hidden;
+        pointer-events: none;
+        transition: visibility 0.4s linear;
+        background: rgba(0, 0, 0, 0.5); /* Overlay */
+    }
+    .mobile-menu[aria-hidden="false"] {
+        visibility: visible !important;
+        pointer-events: auto !important;
+        display: block !important;
+        opacity: 1 !important;
+    }
+    .mobile-menu__inner {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 85vw !important;
+        max-width: 380px !important;
+        height: 100% !important;
+        background: #ffffff !important; /* Drawer background */
+        transform: translateX(-100%) !important;
+        transition: transform 0.4s cubic-bezier(0.18, 1.25, 0.4, 1) !important;
+        overflow-y: auto !important;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1) !important;
+    }
+    .mobile-menu[aria-hidden="false"] .mobile-menu__inner {
+        transform: translateX(0) !important;
+    }
+    
+    /* Mobile Tabs Layout Fix */
+    .tabbed-mega-nav {
+        display: none !important; /* Force hide on mobile as requested */
+    }
+    .tabbed-mega-nav__outer {
+        background: transparent !important;
+    }
+    .tabbed-mega-nav__tabs {
+        display: none !important;
+    }
+    
+    /* Hide "All" tab completely on mobile */
+    .tabbed-mega-nav__tab-item:first-child {
+        display: none !important;
+    }
+    
+    /* Make the 2nd child (Bathroom) flyout visible by default */
+    .tabbed-mega-nav__tab-item:nth-child(2) .tabbed-mega-nav__flyout {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+    
+    /* Make the 2nd child tab look active */
+    .tabbed-mega-nav__tab-item:nth-child(2) .tabbed-mega-nav__tab {
+        background: var(--tabbed-menu-active) !important;
+    }
+
+    /* Remaining tabs styling */
+    .tabbed-mega-nav__tab-item {
+        position: static !important; /* So flyout can span full screen width */
+        flex: 1 !important; /* Grow to fill available space */
+        width: 100% !important; /* Force them to stretch */
+        max-width: none !important; /* CRITICAL: Override the max-width: 20% from custom.css */
+        margin-right: 2px !important; /* 2px separator so tabs don't blend into one giant brick */
+        border-radius: 8px 8px 0 0 !important;
+        overflow: hidden !important;
+    }
+    .tabbed-mega-nav__tab-item:last-child {
+        margin-right: 0 !important;
+    }
+    .tabbed-mega-nav__tab {
+        width: 100% !important;
+        height: 54px !important;
+        padding: 0 2px !important; 
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .tabbed-mega-nav__tab span {
+        font-size: 15px !important; 
+        width: 100% !important;
+        text-align: center !important;
+        font-weight: 600 !important;
+    }
+    .tabbed-mega-nav__tab svg {
+        display: none !important;
+    }
+  
+  /* Hide all text labels under icons */
+  .ch-text {
+    display: none !important;
+  }
+
+  /* Remove extra spacing */
+  .ch-link {
+    gap: 0 !important;
+  }
+
+  .ch-item {
+    padding: 0 6px !important;
+  }
+
+  .ch-item {
+      position: static;
+  }
+
+  /* Search bar positioning handled by custom.css */
+}
+</style>
+
+<script>
+  document.documentElement.style.setProperty('--header-height', document.getElementById('shopify-section-{{ section.id }}').clientHeight + 'px');
+</script>
+
+<style>
+  @media screen and (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      position: -webkit-sticky !important;
+      position: sticky !important;
+      top: calc(-1 * var(--nav-offset, 120px)) !important;
+      z-index: 99999 !important;
+    }
+    /* Move the tabs down inside the container when stuck */
+    #shopify-section-{{ section.id }}.is-stuck .tabbed-mega-nav {
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+      transition: padding-top 0.2s ease;
+    }
+    #shopify-section-{{ section.id }} .nav-dropdown {
+      top: 100% !important;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var headerSection = document.getElementById('shopify-section-{{ section.id }}');
+    var nav = headerSection ? headerSection.querySelector('.tabbed-mega-nav') : null;
+    
+    function updateSticky() {
+      if (headerSection && nav) {
+        var sectionTop = headerSection.getBoundingClientRect().top;
+        var navTop = nav.getBoundingClientRect().top;
+        var offset = navTop - sectionTop;
+        
+        // Update offset if it's a valid positive number
+        if (offset > 0 && offset < 500) {
+          headerSection.style.setProperty('--nav-offset', offset + 'px');
+        }
+        
+        // Read current offset to check if stuck
+        var currentOffset = parseFloat(getComputedStyle(headerSection).getPropertyValue('--nav-offset')) || offset;
+        if (sectionTop <= -currentOffset + 1) {
+          headerSection.classList.add('is-stuck');
+        } else {
+          headerSection.classList.remove('is-stuck');
+        }
+      }
+    }
+    
+    window.addEventListener('scroll', updateSticky);
+    window.addEventListener('resize', updateSticky);
+    document.addEventListener('DOMContentLoaded', updateSticky);
+    setTimeout(updateSticky, 500);
+  })();
+</script>
+{% schema %}
+{
+  "name": "Header",
+  "class": "shopify-section__header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Image",
+      "info": "400 x 120px .png recommended"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "min": 50,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "Image width",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_max_width",
+      "min": 50,
+      "max": 170,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile image width",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Mobile contact"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_contact",
+      "label": "Show mobile contact",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone_icon",
+      "label": "Show phone icon",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "mobile_phone",
+      "label": "Phone number",
+      "default": "07562 758749"
+    },
+    {
+      "type": "text",
+      "id": "mobile_timing",
+      "label": "Timing text",
+      "default": "Mon-Sat, 8am-6pm"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_icon",
+      "label": "Phone icon"
+    },
+    {
+      "type": "header",
+      "content": "Language selector",
+      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "Show language selector",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Country/region selector",
+      "info": "To add a country/region, go to your [currency settings.](/admin/settings/payments)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "Show country/region selector",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "navigation_menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "navigation_mobile_menu",
+      "label": "Mobile menu",
+      "info": "If none is set, the desktop menu is used."
+    },
+    {
+      "type": "select",
+      "id": "desktop_navigation_layout",
+      "label": "Desktop layout",
+      "options": [
+        {
+          "value": "condensed",
+          "label": "Condensed"
+        },
+        {
+          "value": "inline",
+          "label": "Inline"
+        }
+      ],
+      "default": "condensed"
+    },
+    {
+      "type": "select",
+      "id": "desktop_navigation_open_trigger",
+      "label": "Open dropdown on...",
+      "options": [
+        {
+          "value": "hover",
+          "label": "Hover"
+        },
+        {
+          "value": "click",
+          "label": "Click"
+        }
+      ],
+      "default": "hover"
+    },
+    {
+      "type": "header",
+      "content": "Mobile navigation"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation_social_media",
+      "label": "Show social media",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "navigation_phone_number",
+      "label": "Phone number text"
+    },
+    {
+      "type": "text",
+      "id": "navigation_email",
+      "label": "Email"
+    },
+    {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_condensed_search",
+      "label": "Minimise search on mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_filter",
+      "label": "Show search filter",
+      "default": true,
+      "info": "Refine by product type. [Learn more](https://support.maestrooo.com/article/184-navigation-filtering-search-results-by-product-type)"
+    },
+    {
+      "type": "link_list",
+      "id": "search_menu",
+      "label": "Quick links menu",
+      "info": "Show quick links when the user hasn't type anything. This menu won't show dropdown items."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_menu_title",
+      "label": "Show quick links title",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_menu",
+      "name": "Mega menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu item",
+          "info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
+        },
+        {
+          "type": "header",
+          "content": "Custom Linklist 1"
+        },
+        {
+          "type": "text",
+          "id": "custom_title_1",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "custom_linklist_1",
+          "label": "Select Menu (Optional)"
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        {
+          "type": "header",
+          "content": "Custom Linklist 2"
+        },
+        {
+          "type": "text",
+          "id": "custom_title_2",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "custom_linklist_2",
+          "label": "Select Menu (Optional)"
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        {
+          "type": "header",
+          "content": "Custom Linklist 3"
+        },
+        {
+          "type": "text",
+          "id": "custom_title_3",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "custom_linklist_3",
+          "label": "Select Menu (Optional)"
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        {
+          "type": "header",
+          "content": "Custom Linklist 4"
+        },
+        {
+          "type": "text",
+          "id": "custom_title_4",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "custom_linklist_4",
+          "label": "Select Menu (Optional)"
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        {
+          "type": "header",
+          "content": "Custom Linklist 5"
+        },
+        {
+          "type": "text",
+          "id": "custom_title_5",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "custom_linklist_5",
+          "label": "Select Menu (Optional)"
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        {
+          "type": "header",
+          "content": "Custom Linklist 6"
+        },
+        {
+          "type": "text",
+          "id": "custom_title_6",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "custom_linklist_6",
+          "label": "Select Menu (Optional)"
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        {
+          "type": "header",
+          "content": "Custom Linklist 7"
+        },
+        {
+          "type": "text",
+          "id": "custom_title_7",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "custom_linklist_7",
+          "label": "Select Menu (Optional)"
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        {
+          "type": "header",
+          "content": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image",
+          "info": "600 x 400px .jpg recommended"
+        },
+        {
+          "type": "text",
+          "id": "image_1_heading",
+          "label": "Heading",
+          "default": "Your image"
+        },
+        {
+          "type": "text",
+          "id": "image_1_text",
+          "label": "Text",
+          "default": "Tell your story"
+        },
+        {
+          "type": "url",
+          "id": "image_1_link",
+          "label": "Link"
+        }
+]
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+// Theme.js handles hamburger (data-action="toggle-menu") and search (data-action="toggle-search") natively.
+// No custom JS needed here — this file intentionally left minimal.
+</script>

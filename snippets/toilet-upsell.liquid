@@ -1,0 +1,211 @@
+<div class="toilet-upsell" id="toilet-upsell-section">
+  <p class="toilet-upsell__heading">Complete Your Bathroom</p>
+  <p class="toilet-upsell__sub">Customers also added these accessories</p>
+  <div id="toilet-upsell-products" class="toilet-upsell__grid"></div>
+  <div class="toilet-upsell__footer" id="toilet-upsell-footer" style="display:none">
+    <span class="toilet-upsell__summary" id="toilet-upsell-summary"></span>
+    <button class="toilet-upsell__add-btn" id="toilet-upsell-add-btn" type="button">Add Selected to Basket</button>
+  </div>
+</div>
+
+<style>
+.toilet-upsell {
+  padding: 18px 0 6px;
+  border-top: 1px solid #e9ecef;
+  font-family: "Inter", sans-serif;
+}
+.toilet-upsell__heading {
+  font-family: "Fraunces", serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #101828;
+  margin: 0 0 3px;
+}
+.toilet-upsell__sub {
+  font-size: 13px;
+  color: #667085;
+  margin: 0 0 14px;
+}
+.toilet-upsell__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.toilet-upsell__loading {
+  font-size: 13px;
+  color: #9ca3af;
+  padding: 10px 0;
+}
+.toilet-upsell__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  user-select: none;
+}
+.toilet-upsell__item:hover { border-color: #1a3c6e; }
+.toilet-upsell__item.is-checked {
+  border-color: #1a3c6e;
+  background: #f0f4ff;
+}
+.toilet-upsell__box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #c9cdd4;
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: transparent;
+  transition: all .15s;
+  font-weight: 700;
+  line-height: 1;
+}
+.toilet-upsell__item.is-checked .toilet-upsell__box {
+  background: #1a3c6e;
+  border-color: #1a3c6e;
+  color: #fff;
+}
+.toilet-upsell__thumb {
+  width: 54px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: #f3f5f6;
+}
+.toilet-upsell__info { flex: 1; min-width: 0; }
+.toilet-upsell__name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #101828;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 3px;
+}
+.toilet-upsell__price {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a3c6e;
+}
+.toilet-upsell__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e9ecef;
+  flex-wrap: wrap;
+}
+.toilet-upsell__summary {
+  font-size: 13px;
+  color: #344054;
+  font-weight: 500;
+}
+.toilet-upsell__add-btn {
+  background: #1a3c6e;
+  color: #fff;
+  border: none;
+  padding: 11px 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.toilet-upsell__add-btn:hover { background: #142d54; }
+.toilet-upsell__add-btn:disabled { opacity: .6; cursor: default; }
+</style>
+
+<script>
+(function () {
+  var PRODUCT_ID = {{ product.id }};
+  var grid = document.getElementById('toilet-upsell-products');
+  var section = document.getElementById('toilet-upsell-section');
+  var footer = document.getElementById('toilet-upsell-footer');
+  var summary = document.getElementById('toilet-upsell-summary');
+  var addBtn = document.getElementById('toilet-upsell-add-btn');
+  var selected = {};
+
+  if (!grid) return;
+  grid.innerHTML = '<div class="toilet-upsell__loading">Loading accessories…</div>';
+
+  fetch('/recommendations/products.json?product_id=' + PRODUCT_ID + '&limit=4&intent=related')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var products = (data.products || []).slice(0, 4);
+      if (!products.length) { section.style.display = 'none'; return; }
+      grid.innerHTML = '';
+      products.forEach(function (p) {
+        var v = p.variants && p.variants[0];
+        if (!v) return;
+        var price = (v.price / 100).toFixed(2);
+        var img = p.images && p.images[0]
+          ? '<img class="toilet-upsell__thumb" src="' + p.images[0].src + '" alt="" loading="lazy">'
+          : '<div class="toilet-upsell__thumb"></div>';
+
+        var el = document.createElement('div');
+        el.className = 'toilet-upsell__item';
+        el.dataset.vid = v.id;
+        el.dataset.price = price;
+        el.innerHTML =
+          '<div class="toilet-upsell__box">&#10003;</div>' +
+          img +
+          '<div class="toilet-upsell__info">' +
+            '<div class="toilet-upsell__name">' + p.title + '</div>' +
+            '<div class="toilet-upsell__price">&pound;' + price + '</div>' +
+          '</div>';
+
+        el.addEventListener('click', function () {
+          var vid = this.dataset.vid;
+          if (selected[vid]) {
+            delete selected[vid];
+            this.classList.remove('is-checked');
+          } else {
+            selected[vid] = parseFloat(this.dataset.price);
+            this.classList.add('is-checked');
+          }
+          updateFooter();
+        });
+        grid.appendChild(el);
+      });
+    })
+    .catch(function () { section.style.display = 'none'; });
+
+  function updateFooter() {
+    var ids = Object.keys(selected);
+    if (!ids.length) { footer.style.display = 'none'; return; }
+    footer.style.display = 'flex';
+    var total = ids.reduce(function (s, k) { return s + selected[k]; }, 0);
+    summary.textContent = ids.length + ' item' + (ids.length > 1 ? 's' : '') + ' — £' + total.toFixed(2);
+  }
+
+  if (addBtn) {
+    addBtn.addEventListener('click', function () {
+      var ids = Object.keys(selected);
+      if (!ids.length) return;
+      addBtn.textContent = 'Adding…';
+      addBtn.disabled = true;
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: ids.map(function (id) { return { id: +id, quantity: 1 }; }) })
+      })
+        .then(function () {
+          addBtn.textContent = '✓ Added!';
+          setTimeout(function () { addBtn.textContent = 'Add Selected to Basket'; addBtn.disabled = false; }, 2200);
+        })
+        .catch(function () { addBtn.textContent = 'Try again'; addBtn.disabled = false; });
+    });
+  }
+})();
+</script>

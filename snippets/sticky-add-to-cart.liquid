@@ -1,0 +1,135 @@
+<style>
+  #ai-sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 2px solid #e5e5e5;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+    z-index: 99999;
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  #ai-sticky-bar.show {
+    transform: translateY(0);
+  }
+  #ai-sticky-bar .sbar-inner {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+  #ai-sticky-bar .sbar-title {
+    flex: 1;
+    font-weight: 700;
+    font-size: 15px;
+    color: #111;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #ai-sticky-bar .sbar-atc {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  #ai-sticky-bar .sbar-atc:hover { background: #333; }
+  #ai-sticky-bar .sbar-buy {
+    background: #1e2d7d;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  #ai-sticky-bar .sbar-buy:hover { background: #16226b; }
+  @media (max-width: 640px) {
+    #ai-sticky-bar { padding: 10px 12px; }
+    #ai-sticky-bar .sbar-title { display: none; }
+    #ai-sticky-bar .sbar-inner { justify-content: center; }
+    #ai-sticky-bar .sbar-atc,
+    #ai-sticky-bar .sbar-buy { flex: 1; text-align: center; padding: 12px 10px; }
+  }
+</style>
+
+<div id="ai-sticky-bar">
+  <div class="sbar-inner">
+    <span class="sbar-title">{{ product.title }}</span>
+    <button class="sbar-atc" id="sbarAtcBtn">Add to Basket</button>
+    <button class="sbar-buy" id="sbarBuyBtn">Buy Now</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var bar = document.getElementById('ai-sticky-bar');
+  if (!bar) return;
+
+  // Move to body to avoid stacking context issues
+  document.body.appendChild(bar);
+
+  // Show on scroll
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      bar.classList.add('show');
+    } else {
+      bar.classList.remove('show');
+    }
+  });
+
+  // Find the real ATC button - try all known selectors
+  function getRealAtcBtn() {
+    return document.querySelector('button.product-form__add-button')
+      || document.querySelector('button[data-action="add-to-cart"]')
+      || document.querySelector('button.add-to-cart')
+      || document.querySelector('.product-form__submit')
+      || document.querySelector('[name="add"]');
+  }
+
+  // Add to Basket click
+  document.getElementById('sbarAtcBtn').addEventListener('click', function() {
+    var btn = getRealAtcBtn();
+    if (btn) {
+      btn.click();
+    } else {
+      // Fallback: submit the product form directly
+      var form = document.querySelector('form[action="/cart/add"]')
+        || document.querySelector('form.product-form')
+        || document.querySelector('form[method="post"]');
+      if (form) form.submit();
+    }
+  });
+
+  // Buy Now click
+  document.getElementById('sbarBuyBtn').addEventListener('click', function() {
+    // Try Shopify dynamic checkout button first
+    var buyBtn = document.querySelector('.shopify-payment-button button')
+      || document.querySelector('[data-testid="Checkout-button"]')
+      || document.querySelector('.shopify-payment-button__button');
+    if (buyBtn) {
+      buyBtn.click();
+    } else {
+      // Fallback to add to cart
+      var btn = getRealAtcBtn();
+      if (btn) btn.click();
+    }
+  });
+})();
+</script>

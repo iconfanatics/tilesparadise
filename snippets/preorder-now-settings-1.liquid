@@ -1,0 +1,68 @@
+<script type="text/javascript">
+  {% if cart %}
+    window.pn.cart = {};
+  	window.pn.cart = {{cart | json}}
+    window.pn.cart.items = [];
+
+    {% for item in cart.items %}
+      var cart_item = {{item | json}};
+      cart_item["collection_ids"] = [];
+      {% for c in item.product.collections %}
+        cart_item["collection_ids"].push({{c.id}})
+        {% endfor %}
+      window.pn.cart.items.push(cart_item);
+    {% endfor %}
+
+    if (typeof window.pn.cart.items == "object") {
+      for (var i=0; i<window.pn.cart.items.length; i++) {
+        ["sku", "vendor", "url", "image", "handle", "product_type", "product_description"].map(function(a) {
+          delete window.pn.cart.items[i][a]
+        })
+      }
+    }
+  {% endif %}
+</script>
+
+{% raw %}
+<script>
+if(typeof pn === "undefined"){
+  pn = {};
+}
+if(typeof pn.settings === "undefined"){
+  pn.settings = {};
+}
+pn.settings.defaultSetting={"id":36571182,"a":"Preorder Now","b":true,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"Deliveires Start 20th May","h":"hover","i":true,"j":"Pre-Order","k":null,"l":null,"m":"default","n":null,"o":true,"handle":null,"p":null,"y":null,"q":true,"r":true,"s":null,"t":null,"u":2,"v":false,"w":"circle","tag":null,"x":null,"z":"percentage","aa":"10.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0};
+pn.settings.singleProductSettings=[{"id":36585705,"a":"Preorder Now","b":true,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"Deliveires Start 20th May","h":"hover","i":true,"j":"Pre-Order","k":null,"l":null,"m":"variant","n":"44510166188322","o":false,"handle":"active-onyx-gloss-porcelain-60x120cm-kitchen-bathroom-wall-floor-tiles","p":"8132394058018","y":"https://cdn.shopify.com/s/files/1/0720/1216/9506/products/AquariusOnyx.png?v=1679849091","q":true,"r":true,"s":0,"t":null,"u":2,"v":true,"w":"circle","tag":null,"x":"Pre-Order Item","z":"percentage","aa":"5.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"partial_percentage","partial_payment_aa":"25.0","partial_payment_ab":0},{"id":36585591,"a":"Preorder Now","b":true,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"Deliveires Start 20th May","h":"hover","i":true,"j":"Pre-Order","k":null,"l":null,"m":"variant","n":"44509778837794","o":true,"handle":"akasmir-black-gold-white-high-gloss-porcelain-60x120cm-kitchen-bathroom-wall-floor-tiles","p":"8132303257890","y":"https://cdn.shopify.com/s/files/1/0720/1216/9506/products/kashmirgold.jpg?v=1680443258","q":true,"r":true,"s":0,"t":null,"u":2,"v":false,"w":"circle","tag":null,"x":null,"z":"percentage","aa":"10.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0},{"id":36585593,"a":"Preorder Now","b":true,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"Deliveires Start 20th May","h":"hover","i":true,"j":"Pre-Order","k":null,"l":null,"m":"variant","n":"44509778837794","o":true,"handle":"akasmir-black-gold-white-high-gloss-porcelain-60x120cm-kitchen-bathroom-wall-floor-tiles","p":"8132303257890","y":"https://cdn.shopify.com/s/files/1/0720/1216/9506/products/kashmirgold.jpg?v=1680443258","q":true,"r":true,"s":0,"t":null,"u":2,"v":false,"w":"circle","tag":null,"x":null,"z":"percentage","aa":"10.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0},{"id":36585595,"a":"Preorder Now","b":true,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"Deliveires Start 20th May","h":"hover","i":true,"j":"Pre-Order","k":null,"l":null,"m":"variant","n":"44573334241570","o":true,"handle":"exotica-sky-gold-60cm-x-120cm-wall-and-floor-tile","p":"8144492200226","y":"https://cdn.shopify.com/s/files/1/0720/1216/9506/products/exotica-gold-60cm-x-120cm-wall-and-floor-tile-p7855-30705_medium_7aab2267-2db5-4a4c-8c9e-49ececf34467.png?v=1677756690","q":true,"r":true,"s":0,"t":null,"u":2,"v":true,"w":"circle","tag":null,"x":null,"z":"percentage","aa":"10.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0},{"id":36585592,"a":"Preorder Now","b":true,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"Deliveires Start 20th May","h":"hover","i":true,"j":"Pre-Order","k":null,"l":null,"m":"variant","n":"44509778837794","o":true,"handle":"akasmir-black-gold-white-high-gloss-porcelain-60x120cm-kitchen-bathroom-wall-floor-tiles","p":"8132303257890","y":"https://cdn.shopify.com/s/files/1/0720/1216/9506/products/kashmirgold.jpg?v=1680443258","q":true,"r":true,"s":0,"t":null,"u":2,"v":false,"w":"circle","tag":null,"x":null,"z":"percentage","aa":"10.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0}];
+pn.settings.tagSettings=[];
+</script>
+<style type="text/css">
+  .pn-original-subtotal{
+    text-decoration: line-through;
+    display:inline-block;
+  }
+  .pn-discounted-subtotal{
+    font-weight:bold;
+    margin-left:20px;
+    display:inline-block;
+    font-size: 1.3em;
+  }
+
+  .pn-line-item-original-price {
+    text-decoration: line-through;
+  }
+
+  .pn-line-item-discounted-price {
+    font-size: 1.2em;
+    margin-left: 8px;
+  }
+</style>
+{% endraw %}
+
+
+<div id="pn-mixed-cart-warning" class="pn-modal">
+  <div id="pn-mixed-cart-warning-content">
+    <span id="pn-modal-close-btn">x</span>
+    <p class="pn-mixed-cart-heading" id="pn-mixed-cart-warning-title"></p>
+    <div id="pn-mixed-cart-warning-text"></div>
+  </div>
+</div>

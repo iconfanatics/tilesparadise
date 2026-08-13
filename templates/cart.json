@@ -1,0 +1,152 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "text_with_icons_QrLURr": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item_AWCqFN": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-secure-payment",
+            "custom_icon": "shopify://shop_images/images.png",
+            "title": "Rated Excellent",
+            "content": "<p>Read Reviews From Our Customers</p>"
+          }
+        },
+        "item_tHCAaX": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-customer-support",
+            "custom_icon": "shopify://shop_images/174861.png",
+            "title": "Pay with PayPal",
+            "content": "<p>Fast, secure checkout — no card needed.</p>"
+          }
+        },
+        "item_TPKdjf": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-returns",
+            "custom_icon": "shopify://shop_images/Marketing_Badge_With_Clear_Space.png",
+            "title": "Pay in 3 with Klarna",
+            "content": "<p>Split your payment interest-free.</p>"
+          }
+        },
+        "item_T7aiKU": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-delivery",
+            "custom_icon": "shopify://shop_images/8676199.png",
+            "title": "Free Standard Delivery Over £499",
+            "content": "<p>Next Day Delivery Available!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_AWCqFN",
+        "item_tHCAaX",
+        "item_TPKdjf",
+        "item_T7aiKU"
+      ],
+      "name": "Text with icons",
+      "settings": {
+        "stack_mobile": false
+      }
+    },
+    "main": {
+      "type": "main-cart",
+      "blocks": {
+        "trust_HgqBGN": {
+          "type": "trust",
+          "settings": {
+            "icon": "bi-gift-box",
+            "title": "Samples Credited to Your Order",
+            "content": "<p>The cost of any sample is deducted from your tile order — up to £9.99 back<br/><br/></p>"
+          }
+        },
+        "trust_TbJq4c": {
+          "type": "trust",
+          "settings": {
+            "icon": "bi-shield",
+            "title": "Damage Covered",
+            "content": "<p>Photograph any transit damage and report within 2 working days — we'll sort a replacement.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "trust_HgqBGN",
+        "trust_TbJq4c"
+      ],
+      "settings": {
+        "enable_order_notes": true,
+        "show_payment_icons": true,
+        "gift_wrap_product": "",
+        "gift_wrap_text": "Do you want a gift wrap?",
+        "gift_wrap_button": "Add a gift wrap",
+        "show_shipping_estimator": false,
+        "shipping_estimator_default_country": "United Kingdom",
+        "trust_heading": "Our guarantees",
+        "upsell_heading": "Complete Your Bathroom Look",
+        "upsell_collection": "lumora-led-mirrors",
+        "upsell_products_count": 8,
+        "custom_css_class": "cart-section"
+      }
+    },
+    "featured_collection_UP6TXf": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "adhesives-checkout",
+        "title": "Need Adhesive & Extras?",
+        "products_count": 12,
+        "layout": "vertical",
+        "stack_products": false,
+        "show_quick_buy": false,
+        "show_view_button": false,
+        "link_title": "",
+        "link_url": "shopify://collections/adhesives-checkout",
+        "show_shop_button": true,
+        "shop_button_label": "Shop Now",
+        "enable_sample_button": true,
+        "sample_button_label": "Order Sample",
+        "custom_css_class": "cart-section-featured-collection"
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "disabled": true,
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
+    },
+    "174446885791e87112": {
+      "type": "apps",
+      "blocks": {
+        "vitals_featured_reviews_txrAnT": {
+          "type": "shopify://apps/vitals/blocks/featured-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vitals_featured_reviews_txrAnT"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "text_with_icons_QrLURr",
+    "main",
+    "featured_collection_UP6TXf",
+    "recently-viewed-products",
+    "174446885791e87112"
+  ]
+}

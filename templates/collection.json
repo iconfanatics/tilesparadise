@@ -1,0 +1,212 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "4720762a-6b61-48e4-9dae-1e2b9be5db51": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-delivery",
+            "title": "Free Delivery On orders over £499",
+            "content": ""
+          }
+        },
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-returns",
+            "title": "Free Samples On Selected Tiles",
+            "content": ""
+          }
+        },
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-customer-support",
+            "title": "Price Match We'll Beat Any Price",
+            "content": ""
+          }
+        },
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-4": {
+          "type": "item",
+          "settings": {
+            "icon": "bi-secure-payment",
+            "title": "Buy Now, Pay Later Options",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-1",
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-2",
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-3",
+        "template--20588948816162__4720762a-6b61-48e4-9dae-1e2b9be5db51-item-4"
+      ],
+      "settings": {
+        "stack_mobile": false
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "custom_css": [
+        "button.quic_mod.product-item__action-button.button.button--small.button--ternary.hidden-phone,.product-item .product-form.cst.collect input#add-free-sample {display: none;}"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "collapse_collection_description": true,
+        "collection_image_size": "preserve_ratio",
+        "products_per_row": "3",
+        "default_products_per_page": 48,
+        "default_view_layout": "grid",
+        "show_quick_buy": "list",
+        "show_quick_view": "list_grid",
+        "quick_links": "",
+        "quick_links_show_products_count": true,
+        "show_filters": true,
+        "show_filter_color_swatch": false,
+        "open_group_filters_mode": "all_open"
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
+    },
+    "169974545854ef2da9": {
+      "type": "apps",
+      "blocks": {
+        "c68a5f1e-c45c-4fdc-b2db-75a84b9ff064": {
+          "type": "shopify://apps/vitals/blocks/featured-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "c68a5f1e-c45c-4fdc-b2db-75a84b9ff064"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "176672394354ea83bc": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "faq_XDt39Y": {
+      "type": "faq",
+      "blocks": {
+        "separator_MQfycT": {
+          "type": "separator",
+          "settings": {
+            "title": "FAQ's"
+          }
+        },
+        "question_j3Fg6B": {
+          "type": "question",
+          "settings": {
+            "title": "Can porcelain tiles be used in high-traffic areas?",
+            "answer": "<p>Yes. Porcelain tiles are highly durable and suitable for high-traffic areas such as hallways, kitchens, and commercial spaces, depending on the tile’s rating.</p>"
+          }
+        },
+        "question_e3U7WP": {
+          "type": "question",
+          "settings": {
+            "title": "Are porcelain tiles suitable for cutting and shaping during installation?",
+            "answer": "<p>Yes. Porcelain tiles can be cut and shaped using appropriate professional tile-cutting equipment. Due to their density, cutting should be carried out by an experienced installer</p>"
+          }
+        },
+        "question_GdnEzE": {
+          "type": "question",
+          "settings": {
+            "title": "What tile size should I choose for my space?",
+            "answer": "<p>Larger tile formats can help create a more seamless and spacious look, while smaller tiles may suit compact areas or detailed layouts. The right size depends on room dimensions and design preference.</p>"
+          }
+        },
+        "question_f7ERER": {
+          "type": "question",
+          "settings": {
+            "title": "What is the difference between porcelain tiles and ceramic tiles?",
+            "answer": "<p>Porcelain tiles are denser, less porous, and fired at higher temperatures than ceramic tiles. This makes porcelain tiles more durable, water-resistant, and suitable for both wall and floor use in bathrooms, kitchens, and living areas.</p>"
+          }
+        },
+        "question_EyYzaJ": {
+          "type": "question",
+          "settings": {
+            "title": "Are porcelain tiles suitable for both walls and floors?",
+            "answer": "<p>Yes. Most porcelain tiles are suitable for use on both walls and floors. Always check the individual product specifications to confirm suitability for your intended application.</p>"
+          }
+        },
+        "question_AeN8Hi": {
+          "type": "question",
+          "settings": {
+            "title": "Are porcelain tiles suitable for underfloor heating?",
+            "answer": "<p>Yes. Porcelain tiles are an excellent choice for underfloor heating as they conduct heat efficiently and retain warmth well once heated</p>"
+          }
+        },
+        "question_NDENmK": {
+          "type": "question",
+          "settings": {
+            "title": "Do porcelain tiles require sealing?",
+            "answer": "<p>No. Porcelain tiles do not require sealing as they have very low water absorption. However, grout lines may benefit from sealing to help with long-term maintenance.</p>"
+          }
+        },
+        "question_nhFHiW": {
+          "type": "question",
+          "settings": {
+            "title": "Are porcelain tiles water resistant?",
+            "answer": "<p>Yes. Porcelain tiles have a very low water absorption rate, making them ideal for bathrooms, showers, kitchens, and other moisture-prone areas.</p>"
+          }
+        },
+        "question_eTP8RG": {
+          "type": "question",
+          "settings": {
+            "title": "How do I clean and maintain porcelain tiles?",
+            "answer": "<p>Porcelain tiles are low maintenance and can be cleaned using warm water and a mild, non-abrasive cleaner. Avoid harsh chemicals or abrasive pads that may damage the surface finish</p>"
+          }
+        }
+      },
+      "block_order": [
+        "separator_MQfycT",
+        "question_j3Fg6B",
+        "question_e3U7WP",
+        "question_GdnEzE",
+        "question_f7ERER",
+        "question_EyYzaJ",
+        "question_AeN8Hi",
+        "question_NDENmK",
+        "question_nhFHiW",
+        "question_eTP8RG"
+      ],
+      "name": "Frequently Asked Questions",
+      "settings": {
+        "show_contact_info": false,
+        "contact_info_heading": "Any question?",
+        "contact_info_text": "<p>If we still haven't answered your question, you can contact us below and we will get back to you as soon as possible.</p>",
+        "contact_1_icon": "bi-phone",
+        "contact_1_heading": "Customer support",
+        "contact_1_text": "<p>Enter your text here</p>",
+        "contact_2_icon": "bi-email",
+        "contact_2_heading": "Send a message",
+        "contact_2_text": "<p>Enter your text here</p>"
+      }
+    }
+  },
+  "order": [
+    "4720762a-6b61-48e4-9dae-1e2b9be5db51",
+    "main",
+    "recently-viewed-products",
+    "169974545854ef2da9",
+    "176672394354ea83bc",
+    "faq_XDt39Y"
+  ]
+}

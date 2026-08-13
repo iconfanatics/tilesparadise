@@ -1,0 +1,436 @@
+{% schema %}
+{
+  "name": "Product Tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tab_1_title",
+      "label": "Tab 1 Title",
+      "default": "Product Information"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_title",
+      "label": "Tab 2 Title",
+      "default": "Product Details"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_title",
+      "label": "Tab 3 Title",
+      "default": "Tile FAQs"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Your question here?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Your answer goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Tabs"
+    }
+  ]
+}
+{% endschema %}
+
+{%- liquid
+  assign c = product.metafields.custom
+  assign sku = product.selected_or_first_available_variant.sku
+-%}
+
+<div class="tp-two-col-layout">
+  <!-- Left Column: Tabs -->
+  <div class="tp-left-col">
+    <div class="tp-css-tabs">
+      <input type="radio" id="tab-desc-{{ section.id }}" name="tptabs-{{ section.id }}" checked>
+      <input type="radio" id="tab-spec-{{ section.id }}" name="tptabs-{{ section.id }}">
+      <input type="radio" id="tab-faq-{{ section.id }}" name="tptabs-{{ section.id }}">
+      
+      <div class="tp-css-tabs-header">
+        <label for="tab-desc-{{ section.id }}" class="tp-css-tab-btn">{{ section.settings.tab_1_title }}</label>
+        <label for="tab-spec-{{ section.id }}" class="tp-css-tab-btn">{{ section.settings.tab_2_title }}</label>
+        <label for="tab-faq-{{ section.id }}" class="tp-css-tab-btn">{{ section.settings.tab_3_title }}</label>
+      </div>
+      
+      <div class="tp-css-tabs-body">
+        <!-- Tab 1: Description -->
+        <div class="tp-css-tab-pane" id="pane-desc-{{ section.id }}">
+          {%- if product.description != blank -%}
+            <div class="tp-desc rte">
+              {{ product.description | remove: 'data-section-type="product"' }}
+            </div>
+          {%- else -%}
+            <p>No description available.</p>
+          {%- endif -%}
+        </div>
+        
+        <!-- Tab 2: Specs -->
+        <div class="tp-css-tab-pane" id="pane-spec-{{ section.id }}">
+          <div class="tp-spec-title">Product Details:</div>
+          <ul class="tp-spec-list">
+            {%- if sku != blank -%}<li><strong>SKU:</strong> {{ sku }}</li>{%- endif -%}
+            {%- if c.material != blank -%}<li><strong>Material:</strong> {{ c.material }}</li>{%- endif -%}
+            {%- if c.colour != blank -%}<li><strong>Colour:</strong> {{ c.colour }}</li>{%- endif -%}
+            {%- if c.thickness != blank -%}<li><strong>Thickness:</strong> {{ c.thickness }}</li>{%- endif -%}
+            {%- if c.tile_finish != blank -%}<li><strong>Finish:</strong> {{ c.tile_finish }}</li>{%- endif -%}
+            {%- if c.floor_or_wall != blank -%}<li><strong>Floor or Wall:</strong> {{ c.floor_or_wall }}</li>{%- endif -%}
+            {%- if c.size != blank -%}<li><strong>Size:</strong> {{ c.size }}</li>{%- endif -%}
+            {%- if c.rectified != blank -%}<li><strong>Rectified:</strong> {% if c.rectified == true %}Yes{% elsif c.rectified == false %}No{% else %}{{ c.rectified }}{% endif %}</li>{%- endif -%}
+            {%- if c.suitable_for_underfloor_heating != blank -%}<li><strong>Suitable for Underfloor Heating:</strong> {% if c.suitable_for_underfloor_heating == true %}Yes{% elsif c.suitable_for_underfloor_heating == false %}No{% else %}{{ c.suitable_for_underfloor_heating }}{% endif %}</li>{%- endif -%}
+            {%- if c.box_quantity != blank -%}<li><strong>Box Quantity:</strong> {{ c.box_quantity }}</li>{%- endif -%}
+            {%- if c.weight != blank -%}<li><strong>Weight:</strong> {{ c.weight }}</li>{%- endif -%}
+            {%- if c.sale_by != blank -%}<li><strong>Sale By:</strong> {{ c.sale_by }}</li>{%- endif -%}
+          </ul>
+        </div>
+        
+        <!-- Tab 3: FAQs -->
+        <div class="tp-css-tab-pane" id="pane-faq-{{ section.id }}">
+          <div class="tp-faq">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'faq' -%}
+                <details class="tp-faq__i" {{ block.shopify_attributes }} {% if forloop.first %}open{% endif %}>
+                  <summary>{{ block.settings.question }}</summary>
+                  <div class="tp-faq__a">{{ block.settings.answer }}</div>
+                </details>
+              {%- endif -%}
+            {%- else -%}
+              <p style="padding: 15px;">No FAQs added yet. Add FAQ blocks from the theme editor.</p>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<style>
+  /* Layout */
+  .tp-two-col-layout {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+  }
+  .tp-left-col {
+    width: 100%;
+  }
+
+  /* Right Column Card Styles */
+  .tp-sticky-card {
+    border: 2px solid #1e73be;
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .tp-card-header {
+    background: #1e73be;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    padding: 6px 8px; /* Extremely compact */
+    font-size: 14px;
+  }
+  .tp-card-body {
+    padding: 12px;
+  }
+  .tp-card-img img {
+    width: 100%;
+    max-width: 160px; /* Constrain image to shrink height */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto; /* Centered and smaller bottom margin */
+  }
+  .tp-card-title {
+    font-size: 15px; /* Smaller font */
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 6px;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .tp-card-price {
+    font-size: 18px; /* Smaller font */
+    font-weight: 700;
+    color: #d90000;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .tp-card-stock {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+  }
+  .tp-stock-in {
+    color: #333;
+    font-weight: normal;
+  }
+  .tp-card-btn {
+    width: 100%;
+    background: #1e73be;
+    color: #fff;
+    border: none;
+    padding: 12px; /* Reduced from 16px */
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .tp-card-btn:hover {
+    background: #155a96;
+  }
+  .tp-card-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  /* Left Column Tabs Styles */
+  .tp-css-tabs {
+    font-family: inherit;
+    color: #333;
+  }
+  .tp-css-tabs input[type="radio"] {
+    display: none;
+  }
+  
+  .tp-css-tabs-header {
+    display: flex;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+    gap: 4px;
+  }
+  
+  .tp-css-tab-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    background: #f4f6f8;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #1e73be;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .tp-css-tab-btn:hover {
+    background: #e8f0fe;
+    color: #1e73be;
+  }
+  
+  #tab-desc-{{ section.id }}:checked ~ .tp-css-tabs-header [for="tab-desc-{{ section.id }}"],
+  #tab-spec-{{ section.id }}:checked ~ .tp-css-tabs-header [for="tab-spec-{{ section.id }}"],
+  #tab-faq-{{ section.id }}:checked ~ .tp-css-tabs-header [for="tab-faq-{{ section.id }}"] {
+    background: #fff;
+    color: #1e73be;
+    font-weight: 700;
+    border: 1px solid #1e73be;
+    border-bottom: 1px solid #fff;
+    box-shadow: none;
+  }
+  
+  .tp-css-tabs-body {
+    background: #fff;
+    border: 1px solid #1e73be;
+    border-radius: 0 8px 8px 8px;
+    padding: 32px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    position: relative;
+    z-index: 0;
+  }
+  
+  .tp-css-tab-pane {
+    display: none;
+    animation: tpFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  #tab-desc-{{ section.id }}:checked ~ .tp-css-tabs-body #pane-desc-{{ section.id }},
+  #tab-spec-{{ section.id }}:checked ~ .tp-css-tabs-body #pane-spec-{{ section.id }},
+  #tab-faq-{{ section.id }}:checked ~ .tp-css-tabs-body #pane-faq-{{ section.id }} {
+    display: block;
+  }
+  
+  @keyframes tpFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Content Styling inside Tabs */
+  .tp-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #4a5568;
+  }
+  .tp-desc h2, .tp-desc h3, .tp-desc h4 {
+    color: #1a202c;
+    font-weight: 700;
+    margin-top: 28px;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .tp-desc h2:first-child, .tp-desc h3:first-child {
+    margin-top: 0;
+  }
+  .tp-desc p {
+    margin-bottom: 18px;
+  }
+  .tp-desc ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+  .tp-desc li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+  }
+  .tp-desc li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #a0aec0;
+    font-size: 18px;
+    line-height: 1;
+    top: 2px;
+  }
+  
+  .tp-spec-title {
+    font-weight: 700;
+    font-size: 18px;
+    color: #1a202c;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .tp-spec-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  .tp-spec-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: #4a5568;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .tp-spec-list li:nth-child(even) {
+    background: #f9fafb;
+    border-radius: 6px;
+  }
+  .tp-spec-list li:last-child {
+    border-bottom: none;
+  }
+  .tp-spec-list strong {
+    font-weight: 600;
+    color: #2d3748;
+    width: 45%;
+  }
+  
+  /* FAQ Styling */
+  .tp-faq {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  .tp-faq__i {
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .tp-faq__i:last-child {
+    border-bottom: 0;
+  }
+  .tp-faq__i summary {
+    padding: 16px 20px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    color: #1a202c;
+    background: #fafafa;
+    transition: background 0.2s;
+  }
+  .tp-faq__i summary:hover {
+    background: #f1f3f5;
+  }
+  .tp-faq__i summary::-webkit-details-marker {
+    display: none;
+  }
+  .tp-faq__i summary::after {
+    content: "+";
+    color: #1e73be;
+    font-weight: 800;
+    font-size: 20px;
+  }
+  .tp-faq__i[open] summary::after {
+    content: "\2013";
+  }
+  .tp-faq__a {
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #4a5568;
+    line-height: 1.6;
+    background: #fff;
+  }
+  
+  @media (max-width: 900px) {
+    .tp-two-col-layout {
+      flex-direction: column;
+    }
+    .tp-left-col, .tp-right-col {
+      width: 100%;
+      flex: 1 1 100%;
+    }
+    .tp-right-col {
+      position: static;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .tp-css-tabs-header {
+      gap: 2px;
+    }
+    .tp-css-tab-btn {
+      flex: 1;
+      font-size: 14px;
+      padding: 12px 10px;
+      border-radius: 6px 6px 0 0;
+    }
+    .tp-css-tabs-body {
+      padding: 20px 16px;
+      border-radius: 0 0 8px 8px;
+    }
+    .tp-spec-list li {
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px;
+    }
+    .tp-spec-list strong {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,458 @@
+{% comment %}
+  {% style %}
+
+    body {
+    color: #666;
+    font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+  }
+  {% endstyle %}
+{% endcomment %}
+
+{%- assign selected_variant = product.selected_or_first_available_variant -%}
+{%- assign color_label = 'color,colour,couleur,cor,colore,farbe,색,色,カラー,färg,farve,szín,barva' | split: ',' -%}
+
+{%- unless product.has_only_default_variant -%}
+  <div class="product-form__variants" {{ block.shopify_attributes }}>
+    {%- for option in product.options_with_values -%}
+      {%- assign downcase_option = option.name | downcase -%}
+      {%- capture option_name -%}{{ section.id }}-{{ product.id }}-{{ forloop.index }}{%- endcapture -%}
+
+      {%- assign option_selector_type = 'select' -%}
+
+      {%- if block.settings.color_mode != 'block'
+        and block.settings.color_mode != 'dropdown'
+        and color_label contains downcase_option
+      -%}
+        {%- assign has_image_attached_to_all_variants = true -%}
+
+        {%- for variant in product.variants -%}
+          {%- unless variant.image -%}
+            {%- assign has_image_attached_to_all_variants = false -%}
+            {%- break -%}
+          {%- endunless -%}
+        {%- endfor -%}
+
+        {%- if block.settings.color_mode == 'color' or has_image_attached_to_all_variants == false -%}
+          {%- assign option_selector_type = 'color' -%}
+        {%- else -%}
+          {%- assign option_selector_type = 'variant' -%}
+        {%- endif -%}
+      {%- else -%}
+        {%- if color_label contains downcase_option -%}
+          {%- if block.settings.color_mode == 'block' -%}
+            {%- assign option_selector_type = 'block' -%}
+          {%- endif -%}
+        {%- elsif block.settings.selector_mode == 'block' -%}
+          {%- assign option_selector_type = 'block' -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      <div class="product-form__option" data-selector-type="{{ option_selector_type }}">
+        {%- case option_selector_type -%}
+          {%- when 'color' -%}
+            <span class="product-form__option-name text--strong">
+              {{- option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span></span
+            >
+
+            <div class="color-swatch-list color-swatch-list--large">
+              {%- assign color_swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />' -%}
+
+              {%- for value in option.values -%}
+                {%- assign downcased_value = value | downcase -%}
+                {%- capture color_id -%}{{ option_name }}-{{ forloop.index }}{%- endcapture -%}
+
+                <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
+                  <input
+                    class="color-swatch__radio product-form__single-selector"
+                    type="radio"
+                    name="{{ option_name }}"
+                    id="{{ color_id }}"
+                    value="{{ value | escape }}"
+                    {% if option.selected_value == value %}checked{% endif %}
+                    data-option-position="{{ option.position }}"
+                  >
+                  <label
+                    class="color-swatch__item"
+                    for="{{ color_id }}"
+                    style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: downcased_value %}"
+                    title="{{ value | escape }}"
+                  >
+                    <span class="visually-hidden">{{ value }}</span>
+                    {%- render 'icon', icon: 'cross-sold-out' -%}
+                  </label>
+                </div>
+              {%- endfor -%}
+            </div>
+
+          {%- when 'variant' -%}
+            <span class="product-form__option-name text--strong">
+              {{- option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span></span
+            >
+
+            <div class="variant-swatch-list">
+              {%- capture option_name -%}option{{ option.position }}{%- endcapture -%}
+
+              {%- for value in option.values -%}
+                {%- capture variant_swatch_id -%}{{ option_name }}-{{ forloop.index }}{%- endcapture -%}
+
+                {%- for variant in product.variants -%}
+                  {%- if variant[option_name] == value and variant.image -%}
+                    <div class="variant-swatch">
+                      <input
+                        class="variant-swatch__radio product-form__single-selector"
+                        type="radio"
+                        name="{{ option_name }}"
+                        id="{{ variant_swatch_id }}"
+                        value="{{ value | escape }}"
+                        {% if option.selected_value == value %}checked{% endif %}
+                        data-option-position="{{ option.position }}"
+                      >
+
+                      <label class="variant-swatch__item" for="{{ variant_swatch_id }}" title="{{ value | escape }}">
+                        <div class="aspect-ratio" style="padding-bottom: {{ 100.0 | divided_by: variant.image.aspect_ratio }}%">
+                          {{- variant.image | image_url: width: variant.image.width | image_tag: loading: 'lazy', sizes: '120px', widths: '120,240' -}}
+                        </div>
+                        {% render 'icon', icon: 'cross-sold-out' %}
+                      </label>
+                    </div>
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            </div>
+
+          {%- when 'block' -%}
+            <span class="product-form__option-name text--strong">
+              {{- option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span></span
+            >
+
+            <div class="block-swatch-list">
+              {%- for value in option.values -%}
+                {%- capture block_swatch_id -%}{{ option_name }}-{{ forloop.index }}{%- endcapture -%}
+
+                <div class="block-swatch">
+                  <input
+                    class="block-swatch__radio product-form__single-selector"
+                    type="radio"
+                    name="{{ option_name }}"
+                    id="{{ block_swatch_id }}"
+                    value="{{ value | escape }}"
+                    {% if option.selected_value == value %}checked{% endif %}
+                    data-option-position="{{ option.position }}"
+                  >
+                  <label class="block-swatch__item" for="{{ block_swatch_id }}" title="{{ value | escape }}">
+                    <span class="block-swatch__item-text">{{ value }}</span>
+                  </label>
+                </div>
+              {%- endfor -%}
+            </div>
+
+          {%- when 'select' -%}
+            <label for="{{ option_name }}" class="product-form__option-name text--strong">
+              {{- option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span></label
+            >
+
+            <div class="select-wrapper select-wrapper--primary">
+              {%- render 'icon', icon: 'arrow-bottom' -%}
+              <select class="product-form__single-selector" name="{{ option_name }}" id="{{ option_name }}" data-option-position="{{ option.position }}">
+                {%- for value in option.values -%}
+                  <option value="{{ value | escape }}" {% if value == option.selected_value %}selected="selected"{% endif %}>{{ value }}</option>
+                {%- endfor -%}
+              </select>
+            </div>
+        {%- endcase -%}
+      </div>
+    {%- endfor -%}
+
+    <div class="no-js product-form__option">
+      <label class="product-form__option-name text--strong" for="product-select-{{ product.id }}">{{- 'product.form.variant' | t -}}</label>
+      <div class="select-wrapper select-wrapper--primary">
+        <select id="product-select-{{ product.id }}" name="id">
+          {%- for variant in product.variants -%}
+            <option {% if variant == selected_variant %}selected="selected"{% endif %} {% unless variant.available %}disabled="disabled"{% endunless %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">
+              {{ variant.title }} - {{ variant.price | money }}
+            </option>
+          {%- endfor -%}
+        </select>
+      </div>
+    </div>
+  </div>
+{%- else -%}
+  <input type="hidden" name="id" data-sku="{{ selected_variant.sku }}" value="{{ selected_variant.id }}">
+{%- endunless -%}
+
+<div class="product-form__info-list">
+  <div class="product-form__info-item">
+{% if product.title contains 'Shower' or product.title contains 'Radiator' or product.title contains 'Towel' or product.title contains 'Pallet Deal' %}
+  <p class="free_stand">🚚 FREE STANDARD DELIVERY</p>
+{% endif %}
+  <hr class="card__separator">
+  {%- capture product_labels -%}
+    {%- for tag in product.tags -%}
+      {%- if tag contains '__label:' -%}<span class="product-label product-label--custom1">{{ tag | split: '__label:' | last }}</span>{%- endif -%}
+      {%- if tag contains '__label1:' -%}<span class="product-label product-label--custom1">{{ tag | split: '__label1:' | last }}</span>{%- endif -%}
+      {%- if tag contains '__label2:' -%}<span class="product-label product-label--custom2">{{ tag | split: '__label2:' | last }}</span>{%- endif -%}
+    {%- endfor -%}
+    {%- if settings.show_discount -%}
+      {%- assign savings = 0 -%}
+      {%- if settings.discount_mode == 'percentage' -%}
+        {%- assign savings = selected_variant.compare_at_price | minus: selected_variant.price | times: 100.0 | divided_by: selected_variant.compare_at_price | round | append: '%' -%}
+      {%- else -%}
+        {%- capture savings -%}<span>{{ selected_variant.compare_at_price | minus: selected_variant.price | money }}</span>{%- endcapture -%}
+      {%- endif -%}
+      <span class="product-label product-label--on-sale" {% unless selected_variant.price < selected_variant.compare_at_price %}style="display: none"{% endunless %}>{{ 'collection.product.discount_html' | t: savings: savings }}</span>
+    {%- endif -%}
+  {%- endcapture -%}
+  {%- if product_labels != blank -%}
+    <div class="product-meta__label-list">{{- product_labels -}}</div>
+  {%- endif -%}
+
+  <span class="product-form__info-title text--strong jj">
+    {% assign show_price_label = true %}
+    {% for collection in product.collections %}
+      {% if collection.title contains 'Adhesive' or collection.title contains 'Underfloor Heating' or collection.title contains 'Grout' or collection.title contains 'Matting' or collection.title contains 'Backerboards' or collection.title contains 'Showers' or collection.title contains 'LED Mirrors' or collection.title == 'Stylish Radiators & Heated Towel Rails' or collection.title contains 'Adhesives Checkout' or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles' or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles' %}
+        {% assign show_price_label = false %}{% break %}
+      {% endif %}
+    {% endfor %}
+    {% if show_price_label %}{{ 'product.form.price' | t }}{% else %}Price{% endif %}:</span>
+
+  <div class="product-form__info-content" role="region" aria-live="polite">
+    <div class="price-list">
+      {%- if selected_variant.compare_at_price > selected_variant.price -%}
+        <span class="price price--highlight gg">
+          <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+          {%- if settings.currency_code_enabled -%}
+            {{- selected_variant.price | money_with_currency -}}
+            {% for collection in product.collections limit: 1 %}
+              {% if collection.title contains 'Adhesive' or collection.title contains 'Underfloor Heating' or collection.title contains 'Grout' or collection.title contains 'Matting' or collection.title contains 'Backerboards' or collection.title contains 'Showers' or collection.title == 'Stylish Radiators & Heated Towel Rails' or collection.title contains 'Adhesives Checkout' or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles' or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles' %}{% else %}<span>Per m²</span>{% endif %}
+            {% endfor %}
+          {%- else -%}
+            {{- selected_variant.price | money -}}
+            {% assign show_per_m = true %}{% if product.template_suffix == 'toilets' %}{% assign show_per_m = false %}{% endif %}
+            {% for collection in product.collections %}
+              {% if collection.title contains 'Adhesive' or collection.title contains 'Underfloor Heating' or collection.title contains 'Grout' or collection.title contains 'Matting' or collection.title contains 'Backerboards' or collection.title contains 'Showers' or collection.title contains 'LED Mirrors' or collection.title == 'Stylish Radiators & Heated Towel Rails' or collection.title contains 'Adhesives Checkout' or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles' or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles' %}{% assign show_per_m = false %}{% break %}{% endif %}
+            {% endfor %}
+            {% if show_per_m %}<span>Per m²</span>{% endif %}
+          {%- endif -%}
+        </span>
+
+        <span class="price price--compare">
+          <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
+          {%- if settings.currency_code_enabled -%}
+            <b> RRP </b>{{- selected_variant.compare_at_price | money_with_currency -}}
+            {% assign show_per_m = true %}{% if product.template_suffix == 'toilets' %}{% assign show_per_m = false %}{% endif %}
+            {% for collection in product.collections %}{% if collection.title contains 'Adhesive' or collection.title contains 'Underfloor Heating' or collection.title contains 'Grout' or collection.title contains 'Matting' or collection.title == 'Stylish Radiators & Heated Towel Rails' or collection.title contains 'Backerboards' or collection.title contains 'LED Mirrors' or collection.title contains 'Showers' or collection.title contains 'Adhesives Checkout' or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles' or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles' %}{% assign show_per_m = false %}{% break %}{% endif %}{% endfor %}
+            {% if show_per_m %}<span>Per m²</span>{% endif %}
+          {%- else -%}
+            <b> RRP </b>{{- selected_variant.compare_at_price | money -}}
+            {% assign show_per_m = true %}{% if product.template_suffix == 'toilets' %}{% assign show_per_m = false %}{% endif %}
+            {% for collection in product.collections %}{% if collection.title contains 'Adhesive' or collection.title contains 'Underfloor Heating' or collection.title contains 'Grout' or collection.title contains 'Matting' or collection.title contains 'Backerboards' or collection.title == 'Stylish Radiators & Heated Towel Rails' or collection.title contains 'LED Mirrors' or collection.title contains 'Showers' or collection.title contains 'Adhesives Checkout' or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles' or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles' %}{% assign show_per_m = false %}{% break %}{% endif %}{% endfor %}
+            {% if show_per_m %}<span>Per m²</span>{% endif %}
+          {%- endif -%}
+        </span>
+
+        <span class="save_amount"><b> Save</b>{% assign saving = product.compare_at_price | minus: product.price %}{{ saving | money_with_currency }}</span>
+      {%- else -%}
+        <span class="price">
+          <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+          {%- if settings.currency_code_enabled -%}{{- selected_variant.price | money_with_currency -}}{%- else -%}{{- selected_variant.price | money -}}{%- endif -%}
+        </span>
+      {%- endif -%}
+    </div>
+    <hr class="card__separator">
+    <div class="product-form__price-info" style="display: {% if selected_variant.unit_price_measurement %}block{% else %}none{% endif %}">
+      <div class="unit-price-measurement">
+        <span class="unit-price-measurement__price">{{ selected_variant.unit_price | money }}</span>
+        <span class="unit-price-measurement__separator">/ </span>
+        <span class="unit-price-measurement__reference-value" {%- if selected_variant.unit_price_measurement.reference_value == 1 -%}style="display: none"{% endif %}>{{- selected_variant.unit_price_measurement.reference_value -}}</span>
+        <span class="unit-price-measurement__reference-unit">{{- selected_variant.unit_price_measurement.reference_unit -}}</span>
+      </div>
+    </div>
+
+    {{- form | payment_terms -}}
+
+    {%- if block.settings.show_taxes_included -%}
+      {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
+        <p class="product-form__price-info">
+          {%- if cart.taxes_included -%}{{ 'product.general.include_taxes' | t }}{%- endif -%}
+          {%- if shop.shipping_policy.body != blank -%}{{ 'product.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}{%- endif -%}
+        </p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>
+
+<div class="paypal_cont" style="margin-top:20px;">
+  <div data-pp-message data-pp-style-layout="text" data-pp-style-logo-type="inline" data-pp-style-text-color="black" data-pp-amount="{{ product.price | money }}"></div>
+</div>
+
+{%- if block.settings.show_inventory_quantity and product.template_suffix != 'pre-order' -%}
+  <div class="product-form__info-item">
+    <span class="product-form__info-title text--strong">{{ 'product.form.inventory' | t }}:</span>
+    <div class="product-form__info-content">
+      {%- if selected_variant.inventory_management -%}
+        {%- if selected_variant.available -%}
+          {%- if selected_variant.inventory_quantity <= 0 and selected_variant.requires_shipping -%}
+            {%- if selected_variant.incoming -%}
+              {%- capture next_incoming_date -%}{{ selected_variant.next_incoming_date | date: format: 'date' }}{%- endcapture -%}
+              <span class="product-form__inventory inventory inventory--high">{{- 'product.form.incoming_stock' | t: next_incoming_date: next_incoming_date -}}</span>
+            {%- else -%}
+              <span class="product-form__inventory inventory inventory--high">{{- 'product.form.oversell_stock' | t -}}</span>
+            {%- endif -%}
+          {%- elsif block.settings.low_inventory_threshold > 0 -%}
+            {%- if selected_variant.inventory_quantity <= block.settings.low_inventory_threshold -%}
+              <span class="product-form__inventory inventory inventory--low">{{- 'product.form.low_stock_with_quantity_count' | t: count: selected_variant.inventory_quantity -}}</span>
+            {%- else -%}
+              <span class="product-form__inventory inventory inventory--high">{{- 'product.form.in_stock_with_quantity_count' | t: count: selected_variant.inventory_quantity -}}</span>
+            {%- endif -%}
+          {%- else -%}
+            <span class="product-form__inventory inventory inventory--high">{{ 'product.form.in_stock' | t }}</span>
+          {%- endif -%}
+        {%- else -%}
+          {%- if selected_variant.incoming -%}
+            {%- capture next_incoming_date -%}{{ selected_variant.next_incoming_date | date: format: 'date' }}{%- endcapture -%}
+            <span class="product-form__inventory inventory">{{- 'product.form.incoming_stock' | t: next_incoming_date: next_incoming_date -}}</span>
+          {%- else -%}
+            <span class="product-form__inventory inventory">{{ 'product.form.sold_out' | t }}</span>
+          {%- endif -%}
+        {%- endif -%}
+      {%- else -%}
+        <span class="product-form__inventory inventory inventory--high">{{ 'product.form.in_stock' | t }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% assign is_special_collection = false %}
+{% for collection in product.collections %}
+  {% if collection.title contains 'Adhesive' or collection.title contains 'Underfloor Heating' or collection.title contains 'Grout' or collection.title contains 'Matting' or collection.title contains 'Backerboards' or collection.title contains 'Showers' or collection.title == 'LED Mirrors' or collection.title == 'Stylish Radiators & Heated Towel Rails' or collection.title contains 'Adhesives Checkout' or collection.title contains 'Job Lot Deals - Unbeatable Prices on Quality Tiles' or collection.title contains 'Wholesale Pallet Deals - Bulk Savings on Premium Tiles' %}
+    {% assign is_special_collection = true %}{% break %}
+  {% endif %}
+{% endfor %}
+
+{% if is_special_collection %}
+  {%- comment -%} Whole-unit quantity stepper (adhesive / grout / LED mirrors / radiators / deals) {%- endcomment -%}
+  <div class="product-form__info-content">
+    <div class="quantity-selector quantity-selector--product">
+      <button onclick="tpStep(-1)" type="button" class="decrease quantity-selector__button" aria-label="{{ 'cart.items.decrease_quantity' | t }}">{% render 'icon', icon: 'minus' %}</button>
+      <input id="{{ section.id }}-{{ product.id }}-quantity" name="quantity" aria-label="{{ 'product.form.quantity' | t }}" class="quantity-selector__value" inputmode="numeric" value="1" size="3">
+      <button onclick="tpStep(1)" type="button" class="quantity-selector__button" aria-label="{{ 'cart.items.increase_quantity' | t }}">{% render 'icon', icon: 'plus' %}</button>
+    </div>
+  </div>
+  <script>
+    window.tpStep = function(d){ var el=document.getElementById("{{ section.id }}-{{ product.id }}-quantity"); if(!el) return; var v=(parseInt(el.value,10)||1)+d; el.value=v<1?1:v; el.dispatchEvent(new Event('change',{bubbles:true})); };
+    window.increaseSquareMeter = function(){ window.tpStep(1); };
+    window.decreaseSquareMeter = function(){ window.tpStep(-1); };
+  </script>
+
+{% else %}
+{% unless product.template_suffix == 'toilets' %}
+  <div class="custom_product_calculation">
+    {% assign in_led_mirrors = false %}
+    {% for coll in product.collections %}{% if coll.handle == 'led-mirrors' %}{% assign in_led_mirrors = true %}{% endif %}{% endfor %}
+
+    {% if in_led_mirrors %}
+      <div class="product-form__info-content">
+        <div class="quantity-selector quantity-selector--product">
+          <button onclick="tpStep(-1)" type="button" class="decrease quantity-selector__button" aria-label="{{ 'cart.items.decrease_quantity' | t }}">{% render 'icon', icon: 'minus' %}</button>
+          <input id="{{ section.id }}-{{ product.id }}-quantity" name="quantity" class="quantity-selector__value" inputmode="numeric" value="1" size="3">
+          <button onclick="tpStep(1)" type="button" class="quantity-selector__button" aria-label="{{ 'cart.items.increase_quantity' | t }}">{% render 'icon', icon: 'plus' %}</button>
+        </div>
+      </div>
+      <script>
+        window.tpStep = function(d){ var el=document.getElementById("{{ section.id }}-{{ product.id }}-quantity"); if(!el) return; var v=(parseInt(el.value,10)||1)+d; el.value=v<1?1:v; el.dispatchEvent(new Event('change',{bubbles:true})); };
+        window.increaseSquareMeter = function(){ window.tpStep(1); };
+        window.decreaseSquareMeter = function(){ window.tpStep(-1); };
+      </script>
+
+    {% else %}
+      {%- comment -%} ===================== TILES: Order by Area (per m²) ===================== {%- endcomment -%}
+      <style>
+        .tpq{font-family:"Open Sans",sans-serif;max-width:440px;margin-top:6px}
+        .tpq__lab{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;margin-bottom:8px}
+        .tpq__stepper{display:flex;align-items:stretch;border:1.5px solid #e6e8eb;border-radius:11px;overflow:hidden;max-width:240px}
+        .tpq__stepper:focus-within{border-color:#c8102e;box-shadow:0 0 0 3px rgba(200,16,46,.1)}
+        .tpq__stepper button{width:48px;border:0;background:#fff;font-size:22px;cursor:pointer;color:#1a1d24;line-height:1}
+        .tpq__stepper button:hover{background:#f7f8f9}
+        .tpq__val{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;border-left:1px solid #e6e8eb;border-right:1px solid #e6e8eb}
+        .tpq__val input{width:60px;border:0;text-align:right;font-size:19px;font-weight:700;padding:13px 0;outline:none;-moz-appearance:textfield;background:transparent}
+        .tpq__val input::-webkit-outer-spin-button,.tpq__val input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+        .tpq__unit{font-size:13px;font-weight:600;color:#6b7280}
+        .tpq__tiles{margin:10px 0 0;font-size:13.5px;font-weight:600;color:#1a1d24}
+        .tpq__waste{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;font-weight:600;color:#1a1d24;cursor:pointer}
+        .tpq__waste input{width:16px;height:16px;accent-color:#c8102e;cursor:pointer;margin:0}
+        .tpq__waste em{font-style:normal;color:#6b7280;font-weight:500}
+        .tpq__total{display:flex;align-items:flex-end;justify-content:space-between;margin-top:16px;padding-top:16px;border-top:1px solid #e6e8eb}
+        .tpq__total .lab{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;padding-bottom:8px}
+        .tpq__total .amt{font-size:36px;font-weight:800;color:#c8102e;letter-spacing:-.02em;line-height:1}
+        .tpq__total .vat{font-size:12px;font-weight:600;color:#6b7280;margin-left:5px}
+        .tpq__link{display:inline-flex;align-items:center;gap:7px;margin-top:13px;font-size:13px;font-weight:600;color:#1a1d24;text-decoration:none}
+        .tpq__link:hover{color:#c8102e;text-decoration:underline}
+        .tpq__ess{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;text-decoration:none;background:#f7f8f9;border:1px solid #e6e8eb;border-radius:11px;padding:13px 16px;transition:border-color .15s,background .15s}
+        .tpq__ess:hover{border-color:#c8102e;background:#fff}
+        .tpq__ess b{display:block;font-size:13px;font-weight:800;color:#1a1d24}
+        .tpq__ess em{display:block;font-style:normal;font-size:11.5px;color:#6b7280;margin-top:2px}
+        .tpq__ess .arr{flex:0 0 auto;font-size:18px;color:#c8102e;font-weight:700}
+      </style>
+
+      <div class="tpq" id="tpq-{{ product.id }}">
+        <span class="tpq__lab">Area to cover</span>
+        <div class="tpq__stepper">
+          <button type="button" data-act="minus" aria-label="Decrease">&minus;</button>
+          <div class="tpq__val"><input type="number" data-role="sqm" min="0" step="1" placeholder="0"><span class="tpq__unit">m&sup2;</span></div>
+          <button type="button" data-act="plus" aria-label="Increase">+</button>
+        </div>
+        <p class="tpq__tiles"><b data-role="tiles">0</b> tiles</p>
+        <label class="tpq__waste"><input type="checkbox" data-role="waste" checked> Add 10% for cuts &amp; breakage <em>(recommended)</em></label>
+
+        <div class="tpq__total">
+          <span class="lab">Total</span>
+          <span><span class="amt">&pound;<span data-role="price">0.00</span></span><span class="vat">inc VAT</span></span>
+        </div>
+
+        <a class="tpq__link" href="/pages/tile-calculator">▦ How many tiles do I need?</a>
+
+        <input type="hidden" name="quantity" id="tpq-qty-{{ product.id }}" value="1">
+      </div>
+
+      <script>
+      (function(){
+        var root=document.getElementById("tpq-{{ product.id }}"); if(!root) return;
+        var pricePerM2 = {{ product.price | divided_by: 100.0 | json }};
+        var sqmPerTile = parseFloat("{{ product.metafields.custom.tiles_per_sq | default: 0.72 }}".replace(',','.'))||0.72;
+        var sqm=root.querySelector('[data-role="sqm"]'), tilesEl=root.querySelector('[data-role="tiles"]'),
+            priceEl=root.querySelector('[data-role="price"]'), waste=root.querySelector('[data-role="waste"]'), qty=document.getElementById("tpq-qty-{{ product.id }}");
+        function setQty(v){ qty.value=v; qty.dispatchEvent(new Event('input',{bubbles:true})); qty.dispatchEvent(new Event('change',{bubbles:true})); }
+        function recalc(){
+          var a=parseFloat(sqm.value)||0; if(a<0)a=0;
+          if(a<=0){ tilesEl.textContent='0'; priceEl.textContent='0.00'; setQty(1); return; }
+          var need=waste.checked ? a*1.10 : a;                // +10% for cuts & breakage
+          var tiles=Math.max(1, Math.floor(need/sqmPerTile)); // round DOWN, odd is fine
+          var charge=Math.max(1, Math.round(need));
+          tilesEl.textContent=tiles;
+          priceEl.textContent=(charge*pricePerM2).toFixed(2);
+          setQty(charge);
+        }
+        root.querySelector('[data-act="plus"]').onclick=function(){ sqm.value=((parseFloat(sqm.value)||0)+1); recalc(); };
+        root.querySelector('[data-act="minus"]').onclick=function(){ var v=(parseFloat(sqm.value)||0)-1; sqm.value=v>0?v:0; recalc(); };
+        sqm.addEventListener('input',recalc);
+        waste.addEventListener('change',recalc);
+        recalc();
+      })();
+      </script>
+      {%- comment -%} =================== /TILES =================== {%- endcomment -%}
+    {% endif %}
+  </div>
+{% endunless %}
+{% endif %}
+
+</div>
+
+<script>
+  // keep decimal-blocking on the integer steppers only (so the m² field still accepts decimals)
+  if (window.jQuery) {
+    jQuery('.quantity-selector__value').on('keydown', function (e) {
+      if (e.keyCode === 190 || e.keyCode === 110) { e.preventDefault(); }
+    });
+  }
+</script>

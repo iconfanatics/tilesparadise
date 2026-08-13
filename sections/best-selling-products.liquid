@@ -1,0 +1,295 @@
+{% schema %}
+{
+  "name": "Best Selling Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Best Selling Tiles"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Text",
+      "default": "See all products"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 4,
+      "max": 20,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Slides per view (Desktop)",
+      "min": 2,
+      "max": 6,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "Slides per view (Mobile)",
+      "min": 1,
+      "max": 3,
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class",
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Selling Products"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="best-selling {{ section.settings.custom_class }}">
+  <div class="page-width">
+
+    <!-- Header -->
+    <div class="bs-header">
+      <h2>{{ section.settings.title }}</h2>
+
+      {% if section.settings.view_all_link %}
+        <a href="{{ section.settings.view_all_link }}" class="view-all">
+          {{ section.settings.view_all_text }} <img class="right-arrow-icon" src="{{ 'right-arrow.png' | file_url }}" alt="arrow">
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Swiper -->
+    <div class="swiper bestSellingSwiper">
+      <div class="swiper-wrapper">
+
+        {% assign collection = section.settings.collection %}
+
+        {% for product in collection.products limit: section.settings.products_to_show %}
+          <div class="swiper-slide">
+
+            <div class="product-card">
+
+              <!-- Image — entire image area is now a link -->
+              <a href="{{ product.url }}" class="image-link" aria-label="{{ product.title | escape }}">
+                <div class="image">
+                  <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy">
+
+                  <span class="quick">Quick look</span>
+
+                  {% if product.compare_at_price > product.price %}
+                    <span class="save">
+                      Save {{ product.compare_at_price | minus: product.price | money }}
+                    </span>
+                  {% endif %}
+                </div>
+              </a>
+
+              <!-- Content -->
+              <div class="content">
+                <a href="{{ product.url }}" class="card-title-link"><h3>{{ product.title }}</h3></a>
+
+                <div class="price">
+                  <span class="current">{{ product.price | money }} Per m²</span>
+
+                  {% if product.compare_at_price > product.price %}
+                    <span class="compare">
+                      RRP {{ product.compare_at_price | money }} Per m²
+                    </span>
+                  {% endif %}
+                </div>
+
+                <a href="{{ product.url }}" class="btn">Order Now</a>
+              </div>
+
+            </div>
+
+          </div>
+        {% endfor %}
+
+      </div>
+
+      <!-- Navigation -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+
+.bs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+
+.product-card .image-link {
+    display: block;
+    text-decoration: none;
+    position: relative;
+}
+
+.product-card .image {
+    width: 100%;
+    opacity: 1;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Badges — pointer-events:none so they don't intercept clicks on the image link */
+.quick {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #EEB109;
+    padding: 4px 8px;
+    border-radius: 10px 12px 12px 0px;
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -2%;
+    text-align: center;
+    color: #000000;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.save {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: #FF0000;
+    opacity: 1;
+    border-radius: 12px 12px 0px 10px;
+    padding: 4px 8px;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #fff;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.product-card .content {
+  padding: 15px;
+}
+
+.product-card .card-title-link {
+    text-decoration: none;
+    display: block;
+}
+
+.product-card h3 {
+    margin-bottom: 10px;
+    color: #000000;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0%;
+}
+.product-card .card-title-link:hover h3 {
+    color: #016FD0;
+}
+
+.price .current {
+    display: block;
+    color: #016FD0;
+    font-family: Roboto;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 20px;
+    letter-spacing: 0%;
+}
+
+.price .compare {
+    color: #FF0000;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0%;
+}
+
+.btn {
+    display: block;
+    margin-top: 10px;
+    background: #016FD0;
+    color: #FFFFFF;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Swiper */
+.bestSellingSwiper {
+  padding-bottom: 30px;
+}
+    </style>
+
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  new Swiper('.bestSellingSwiper', {
+    loop: true,
+    spaceBetween: 20,
+    slidesPerView: {{ section.settings.columns_mobile }},
+    preventClicks: false,
+    preventClicksPropagation: false,
+    simulateTouch: false,
+
+    navigation: {
+      nextEl: '.bestSellingSwiper .swiper-button-next',
+      prevEl: '.bestSellingSwiper .swiper-button-prev',
+    },
+
+    breakpoints: {
+      750: {
+        slidesPerView: {{ section.settings.columns_desktop }},
+        simulateTouch: false
+      }
+    }
+  });
+
+});
+</script>

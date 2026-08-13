@@ -1,0 +1,93 @@
+<style>
+.suitable-for-section {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.suitable-for-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+.suitable-item {
+  width: 100px;
+  position: relative;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltiptext {
+  visibility: hidden;
+  width:300px;
+  background-color: #1a2a46;
+  color: #fff;
+  text-align: left;
+  padding: 10px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+top: -144px;
+    left: -25%;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+</style>
+
+<div class="suitable-for-section">
+  <h2>Suitable For...</h2>
+  <div class="suitable-for-grid">
+    {% for block in section.blocks %}
+      <div class="suitable-item">
+        <div class="tooltip">
+          <img loading="lazy" src="{{ block.settings.icon | img_url :'original' }}" alt="{{ block.settings.label }}">
+          <span class="tooltiptext">{{ block.settings.tooltip }}</span>
+        </div>
+        <p>{{ block.settings.label }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Suitable For",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "room",
+      "name": "Room",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Room Icon"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Room Name",
+          "default": "Living Room"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip",
+          "label": "Tooltip Text"
+       
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Suitable For Rooms",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+

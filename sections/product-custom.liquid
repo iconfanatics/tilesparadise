@@ -1,0 +1,1309 @@
+
+
+{% schema %}
+{
+  "name": "Custom Product",
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "settings": [
+        {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    }
+  ]
+}
+{% endschema %}
+<section class="product-page page-width {{ section.settings.custom_class }}">
+
+  <div class="product-wrapper">
+
+    <!-- LEFT: IMAGES -->
+    <div class="product-gallery">
+
+      <div class="main-image">
+        <img 
+          id="mainProductImage"
+          src="{{ product.featured_image | image_url: width: 800 }}"
+        >
+      </div>
+
+      <!-- Thumbnails -->
+        <div class="swiper thumb-slider">
+        <div class="swiper-wrapper">
+
+            {% for image in product.images %}
+            <div class="swiper-slide">
+                <img 
+                src="{{ image | image_url: width: 150 }}"
+                onclick="document.getElementById('mainProductImage').src='{{ image | image_url: width: 800 }}'"
+                >
+            </div>
+            {% endfor %}
+
+        </div>
+        </div>
+
+    </div>
+
+ 
+     
+
+
+    <!-- RIGHT: DETAILS -->
+     <div class="product-info">
+        <!-- Rating -->
+        <div class="vtl-pr-badge" data-product-id="{{ product.id }}"></div>
+
+        {% render 'custom-product-meta' %}
+
+        {% render 'custom-product-variant-selector',
+          product: product,
+          block: section.blocks[0],
+          section: section,
+          form: form,
+          hide_quantity_selector: true
+        %}
+
+        {% assign sale_by = product.metafields.custom.sale_by %}
+
+
+        <!-- SAMPLE BUTTONS -->
+        {% assign sample_product = product.metafields.custom.sample_product.value %}
+        {% assign second_sample_product = product.metafields.custom.second_sample_product.value %}
+
+        {% if sample_product or second_sample_product %}
+
+        <div class="sample-buttons">
+
+          {% if sample_product %}
+
+            <a
+              href="/cart/add?id={{ sample_product.selected_or_first_available_variant.id }}&quantity=1"
+              class="sample-btn"
+            >
+              Cut Sample -
+              {{ sample_product.price | money }}
+            </a>
+
+          {% endif %}
+
+          {% if second_sample_product %}
+
+            <a
+              href="/cart/add?id={{ second_sample_product.selected_or_first_available_variant.id }}&quantity=1"
+              class="sample-btn"
+            >
+              Large Sample -
+              {{ second_sample_product.price | money }}
+            </a>
+
+          {% endif %}
+
+        </div>
+
+        {% endif %}
+
+
+
+
+        <!-- Time Estimator / App Blocks -->
+        {% for block in section.blocks %}
+
+          {% case block.type %}
+
+            {% when '@app' %}
+              <div class="product-app-block">
+                {% render block %}
+              </div>
+
+          {% endcase %}
+
+        {% endfor %}
+        <hr>
+                <!-- Delivery -->
+      <span class="delivery-text">
+        <span class="delivery-text-main"></span>
+      </span>
+        <!-- Add to cart -->
+          {% form 'product', product %}
+
+            <input
+              type="hidden"
+              name="id"
+              value="{{ product.selected_or_first_available_variant.id }}"
+              class="product-variant-id"
+            >
+              <div class="payment-term-prod-section"> {{ form | payment_terms }} </div>
+              
+          <input type="number" name="quantity" value="1" min="1" style="display:none" id="real-quantity-input">
+            <button
+              type="submit"
+              class="add-to-cart"
+              {% unless product.available %}disabled{% endunless %}
+            >
+
+              {% if product.available %}
+                Add to Basket
+              {% else %}
+                Sold Out
+              {% endif %}
+
+            </button>
+
+          {% endform %}
+
+        <!-- Payment icons -->
+        <div class="payment-security">
+
+        <h4>Payment & Security</h4>
+
+        <!-- Payment Icons -->
+        <div class="payment-icons">
+
+          {% for type in shop.enabled_payment_types %}
+            {{ type | payment_type_svg_tag }}
+          {% endfor %}
+
+        </div>
+
+        <!-- Text -->
+        <p>
+            Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.
+        </p>
+
+        </div>
+
+    </div> 
+
+  </div>
+
+  <!-- TABS -->
+  <div class="product-tabs">
+
+    <button class="tab active" data-tab="desc">Description</button>
+    <button class="tab" data-tab="details">Product Detail</button>
+    {% comment %} <button class="tab" data-tab="reviews">Reviews</button> {% endcomment %}
+    <button class="tab" data-tab="delivery">Delivery, Damage & Returns</button>
+
+    <div class="tab-content active" id="desc">
+      {{ product.description }}
+    </div>
+    <div class="tab-content" id="details">
+
+      <div class="details-card">
+
+        <h3>Product Details</h3>
+
+        <div class="details-grid">
+
+          {% if product.first_available_variant.sku != blank %}
+          <div class="detail-row">
+            <span>SKU</span>
+            <strong>{{ product.first_available_variant.sku }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.tile_material != blank %}
+          <div class="detail-row">
+            <span>Material</span>
+            <strong>
+              {{ product.metafields.custom.tile_material | default: '—' }}
+            </strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.tile_color != blank %}
+          <div class="detail-row">
+            <span>Colour</span>
+            <strong>{{ product.metafields.custom.tile_color }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.thickness != blank %}
+          <div class="detail-row">
+            <span>Thickness</span>
+            <strong>{{ product.metafields.custom.thickness }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.slip_rating != blank %}
+          <div class="detail-row">
+            <span>Anti-Slip Rating</span>
+            <strong>{{ product.metafields.custom.slip_rating }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.tile_finish != blank %}
+          <div class="detail-row">
+            <span>Finish</span>
+            <strong>{{ product.metafields.custom.tile_finish }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.floor_or_wall != blank %}
+          <div class="detail-row">
+            <span>Floor or Wall</span>
+            <strong>{{ product.metafields.custom.floor_or_wall }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.size != blank %}
+          <div class="detail-row">
+            <span>Size</span>
+            <strong>{{ product.metafields.custom.size }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.rectified != blank %}
+          <div class="detail-row">
+            <span>Rectified</span>
+            <strong>{{ product.metafields.custom.rectified }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.suitable_for_underfloor_heating != blank %}
+          <div class="detail-row">
+            <span>Underfloor Heating</span>
+            <strong>{{ product.metafields.custom.suitable_for_underfloor_heating }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.box_quantity != blank %}
+          <div class="detail-row">
+            <span>Box Quantity</span>
+            <strong>{{ product.metafields.custom.box_quantity }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.weight != blank %}
+          <div class="detail-row">
+            <span>Weight</span>
+            <strong>{{ product.metafields.custom.weight }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.pattern_repeats != blank %}
+          <div class="detail-row">
+            <span>Pattern Repeats</span>
+            <strong>{{ product.metafields.custom.pattern_repeats }}</strong>
+          </div>
+          {% endif %}
+
+          {% if product.metafields.custom.sale_by != blank %}
+          <div class="detail-row">
+            <span>Sale By</span>
+            <strong>{{ product.metafields.custom.sale_by }}</strong>
+          </div>
+          {% endif %}
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="tab-content" id="reviews">
+
+      
+
+    </div>
+    <div class="tab-content" id="delivery">
+
+    <div class="delivery-card">
+
+      <h3>🚚 Delivery, Damage & Returns</h3>
+
+      <div class="delivery-item">
+        <strong>🚛 Pallet Delivery (Tiles & SPC)</strong>
+        <p>Delivered on a pallet (kerbside only). Driver cannot unpack or move goods inside.</p>
+      </div>
+
+      <div class="delivery-item">
+        <strong>💥 Damage / Incorrect Delivery</strong>
+        <p>Notify us within <b>2 working days</b>. Provide photos while items are still on pallet.</p>
+        <p>Email: <a href="mailto:sales@tilesparadiseuk.com">sales@tilesparadiseuk.com</a></p>
+      </div>
+
+      <div class="delivery-item">
+        <strong>✅ Check Before Installation</strong>
+        <p>Inspect all tiles before cutting or installation.</p>
+      </div>
+
+      <div class="delivery-item">
+        <strong>🔄 Returns</strong>
+        <p>Returns allowed within 14 days. Must be unused & sealed.</p>
+      </div>
+
+    </div>
+
+    </div>
+
+  </div>
+
+</section>
+<style>
+/* Layout */
+.product-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.product-meta__label-list{
+display: none;
+}
+
+/* Gallery */
+.main-image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Thumbnail slider */
+.thumb-slider {
+  margin-top: 10px;
+}
+
+.thumb-slider .swiper-slide {
+  width: auto !important;
+}
+
+.thumb-slider img {
+width: 211px;
+    height: 220px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.thumb-slider img:hover {
+  border-color: #016FD0;
+}
+
+/* Info */
+
+.product-info h1.product-meta__title.heading.h1 {
+    font-family: Fraunces;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 45.8px;
+    letter-spacing: 0%;
+    color: #000000;
+}
+
+.price .current {
+  color: #016FD0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.qty-section {
+    margin-bottom: 20px;
+}
+
+.price .compare {
+  color: red;
+  font-size: 14px;
+}
+
+/* Button */
+.add-to-cart {
+  background: green;
+  color: #fff;
+  padding: 14px;
+  width: 100%;
+  border-radius: 6px;
+  border: none;
+}
+
+/* Tabs */
+.product-tabs {
+  margin-top: 40px;
+}
+
+.tab {
+    padding: 10px;
+    cursor: pointer;
+    font-family: Fraunces;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-transform: capitalize;
+}
+
+.tab.active {
+    border-bottom: 2px solid #000;
+    font-family: Fraunces;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0%;
+    text-align: center;
+    text-transform: capitalize;
+    color: #000;
+}
+
+.tab-content {
+  display: none;
+  margin-top: 20px;
+  color:#000;
+}
+
+.tab-content ul li {
+  color: #000;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Title */
+.product-title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Rating */
+.rating {
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+
+span.price.price--highlight.gg {
+    color: #016FD0 !important;
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+
+.price--compare {
+    color: #999;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 45.8px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    text-decoration: line-through;
+    color: #000;
+}
+
+.save_amount {
+    color: #00A700;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 45.8px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+}
+
+/* Divider */
+.product-info hr {
+  margin: 15px 0;
+}
+
+/* Quantity */
+.qty-title {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    color: #000000;
+}
+
+
+
+.qty-inputs input {
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  width: 120px;
+  background-color: #D9EDFF;
+  color: #000;
+}
+
+.qty-inputs span {
+    color: #000;
+}
+
+.qty-note {
+    color: #000000;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+}
+
+.stock-warning {
+    color: #FF0000;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: 0%;
+}
+
+/* Samples */
+.sample-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.sample-btn {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #000000;
+    background: #fff;
+    border-radius: 12px;
+    border-width: 1px;
+    opacity: 1;
+    color: #000000;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: 0px;
+    text-align: center;
+    font-family: Roboto;
+}
+
+/* Klarna */
+.klarna {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+/* Delivery */
+.delivery {
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.payment-term-prod-section {
+    margin: 10px 0px 20px 0px;
+}
+
+/* Add to cart */
+.add-to-cart {
+  width: 100%;
+  background: #1a7f1a;
+  color: #fff;
+  padding: 14px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+}
+
+/* ================= PAYMENT SECTION ================= */
+.payment-security {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.payment-security h4 {
+    margin-bottom: 8px;
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 130%;
+    letter-spacing: 0px;
+    color: #000;
+}
+
+/* Icons row */
+.payment-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+/* Shopify SVG icons */
+.payment-icons svg {
+  height: 22px;
+  width: auto;
+}
+
+/* Text */
+.payment-security p {
+    color: #000;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 130%;
+    letter-spacing: 0px;
+}
+
+/* ===== PRODUCT DETAILS CARD ===== */
+.details-card {
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  max-width: 750px;
+}
+
+.details-card h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Grid layout */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 40px;
+}
+
+
+/* Each row */
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 32px;
+}
+
+/* Label */
+.detail-row span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Value */
+.detail-row strong {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ===== DELIVERY CARD ===== */
+.delivery-card {
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  max-width: 750px;
+}
+
+.delivery-card h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.delivery-item {
+  margin-bottom: 15px;
+}
+
+.delivery-item strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #111827;
+}
+
+.delivery-item p {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 0;
+}
+
+.delivery-item a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.custom-delivery {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #111;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.delivery-icon {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.klarna-delivery-line {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #111;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.klarna-delivery-line::before {
+  content: "✔";
+  color: green;
+  font-weight: bold;
+}
+
+span.product-form__info-title.text--strong.jj {
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    color: #000 !important;
+}
+
+.custom_product_calculation .quantity-selector.quantity-selector--product {
+    width: 207px;
+    height: 45px;
+    opacity: 1;
+    border-radius: 12px;
+    background: #D9EDFF;
+    border: 1px solid #000;
+}
+
+input#sqmInput {
+    border: none;
+}
+
+input#boxQuantityDisplay {
+    border: none;
+}
+
+@media screen and (max-width: 768px){
+
+  .product-wrapper{
+    grid-template-columns:1fr;
+  }
+
+  .thumb-slider img{
+    width:90px;
+    height:90px;
+  }
+
+  .details-grid{
+    grid-template-columns:1fr;
+  }
+
+  .sample-buttons{
+    flex-direction:column;
+  }
+
+  .qty-inputs{
+    flex-wrap:wrap;
+  }
+
+  .custom_product_calculation .quantity-selector.quantity-selector--product {
+    width: 128px;
+  }
+  .stock-warning {
+    font-size: 18px;
+  }
+
+  .sample-btn {
+    font-size: 18px;
+  }
+
+  .qty-section {
+    margin-bottom: 5px;
+  }
+
+  span.custom-sale-badge {
+    font-size: 18px;
+  }
+  .product-form__info-content .price-list span.price.price--highlight {
+    font-size: 18px !important;
+  }
+
+  .product-form__info-item .price-list span.price.price--compare {
+    margin: 0;
+    font-size: 14px;
+  }
+  .save_amount {
+    font-size: 14px;
+  }
+
+  .tab {
+    font-size: 16px;
+  }
+
+  .tab.active {
+    font-size: 16px;
+  }
+  .payment-security p {
+    font-size: 18px;
+  }
+  .product-tabs {
+    margin-top: 10px;
+  }
+
+  .product-form__info-item hr.card__separator {
+    margin: 15px 0;
+    width: auto;
+  }
+
+  .product-form__info-content .price-list {
+    margin-bottom: 0px;
+  }
+
+  .product-info h1.product-meta__title.heading.h1 {
+    line-height: 25.8px;
+  }
+}
+
+
+
+</style>    
+<script>
+document.querySelectorAll(".tab").forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.tab).classList.add("active");
+
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  const container = document.getElementById('bundle-product_reviews');
+  if (!container) return;
+
+  const MAX_WAIT = 4000;
+  const start = Date.now();
+
+  function hasReviews() {
+    return document.querySelector('.vtl-pr-review, .vtl-pr-main-widget');
+  }
+
+  function check(final = false) {
+    if (hasReviews()) {
+      return; // show normally
+    }
+
+    if (final) {
+      // Hide Reviews tab if empty
+      const tabBtn = document.querySelector('[data-tab="reviews"]');
+      const tabContent = document.getElementById('reviews');
+
+      if (tabBtn) tabBtn.style.display = 'none';
+      if (tabContent) tabContent.style.display = 'none';
+    }
+  }
+
+  const observer = new MutationObserver(() => {
+    check(false);
+    if (Date.now() - start > MAX_WAIT) check(true);
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  setTimeout(() => check(true), MAX_WAIT);
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  function addBusinessDays(date, days) {
+    let result = new Date(date);
+    let added = 0;
+
+    while (added < days) {
+      result.setDate(result.getDate() + 1);
+      if (result.getDay() !== 0) added++; // skip Sunday
+    }
+
+    return result;
+  }
+
+  function formatDate(date) {
+    return date.toLocaleDateString('en-GB', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  function updateDelivery() {
+    const now = new Date();
+
+    let startDays = 2;
+    let endDays = 3;
+
+    if (now.getHours() >= 14) {
+      startDays = 3;
+      endDays = 4;
+    }
+
+    const start = addBusinessDays(now, startDays);
+    const end = addBusinessDays(now, endDays);
+
+    const text = `<strong>Get it Between </strong>${formatDate(start)} and ${formatDate(end)}.`;
+
+    const el = document.querySelector(".delivery-text-main");
+    if (el) el.innerHTML = text;
+  }
+
+  function updateCountdown() {
+    const now = new Date();
+    const cutoff = new Date();
+
+    cutoff.setHours(14, 0, 0, 0);
+
+    if (now > cutoff) {
+      cutoff.setDate(cutoff.getDate() + 1);
+    }
+
+    const diff = cutoff - now;
+
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+
+    const el = document.querySelector(".delivery-text-main");
+    if (el && !el.innerText.includes("Order in")) {
+      el.innerHTML += ` Order in ${hours} hour${hours !== 1 ? 's' : ''}`;
+    }
+  }
+
+  updateDelivery();
+  updateCountdown();
+
+});
+</script>
+
+<script>
+  
+document.addEventListener("DOMContentLoaded", function () {
+
+  const realQtyInput = document.getElementById("real-quantity-input");
+  if (!realQtyInput) return;
+
+  const sqmInput    = document.getElementById("sqmInput");
+  const boxInput    = document.getElementById("boxQuantityDisplay");
+  const tileEl      = document.querySelector(".tile_nu");
+  const actualPrice = document.getElementById("actualPrice");
+
+  /*
+  ============================================
+  CLEAN NUMBER
+  ============================================
+  */
+
+  function extractNumber(value) {
+
+    if (!value) return 0;
+
+    value = String(value)
+      .replace(",", ".")
+      .replace(/[^\d.]/g, "")
+      .trim();
+
+    return parseFloat(value) || 0;
+  }
+
+  /*
+  ============================================
+  PRODUCT DATA
+  ============================================
+  */
+
+  const tileSizeText =
+    `{{ product.metafields.custom.size.value | default: '' }}`;
+
+  const tilesPerSq =
+    extractNumber(
+      `{{ product.metafields.custom.tiles_per_sq.value | default: '' }}`
+    );
+
+  const tilesPerBox =
+    extractNumber(
+      `{{ product.metafields.custom.box_quantity.value | default: '' }}`
+    );
+
+  /*
+  ============================================
+  CALCULATE COVERAGE
+  ============================================
+  */
+
+  let coveragePerBox = 1;
+
+  /*
+  --------------------------------------------
+  METHOD 1:
+  Tile Size + Box Qty
+  --------------------------------------------
+  */
+
+  /*
+  --------------------------------------------
+  METHOD 1:
+  Tile Size in MM + Box Qty
+  --------------------------------------------
+  */
+
+  if (
+    tileSizeText.toLowerCase().includes("x") &&
+    tileSizeText.toLowerCase().includes("mm")
+  ) {
+
+    const parts =
+      tileSizeText.toLowerCase().split("x");
+
+    const width =
+      extractNumber(parts[0]);
+
+    const height =
+      extractNumber(parts[1]);
+
+    if (width && height && tilesPerBox) {
+
+      coveragePerBox =
+        ((width * height * tilesPerBox) / 1000000);
+
+    }
+
+  }
+
+  /*
+  --------------------------------------------
+  METHOD 2:
+  Tiles Per Sq + Box Qty
+  --------------------------------------------
+  */
+
+  else if (tilesPerSq && tilesPerBox) {
+
+    coveragePerBox =
+      (tilesPerSq * tilesPerBox);
+
+  }
+
+
+  /*
+  ============================================
+  FINAL COVERAGE
+  ============================================
+  */
+
+  coveragePerBox =
+    parseFloat(coveragePerBox.toFixed(2));
+
+  console.log("coveragePerBox:", coveragePerBox);
+
+  /*
+  ============================================
+  PRICE
+  ============================================
+  */
+
+  const unitPrice =
+    {{ product.price | divided_by: 100.0 }};
+
+  console.log("unitPrice:", unitPrice);
+
+  /*
+  ============================================
+  UPDATE CALCULATOR
+  ============================================
+  */
+
+  function updateCalculator(boxes, manualSqm = null) {
+
+    boxes = Math.max(1, Math.ceil(boxes));
+
+    const sqm = boxes * coveragePerBox;
+
+    const totalTiles =
+      boxes * tilesPerBox;
+
+    // quantity sent to Shopify = whole m² (your price is per m²)
+    const chargeQty = Math.max(1, Math.round(sqm));
+
+    const totalPrice =
+      chargeQty * unitPrice;
+
+    /*
+    ============================================
+    SHOPIFY QUANTITY
+    ============================================
+    */
+
+    realQtyInput.value = chargeQty;
+
+    realQtyInput.dispatchEvent(
+      new Event("change", { bubbles: true })
+    );
+
+    /*
+    ============================================
+    UPDATE INPUTS
+    ============================================
+    */
+
+    if (document.activeElement !== sqmInput) {
+
+      sqmInput.value =
+        parseFloat(sqm).toFixed(2);
+
+    }
+
+    if (document.activeElement !== boxInput) {
+
+      boxInput.value = boxes;
+
+    }
+
+    /*
+    ============================================
+    UPDATE TILES
+    ============================================
+    */
+
+    if (tileEl) {
+
+      tileEl.textContent = totalTiles;
+
+    }
+
+    /*
+    ============================================
+    UPDATE PRICE
+    ============================================
+    */
+
+    if (actualPrice) {
+
+      const safePrice =
+        isNaN(totalPrice) ? 0 : totalPrice;
+
+      actualPrice.textContent =
+        safePrice.toFixed(2);
+
+    }
+
+    /*
+    ============================================
+    COVERAGE TEXT
+    ============================================
+    */
+
+    const coverageText =
+      document.getElementById("coverageText");
+
+    if (coverageText) {
+
+      coverageText.innerHTML =
+        `1 box will cover ${coveragePerBox} m²`;
+
+    }
+
+  }
+
+  /*
+  ============================================
+  LIVE INPUT HANDLING
+  ============================================
+  */
+
+  let sqmTimeout;
+  let boxTimeout;
+
+  /*
+  ============================================
+  SQM INPUT
+  ============================================
+  */
+
+  sqmInput.addEventListener("input", function () {
+
+    clearTimeout(sqmTimeout);
+
+    sqmTimeout = setTimeout(() => {
+
+      let sqm =
+        Number(this.value);
+
+      if (isNaN(sqm) || sqm <= 0) {
+
+        sqm = coveragePerBox;
+
+      }
+
+      const boxes =
+        Math.ceil(sqm / coveragePerBox);
+
+      updateCalculator(boxes, sqm);
+
+    }, 300);
+
+  });
+
+  /*
+  ============================================
+  BOX INPUT
+  ============================================
+  */
+
+  boxInput.addEventListener("input", function () {
+
+    clearTimeout(boxTimeout);
+
+    boxTimeout = setTimeout(() => {
+
+      let boxes =
+        Number(this.value);
+
+      if (isNaN(boxes) || boxes <= 0) {
+
+        boxes = 1;
+
+      }
+
+      updateCalculator(boxes);
+
+    }, 300);
+
+  });
+
+  /*
+  ============================================
+  INITIAL LOAD
+  ============================================
+  */
+
+  updateCalculator(1);
+
+});
+</script>
+
+
+
+

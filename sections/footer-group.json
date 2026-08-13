@@ -1,0 +1,69 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-0": {
+          "type": "text",
+          "settings": {
+            "title": "CONTACT INFORMATION",
+            "content": "<p>Tel: 07562 758749 (WhatsApp Message Only)<br/>Email: sales@tilesparadiseuk.com</p>",
+            "logo": "shopify://shop_images/Logo-01_1f622ac8-c1d6-4ca9-89f3-3b6b69fc4666.png"
+          }
+        },
+        "7067e2d4-da2c-4b68-99c6-5c05a1558a4a": {
+          "type": "links",
+          "settings": {
+            "menu": "customer-service"
+          }
+        },
+        "footer-1": {
+          "type": "links",
+          "settings": {
+            "menu": "help-and-information"
+          }
+        },
+        "98ead47b-1da8-47d4-9654-c66c7cb394ce": {
+          "type": "links",
+          "settings": {
+            "menu": "shop-our-store"
+          }
+        },
+        "newsletter_custom_bU6Mbg": {
+          "type": "newsletter_custom",
+          "settings": {
+            "heading": "Lets Stay in Touch",
+            "subtext": "Sign Up Tiles Paradise emails for offers and inspiration"
+          }
+        }
+      },
+      "block_order": [
+        "footer-0",
+        "7067e2d4-da2c-4b68-99c6-5c05a1558a4a",
+        "footer-1",
+        "98ead47b-1da8-47d4-9654-c66c7cb394ce",
+        "newsletter_custom_bU6Mbg"
+      ],
+      "settings": {
+        "show_social_media": false,
+        "show_payment_icons": true,
+        "show_locale_selector": true,
+        "show_country_selector": true
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

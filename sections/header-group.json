@@ -1,0 +1,294 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "item_byGND8": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Star_36_1.png",
+            "text": "Rated 4.8★ by 1,000+ customers"
+          }
+        },
+        "item_qmAkgN": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/free-shipping-1.png",
+            "text": "Fast, Free Delivery Over £499"
+          }
+        },
+        "item_yWkDXT": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/product-return-1.png",
+            "text": "0% interest-free finance"
+          }
+        }
+      },
+      "block_order": [
+        "item_byGND8",
+        "item_qmAkgN",
+        "item_yWkDXT"
+      ],
+      "settings": {
+        "background": "#000000",
+        "text_color": "#ffffff",
+        "text": "",
+        "text_position": "center",
+        "link": "",
+        "show_newsletter": false,
+        "newsletter_button": "Subscribe & Save",
+        "newsletter_title": "Newsletter",
+        "newsletter_content": "<p>By subscribing, you'll receive exclusive access to our latest news, updates, and special offers.</p>"
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "mega_menu_hb9R8H": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Toilets",
+            "custom_title_1": "Toilets",
+            "custom_linklist_1": "toilets-toilets",
+            "custom_title_2": "Toilets By Feature",
+            "custom_linklist_2": "toilets-toilets-by-feature",
+            "custom_title_3": "Toilets By Style",
+            "custom_linklist_3": "toilets-toilets-by-style",
+            "custom_title_4": "Toilets By Colour",
+            "custom_linklist_4": "toilets-toilets-by-colour",
+            "custom_title_5": "",
+            "custom_linklist_5": "",
+            "custom_title_6": "",
+            "custom_linklist_6": "",
+            "custom_title_7": "",
+            "custom_linklist_7": "",
+            "image_1_heading": "Your image",
+            "image_1_text": "Tell your story",
+            "image_1_link": ""
+          }
+        },
+        "mega_menu_jga7gn": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Adhesives & Accessories",
+            "custom_title_1": "Adhesives & Accessories",
+            "custom_linklist_1": "adhesives-accessories",
+            "custom_title_2": "",
+            "custom_linklist_2": "",
+            "custom_title_3": "",
+            "custom_linklist_3": "",
+            "custom_title_4": "",
+            "custom_linklist_4": "",
+            "custom_title_5": "",
+            "custom_linklist_5": "",
+            "custom_title_6": "",
+            "custom_linklist_6": "",
+            "custom_title_7": "",
+            "custom_linklist_7": "",
+            "image_1_heading": "Your image",
+            "image_1_text": "Tell your story",
+            "image_1_link": ""
+          }
+        },
+        "mega_menu_DPHFVP": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Outdoor",
+            "custom_title_1": "Size",
+            "custom_linklist_1": "outdoor-tiles-size",
+            "custom_title_2": "Colour",
+            "custom_linklist_2": "outdoor-tiles-colour",
+            "custom_title_3": "",
+            "custom_linklist_3": "",
+            "custom_title_4": "",
+            "custom_linklist_4": "",
+            "custom_title_5": "",
+            "custom_linklist_5": "",
+            "custom_title_6": "",
+            "custom_linklist_6": "",
+            "custom_title_7": "",
+            "custom_linklist_7": "",
+            "image_1_heading": "Your image",
+            "image_1_text": "Tell your story",
+            "image_1_link": ""
+          }
+        },
+        "mega_menu_PYXCYT": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Wall",
+            "custom_title_1": "Size",
+            "custom_linklist_1": "wall-tiles-size",
+            "custom_title_2": "Colour",
+            "custom_linklist_2": "wall-tiles-colour",
+            "custom_title_3": "Feature",
+            "custom_linklist_3": "wall-tiles-feature",
+            "custom_title_4": "",
+            "custom_linklist_4": "",
+            "custom_title_5": "",
+            "custom_linklist_5": "",
+            "custom_title_6": "",
+            "custom_linklist_6": "",
+            "custom_title_7": "",
+            "custom_linklist_7": "",
+            "image_1_heading": "Your image",
+            "image_1_text": "Tell your story",
+            "image_1_link": ""
+          }
+        },
+        "mega_menu_QBdGGg": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Kitchen",
+            "custom_title_1": "Type",
+            "custom_linklist_1": "kitchen-tiles-type",
+            "custom_title_2": "Material",
+            "custom_linklist_2": "kitchen-tiles-material",
+            "custom_title_3": "Colour",
+            "custom_linklist_3": "kitchen-tiles-colour",
+            "custom_title_4": "",
+            "custom_linklist_4": "",
+            "custom_title_5": "",
+            "custom_linklist_5": "",
+            "custom_title_6": "",
+            "custom_linklist_6": "",
+            "custom_title_7": "",
+            "custom_linklist_7": "",
+            "image_1_heading": "Your image",
+            "image_1_text": "Tell your story",
+            "image_1_link": ""
+          }
+        },
+        "mega_menu_r43QLX": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Floor",
+            "custom_title_1": "Size",
+            "custom_linklist_1": "floor-tiles-size",
+            "custom_title_2": "Colour",
+            "custom_linklist_2": "floor-tiles-colour",
+            "custom_title_3": "Feature",
+            "custom_linklist_3": "floor-tiles-feature",
+            "custom_title_4": "",
+            "custom_linklist_4": "",
+            "custom_title_5": "",
+            "custom_linklist_5": "",
+            "custom_title_6": "",
+            "custom_linklist_6": "",
+            "custom_title_7": "",
+            "custom_linklist_7": "",
+            "image_1_heading": "Your image",
+            "image_1_text": "Tell your story",
+            "image_1_link": ""
+          }
+        },
+        "mega_menu_sample2": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Bathroom",
+            "custom_title_1": "Type",
+            "custom_linklist_1": "bathroom-tiles-type",
+            "custom_title_2": "Material",
+            "custom_linklist_2": "bathroom-tiles-material",
+            "custom_title_3": "Colour",
+            "custom_linklist_3": "bathroom-tiles-colour",
+            "custom_title_4": "Suitability",
+            "custom_linklist_4": "bathroom-tiles-suitability",
+            "custom_title_5": "Style",
+            "custom_linklist_5": "bathroom-tiles-style",
+            "custom_title_6": "Size",
+            "custom_linklist_6": "bathroom-tiles-size",
+            "custom_title_7": "",
+            "custom_linklist_7": "",
+            "image_1_heading": "BASIN SALE",
+            "image_1_text": "Huge Discounts",
+            "image_1_link": ""
+          }
+        },
+        "mega_menu_T7HRdy": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "All",
+            "custom_title_1": "Room",
+            "custom_linklist_1": "all-room",
+            "custom_title_2": "Suitability",
+            "custom_linklist_2": "all-suitability",
+            "custom_title_3": "Style",
+            "custom_linklist_3": "all-style",
+            "custom_title_4": "Colour",
+            "custom_linklist_4": "all-colour",
+            "custom_title_5": "Finish",
+            "custom_linklist_5": "all-finish",
+            "custom_title_6": "Material",
+            "custom_linklist_6": "all-material",
+            "custom_title_7": "Size",
+            "custom_linklist_7": "all-size",
+            "image_1_heading": "Your image",
+            "image_1_text": "Tell your story",
+            "image_1_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_hb9R8H",
+        "mega_menu_jga7gn",
+        "mega_menu_DPHFVP",
+        "mega_menu_PYXCYT",
+        "mega_menu_QBdGGg",
+        "mega_menu_r43QLX",
+        "mega_menu_sample2",
+        "mega_menu_T7HRdy"
+      ],
+      "custom_css": [
+        ".nav-bar__inner {text-align: center;}"
+      ],
+      "settings": {
+        "enable_sticky_header": true,
+        "logo": "shopify://shop_images/Logo-01.png",
+        "logo_max_width": 195,
+        "mobile_logo_max_width": 100,
+        "show_mobile_contact": false,
+        "show_phone_icon": false,
+        "mobile_phone": "07562 758749",
+        "mobile_timing": "Mon-Sat, 8am-6pm",
+        "mobile_icon": "shopify://shop_images/call-icon.png",
+        "show_locale_selector": true,
+        "show_country_selector": false,
+        "navigation_menu": "main-menu-2-1",
+        "navigation_mobile_menu": "main-menu-2-1",
+        "desktop_navigation_layout": "inline",
+        "desktop_navigation_open_trigger": "click",
+        "show_navigation_social_media": true,
+        "navigation_phone_number": "",
+        "navigation_email": "sales@tilesparadiseuk.com",
+        "show_condensed_search": true,
+        "show_search_filter": false,
+        "search_menu": "",
+        "show_search_menu_title": true
+      }
+    },
+    "176869648164908762": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "176869648164908762"
+  ]
+}

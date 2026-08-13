@@ -1,0 +1,44 @@
+<div class="page-width">
+  <div class="breadcrumb">
+    <a href="{{ routes.root_url }}" class="home-brd">Home</a>
+    <span> / </span>
+    <span class="collection-title-brd">{{ collection.title }}</span>
+  </div>
+</div>
+
+<style>
+.breadcrumb {
+  padding: 50px 50px 0px 50px;
+}
+
+.home-brd {
+    color: #000;
+    text-decoration: none;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25.6px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    text-transform: capitalize;
+}
+
+.collection-title-brd {
+    color: #016FD0;
+    text-decoration: none;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25.6px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    text-transform: capitalize;
+}
+
+@media screen and (max-width: 768px) {
+  .breadcrumb {
+      padding: 50px 20px 0px 20px;
+  }
+}
+
+</style>

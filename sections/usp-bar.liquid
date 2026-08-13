@@ -1,0 +1,177 @@
+<section class="usp-bar {{ section.settings.custom_class }}" 
+  style="
+    background: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+
+  <div class="page-width">
+    <div class="usp-wrapper">
+
+      {% for block in section.blocks %}
+        <div class="usp-item">
+
+          {% if block.settings.icon != blank %}
+            <div class="usp-icon">
+            <span class="icon-circle">
+                <img src="{{ block.settings.icon | image_url: width: 60 }}" alt="{{ block.settings.heading | escape | default: 'Icon' }}" width="60" height="{{ 60 | divided_by: block.settings.icon.aspect_ratio | round }}" loading="lazy">
+            </span>
+            </div>
+          {% endif %}
+
+          <div class="usp-content">
+            <div class="h4">{{ block.settings.heading }}</div>
+            <p>{{ block.settings.text }}</p>
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+<style>
+
+/* WRAPPER */
+.usp-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ICON */
+.usp-icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* TEXT */
+.usp-content .h4 {
+  color: {{ section.settings.heading_color }};
+}
+
+.usp-content p {
+  color: {{ section.settings.text_color }};
+}
+
+/* Icon inside */
+.usp-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+  .usp-wrapper {
+    flex-direction: column;
+  }
+
+  .usp-item::after {
+    display: none;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "USP Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class",
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1e73be"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 12,
+      "max": 24,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text Font Size",
+      "min": 10,
+      "max": 18,
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#dbeafe"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 80,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 80,
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "usp",
+      "name": "USP Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Rated Excellent"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Read Reviews From Our Customers"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "USP Bar",
+      "blocks": [
+        { "type": "usp" },
+        { "type": "usp" },
+        { "type": "usp" },
+        { "type": "usp" }
+      ]
+    }
+  ]
+}
+{% endschema %}

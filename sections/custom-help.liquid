@@ -1,0 +1,244 @@
+<section class="custom-help-section" style="background-color: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="container page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="custom-help-title">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    <div class="custom-help-grid">
+      {% for block in section.blocks %}
+        <div class="custom-help-card" {{ block.shopify_attributes }}>
+          <div class="custom-help-image">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+          
+          <div class="custom-help-content">
+            {% if block.settings.title != blank %}
+              <h3 class="custom-help-card-title">{{ block.settings.title }}</h3>
+            {% endif %}
+            
+            {% if block.settings.text != blank %}
+              <div class="custom-help-card-text">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}
+            
+            {% if block.settings.link_text != blank and block.settings.link_url != blank %}
+              <a href="{{ block.settings.link_url }}" class="custom-help-card-link">
+                {{ block.settings.link_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.custom-help-section {
+  width: 100%;
+}
+.custom-help-title {
+  font-family: var(--heading-font-family), sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.custom-help-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+.custom-help-card {
+  display: flex;
+  flex-direction: column;
+  width: calc(25% - 23px);
+  min-width: 220px;
+}
+.custom-help-image {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 100%; /* Square aspect ratio */
+}
+.custom-help-image img, .custom-help-image svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.custom-help-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #353535;
+  margin-bottom: 10px;
+}
+.custom-help-card-text {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+.custom-help-card-text p {
+  margin: 0;
+}
+.custom-help-card-link {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+.custom-help-card-link:hover {
+  color: #016fd0;
+  text-decoration-color: #016fd0;
+}
+
+@media screen and (max-width: 990px) {
+  .custom-help-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .custom-help-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .custom-help-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .custom-help-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .custom-help-image {
+    width: 100%;
+    padding-bottom: 100%; /* 1:1 square */
+    margin-bottom: 12px;
+    margin-right: 0;
+    border-radius: 8px;
+  }
+  .custom-help-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .custom-help-card-title {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .custom-help-card-text {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .custom-help-card-link {
+    font-size: 12px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Help Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "We're here to help"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "default": 60,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "default": 60,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Recommended size: 600 x 600px (1:1 aspect ratio)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Contact Us"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Chat, email, call or WhatsApp - our team will help with any tile query.</p>"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Chat to Us"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL",
+          "default": "/"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Help Section",
+      "blocks": [
+        { "type": "column" },
+        { "type": "column" },
+        { "type": "column" },
+        { "type": "column" }
+      ]
+    }
+  ]
+}
+{% endschema %}

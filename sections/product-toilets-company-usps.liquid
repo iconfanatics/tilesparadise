@@ -1,0 +1,154 @@
+<div class="toilet-company-usps">
+  <div class="page-width">
+    <div class="toilet-usps-grid">
+      <div class="toilet-usp-item">
+        <div class="toilet-usp-icon">{{ section.settings.usp1_icon }}</div>
+        <div class="toilet-usp-title">{{ section.settings.usp1_title }}</div>
+        <div class="toilet-usp-text">{{ section.settings.usp1_text }}</div>
+      </div>
+      <div class="toilet-usp-item">
+        <div class="toilet-usp-icon">{{ section.settings.usp2_icon }}</div>
+        <div class="toilet-usp-title">{{ section.settings.usp2_title }}</div>
+        <div class="toilet-usp-text">{{ section.settings.usp2_text }}</div>
+      </div>
+      <div class="toilet-usp-item">
+        <div class="toilet-usp-icon">{{ section.settings.usp3_icon }}</div>
+        <div class="toilet-usp-title">{{ section.settings.usp3_title }}</div>
+        <div class="toilet-usp-text">{{ section.settings.usp3_text }}</div>
+      </div>
+      <div class="toilet-usp-item">
+        <div class="toilet-usp-icon">{{ section.settings.usp4_icon }}</div>
+        <div class="toilet-usp-title">{{ section.settings.usp4_title }}</div>
+        <div class="toilet-usp-text">{{ section.settings.usp4_text }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .toilet-company-usps {
+    padding: 40px 0;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    border-bottom: 1px solid #e9ecef;
+    margin: 30px 0;
+  }
+  .toilet-usps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .toilet-usps-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+  .toilet-usp-item {
+    padding: 16px 12px;
+  }
+  .toilet-usp-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  .toilet-usp-title {
+    font-family: "Jost", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #101828;
+  }
+  .toilet-usp-text {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    color: #667085;
+    line-height: 1.4;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Toilet Company USPs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "usp1_icon",
+      "label": "USP 1 Icon (emoji)",
+      "default": "🎧"
+    },
+    {
+      "type": "text",
+      "id": "usp1_title",
+      "label": "USP 1 Title",
+      "default": "Expert Support"
+    },
+    {
+      "type": "text",
+      "id": "usp1_text",
+      "label": "USP 1 Text",
+      "default": "UK-based bathroom specialists on hand to help"
+    },
+    {
+      "type": "text",
+      "id": "usp2_icon",
+      "label": "USP 2 Icon (emoji)",
+      "default": "🚚"
+    },
+    {
+      "type": "text",
+      "id": "usp2_title",
+      "label": "USP 2 Title",
+      "default": "Fast UK Delivery"
+    },
+    {
+      "type": "text",
+      "id": "usp2_text",
+      "label": "USP 2 Text",
+      "default": "Nationwide delivery, tracked & insured"
+    },
+    {
+      "type": "text",
+      "id": "usp3_icon",
+      "label": "USP 3 Icon (emoji)",
+      "default": "🏆"
+    },
+    {
+      "type": "text",
+      "id": "usp3_title",
+      "label": "USP 3 Title",
+      "default": "Premium Brands"
+    },
+    {
+      "type": "text",
+      "id": "usp3_text",
+      "label": "USP 3 Text",
+      "default": "Carefully selected quality bathroom products"
+    },
+    {
+      "type": "text",
+      "id": "usp4_icon",
+      "label": "USP 4 Icon (emoji)",
+      "default": "⭐"
+    },
+    {
+      "type": "text",
+      "id": "usp4_title",
+      "label": "USP 4 Title",
+      "default": "5 Year Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "usp4_text",
+      "label": "USP 4 Text",
+      "default": "Full manufacturer guarantee on all toilets"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Toilet Company USPs"
+    }
+  ]
+}
+{% endschema %}

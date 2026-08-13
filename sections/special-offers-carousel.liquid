@@ -1,0 +1,380 @@
+<section class="special-offers-carousel {{ section.settings.custom_class }}" 
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+
+  <div class="page-width">
+
+    <!-- HEADER -->
+    <div class="so-header">
+      <h2 style="
+        font-size: {{ section.settings.heading_size }}px;
+        color: {{ section.settings.heading_color }};
+        text-align: {{ section.settings.heading_align }};
+      ">
+        {{ section.settings.heading }}
+      </h2>
+
+      {% if section.settings.show_view_all %}
+        <a href="{{ section.settings.view_all_link }}" class="view-all">
+          {{ section.settings.view_all_text }} <img class="right-arrow-icon" src="{{ 'right-arrow.png' | file_url }}" alt="arrow">
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- SWIPER -->
+    <div class="swiper special-offers-swiper">
+      <div class="swiper-wrapper">
+
+        {% assign collection = section.settings.collection %}
+
+        {% for product in collection.products limit: section.settings.products_to_show %}
+          <div class="swiper-slide">
+            {%- render 'product-item',
+            product: product,
+            grid_classes: '',
+            show_add_to_cart: true,
+            show_shop_button: true,
+            shop_button_label: section.settings.button_text,
+            enable_sample_button: section.settings.enable_sample_button,
+            sample_button_label: section.settings.sample_button_label
+            -%}
+          </div>
+        {% endfor %}
+
+      </div>
+
+      <!-- ARROWS -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      <!-- DOTS -->
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SWIPER CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  new Swiper('.special-offers-swiper', {
+    slidesPerView: {{ section.settings.slides_desktop }},
+    spaceBetween: 16,
+    loop: false,
+    preventClicks: false,
+    preventClicksPropagation: false,
+    simulateTouch: false,
+
+    navigation: {
+      nextEl: '.special-offers-carousel .swiper-button-next',
+      prevEl: '.special-offers-carousel .swiper-button-prev',
+    },
+
+    pagination: {
+      el: '.special-offers-carousel .swiper-pagination',
+      clickable: true,
+    },
+
+    breakpoints: {
+      320: {
+        slidesPerView: {{ section.settings.slides_mobile }},
+        simulateTouch: true
+      },
+      768: {
+        slidesPerView: {{ section.settings.slides_tablet }},
+        simulateTouch: false
+      },
+      1024: {
+        slidesPerView: {{ section.settings.slides_desktop }},
+        simulateTouch: false
+      }
+    }
+  });
+});
+</script>
+
+<style>
+/* SECTION */
+
+/* HEADER */
+.special-offers-carousel .so-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+/* CARD */
+.special-offers-carousel .product-item {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  height: 480px;
+}
+
+/* IMAGE WRAPPER */
+.special-offers-carousel .product-item__image-wrapper {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+/* FIX SHOPIFY ASPECT RATIO ISSUE */
+.special-offers-carousel .aspect-ratio {
+  padding-bottom: 0 !important;
+  height: 100% !important;
+}
+
+/* IMAGE */
+
+
+
+/* CONTENT */
+.special-offers-carousel .product-item__info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 12px;
+}
+
+/* TITLE */
+.special-offers-carousel .product-item__title {
+  font-size: 16px;
+  min-height: 42px;
+  margin-bottom: 6px;
+}
+
+/* PRICE */
+.special-offers-carousel .price {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* BUTTON FIX */
+.special-offers-carousel .product-item__action-list {
+  display: flex !important;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.special-offers-carousel .custom-product-buttons {
+  display: flex !important;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.special-offers-carousel .product-item__action-button {
+  width: 100%;
+  border-radius: 6px;
+  padding: 10px;
+  font-weight: 600;
+}
+
+button.product-item__action-button.button.button--small.button--primary {
+    background: #016FD0;
+}
+
+/* SWIPER FIX */
+
+
+
+/* ARROWS */
+.special-offers-carousel .swiper-button-next,
+.special-offers-carousel .swiper-button-prev {
+  background: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  display:none;
+}
+
+/* DOTS */
+.special-offers-carousel .swiper-pagination-bullet {
+  background: #ccc;
+}
+
+.special-offers-carousel .swiper-pagination-bullet-active {
+  background: #000;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Special Offers Carousel",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class",
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Special Offers",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 50,
+      "step": 2,
+      "default": 28,
+      "label": "Heading Size"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#1e73be",
+      "label": "Heading Color"
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "label": "Heading Alignment"
+    },
+    {
+    "type": "range",
+    "id": "title_size",
+    "label": "Title Font Size",
+    "min": 12,
+    "max": 30,
+    "step": 1,
+    "default": 16
+    },
+    {
+    "type": "color",
+    "id": "title_color",
+    "label": "Title Color",
+    "default": "#000000"
+    },
+    {
+    "type": "select",
+    "id": "text_align",
+    "label": "Text Alignment",
+    "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+    ],
+    "default": "left"
+    },
+
+    {
+    "type": "color",
+    "id": "button_bg",
+    "label": "Button Background",
+    "default": "#1e73be"
+    },
+    {
+    "type": "color",
+    "id": "button_text_color",
+    "label": "Button Text Color",
+    "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Show View All"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "default": "View All",
+      "label": "View All Text"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "default": "Shop Now",
+      "label": "Button Text"
+    },
+
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 8,
+      "label": "Products to Show"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "label": "Top Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "label": "Bottom Padding"
+    },
+    {
+  "type": "range",
+  "id": "slides_desktop",
+  "label": "Slides (Desktop)",
+  "min": 2,
+  "max": 6,
+  "default": 4
+},
+{
+  "type": "range",
+  "id": "slides_tablet",
+  "label": "Slides (Tablet)",
+  "min": 2,
+  "max": 4,
+  "default": 3
+},
+{
+  "type": "range",
+  "id": "slides_mobile",
+  "label": "Slides (Mobile)",
+  "min": 1,
+  "max": 2,
+  "step": 0.1,
+  "default": 1.2
+}
+  ],
+  "presets": [
+    {
+      "name": "Special Offers Carousel"
+    }
+  ]
+}
+{% endschema %}

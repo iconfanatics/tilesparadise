@@ -1,0 +1,114 @@
+{% schema %}
+{
+  "name": "Related Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Related Popular Categories"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f6f5f3"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_link",
+      "name": "Category Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Name",
+          "default": "Category Name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related Categories",
+      "blocks": [
+        { "type": "category_link", "settings": { "title": "Bathroom Wall Tiles" } },
+        { "type": "category_link", "settings": { "title": "Kitchen Wall Tiles" } },
+        { "type": "category_link", "settings": { "title": "Kitchen Splash Back Tiles" } },
+        { "type": "category_link", "settings": { "title": "Country Tiles" } },
+        { "type": "category_link", "settings": { "title": "Rustic Tiles" } },
+        { "type": "category_link", "settings": { "title": "Ceramic Tiles" } },
+        { "type": "category_link", "settings": { "title": "White Wall Tiles" } },
+        { "type": "category_link", "settings": { "title": "White Bathroom Tiles" } },
+        { "type": "category_link", "settings": { "title": "White Kitchen Tiles" } },
+        { "type": "category_link", "settings": { "title": "Zellige Effect Tiles" } },
+        { "type": "category_link", "settings": { "title": "Gloss Tiles" } },
+        { "type": "category_link", "settings": { "title": "Metro Tiles" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="tp-related-cats" style="background-color: {{ section.settings.bg_color }};">
+  <div class="tp-related-cats-inner">
+    {%- if section.settings.title != blank -%}
+      <h2 class="tp-related-cats-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+    
+    <div class="tp-related-cats-list">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link | default: '#' }}" class="tp-related-cat-btn" {{ block.shopify_attributes }}>
+          {{ block.settings.title }}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .tp-related-cats {
+    padding: 60px 20px;
+  }
+  .tp-related-cats-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .tp-related-cats-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 30px;
+    font-family: Arial, sans-serif;
+  }
+  .tp-related-cats-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .tp-related-cat-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #ffffff;
+    color: #2d3748;
+    border: 1px solid #d1d5db;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    font-family: Arial, sans-serif;
+  }
+  .tp-related-cat-btn:hover {
+    border-color: #4a5568;
+    color: #111;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+</style>
