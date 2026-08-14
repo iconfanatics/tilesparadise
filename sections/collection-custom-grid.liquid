@@ -133,6 +133,7 @@
         <!-- Grid -->
         <div class="product-grid" id="productGrid">
           {% for product in collection.products %}
+{% assign outer_loop_index = forloop.index %}
 
             {% assign show_per_m2 = true %}
             {% for col in product.collections %}
@@ -161,7 +162,7 @@
                 {% if product.featured_image %}
                   {%- assign loading_attr = 'lazy' -%}
                   {%- assign fetchpriority_attr = 'auto' -%}
-                  {%- if forloop.index <= 4 -%}
+                  {%- if outer_loop_index <= 4 -%}
                     {%- assign loading_attr = 'eager' -%}
                     {%- assign fetchpriority_attr = 'high' -%}
                   {%- endif -%}
