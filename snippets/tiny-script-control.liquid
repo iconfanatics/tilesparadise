@@ -19,4 +19,10 @@
 {%- assign modified_content_for_header = modified_content_for_header | replace: ' src="https://cdn.shopify.com/s/javascripts/tricorder', ' type="text/lazyload" src="https://cdn.shopify.com/s/javascripts/tricorder' -%}
 {%- assign modified_content_for_header = modified_content_for_header | replace: ' src="https://shopify-chat.shopifyapps.com', ' type="text/lazyload" src="https://shopify-chat.shopifyapps.com' -%}
 
+
+{%- comment -%} Delay Facebook Pixel, Clarity, and Klaviyo {%- endcomment -%}
+{%- assign modified_content_for_header = modified_content_for_header | replace: ' src="https://connect.facebook.net', ' type="text/lazyload" src="https://connect.facebook.net' -%}
+{%- assign modified_content_for_header = modified_content_for_header | replace: ' src="https://scripts.clarity.ms', ' type="text/lazyload" src="https://scripts.clarity.ms' -%}
+{%- assign modified_content_for_header = modified_content_for_header | replace: ' src="https://static.klaviyo.com', ' type="text/lazyload" src="https://static.klaviyo.com' -%}
+
 {{ modified_content_for_header }}
