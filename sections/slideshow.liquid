@@ -110,7 +110,7 @@
         {%- endcapture -%}
 
         {%- if block.settings.link != blank and block.settings.button_text == blank -%}
-          <a href="{{ block.settings.link }}" class="slideshow__slide {% if block.settings.show_overlay %}slideshow__slide--overlay{% endif %} {% if forloop.first %}is-selected{% endif %}" id="block-{{ block.id }}" data-block-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link }}" class="slideshow__slide {% if block.settings.show_overlay %}slideshow__slide--overlay{% endif %} {% if forloop.first %}is-selected{% endif %}" id="block-{{ block.id }}" data-block-index="{{ forloop.index0 }}" aria-label="{{ block.settings.title | escape | default: 'Slide' }}" {% unless forloop.first %}tabindex="-1"{% endunless %} {{ block.shopify_attributes }}>
             {{- slide_inner -}}
           </a>
         {%- else -%}
