@@ -280,5 +280,50 @@ data-namespace="PayPalSDK">
     
   })();
 </script>
-  </body>
+  
+<!-- ACCESSIBILITY FORCE FIX FOR AGENTS -->
+<script>
+  (function() {
+    function enforceA11y() {
+      document.querySelectorAll('.header__search-button, [data-action="toggle-search"]').forEach(function(btn) {
+        if (btn.tagName === 'BUTTON' && (!btn.hasAttribute('aria-label') || btn.getAttribute('aria-label') !== 'Search')) {
+          btn.setAttribute('aria-label', 'Search');
+        }
+      });
+      document.querySelectorAll('.slideshow__slide, .flickity-slider > a').forEach(function(slide) {
+        if (slide.tagName === 'A') {
+          slide.setAttribute('aria-label', slide.getAttribute('aria-label') || 'Slide');
+        }
+        if (slide.getAttribute('aria-hidden') === 'true') {
+          slide.setAttribute('tabindex', '-1');
+        }
+      });
+    }
+
+    // Run immediately
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', enforceA11y);
+    } else {
+      enforceA11y();
+    }
+
+    // Use MutationObserver to catch Flickity dynamically adding aria-hidden
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        enforceA11y();
+      });
+    });
+
+    if (document.body) {
+      observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-hidden', 'class'] });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-hidden', 'class'] });
+      });
+    }
+  })();
+</script>
+<!-- END ACCESSIBILITY FORCE FIX -->
+</body>
+
 </html>
