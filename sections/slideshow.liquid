@@ -25,9 +25,32 @@
   </style>
 {%- endif -%}
 
-<section data-section-id="{{ section.id }}" data-section-type="slideshow" data-section-settings='{{ section_settings }}'>
+<style>
+  .slideshow__track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar Edge */
+    width: 100%;
+  }
+  .slideshow__track::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+  }
+  .slideshow__track .slideshow__slide {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+  }
+</style>
+
+<section data-section-id="{{ section.id }}" data-section-type="slideshow-css" data-section-settings='{{ section_settings }}'>
   <div {% unless section.settings.edge_to_edge %}class="container container--flush"{% endunless %}>
     <div class="slideshow slideshow--{{ section.settings.section_size | replace: '_', '-' }} {% if section.settings.edge_to_edge %}slideshow--edge2edge{% endif %}" style="color: {{ section.blocks.first.settings.text_color }}">
+      <div class="slideshow__track">
       {%- for block in section.blocks -%}
         {%- assign loading_attr = 'lazy' -%}
         {%- assign fetchpriority_attr = 'auto' -%}
@@ -119,6 +142,7 @@
           </div>
         {%- endif -%}
       {%- endfor -%}
+      </div>
     </div>
   </div>
 </section>
