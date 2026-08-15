@@ -114,16 +114,6 @@
         "cycle_speed": 5
       }
     },
-    "custom_liquid_8mBCBz": {
-      "type": "custom-liquid",
-      "disabled": true,
-      "name": "Custom Liquid",
-      "settings": {
-        "title": "",
-        "include_margins": false,
-        "liquid": "<style>\n  .tp-sale-hero{display:block;line-height:0;width:100%;}\n  .tp-sale-hero img{display:block;width:100%;height:auto;}\n</style>\n\n<a class=\"tp-sale-hero\" href=\"/collections/tile-sale\">\n  <picture>\n    <source media=\"(max-width:749px)\" srcset=\"https://cdn.shopify.com/s/files/1/0720/1216/9506/files/sale-banner-summer-mobile_3cbe65a5-b2f0-4968-b690-f27d4c5d87ac.jpg?v=1780623560\">\n    <img src=\"https://cdn.shopify.com/s/files/1/0720/1216/9506/files/sale-banner-summer-desktop_8411e12b-39f9-459a-8504-219959f0a214.jpg?v=1780623561\"\n         alt=\"Summer Paradise Sale — up to 50% off luxury porcelain tiles from £19.99 per m², Tiles Paradise\"\n         width=\"2360\" height=\"1000\" fetchpriority=\"high\">\n  </picture>\n</a>"
-      }
-    },
     "usp_bar_T3dt7A": {
       "type": "usp-bar",
       "blocks": {
@@ -185,25 +175,6 @@
         "text_color": "#dbeafe",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "best_selling_products_PjyGVK": {
-      "type": "best-selling-products",
-      "disabled": true,
-      "custom_css": [
-        ".swiper-button-prev {display: none;}",
-        ".swiper-button-next {display: none;}"
-      ],
-      "name": "Best Selling Products",
-      "settings": {
-        "title": "Recommended",
-        "view_all_text": "See all products",
-        "view_all_link": "shopify://collections/all",
-        "collection": "best-selling",
-        "products_to_show": 10,
-        "columns_desktop": 5,
-        "columns_mobile": 1,
-        "custom_class": "home-best-selling-sec"
       }
     },
     "blocks_4HkYkr": {
@@ -907,9 +878,7 @@
   },
   "order": [
     "slideshow_qt7hFy",
-    "custom_liquid_8mBCBz",
     "usp_bar_T3dt7A",
-    "best_selling_products_PjyGVK",
     "blocks_4HkYkr",
     "collection_list_pb9YTb",
     "trending_styles_xyz",
