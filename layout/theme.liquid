@@ -150,6 +150,10 @@ You can learn more about this (and learn how to cleanly revert these changes) at
   
 
     <script type="text/lazyload" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/lazyload"
+src="https://www.paypal.com/sdk/js?client-id=AdzC8dXZ7LAwzsCYBxgPtP7qIueZFh9XhIynecEgiUyiwhVk3rEB-uJC_Jh-uud20jqtCHKU0e4l3zru&currency=GBP&components=messages"
+data-namespace="PayPalSDK">
+</script>
 
 
 
@@ -302,11 +306,12 @@ You can learn more about this (and learn how to cleanly revert these changes) at
       enforceA11y();
     }
 
-    // Use MutationObserver to catch Flickity dynamically adding aria-hidden
+    var debounceTimer;
     var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
+      if (debounceTimer) clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function() {
         enforceA11y();
-      });
+      }, 300);
     });
 
     if (document.body) {

@@ -249,16 +249,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
   fixCheckoutButton();
 
-  // cart drawer/ajax refresh support
-  document.addEventListener('cart:updated', fixCheckoutButton);
-
-  const observer = new MutationObserver(() => {
-    fixCheckoutButton();
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-
+  document.addEventListener('cart:refresh', fixCheckoutButton);
 });
