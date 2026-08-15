@@ -200,7 +200,7 @@
           "type": "ai_gen_block_477adb9",
           "settings": {
             "collection": "60x120cm-rectangular-large-tiles",
-            "products_limit": 12,
+            "products_limit": 5,
             "use_recommendations": true,
             "title": "",
             "products_per_row_desktop": 5,
