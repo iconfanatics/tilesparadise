@@ -328,291 +328,305 @@
   </header>
 
   {%- if section.settings.desktop_navigation_layout == 'inline' and navigation_menu.links.size > 0 -%}
-    <nav class="nav-bar tabbed-mega-nav" aria-label="{{ 'header.navigation.menu' | t }}">
-      <div class="tabbed-mega-nav__outer">
-        <div class="container tabbed-mega-nav__container">
-          <ul class="tabbed-mega-nav__tabs list--unstyled" role="list">
-            {%- for link in navigation_menu.links -%}
-              {%- assign top_title_downcase = link.title | downcase | strip -%}
-              {%- assign menu_promo_block = blank -%}
+    <template id="desktop-mega-nav-template">
+      <nav class="nav-bar tabbed-mega-nav" aria-label="{{ 'header.navigation.menu' | t }}">
+        <div class="tabbed-mega-nav__outer">
+          <div class="container tabbed-mega-nav__container">
+            <ul class="tabbed-mega-nav__tabs list--unstyled" role="list">
+              {%- for link in navigation_menu.links -%}
+                {%- assign top_title_downcase = link.title | downcase | strip -%}
+                {%- assign menu_promo_block = blank -%}
 
-              {%- for block in section.blocks -%}
-                {%- assign block_menu_item_downcase = block.settings.menu_item | downcase | strip -%}
-                {%- if block_menu_item_downcase == top_title_downcase -%}
-                  {%- assign menu_promo_block = block -%}
-                  {%- break -%}
-                {%- endif -%}
-              {%- endfor -%}
-
-              <li class="tabbed-mega-nav__tab-item {% if link.links.size > 0 %}has-children{% endif %}">
-                <a href="{{ link.url }}" class="tabbed-mega-nav__tab">
-                  <span>{{ link.title }}</span>
-                  {%- if link.links.size > 0 -%}
-                    {%- render 'icon', icon: 'arrow-bottom' -%}
+                {%- for block in section.blocks -%}
+                  {%- assign block_menu_item_downcase = block.settings.menu_item | downcase | strip -%}
+                  {%- if block_menu_item_downcase == top_title_downcase -%}
+                    {%- assign menu_promo_block = block -%}
+                    {%- break -%}
                   {%- endif -%}
-                </a>
+                {%- endfor -%}
 
-                {%- if link.links.size > 0 -%}
-                  <div class="tabbed-mega-nav__flyout">
-                    <div class="tabbed-mega-nav__secondary-wrap">
-                      <ul class="tabbed-mega-nav__secondary-list list--unstyled" role="list">
-                        {%- for child_link in link.links -%}
-                          {%- assign child_title_downcase = child_link.title | downcase | strip -%}
-                          
-                          {%- assign child_promo_block = menu_promo_block -%}
-                          {%- for block in section.blocks -%}
-                            {%- assign block_menu_item_downcase = block.settings.menu_item | downcase | strip -%}
-                            {%- if block_menu_item_downcase == child_title_downcase -%}
-                              {%- assign child_promo_block = block -%}
-                              {%- break -%}
-                            {%- endif -%}
-                          {%- endfor -%}
+                <li class="tabbed-mega-nav__tab-item {% if link.links.size > 0 %}has-children{% endif %}">
+                  <a href="{{ link.url }}" class="tabbed-mega-nav__tab">
+                    <span>{{ link.title }}</span>
+                    {%- if link.links.size > 0 -%}
+                      {%- render 'icon', icon: 'arrow-bottom' -%}
+                    {%- endif -%}
+                  </a>
 
-                          {%- assign has_panel = false -%}
-                          {%- if child_link.links.size > 0 -%}
-                            {%- assign has_panel = true -%}
-                          {%- endif -%}
-                          {%- if child_promo_block != blank -%}
-                            {%- if child_promo_block.settings.custom_linklist_1 != blank or child_promo_block.settings.custom_linklist_2 != blank or child_promo_block.settings.custom_linklist_3 != blank or child_promo_block.settings.custom_linklist_4 != blank or child_promo_block.settings.custom_linklist_5 != blank or child_promo_block.settings.custom_linklist_6 != blank or child_promo_block.settings.custom_linklist_7 != blank -%}
+                  {%- if link.links.size > 0 -%}
+                    <div class="tabbed-mega-nav__flyout">
+                      <div class="tabbed-mega-nav__secondary-wrap">
+                        <ul class="tabbed-mega-nav__secondary-list list--unstyled" role="list">
+                          {%- for child_link in link.links -%}
+                            {%- assign child_title_downcase = child_link.title | downcase | strip -%}
+                            
+                            {%- assign child_promo_block = menu_promo_block -%}
+                            {%- for block in section.blocks -%}
+                              {%- assign block_menu_item_downcase = block.settings.menu_item | downcase | strip -%}
+                              {%- if block_menu_item_downcase == child_title_downcase -%}
+                                {%- assign child_promo_block = block -%}
+                                {%- break -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+
+                            {%- assign has_panel = false -%}
+                            {%- if child_link.links.size > 0 -%}
                               {%- assign has_panel = true -%}
                             {%- endif -%}
-                          {%- endif -%}
-
-                          <li class="tabbed-mega-nav__secondary-item {% if has_panel %}has-panel{% endif %} {% if child_title_downcase == 'offers' %}is-offers{% endif %}">
-                            <a href="{{ child_link.url }}" class="tabbed-mega-nav__secondary-link">
-                              {{ child_link.title }}
-                            </a>
-
-                            {%- if has_panel -%}
-                              <div class="tabbed-mega-nav__panel">
-                                <div class="tabbed-mega-nav__panel-inner {% if child_promo_block != blank and child_promo_block.settings.image_1 != blank %}has-promo{% endif %}">
-                                  <div class="tabbed-mega-nav__columns">
-                                    {%- if child_link.links.size > 0 -%}
-                                      <div class="tabbed-mega-nav__column">
-                                        <a href="{{ child_link.url }}" class="tabbed-mega-nav__column-title">
-                                          {{ child_link.title }}
-                                        </a>
-                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                          {%- for grandchild_link in child_link.links -%}
-                                            <li>
-                                              <a href="{{ grandchild_link.url }}" class="tabbed-mega-nav__panel-link">
-                                                {{ grandchild_link.title }}
-                                              </a>
-                                            </li>
-                                          {%- endfor -%}
-                                        </ul>
-                                      </div>
-                                    {%- endif -%}
-
-                                    {%- if child_promo_block != blank -%}
-                                      {%- if child_promo_block.settings.custom_linklist_1 != blank -%}
-                                        <div class="tabbed-mega-nav__column">
-                                          {%- if child_promo_block.settings.custom_title_1 != blank -%}
-                                            <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_1 }}</span>
-                                          {%- endif -%}
-                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                          {%- if child_promo_block.settings.custom_linklist_1 != blank -%}
-                                            {%- for custom_link in child_promo_block.settings.custom_linklist_1.links -%}
-                                              <li>
-                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
-                                                  {{ custom_link.title }}
-                                                </a>
-                                              </li>
-                                            {%- endfor -%}
-                                          {%- endif -%}
-                                          
-                                          
-                                          
-                                          
-                                          
-                                        </ul>
-                                      </div>
-                                      {%- endif -%}
-                                    {%- endif -%}
-
-                                    {%- if child_promo_block != blank -%}
-                                      {%- if child_promo_block.settings.custom_linklist_2 != blank -%}
-                                        <div class="tabbed-mega-nav__column">
-                                        {%- if child_promo_block.settings.custom_title_2 != blank -%}
-                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_2 }}</span>
-                                        {%- endif -%}
-                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                          {%- if child_promo_block.settings.custom_linklist_2 != blank -%}
-                                            {%- for custom_link in child_promo_block.settings.custom_linklist_2.links -%}
-                                              <li>
-                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
-                                                  {{ custom_link.title }}
-                                                </a>
-                                              </li>
-                                            {%- endfor -%}
-                                          {%- endif -%}
-                                          
-                                          
-                                          
-                                          
-                                          
-                                        </ul>
-                                      </div>
-                                      {%- endif -%}
-                                    {%- endif -%}
-                                    {%- if child_promo_block != blank -%}
-                                      {%- if child_promo_block.settings.custom_linklist_3 != blank -%}
-                                        <div class="tabbed-mega-nav__column">
-                                        {%- if child_promo_block.settings.custom_title_3 != blank -%}
-                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_3 }}</span>
-                                        {%- endif -%}
-                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                          {%- if child_promo_block.settings.custom_linklist_3 != blank -%}
-                                            {%- for custom_link in child_promo_block.settings.custom_linklist_3.links -%}
-                                              <li>
-                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
-                                                  {{ custom_link.title }}
-                                                </a>
-                                              </li>
-                                            {%- endfor -%}
-                                          {%- endif -%}
-                                          
-                                          
-                                          
-                                          
-                                          
-                                        </ul>
-                                      </div>
-                                      {%- endif -%}
-                                    {%- endif -%}
-                                    {%- if child_promo_block != blank -%}
-                                      {%- if child_promo_block.settings.custom_linklist_4 != blank -%}
-                                        <div class="tabbed-mega-nav__column">
-                                        {%- if child_promo_block.settings.custom_title_4 != blank -%}
-                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_4 }}</span>
-                                        {%- endif -%}
-                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                          {%- if child_promo_block.settings.custom_linklist_4 != blank -%}
-                                            {%- for custom_link in child_promo_block.settings.custom_linklist_4.links -%}
-                                              <li>
-                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
-                                                  {{ custom_link.title }}
-                                                </a>
-                                              </li>
-                                            {%- endfor -%}
-                                          {%- endif -%}
-                                          
-                                          
-                                          
-                                          
-                                          
-                                        </ul>
-                                      </div>
-                                      {%- endif -%}
-                                    {%- endif -%}
-                                    {%- if child_promo_block != blank -%}
-                                      {%- if child_promo_block.settings.custom_linklist_5 != blank -%}
-                                        <div class="tabbed-mega-nav__column">
-                                        {%- if child_promo_block.settings.custom_title_5 != blank -%}
-                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_5 }}</span>
-                                        {%- endif -%}
-                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                          {%- if child_promo_block.settings.custom_linklist_5 != blank -%}
-                                            {%- for custom_link in child_promo_block.settings.custom_linklist_5.links -%}
-                                              <li>
-                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
-                                                  {{ custom_link.title }}
-                                                </a>
-                                              </li>
-                                            {%- endfor -%}
-                                          {%- endif -%}
-                                          
-                                          
-                                          
-                                          
-                                          
-                                        </ul>
-                                      </div>
-                                      {%- endif -%}
-                                    {%- endif -%}
-                                    {%- if child_promo_block != blank -%}
-                                      {%- if child_promo_block.settings.custom_linklist_6 != blank -%}
-                                        <div class="tabbed-mega-nav__column">
-                                        {%- if child_promo_block.settings.custom_title_6 != blank -%}
-                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_6 }}</span>
-                                        {%- endif -%}
-                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                          {%- if child_promo_block.settings.custom_linklist_6 != blank -%}
-                                            {%- for custom_link in child_promo_block.settings.custom_linklist_6.links -%}
-                                              <li>
-                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
-                                                  {{ custom_link.title }}
-                                                </a>
-                                              </li>
-                                            {%- endfor -%}
-                                          {%- endif -%}
-                                          
-                                          
-                                          
-                                          
-                                          
-                                        </ul>
-                                      </div>
-                                      {%- endif -%}
-                                    {%- endif -%}
-                                    {%- if child_promo_block != blank -%}
-                                      {%- if child_promo_block.settings.custom_linklist_7 != blank -%}
-                                        <div class="tabbed-mega-nav__column">
-                                        {%- if child_promo_block.settings.custom_title_7 != blank -%}
-                                          <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_7 }}</span>
-                                        {%- endif -%}
-                                        <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
-                                          {%- if child_promo_block.settings.custom_linklist_7 != blank -%}
-                                            {%- for custom_link in child_promo_block.settings.custom_linklist_7.links -%}
-                                              <li>
-                                                <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
-                                                  {{ custom_link.title }}
-                                                </a>
-                                              </li>
-                                            {%- endfor -%}
-                                          {%- endif -%}
-                                          
-                                          
-                                          
-                                          
-                                          
-                                        </ul>
-                                      </div>
-                                      {%- endif -%}
-                                    {%- endif -%}
-
-                                  </div>
-
-                                  {%- if child_promo_block != blank and child_promo_block.settings.image_1 != blank -%}
-                                    <a href="{{ child_promo_block.settings.image_1_link | default: link.url }}" class="tabbed-mega-nav__promo">
-                                      {{ child_promo_block.settings.image_1 | image_url: width: 520 | image_tag: loading: 'lazy', sizes: '292px', widths: '292,420,520', alt: child_promo_block.settings.image_1_heading }}
-                                      {%- if child_promo_block.settings.image_1_heading != blank or child_promo_block.settings.image_1_text != blank -%}
-                                        <span class="tabbed-mega-nav__promo-copy">
-                                          {%- if child_promo_block.settings.image_1_heading != blank -%}
-                                            <strong>{{ child_promo_block.settings.image_1_heading }}</strong>
-                                          {%- endif -%}
-                                          {%- if child_promo_block.settings.image_1_text != blank -%}
-                                            <small>{{ child_promo_block.settings.image_1_text }}</small>
-                                          {%- endif -%}
-                                        </span>
-                                      {%- endif -%}
-                                    </a>
-                                  {%- endif -%}
-                                </div>
-                              </div>
+                            {%- if child_promo_block != blank -%}
+                              {%- if child_promo_block.settings.custom_linklist_1 != blank or child_promo_block.settings.custom_linklist_2 != blank or child_promo_block.settings.custom_linklist_3 != blank or child_promo_block.settings.custom_linklist_4 != blank or child_promo_block.settings.custom_linklist_5 != blank or child_promo_block.settings.custom_linklist_6 != blank or child_promo_block.settings.custom_linklist_7 != blank -%}
+                                {%- assign has_panel = true -%}
+                              {%- endif -%}
                             {%- endif -%}
-                          </li>
-                        {%- endfor -%}
-                      </ul>
+
+                            <li class="tabbed-mega-nav__secondary-item {% if has_panel %}has-panel{% endif %} {% if child_title_downcase == 'offers' %}is-offers{% endif %}">
+                              <a href="{{ child_link.url }}" class="tabbed-mega-nav__secondary-link">
+                                {{ child_link.title }}
+                              </a>
+
+                              {%- if has_panel -%}
+                                <div class="tabbed-mega-nav__panel">
+                                  <div class="tabbed-mega-nav__panel-inner {% if child_promo_block != blank and child_promo_block.settings.image_1 != blank %}has-promo{% endif %}">
+                                    <div class="tabbed-mega-nav__columns">
+                                      {%- if child_link.links.size > 0 -%}
+                                        <div class="tabbed-mega-nav__column">
+                                          <a href="{{ child_link.url }}" class="tabbed-mega-nav__column-title">
+                                            {{ child_link.title }}
+                                          </a>
+                                          <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                            {%- for grandchild_link in child_link.links -%}
+                                              <li>
+                                                <a href="{{ grandchild_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                  {{ grandchild_link.title }}
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          </ul>
+                                        </div>
+                                      {%- endif -%}
+
+                                      {%- if child_promo_block != blank -%}
+                                        {%- if child_promo_block.settings.custom_linklist_1 != blank -%}
+                                          <div class="tabbed-mega-nav__column">
+                                            {%- if child_promo_block.settings.custom_title_1 != blank -%}
+                                              <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_1 }}</span>
+                                            {%- endif -%}
+                                          <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                            {%- if child_promo_block.settings.custom_linklist_1 != blank -%}
+                                              {%- for custom_link in child_promo_block.settings.custom_linklist_1.links -%}
+                                                <li>
+                                                  <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                    {{ custom_link.title }}
+                                                  </a>
+                                                </li>
+                                              {%- endfor -%}
+                                            {%- endif -%}
+                                            
+                                            
+                                            
+                                            
+                                            
+                                          </ul>
+                                        </div>
+                                        {%- endif -%}
+                                      {%- endif -%}
+
+                                      {%- if child_promo_block != blank -%}
+                                        {%- if child_promo_block.settings.custom_linklist_2 != blank -%}
+                                          <div class="tabbed-mega-nav__column">
+                                          {%- if child_promo_block.settings.custom_title_2 != blank -%}
+                                            <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_2 }}</span>
+                                          {%- endif -%}
+                                          <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                            {%- if child_promo_block.settings.custom_linklist_2 != blank -%}
+                                              {%- for custom_link in child_promo_block.settings.custom_linklist_2.links -%}
+                                                <li>
+                                                  <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                    {{ custom_link.title }}
+                                                  </a>
+                                                </li>
+                                              {%- endfor -%}
+                                            {%- endif -%}
+                                            
+                                            
+                                            
+                                            
+                                            
+                                          </ul>
+                                        </div>
+                                        {%- endif -%}
+                                      {%- endif -%}
+                                      {%- if child_promo_block != blank -%}
+                                        {%- if child_promo_block.settings.custom_linklist_3 != blank -%}
+                                          <div class="tabbed-mega-nav__column">
+                                          {%- if child_promo_block.settings.custom_title_3 != blank -%}
+                                            <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_3 }}</span>
+                                          {%- endif -%}
+                                          <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                            {%- if child_promo_block.settings.custom_linklist_3 != blank -%}
+                                              {%- for custom_link in child_promo_block.settings.custom_linklist_3.links -%}
+                                                <li>
+                                                  <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                    {{ custom_link.title }}
+                                                  </a>
+                                                </li>
+                                              {%- endfor -%}
+                                            {%- endif -%}
+                                            
+                                            
+                                            
+                                            
+                                            
+                                          </ul>
+                                        </div>
+                                        {%- endif -%}
+                                      {%- endif -%}
+                                      {%- if child_promo_block != blank -%}
+                                        {%- if child_promo_block.settings.custom_linklist_4 != blank -%}
+                                          <div class="tabbed-mega-nav__column">
+                                          {%- if child_promo_block.settings.custom_title_4 != blank -%}
+                                            <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_4 }}</span>
+                                          {%- endif -%}
+                                          <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                            {%- if child_promo_block.settings.custom_linklist_4 != blank -%}
+                                              {%- for custom_link in child_promo_block.settings.custom_linklist_4.links -%}
+                                                <li>
+                                                  <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                    {{ custom_link.title }}
+                                                  </a>
+                                                </li>
+                                              {%- endfor -%}
+                                            {%- endif -%}
+                                            
+                                            
+                                            
+                                            
+                                            
+                                          </ul>
+                                        </div>
+                                        {%- endif -%}
+                                      {%- endif -%}
+                                      {%- if child_promo_block != blank -%}
+                                        {%- if child_promo_block.settings.custom_linklist_5 != blank -%}
+                                          <div class="tabbed-mega-nav__column">
+                                          {%- if child_promo_block.settings.custom_title_5 != blank -%}
+                                            <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_5 }}</span>
+                                          {%- endif -%}
+                                          <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                            {%- if child_promo_block.settings.custom_linklist_5 != blank -%}
+                                              {%- for custom_link in child_promo_block.settings.custom_linklist_5.links -%}
+                                                <li>
+                                                  <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                    {{ custom_link.title }}
+                                                  </a>
+                                                </li>
+                                              {%- endfor -%}
+                                            {%- endif -%}
+                                            
+                                            
+                                            
+                                            
+                                            
+                                          </ul>
+                                        </div>
+                                        {%- endif -%}
+                                      {%- endif -%}
+                                      {%- if child_promo_block != blank -%}
+                                        {%- if child_promo_block.settings.custom_linklist_6 != blank -%}
+                                          <div class="tabbed-mega-nav__column">
+                                          {%- if child_promo_block.settings.custom_title_6 != blank -%}
+                                            <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_6 }}</span>
+                                          {%- endif -%}
+                                          <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                            {%- if child_promo_block.settings.custom_linklist_6 != blank -%}
+                                              {%- for custom_link in child_promo_block.settings.custom_linklist_6.links -%}
+                                                <li>
+                                                  <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                    {{ custom_link.title }}
+                                                  </a>
+                                                </li>
+                                              {%- endfor -%}
+                                            {%- endif -%}
+                                            
+                                            
+                                            
+                                            
+                                            
+                                          </ul>
+                                        </div>
+                                        {%- endif -%}
+                                      {%- endif -%}
+                                      {%- if child_promo_block != blank -%}
+                                        {%- if child_promo_block.settings.custom_linklist_7 != blank -%}
+                                          <div class="tabbed-mega-nav__column">
+                                          {%- if child_promo_block.settings.custom_title_7 != blank -%}
+                                            <span class="tabbed-mega-nav__column-title">{{ child_promo_block.settings.custom_title_7 }}</span>
+                                          {%- endif -%}
+                                          <ul class="tabbed-mega-nav__link-grid list--unstyled" role="list">
+                                            {%- if child_promo_block.settings.custom_linklist_7 != blank -%}
+                                              {%- for custom_link in child_promo_block.settings.custom_linklist_7.links -%}
+                                                <li>
+                                                  <a href="{{ custom_link.url }}" class="tabbed-mega-nav__panel-link">
+                                                    {{ custom_link.title }}
+                                                  </a>
+                                                </li>
+                                              {%- endfor -%}
+                                            {%- endif -%}
+                                            
+                                            
+                                            
+                                            
+                                            
+                                          </ul>
+                                        </div>
+                                        {%- endif -%}
+                                      {%- endif -%}
+
+                                    </div>
+
+                                    {%- if child_promo_block != blank and child_promo_block.settings.image_1 != blank -%}
+                                      <a href="{{ child_promo_block.settings.image_1_link | default: link.url }}" class="tabbed-mega-nav__promo">
+                                        {{ child_promo_block.settings.image_1 | image_url: width: 520 | image_tag: loading: 'lazy', sizes: '292px', widths: '292,420,520', alt: child_promo_block.settings.image_1_heading }}
+                                        {%- if child_promo_block.settings.image_1_heading != blank or child_promo_block.settings.image_1_text != blank -%}
+                                          <span class="tabbed-mega-nav__promo-copy">
+                                            {%- if child_promo_block.settings.image_1_heading != blank -%}
+                                              <strong>{{ child_promo_block.settings.image_1_heading }}</strong>
+                                            {%- endif -%}
+                                            {%- if child_promo_block.settings.image_1_text != blank -%}
+                                              <small>{{ child_promo_block.settings.image_1_text }}</small>
+                                            {%- endif -%}
+                                          </span>
+                                        {%- endif -%}
+                                      </a>
+                                    {%- endif -%}
+                                  </div>
+                                </div>
+                              {%- endif -%}
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                {%- endif -%}
-              </li>
-            {%- endfor -%}
-          </ul>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </template>
+    <div id="desktop-mega-nav-container"></div>
+    <script>
+      (function() {
+        if (window.innerWidth >= 1000) {
+          var tmpl = document.getElementById('desktop-mega-nav-template');
+          var container = document.getElementById('desktop-mega-nav-container');
+          if (tmpl && container) {
+            container.appendChild(tmpl.content.cloneNode(true));
+          }
+        }
+      })();
+    </script>
   {%- endif -%}
 </section>
 
