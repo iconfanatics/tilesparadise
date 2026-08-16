@@ -190,6 +190,15 @@ data-namespace="PayPalSDK">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
     </noscript>
 
+  <style>
+    /* Performance: skip rendering cost for hidden mega-menu and mobile drawer */
+    .mega-menu[aria-hidden="true"] {
+      content-visibility: hidden;
+    }
+    .drawer[aria-hidden="true"] {
+      content-visibility: hidden;
+    }
+  </style>
 </head>
 
   <body class="warehouse--v4 {% if settings.animation_image_zoom %}features--animate-zoom{% endif%} template-{{ request.page_type | handle }} {% if request.page_type contains '/' %}template-{{ request.page_type | split: '/' | last | handle }}{% endif %}">
