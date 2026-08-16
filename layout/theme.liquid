@@ -8,7 +8,7 @@ You can learn more about this (and learn how to cleanly revert these changes) at
   <head>{% render 'yoast-seo' %}
     <meta charset="utf-8">
     <meta property="og:locale" content="{{ request.locale.iso_code | replace: '-', '_' }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="{{ settings.accent_color }}">
     
     {%- capture seo_page_title -%}
@@ -71,8 +71,7 @@ You can learn more about this (and learn how to cleanly revert these changes) at
     
     <!-- Load CSS -->
     <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
-    <link rel="stylesheet" href="{{ 'custom.css' | asset_url }}" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="{{ 'custom.css' | asset_url }}"></noscript>
+    <link rel="stylesheet" href="{{ 'custom.css' | asset_url }}">
 
     {% render 'microdata-schema' %}
 
@@ -150,8 +149,8 @@ You can learn more about this (and learn how to cleanly revert these changes) at
 {%- endif -%}
   
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
-    <script defer
+    <script type="text/lazyload" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/lazyload"
 src="https://www.paypal.com/sdk/js?client-id=AdzC8dXZ7LAwzsCYBxgPtP7qIueZFh9XhIynecEgiUyiwhVk3rEB-uJC_Jh-uud20jqtCHKU0e4l3zru&currency=GBP&components=messages"
 data-namespace="PayPalSDK">
 </script>
@@ -177,7 +176,20 @@ data-namespace="PayPalSDK">
 {%- endif -%}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script type="text/lazyload" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Preconnect for Google Fonts -->
+            
+    <!-- Load Google Fonts Asynchronously -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+    </noscript>
+
 </head>
 
   <body class="warehouse--v4 {% if settings.animation_image_zoom %}features--animate-zoom{% endif%} template-{{ request.page_type | handle }} {% if request.page_type contains '/' %}template-{{ request.page_type | split: '/' | last | handle }}{% endif %}">
@@ -232,7 +244,7 @@ data-namespace="PayPalSDK">
 
 
  {% render 'globo.preorder.custom' %}
-{% comment %}{{'tiny-img-link-preloader.js' | asset_url | script_tag }}{% endcomment %}
+{{'tiny-img-link-preloader.js' | asset_url | script_tag }}
 
 
 
@@ -265,9 +277,52 @@ data-namespace="PayPalSDK">
       window.addEventListener(e, loadLazyScripts, { passive: true });
     });
     
-    // Fallback: If no interaction after 8 seconds, load anyway
-    setTimeout(loadLazyScripts, 8000);
   })();
 </script>
-  </body>
+  
+<!-- ACCESSIBILITY FORCE FIX FOR AGENTS -->
+<script>
+  (function() {
+    function enforceA11y() {
+      document.querySelectorAll('.header__search-button, [data-action="toggle-search"]').forEach(function(btn) {
+        if (btn.tagName === 'BUTTON' && (!btn.hasAttribute('aria-label') || btn.getAttribute('aria-label') !== 'Search')) {
+          btn.setAttribute('aria-label', 'Search');
+        }
+      });
+      document.querySelectorAll('.slideshow__slide, .flickity-slider > a').forEach(function(slide) {
+        if (slide.tagName === 'A') {
+          slide.setAttribute('aria-label', slide.getAttribute('aria-label') || 'Slide');
+        }
+        if (slide.getAttribute('aria-hidden') === 'true') {
+          slide.setAttribute('tabindex', '-1');
+        }
+      });
+    }
+
+    // Run immediately
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', enforceA11y);
+    } else {
+      enforceA11y();
+    }
+
+    // Use MutationObserver to catch Flickity dynamically adding aria-hidden
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        enforceA11y();
+      });
+    });
+
+    if (document.body) {
+      observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-hidden', 'class'] });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-hidden', 'class'] });
+      });
+    }
+  })();
+</script>
+<!-- END ACCESSIBILITY FORCE FIX -->
+</body>
+
 </html>

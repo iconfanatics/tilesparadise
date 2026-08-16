@@ -43,7 +43,21 @@
               <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
             </button>
 
-            {%- render 'mobile-menu', menu: navigation_mobile_menu -%}
+            <template id="mobile-menu-template">
+              {%- render 'mobile-menu', menu: navigation_mobile_menu -%}
+            </template>
+            <div id="mobile-menu-container"></div>
+            <script>
+              (function() {
+                if (window.innerWidth < 1000) {
+                  var tmpl = document.getElementById('mobile-menu-template');
+                  var container = document.getElementById('mobile-menu-container');
+                  if (tmpl && container) {
+                    container.appendChild(tmpl.content.cloneNode(true));
+                  }
+                }
+              })();
+            </script>
           </div>
         {%- endif -%}
 
@@ -59,7 +73,21 @@
               <span>{%- render 'icon', icon: 'hamburger' -%} <span class="header__desktop-nav-text">{{- 'header.navigation.menu' | t -}}</span></span>
             </button>
 
-            {%- render 'desktop-menu', menu: navigation_menu, index: 'desktop-menu-0' -%}
+            <template id="desktop-menu-template-condensed">
+              {%- render 'desktop-menu', menu: navigation_menu, index: 'desktop-menu-0' -%}
+            </template>
+            <div id="desktop-menu-container-condensed"></div>
+            <script>
+              (function() {
+                if (window.innerWidth >= 1000) {
+                  var tmpl = document.getElementById('desktop-menu-template-condensed');
+                  var container = document.getElementById('desktop-menu-container-condensed');
+                  if (tmpl && container) {
+                    container.appendChild(tmpl.content.cloneNode(true));
+                  }
+                }
+              })();
+            </script>
           </nav>
         {%- endif -%}
 
@@ -239,7 +267,7 @@
             <button
               type="button"
               class="header__search-button"
-              data-action="toggle-search">
+              data-action="toggle-search" aria-label="Search">
               {% render 'icon', icon: 'search' %}
             </button>
           </div>
