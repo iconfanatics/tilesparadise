@@ -41,6 +41,7 @@
         "item_qmAkgN",
         "item_yWkDXT"
       ],
+      "disabled": true,
       "settings": {
         "background": "#000000",
         "text_color": "#ffffff",
@@ -278,17 +279,10 @@
         "search_menu": "",
         "show_search_menu_title": true
       }
-    },
-    "176869648164908762": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
     "announcement-bar",
-    "header",
-    "176869648164908762"
+    "header"
   ]
 }

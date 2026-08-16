@@ -93,14 +93,12 @@
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": false,
         "settings": {
+          "greeting_message": "👀 Seen something you like? 🌟 Let’s chat!  We’re here to make sure you love your choice! 💬",
           "button_color": "#0086c8",
-          "secondary_color": "#ffffff",
-          "ternary_color": "#6a6a6a",
           "button_icon": "hand_wave",
           "button_text": "live_chat",
           "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "higher",
-          "greeting_message": "👀 Seen something you like? 🌟 Let’s chat!  We’re here to make sure you love your choice! 💬"
+          "button_vertical_position": "higher"
         }
       },
       "13324117676663250413": {
