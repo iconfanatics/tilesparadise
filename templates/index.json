@@ -1,6 +1,10 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -12,7 +16,6 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Tile_Ranges_02157fc6-c4ab-428f-9b8a-d3f3d3b03e2a.webp",
-            "mobile_image": "shopify://shop_images/Tile_Ranges_02157fc6-c4ab-428f-9b8a-d3f3d3b03e2a.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -29,7 +32,6 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Trade_Deals.webp",
-            "mobile_image": "shopify://shop_images/Trade_Deals.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -46,7 +48,6 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/premium_LED_Mirrors.webp",
-            "mobile_image": "shopify://shop_images/premium_LED_Mirrors.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -63,7 +64,6 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Designer_Radiators.webp",
-            "mobile_image": "shopify://shop_images/Designer_Radiators.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -80,7 +80,6 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Luxury_Shower_Sets.webp",
-            "mobile_image": "shopify://shop_images/Luxury_Shower_Sets.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -134,7 +133,7 @@
           "settings": {
             "icon": "shopify://shop_images/refund_3.png",
             "heading": "Pay with PayPal",
-            "text": "Fast, secure checkout \u2014 no card needed."
+            "text": "Fast, secure checkout — no card needed."
           }
         },
         "usp_QfpCdx": {
@@ -149,8 +148,8 @@
           "type": "usp",
           "settings": {
             "icon": "shopify://shop_images/refund_2.png",
-            "heading": "Free Delivery Over \u00a3499",
-            "text": "To most of the UK \u2014 no hidden fees."
+            "heading": "Free Delivery Over £499",
+            "text": "To most of the UK — no hidden fees."
           }
         }
       },
@@ -575,7 +574,7 @@
         "text_width": "wide",
         "custom_class": "reviews-custom-header",
         "title": "Reviews from Customers",
-        "content": "<p><strong>4.8</strong> <em>\u2605\u2605\u2605\u2605\u2605</em></p><h2>Reviews from Customers</h2><p>Rated by homeowners across the UK for quality, durability, and style.</p>",
+        "content": "<p><strong>4.8</strong> <em>★★★★★</em></p><h2>Reviews from Customers</h2><p>Rated by homeowners across the UK for quality, durability, and style.</p>",
         "button_text": "",
         "button_link": "shopify://collections/all"
       }
@@ -608,7 +607,7 @@
           "settings": {
             "title": "About Tiles Paradise",
             "heading": "",
-            "content": "<p>Four years ago, we started buying tiles straight from the factories that make them. No importer in the middle. No distributor. No showroom with a coffee machine charging you for the decor.</p><p>We bring the stock into our own UK warehouse and ship it to your door \u2014 usually the next working day.</p><p>1,000+ customers. 4.8 stars. Not because the brand looks good, but because what we say we'll deliver, we actually deliver.</p><p>Porcelain tiles, bathroom products, LED mirrors, heated towel rails, toilets, shower sets. Everything you need for a renovation, from one place, at prices the high street can't justify.</p>"
+            "content": "<p>Four years ago, we started buying tiles straight from the factories that make them. No importer in the middle. No distributor. No showroom with a coffee machine charging you for the decor.</p><p>We bring the stock into our own UK warehouse and ship it to your door — usually the next working day.</p><p>1,000+ customers. 4.8 stars. Not because the brand looks good, but because what we say we'll deliver, we actually deliver.</p><p>Porcelain tiles, bathroom products, LED mirrors, heated towel rails, toilets, shower sets. Everything you need for a renovation, from one place, at prices the high street can't justify.</p>"
           }
         },
         "tab_2": {
@@ -616,7 +615,7 @@
           "settings": {
             "title": "Own the Room",
             "heading": "",
-            "content": "<p>Most people spend weeks scrolling tile websites, overwhelmed by choice and let down by photos that look nothing like the tile in real life.</p><p>Here's what we do instead.</p><p>Order a sample. We cut it, we post it, you hold it in your actual room in your actual light. If it's right, you buy. If not, try another. We refund the sample cost against your order.</p><p>No guessing. No returns because the colour was wrong on screen.</p><p>200+ tiles in stock. Marble effect, onyx, gloss, matt, outdoor \u2014 ready to ship.</p>"
+            "content": "<p>Most people spend weeks scrolling tile websites, overwhelmed by choice and let down by photos that look nothing like the tile in real life.</p><p>Here's what we do instead.</p><p>Order a sample. We cut it, we post it, you hold it in your actual room in your actual light. If it's right, you buy. If not, try another. We refund the sample cost against your order.</p><p>No guessing. No returns because the colour was wrong on screen.</p><p>200+ tiles in stock. Marble effect, onyx, gloss, matt, outdoor — ready to ship.</p>"
           }
         },
         "tab_3": {
@@ -624,7 +623,7 @@
           "settings": {
             "title": "Ready to Renovate?",
             "heading": "",
-            "content": "<p>Renovations go wrong for three reasons. Products take too long. Something arrives damaged and no one answers. Or you've ordered from five different websites and nothing matches when it gets there.</p><p>We fix all three.</p><p>Tiles, mirrors, toilets, radiators, shower sets \u2014 all held in our UK warehouse. Most orders ship the next working day. Tiles go out on fully-wrapped pallets because porcelain chips and we'd rather not deal with that.</p><p>If anything arrives damaged, photograph it while it's still on the pallet. Tell us within two working days. We'll sort a replacement \u2014 no argument.</p><p>One supplier. One delivery. One person to call.</p>"
+            "content": "<p>Renovations go wrong for three reasons. Products take too long. Something arrives damaged and no one answers. Or you've ordered from five different websites and nothing matches when it gets there.</p><p>We fix all three.</p><p>Tiles, mirrors, toilets, radiators, shower sets — all held in our UK warehouse. Most orders ship the next working day. Tiles go out on fully-wrapped pallets because porcelain chips and we'd rather not deal with that.</p><p>If anything arrives damaged, photograph it while it's still on the pallet. Tell us within two working days. We'll sort a replacement — no argument.</p><p>One supplier. One delivery. One person to call.</p>"
           }
         },
         "tab_4": {
@@ -640,7 +639,7 @@
           "settings": {
             "title": "How Buying From Us Works",
             "heading": "",
-            "content": "<p>Browse. Order a sample if you're unsure \u2014 we deliver it, you decide, we knock it off your first order.</p><p>When you're ready, check out with PayPal, Klarna, or card. 0% interest-free finance available if you want to spread the cost.</p><p>Your order ships from our UK warehouse within 1\u20133 working days. Tiles travel on pallets \u2014 not because we're overcautious, but because that's the only way to get porcelain to your door without it cracking.</p><p>If anything goes sideways, WhatsApp or live chat us. 24 hours a day, 7 days a week. A real person responds \u2014 not a bot reading from a script.</p>"
+            "content": "<p>Browse. Order a sample if you're unsure — we deliver it, you decide, we knock it off your first order.</p><p>When you're ready, check out with PayPal, Klarna, or card. 0% interest-free finance available if you want to spread the cost.</p><p>Your order ships from our UK warehouse within 1–3 working days. Tiles travel on pallets — not because we're overcautious, but because that's the only way to get porcelain to your door without it cracking.</p><p>If anything goes sideways, WhatsApp or live chat us. 24 hours a day, 7 days a week. A real person responds — not a bot reading from a script.</p>"
           }
         },
         "tab_6": {
@@ -648,7 +647,7 @@
           "settings": {
             "title": "What We Actually Stand For",
             "heading": "",
-            "content": "<p>We're four years old. We don't have a showroom or a 500-seat call centre.</p><p>What we have is a direct relationship with the factories, our own UK warehouse, and a team that replies in minutes \u2014 not working days.</p><p>Our goal is simple: fewer problems on delivery day, better prices, and someone who picks up when something goes wrong.</p><p>4.8 stars. 1,000+ reviews. Every one from a real customer who placed a real order.</p><p>Got a question before you buy? Ask on live chat, WhatsApp, or email. Same team. Same response time. Any hour.</p>"
+            "content": "<p>We're four years old. We don't have a showroom or a 500-seat call centre.</p><p>What we have is a direct relationship with the factories, our own UK warehouse, and a team that replies in minutes — not working days.</p><p>Our goal is simple: fewer problems on delivery day, better prices, and someone who picks up when something goes wrong.</p><p>4.8 stars. 1,000+ reviews. Every one from a real customer who placed a real order.</p><p>Got a question before you buy? Ask on live chat, WhatsApp, or email. Same team. Same response time. Any hour.</p>"
           }
         }
       },
@@ -764,14 +763,14 @@
           "type": "question",
           "settings": {
             "title": "Do you offer samples?",
-            "answer": "<p>Yes \u2014 order a cut sample of any tile and we'll deliver it to your door, then refund the cost against your order when you buy. It's the best way to check colour and finish in your own light.<br/><br/></p>"
+            "answer": "<p>Yes — order a cut sample of any tile and we'll deliver it to your door, then refund the cost against your order when you buy. It's the best way to check colour and finish in your own light.<br/><br/></p>"
           }
         },
         "question_3xCC9L": {
           "type": "question",
           "settings": {
             "title": "What if my tiles arrive damaged?",
-            "answer": "<p>Tiles are well protected on the pallet, but if anything arrives damaged, take a photo while it's still on the pallet and tell us within 2 working days \u2014 we'll sort a replacement.<br/><br/></p>"
+            "answer": "<p>Tiles are well protected on the pallet, but if anything arrives damaged, take a photo while it's still on the pallet and tell us within 2 working days — we'll sort a replacement.<br/><br/></p>"
           }
         },
         "separator_fPHky4": {
@@ -784,21 +783,21 @@
           "type": "question",
           "settings": {
             "title": "Can I pay in instalments?",
-            "answer": "<p>Yes \u2014 split the cost with 0% interest-free finance through PayPal Pay in 3 or Klarna at checkout.<br/><br/></p>"
+            "answer": "<p>Yes — split the cost with 0% interest-free finance through PayPal Pay in 3 or Klarna at checkout.<br/><br/></p>"
           }
         },
         "question_9gRb9m": {
           "type": "question",
           "settings": {
             "title": "Why are your prices lower than the high street?",
-            "answer": "<p>We import our tiles and bathroom products directly from the factories that make them, with no middleman markup \u2014 so you get the same designer looks for less.<br/><br/></p>"
+            "answer": "<p>We import our tiles and bathroom products directly from the factories that make them, with no middleman markup — so you get the same designer looks for less.<br/><br/></p>"
           }
         },
         "question_pQxhNR": {
           "type": "question",
           "settings": {
             "title": "Do you offer trade or bulk pricing?",
-            "answer": "<p>Yes \u2014 we offer trade accounts and pallet/bulk pricing. Apply through our trade enquiry page or get in touch.<br/><br/></p>"
+            "answer": "<p>Yes — we offer trade accounts and pallet/bulk pricing. Apply through our trade enquiry page or get in touch.<br/><br/></p>"
           }
         }
       },
@@ -819,7 +818,7 @@
         "contact_info_text": "<p>If we still haven't answered your question, you can contact us below and we will get back to you as soon as possible.</p>",
         "contact_1_icon": "bi-network",
         "contact_1_heading": "Customer support",
-        "contact_1_text": "<p>Chat with us 24/7 on live chat or WhatsApp \u2014 07562 758749 (WhatsApp messages)<br/><br/></p>",
+        "contact_1_text": "<p>Chat with us 24/7 on live chat or WhatsApp — 07562 758749 (WhatsApp messages)<br/><br/></p>",
         "contact_2_icon": "bi-email",
         "contact_2_heading": "Send a message",
         "contact_2_text": "<p>Email <a href=\"mailto:sales@tilesparadiseuk.com\">sales@tilesparadiseuk.com</a> any time and we'll get back to you as soon as possible</p>"
