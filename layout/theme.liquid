@@ -48,7 +48,11 @@ You can learn more about this (and learn how to cleanly revert these changes) at
 
 
     {%- if settings.favicon -%}
-      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '96x96' }}" type="image/png">
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 48, height: 48 }}" sizes="48x48">
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 96, height: 96 }}" sizes="96x96">
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 144, height: 144 }}" sizes="144x144">
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 192, height: 192 }}" sizes="192x192">
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
     {%- endif -%}
 
     {%- comment -%}Few prefech to increase performance on commonly used third-parties{%- endcomment -%}
