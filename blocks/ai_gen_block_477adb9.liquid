@@ -391,6 +391,17 @@
     color: #999;
   }
 
+  /* Desktop: all products fit — hide arrows and scrollbar */
+  @media screen and (min-width: 750px) {
+    .ai-product-carousel__nav-{{ ai_gen_id }} {
+      display: none;
+    }
+    .ai-product-carousel__track-{{ ai_gen_id }} {
+      overflow-x: hidden;
+      cursor: default;
+    }
+  }
+
   @media screen and (max-width: 749px) {
     .ai-product-carousel__item-{{ ai_gen_id }} {
       flex: 0 0 calc((100% - ({{ block.settings.products_per_row_mobile | minus: 1 }} * {{ block.settings.product_gap }}px)) / {{ block.settings.products_per_row_mobile }});
