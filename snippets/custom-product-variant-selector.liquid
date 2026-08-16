@@ -497,15 +497,7 @@
     </div>
   </div>
   
-  <div class="paypal_cont" style="margin-top:20px;">
-    <div
-      data-pp-message
-      data-pp-style-layout="text"
-      data-pp-style-logo-type="inline"
-      data-pp-style-text-color="black"
-      data-pp-amount="{{ product.price | money }}"
-    ></div>
-  </div>
+
   {%- if block.settings.show_inventory_quantity and product.template_suffix != 'pre-order' -%}
     <div class="product-form__info-item">
       <span class="product-form__info-title text--strong">{{ 'product.form.inventory' | t }}:</span>
