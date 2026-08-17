@@ -3,3 +3,27 @@
 /* CLS Fixes for Apps */
 .AirReviews-Widget--Stars { min-height: 20px; display: block; }
 .vtl-pr-main-widget { min-height: 250px; display: block; }
+
+/* ==========================================
+ PRODUCT RANGE COLOUR SWATCHES
+ ========================================== */
+.tp-range-swatches { width: 100%; margin: 0; padding: 6px 0 8px; }
+.tp-range-swatches__heading { margin: 0 0 16px; font-size: 16px; line-height: 1.4; color: #202020; }
+.tp-range-swatches__heading strong { font-weight: 700; }
+.tp-range-swatches__heading span { font-weight: 400; }
+.tp-range-swatches__list { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; list-style: none; padding: 0; margin: 0; }
+.tp-range-swatches__item { margin: 0; padding: 0; }
+.tp-range-swatch { position: relative; display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; padding: 3px; border: 1.5px solid transparent; border-radius: 50%; background: transparent; text-decoration: none; transition: border-color 0.18s ease, transform 0.18s ease; }
+.tp-range-swatch__image { display: block; width: 44px; height: 44px; border-radius: 50%; overflow: hidden; border: 1px solid #dedede; background: #f5f5f5; }
+.tp-range-swatch__image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.tp-range-swatch.is-current { border-color: #202020; }
+.tp-range-swatch:hover { border-color: #777; transform: scale(1.04); }
+.tp-range-swatch.is-current:hover { border-color: #202020; }
+.tp-range-swatch:focus-visible { outline: 2px solid #202020; outline-offset: 3px; }
+.tp-range-swatch__fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 13px; font-weight: 600; background: #eeeeee; color: #333333; }
+@media screen and (max-width: 749px) {
+ .tp-range-swatches__heading { margin-bottom: 12px; font-size: 15px; }
+ .tp-range-swatches__list { gap: 10px; }
+ .tp-range-swatch { width: 48px; height: 48px; }
+ .tp-range-swatch__image { width: 40px; height: 40px; }
+}
