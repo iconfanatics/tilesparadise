@@ -141,21 +141,6 @@
         "button_text_color": "#ffffff",
         "button_border_radius": 4
       }
-    },
-    "178048021769c9fb35": {
-      "type": "apps",
-      "blocks": {
-        "vitals_featured_reviews_9J9KNE": {
-          "type": "shopify://apps/vitals/blocks/featured-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "vitals_featured_reviews_9J9KNE"
-      ],
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
@@ -164,7 +149,6 @@
     "rich_text_CxGCgf",
     "usp_bar_deGHRm",
     "main",
-    "recently_viewed_paired_mKRzeH",
-    "178048021769c9fb35"
+    "recently_viewed_paired_mKRzeH"
   ]
 }
