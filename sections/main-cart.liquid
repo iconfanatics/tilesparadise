@@ -1,3 +1,51 @@
+{%- if template.name == 'cart' -%}
+<style>
+/* 1. Fix mobile scroll by preventing wrapping (which caused items to be clipped by overflow-y: hidden) */
+.template-cart .product-list--scrollable {
+  flex-wrap: nowrap !important;
+  display: flex !important;
+}
+
+/* 2. Reset Flickity on Desktop if it fails and stacks items absolutely */
+.template-cart .product-list--scrollable .flickity-slider {
+  position: static !important;
+  display: flex !important;
+  transform: none !important;
+  width: 100% !important;
+}
+.template-cart .product-list--scrollable .flickity-viewport {
+  height: auto !important;
+  overflow: visible !important;
+}
+.template-cart .product-list--scrollable .product-item {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+}
+
+/* 3. Enable visible desktop scrollbar */
+@media screen and (min-width: 1000px) {
+  .template-cart .scroller__inner {
+    padding-bottom: 12px !important;
+    margin-bottom: 0 !important;
+    overflow-x: auto !important;
+  }
+  .template-cart .scroller__inner::-webkit-scrollbar {
+    display: block !important;
+    height: 8px !important;
+  }
+  .template-cart .scroller__inner::-webkit-scrollbar-track {
+    background: #f1f1f1 !important;
+    border-radius: 4px !important;
+  }
+  .template-cart .scroller__inner::-webkit-scrollbar-thumb {
+    background: #bbb !important;
+    border-radius: 4px !important;
+  }
+}
+</style>
+{%- endif -%}
 {%- capture section_settings -%}
 {
   "showShippingEstimator": {% if cart.item_count == 0 %}false{% else %}{{ section.settings.show_shipping_estimator | json }}{% endif %}
