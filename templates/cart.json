@@ -106,7 +106,7 @@
         "title": "Need Adhesive & Extras?",
         "products_count": 12,
         "layout": "vertical",
-        "stack_products": false,
+        "stack_products": true,
         "show_quick_buy": false,
         "show_view_button": false,
         "link_title": "",
