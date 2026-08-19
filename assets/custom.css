@@ -29,32 +29,23 @@
 }
 
 /* ================================================================
-   Cart page scroller fix — allow horizontal scroll in cart sections
-   Flickity only activates at 1000px+. Below that we use CSS scroll.
+   Cart page scroller fix — correct version
+   scroller__inner already has overflow-x: auto — we must NOT override it.
+   We only need to:
+   1. Stop #main overflow-x:hidden clipping it on cart page (mobile)
+   2. Give product items proper width so they don't collapse
    ================================================================ */
 
-/* Prevent overflow:hidden from clipping the cart scrollers */
-.template-cart .cart-section-featured-collection .scroller,
-.template-cart .cart-section-featured-collection .scroller__inner,
-.template-cart [data-section-type="featured-collection"] .scroller,
-.template-cart [data-section-type="featured-collection"] .scroller__inner,
-.template-cart [data-section-id$="-upsell"] .scroller,
-.template-cart [data-section-id$="-upsell"] .scroller__inner {
-  overflow: visible !important;
-}
-
-/* On mobile/tablet (< 1000px), Flickity is off — make scrollable manually */
+/* On mobile, #main has overflow-x:hidden which clips the scroller.
+   On the cart page, allow #main to show the horizontal scroll. */
 @media screen and (max-width:999px) {
-  .template-cart .product-list--scrollable {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    display: flex !important;
-    flex-wrap: nowrap !important;
+  body.template-cart #main {
+    overflow-x: visible !important;
   }
   .template-cart .product-list--scrollable .product-item {
     flex: 0 0 62% !important;
-    min-width: 200px !important;
     width: 62% !important;
+    min-width: 200px !important;
   }
 }
 
