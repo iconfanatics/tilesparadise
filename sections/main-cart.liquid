@@ -10,7 +10,7 @@ body.template-cart #main { overflow-x: visible !important; }
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   white-space: nowrap !important;
-  padding-bottom: 10px !important;
+  padding-bottom: 12px !important;
   margin-bottom: 0 !important;
 }
 
@@ -37,13 +37,14 @@ body.template-cart #main { overflow-x: visible !important; }
   overflow: visible !important;
   min-width: min-content !important;
   width: auto !important;
+  gap: 15px !important; /* add a little gap */
 }
 
-/* Mobile */
+/* Mobile (2.5 items) */
 .template-cart .product-item {
-  flex: 0 0 62% !important;
-  width: 62% !important;
-  max-width: 62% !important;
+  flex: 0 0 38% !important;
+  width: 38% !important;
+  max-width: 38% !important;
   scroll-snap-align: start;
   position: relative !important;
   left: auto !important;
@@ -53,30 +54,30 @@ body.template-cart #main { overflow-x: visible !important; }
   display: inline-block !important; 
 }
 
-/* Tablet (match 36%) */
+/* Tablet (4 items) */
 @media screen and (min-width: 641px) {
   .template-cart .product-item {
-    flex: 0 0 36% !important;
-    width: 36% !important;
-    max-width: 36% !important;
+    flex: 0 0 23% !important;
+    width: 23% !important;
+    max-width: 23% !important;
   }
 }
 
-/* Desktop (match 1/5--desk = 20%) */
+/* Desktop (6 items) */
 @media screen and (min-width: 1000px) {
   .template-cart .product-item {
-    flex: 0 0 20% !important;
-    width: 20% !important;
-    max-width: 20% !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+    max-width: 15% !important;
   }
 }
 
-/* Wide Desktop (match 1/6--wide = 16.666%) */
+/* Wide Desktop (7 items) */
 @media screen and (min-width: 1200px) {
   .template-cart .product-item {
-    flex: 0 0 16.6666% !important;
-    width: 16.6666% !important;
-    max-width: 16.6666% !important;
+    flex: 0 0 13.5% !important;
+    width: 13.5% !important;
+    max-width: 13.5% !important;
   }
 }
 
