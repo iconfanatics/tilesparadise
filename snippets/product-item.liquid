@@ -6,12 +6,14 @@
 {%- endif -%}
 {%- comment -%}Color labels used to detect what is a color swatch{%- endcomment -%}
 {%- assign color_label = 'color,colour,couleur,cor,colore,farbe,색,色,カラー,färg,farve,szín,barva' | split: ',' -%}
-{%- assign is_cart_page = false -%}
-{%- if template.name == 'cart' -%}
-  {%- assign is_cart_page = true -%}
-{%- endif -%}
+{%- assign skip_product = false -%}
+{%- unless template.name == 'cart' -%}
+  {%- if product.handle contains 'sample' or product.price <= 0 -%}
+    {%- assign skip_product = true -%}
+  {%- endif -%}
+{%- endunless -%}
 
-{% if is_cart_page == false and product.handle contains 'sample' or is_cart_page == false and product.price <= 0 %}
+{%- if skip_product -%}
   {% else %}
 <div class="product-item {% if horizontal %}product-item--horizontal{% elsif list %}product-item--list{% else %}product-item--vertical{% endif %} {% if complementary_products %}product-item--complementary{% endif %} {% if section.id == 'blog-sidebar' %}product-item--compact{% endif %} {{ grid_classes }}">
   {%- capture product_labels -%}
