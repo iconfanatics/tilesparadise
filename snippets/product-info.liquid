@@ -15,7 +15,7 @@
           {%- when 'product_meta' -%}
             {%- render 'product-meta', product: product, block: block -%}
 
-          {%- when 'liquid' -%}
+          {%- when 'custom_swatches' -%}
             {%- if block.settings.liquid != blank -%}
               <div class="product-meta__liquid tp-custom-liquid" {{ block.shopify_attributes }}>
                 {{ block.settings.liquid }}
