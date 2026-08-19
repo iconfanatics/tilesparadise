@@ -528,22 +528,22 @@ $(document).on('click', '.modal__inner ul.tabs-nav li', function() {
     $(".tabs-stage .custom_tabing").eq(a).siblings().hide();
 });
 
-const squareMetreInput = document.getElementsByClassName("changing_class");
-const step = parseFloat(squareMetreInput.value);
-const price_total = document.getElementsByClassName("price_now").value;
+var squareMetreInput = document.getElementsByClassName("changing_class");
+var step = parseFloat(squareMetreInput.value);
+var price_total = document.getElementsByClassName("price_now").value;
 
 function increaseSquareMeter() {
-    const squareMeterInput = document.getElementsByClassName("changing_class");
-    const step = parseFloat(squareMetreInput.value);
-    const currentValue = parseFloat(squareMeterInput.value);
+    var squareMeterInput = document.getElementsByClassName("changing_class");
+    var step = parseFloat(squareMetreInput.value);
+    var currentValue = parseFloat(squareMeterInput.value);
     squareMeterInput.value = (currentValue + step).toFixed(2);
     // Don't update the actual price here to keep it constant
 }
 
 function decreaseSquareMeter() {
-    const squareMeterInput = document.getElementsByClassName("changing_class");
+    var squareMeterInput = document.getElementsByClassName("changing_class");
 
-    const currentValue = parseFloat(squareMeterInput.value);
+    var currentValue = parseFloat(squareMeterInput.value);
     if (currentValue >= step) {
         squareMeterInput.value = (currentValue - step).toFixed(2);
         // Don't update the actual price here to keep it constant
@@ -551,32 +551,32 @@ function decreaseSquareMeter() {
 }
 
 function updateActualPrice() {
-    const quantityInput = document.getElementsByClassName("quantity-selector__value");
-    const squareMeterInput = document.getElementsByClassName("changing_class");
-    const actualPriceInput = document.getElementsByClassName("price_now");
-    const pricePerSquareMeter = $(".product-form__info-content .price-list .price--highlight").text();
+    var quantityInput = document.getElementsByClassName("quantity-selector__value");
+    var squareMeterInput = document.getElementsByClassName("changing_class");
+    var actualPriceInput = document.getElementsByClassName("price_now");
+    var pricePerSquareMeter = $(".product-form__info-content .price-list .price--highlight").text();
     var new_data_here = parseFloat(pricePerSquareMeter.replace('Sale price£', ''));
 
-    const quantity = parseFloat(quantityInput.value);
-    const squareMeter = parseFloat(squareMeterInput.value);
-    const actualPrice = (squareMeter * new_data_here).toFixed(2);
+    var quantity = parseFloat(quantityInput.value);
+    var squareMeter = parseFloat(squareMeterInput.value);
+    var actualPrice = (squareMeter * new_data_here).toFixed(2);
 
     actualPriceInput.value = actualPrice;
 }
 
 // Add event listeners
-const quantityInput = document.getElementsByClassName("quantity-selector__value");
-const squareMeterInput = document.getElementsByClassName("changing_class");
+var quantityInput = document.getElementsByClassName("quantity-selector__value");
+var squareMeterInput = document.getElementsByClassName("changing_class");
 
 $(document).on('input', quantityInput, function() {
-    const quantity = parseFloat(quantityInput.value);
-    const roundedQuantity = Math.round(quantity);
+    var quantity = parseFloat(quantityInput.value);
+    var roundedQuantity = Math.round(quantity);
     squareMeterInput.value = (roundedQuantity * step).toFixed(2);
     updateActualPrice();
 });
 
 
-let steps = ''; // Define steps outside the setTimeout
+var steps = ''; // Define steps outside the setTimeout
 
 $('body').on('click', '.quic_mod', function() {
 
@@ -590,10 +590,10 @@ $('body').on('click', '.quic_mod', function() {
         $(document).on('input', '.changing_class', function() {
             var changingClassInputValue = $(this).val();
  steps = $('.fix').val();
-            const squareMeterValue = parseFloat(this.value);
-            const quantityValue = Math.round(squareMeterValue / steps);
-          const quantityValue1 = Math.round(squareMeterValue);
-             const actPriceElement = document.querySelector('.tile_nu');
+            var squareMeterValue = parseFloat(this.value);
+            var quantityValue = Math.round(squareMeterValue / steps);
+          var quantityValue1 = Math.round(squareMeterValue);
+             var actPriceElement = document.querySelector('.tile_nu');
     if (actPriceElement) {
         actPriceElement.textContent  = quantityValue;
     }
@@ -610,8 +610,8 @@ console.log(changingClassInputValue);
         $(document).on('input', '.quantity-selector__value', function() {
             var changingClassInputValue = $(this).val();
  steps = $('.fix').val();
-            const qunat = parseFloat(this.value);
-            const quantityValues = (qunat * steps).toFixed(2);
+            var qunat = parseFloat(this.value);
+            var quantityValues = (qunat * steps).toFixed(2);
 
             //    alert(quantityValues);
             // Update input with class 'quantity-selector__value' with quantityValue
@@ -663,7 +663,7 @@ $(document).on('click', '[data-action="decrease-picker-quantity"]', function() {
     var updatedQuantity = $('.quantity-selector__value').val();
       $('.quantity-selector__value').attr("value",updatedQuantity);
     var stepp = $('.fix').val();
-    const quantityValues = (updatedQuantity * stepp).toFixed(2);
+    var quantityValues = (updatedQuantity * stepp).toFixed(2);
 
 
     // Update input with class 'quantity-selector__value' with quantityValue
@@ -678,7 +678,7 @@ $(document).on('click', '[data-action="increase-picker-quantity"]', function() {
     var stepp = $('.fix').val();
   // alert(updatedQuantity);
 
-    const quantityValues = (updatedQuantity * stepp).toFixed(2);
+    var quantityValues = (updatedQuantity * stepp).toFixed(2);
 
 
     // Update input with class 'quantity-selector__value' with quantityValue
