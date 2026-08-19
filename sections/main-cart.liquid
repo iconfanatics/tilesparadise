@@ -10,6 +10,25 @@ body.template-cart #main { overflow-x: visible !important; }
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   white-space: nowrap !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Custom Scrollbar for Desktop */
+.template-cart .scroller__inner::-webkit-scrollbar {
+  display: block !important;
+  height: 8px !important;
+}
+.template-cart .scroller__inner::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+  border-radius: 4px !important;
+}
+.template-cart .scroller__inner::-webkit-scrollbar-thumb {
+  background: #bbb !important;
+  border-radius: 4px !important;
+}
+.template-cart .scroller__inner::-webkit-scrollbar-thumb:hover {
+  background: #888 !important;
 }
 
 .template-cart .product-list--scrollable {
