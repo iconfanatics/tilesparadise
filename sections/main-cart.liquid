@@ -1,3 +1,69 @@
+
+{%- if template.name == 'cart' -%}
+<style>
+/* Pure CSS Horizontal Scroller Fallback for Cart Page */
+body.template-cart #main { overflow-x: visible !important; }
+
+.template-cart .scroller__inner {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap !important;
+}
+
+.template-cart .product-list--scrollable {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
+  min-width: min-content !important;
+  width: auto !important;
+}
+
+.template-cart .product-item {
+  flex: 0 0 62% !important;
+  width: 62% !important;
+  max-width: 62% !important;
+  scroll-snap-align: start;
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  float: none !important;
+  display: inline-block !important; /* fallback */
+}
+
+@media screen and (min-width: 641px) {
+  .template-cart .product-item {
+    flex: 0 0 40% !important;
+    width: 40% !important;
+    max-width: 40% !important;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .template-cart .product-item {
+    flex: 0 0 25% !important;
+    width: 25% !important;
+    max-width: 25% !important;
+  }
+}
+
+/* Deactivate flickity rules entirely on cart */
+.template-cart .flickity-enabled, .template-cart .flickity-viewport {
+  overflow: visible !important;
+  height: auto !important;
+  position: relative !important;
+}
+.template-cart .flickity-slider {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  display: flex !important;
+  transform: none !important;
+}
+</style>
+{%- endif -%}
 {%- capture section_settings -%}
 {
   "showShippingEstimator": {% if cart.item_count == 0 %}false{% else %}{{ section.settings.show_shipping_estimator | json }}{% endif %}
