@@ -1,98 +1,33 @@
-
 {%- if template.name == 'cart' -%}
 <style>
-/* Pure CSS Horizontal Scroller Fallback for Cart Page */
-body.template-cart #main { overflow-x: visible !important; }
-
-.template-cart .scroller__inner {
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  white-space: nowrap !important;
-  padding-bottom: 12px !important;
-  margin-bottom: 0 !important;
+/* 1. Fix mobile scroll clipping caused by custom.css */
+body.template-cart #main { 
+  overflow-x: visible !important; 
 }
 
-/* Custom Scrollbar for Desktop */
-.template-cart .scroller__inner::-webkit-scrollbar {
-  display: block !important;
-  height: 8px !important;
-}
-.template-cart .scroller__inner::-webkit-scrollbar-track {
-  background: #f1f1f1 !important;
-  border-radius: 4px !important;
-}
-.template-cart .scroller__inner::-webkit-scrollbar-thumb {
-  background: #bbb !important;
-  border-radius: 4px !important;
-}
-.template-cart .scroller__inner::-webkit-scrollbar-thumb:hover {
-  background: #888 !important;
-}
-
-.template-cart .product-list--scrollable {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  overflow: visible !important;
-  min-width: min-content !important;
-  width: auto !important;
-  gap: 15px !important; /* add a little gap */
-}
-
-/* Mobile (2.5 items) */
-.template-cart .product-item {
-  flex: 0 0 38% !important;
-  width: 38% !important;
-  max-width: 38% !important;
-  scroll-snap-align: start;
-  position: relative !important;
-  left: auto !important;
-  right: auto !important;
-  top: auto !important;
-  float: none !important;
-  display: inline-block !important; 
-}
-
-/* Tablet (4 items) */
-@media screen and (min-width: 641px) {
-  .template-cart .product-item {
-    flex: 0 0 23% !important;
-    width: 23% !important;
-    max-width: 23% !important;
-  }
-}
-
-/* Desktop (6 items) */
+/* 2. Fallback for Desktop if Flickity fails to initialize (native scrollbar) */
 @media screen and (min-width: 1000px) {
-  .template-cart .product-item {
-    flex: 0 0 15% !important;
-    width: 15% !important;
-    max-width: 15% !important;
+  .template-cart .scroller__inner {
+    padding-bottom: 12px !important;
+    margin-bottom: 0 !important;
+    overflow-x: auto !important;
   }
-}
-
-/* Wide Desktop (7 items) */
-@media screen and (min-width: 1200px) {
-  .template-cart .product-item {
-    flex: 0 0 13.5% !important;
-    width: 13.5% !important;
-    max-width: 13.5% !important;
+  .template-cart .scroller__inner::-webkit-scrollbar {
+    display: block !important;
+    height: 8px !important;
   }
-}
-
-/* Deactivate flickity rules entirely on cart */
-.template-cart .flickity-enabled, .template-cart .flickity-viewport {
-  overflow: visible !important;
-  height: auto !important;
-  position: relative !important;
-}
-.template-cart .flickity-slider {
-  position: static !important;
-  width: auto !important;
-  height: auto !important;
-  display: flex !important;
-  transform: none !important;
+  .template-cart .scroller__inner::-webkit-scrollbar-track {
+    background: #f1f1f1 !important;
+    border-radius: 4px !important;
+  }
+  .template-cart .scroller__inner::-webkit-scrollbar-thumb {
+    background: #bbb !important;
+    border-radius: 4px !important;
+  }
+  /* Ensure items don't stretch fully if flickity fails */
+  .template-cart .product-list--scrollable {
+    flex-wrap: nowrap !important;
+  }
 }
 </style>
 {%- endif -%}
