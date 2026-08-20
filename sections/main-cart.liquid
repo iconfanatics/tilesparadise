@@ -595,7 +595,7 @@
                     {%- endfor -%}
 
                     {%- if include_product -%}
-                      {%- render 'product-item', product: product, show_add_to_cart: true, grid_classes: '1/3--lap 1/3--desk 1/4--wide' -%}
+                      {%- render 'product-item', product: product, show_add_to_cart: true, show_shop_button: true, shop_button_label: 'Add to cart', grid_classes: '1/3--lap 1/3--desk 1/4--wide' -%}
 
                       {%- comment -%}Check how much products we have shown and limit{%- endcomment -%}
                       {%- assign upsell_products_count = upsell_products_count | plus: 1 -%}
