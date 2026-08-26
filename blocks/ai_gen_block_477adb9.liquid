@@ -453,16 +453,16 @@
   {% if use_recommendations %}
     {% if recommendations.performed and recommendations.products_count > 0 %}
       {% assign has_products = true %}
-      {% assign items = recommendations.products %}
+      {% assign items = recommendations.products | where: "available", true %}
     {% elsif recommendations.performed and recommendations.products_count == 0 %}
       {% if block.settings.collection != blank %}
         {% assign has_products = true %}
-        {% assign items = block.settings.collection.products %}
+        {% assign items = block.settings.collection.products | where: "available", true %}
       {% endif %}
     {% endif %}
   {% elsif block.settings.collection != blank %}
     {% assign has_products = true %}
-    {% assign items = block.settings.collection.products %}
+    {% assign items = block.settings.collection.products | where: "available", true %}
   {% endif %}
   
   {% if has_products %}
