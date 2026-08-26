@@ -201,7 +201,7 @@
           "settings": {
             "collection": "60x120cm-rectangular-large-tiles",
             "products_limit": 5,
-            "use_recommendations": false,
+            "use_recommendations": true,
             "title": "",
             "products_per_row_desktop": 5,
             "products_per_row_mobile": "2",

@@ -93,7 +93,7 @@
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": false,
         "settings": {
-          "greeting_message": "\ud83d\udc40 Seen something you like? \ud83c\udf1f Let\u2019s chat!  We\u2019re here to make sure you love your choice! \ud83d\udcac",
+          "greeting_message": "👀 Seen something you like? 🌟 Let’s chat!  We’re here to make sure you love your choice! 💬",
           "button_color": "#0086c8",
           "button_icon": "hand_wave",
           "button_text": "live_chat",
