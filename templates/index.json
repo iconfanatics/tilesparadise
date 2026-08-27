@@ -177,87 +177,6 @@
         "padding_bottom": 0
       }
     },
-    "blocks_4HkYkr": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_bd5bffb_hJekfy": {
-          "type": "ai_gen_block_bd5bffb",
-          "settings": {
-            "heading": "Luxury Porcelain Tiles for Bathrooms, Kitchens & Floors",
-            "heading_font": "system_ui_n7",
-            "font_size": 26,
-            "line_height": 1,
-            "text_color": "#3b3337",
-            "text_alignment": "left",
-            "padding_top": 20,
-            "padding_bottom": 20,
-            "padding_horizontal": 0,
-            "desktop_width_percent": 100
-          },
-          "blocks": {}
-        },
-        "ai_gen_block_477adb9_YEeeb6": {
-          "type": "ai_gen_block_477adb9",
-          "settings": {
-            "collection": "60x120cm-rectangular-large-tiles",
-            "products_limit": 5,
-            "use_recommendations": true,
-            "title": "",
-            "products_per_row_desktop": 5,
-            "products_per_row_mobile": "2",
-            "product_gap": 20,
-            "section_padding": 20,
-            "desktop_width_percent": 100,
-            "container_width": 1200,
-            "side_padding": 22,
-            "section_bg": "#f1eee8",
-            "title_size": 24,
-            "title_spacing": 10,
-            "title_color": "#000000",
-            "nav_button_bg": "#f5f5f5",
-            "nav_button_hover_bg": "#e8e8e8",
-            "nav_button_color": "#3b3337",
-            "nav_button_hover_color": "#000000",
-            "nav_right_offset": 4,
-            "card_bg": "#ffffff",
-            "image_bg": "#f4f4f4",
-            "card_border_radius": 2,
-            "card_padding": 10,
-            "product_title_size": 15,
-            "product_title_color": "#151515",
-            "price_size": 19,
-            "price_color": "#e40012",
-            "sale_price_color": "#e40012",
-            "compare_price_color": "#6f6f6f",
-            "accent_color": "#3070b7",
-            "badge_bg": "#e40012",
-            "badge_text_color": "#ffffff",
-            "badge_size": 13,
-            "vendor_bg": "#171717",
-            "vendor_text_color": "#ffffff",
-            "review_star_color": "#ff9d00",
-            "stock_text_color": "#111111",
-            "stock_size": 14,
-            "stock_icon_bg": "#31ad45",
-            "stock_icon_color": "#ffffff",
-            "out_of_stock_color": "#cf0e0e",
-            "wishlist_color": "#2e8f3d",
-            "button_text": "View product",
-            "button_bg": "#df3653",
-            "button_hover_bg": "#c72e47",
-            "button_text_color": "#ffffff",
-            "button_border_radius": 4
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_bd5bffb_hJekfy",
-        "ai_gen_block_477adb9_YEeeb6"
-      ],
-      "name": "Product carousel",
-      "settings": {}
-    },
     "collection_list_pb9YTb": {
       "type": "collection-list",
       "blocks": {
@@ -305,7 +224,7 @@
         "collection_gold_tiles": {
           "type": "collection",
           "settings": {
-            "collection": "gold-tiles",
+            "collection": "tile-sale",
             "title_override": "",
             "link": ""
           }
@@ -374,85 +293,56 @@
         "collection_sale_tiles_room"
       ],
       "custom_css": [],
-      "name": "By Room",
+      "name": "By Tiles",
       "settings": {
-        "title": "Shop By Room",
+        "title": "Luxury Porcelain Tiles for Bathrooms, Kitchens & Floors",
         "link_title": "View all",
         "link": "shopify://collections",
         "round_images": false,
         "show_collection_title": true,
         "custom_class": "home-shop-by-color-sec shop-by-room-grid",
-        "collections_to_show": 20
+        "collections_to_show": 6
       }
     },
-    "trending_styles_xyz": {
+    "collection_list_P79VV8": {
       "type": "collection-list",
       "blocks": {
-        "block_1": {
+        "collection_NkUqbh": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "onyx-tiles-1",
             "title_override": "Onyx Tiles",
-            "image": "shopify://shop_images/Onyx_Real_Porcelain_60x120cm_Blue_Polished_Wall_Floor_Tile_368effd7-9e6b-4f81-9660-2b6ab73d2093.webp",
-            "link": "https://tilesparadiseuk.com/collections/onyx-tiles-1"
-          }
-        },
-        "block_2": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title_override": "Marble Effect Tiles",
-            "image": "shopify://shop_images/sky-gold-white-marble-effect-polished-porcelain-60x120cm-wall-and-floor-tile-9981495.jpg",
-            "link": "shopify://collections/marble-effect-tiles"
-          }
-        },
-        "block_3": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title_override": "Gold Tiles",
-            "image": "shopify://shop_images/gold-marble-effect-tile-kitchen-bathroom-large-format.webp",
-            "link": "shopify://collections/gold-tiles"
-          }
-        },
-        "block_4": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title_override": "Black Tiles",
-            "image": "shopify://shop_images/dark-marble-effect-floor-tiles-maintenance.webp",
-            "link": "https://tilesparadiseuk.com/collections/gold-tiles"
-          }
-        }
-      },
-      "block_order": [
-        "block_1",
-        "block_2",
-        "block_3",
-        "block_4"
-      ],
-      "settings": {
-        "title": "Trending styles",
-        "link_title": "",
-        "link": "",
-        "round_images": false,
-        "show_collection_title": true,
-        "custom_class": "trending-styles-sec",
-        "collections_to_show": 20
-      }
-    },
-    "13830d8c-2d85-47ea-90e0-67f4d26a1478": {
-      "type": "collection-list",
-      "blocks": {
-        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-1": {
-          "type": "collection",
-          "settings": {
-            "collection": "blue-tiles",
-            "title_override": "",
             "link": ""
           }
         },
-        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-2": {
+        "collection_yNjGaA": {
+          "type": "collection",
+          "settings": {
+            "collection": "marble-effect-tiles",
+            "title_override": "Marble Effect Tiles",
+            "image": "shopify://shop_images/Silk_White_Black_Marble_Effect_Polished_Porcelain_60cm_x_120cm_Wall_Floor_Tile.webp",
+            "link": ""
+          }
+        },
+        "collection_yyNAnT": {
+          "type": "collection",
+          "settings": {
+            "collection": "gold-tiles",
+            "title_override": "",
+            "image": "shopify://shop_images/afyon-gold-polished-60x60cm-porcelain-wall-and-floor-tile-7275886.jpg",
+            "link": ""
+          }
+        },
+        "collection_by9Twn": {
+          "type": "collection",
+          "settings": {
+            "collection": "black-tiles",
+            "title_override": "Black Tiles",
+            "image": "shopify://shop_images/marquina-black-white-polished-porcelain-60x120cm-wall-and-floor-tiles_ea11a02e-739a-41b0-a835-833a07a4394c.webp",
+            "link": ""
+          }
+        },
+        "collection_PB44cG": {
           "type": "collection",
           "settings": {
             "collection": "green-tiles",
@@ -460,7 +350,31 @@
             "link": ""
           }
         },
-        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-3": {
+        "collection_iLnhqe": {
+          "type": "collection",
+          "settings": {
+            "collection": "blue-tiles",
+            "title_override": "",
+            "link": ""
+          }
+        },
+        "collection_mEKNnT": {
+          "type": "collection",
+          "settings": {
+            "collection": "blue-tiles",
+            "title_override": "",
+            "link": ""
+          }
+        },
+        "collection_b44ad3": {
+          "type": "collection",
+          "settings": {
+            "collection": "green-tiles",
+            "title_override": "",
+            "link": ""
+          }
+        },
+        "collection_kfPdVp": {
           "type": "collection",
           "settings": {
             "collection": "pink-tiles",
@@ -468,7 +382,7 @@
             "link": ""
           }
         },
-        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-4": {
+        "collection_j3mWYn": {
           "type": "collection",
           "settings": {
             "collection": "grey-tiles",
@@ -476,7 +390,7 @@
             "link": ""
           }
         },
-        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-5": {
+        "collection_EFYrJV": {
           "type": "collection",
           "settings": {
             "collection": "beige-floor-tiles-uk",
@@ -484,11 +398,156 @@
             "link": ""
           }
         },
+        "collection_QXp4Pm": {
+          "type": "collection",
+          "settings": {
+            "collection": "tile-sale",
+            "title_override": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_NkUqbh",
+        "collection_yNjGaA",
+        "collection_yyNAnT",
+        "collection_by9Twn",
+        "collection_PB44cG",
+        "collection_iLnhqe",
+        "collection_mEKNnT",
+        "collection_b44ad3",
+        "collection_kfPdVp",
+        "collection_j3mWYn",
+        "collection_EFYrJV",
+        "collection_QXp4Pm"
+      ],
+      "custom_css": [],
+      "name": "Trending Style",
+      "settings": {
+        "title": "Trending Style & Colour",
+        "link_title": "View all",
+        "link": "shopify://collections",
+        "round_images": false,
+        "show_collection_title": true,
+        "custom_class": "home-shop-by-color-sec shop-by-room-grid",
+        "collections_to_show": 6
+      }
+    },
+    "blocks_4HkYkr": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_YEeeb6": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "60x120cm-rectangular-large-tiles",
+            "products_limit": 5,
+            "use_recommendations": true,
+            "title": "<strong>Our Best-Selling Tiles for Every Space</strong>",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 10,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_YEeeb6"
+      ],
+      "name": "Product carousel",
+      "settings": {}
+    },
+    "13830d8c-2d85-47ea-90e0-67f4d26a1478": {
+      "type": "collection-list",
+      "blocks": {
+        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "led-mirrors",
+            "title_override": "",
+            "link": ""
+          }
+        },
+        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "round-bathroom-led-mirrors",
+            "title_override": "",
+            "link": ""
+          }
+        },
+        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "demisting-bathroom-led-mirrors",
+            "title_override": "Demisting Led Mirrors",
+            "image": "shopify://shop_images/arctiq-800x600mm-frameless-led-mirror-tri-colour-dimmable-light-demister-pad-touch-wall-switch-verticalhorizontal-1923717.webp",
+            "link": ""
+          }
+        },
+        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-4": {
+          "type": "collection",
+          "settings": {
+            "collection": "black-bathroom-led-mirrors",
+            "title_override": "Black LED Mirrors",
+            "link": ""
+          }
+        },
+        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-5": {
+          "type": "collection",
+          "settings": {
+            "collection": "back-lit-led-bathroom-mirrors",
+            "title_override": "Back-Lit LED Mirrors",
+            "image": "shopify://shop_images/velora-chillglow-500x700mm-led-mirror-cold-white-blue-light-bluetooth-speakers-shaver-socket-touch-sensor-mains-powered-3656939.webp",
+            "link": ""
+          }
+        },
         "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-6": {
           "type": "collection",
           "settings": {
-            "collection": "gold-tiles",
-            "title_override": "",
+            "collection": "rectangular-bathroom-led-mirrors",
+            "title_override": "Rectangular LED Mirrors",
+            "image": "shopify://shop_images/lumora-700x500mm-brushed-gold-led-illuminated-bathroom-mirror-anti-fog-verticalhorizontal-1818694.png",
             "link": ""
           }
         }
@@ -502,9 +561,9 @@
         "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-6"
       ],
       "custom_css": [],
-      "name": "Colour",
+      "name": "Mirrors",
       "settings": {
-        "title": "Popular Colour",
+        "title": "Modern & Luxury Mirrors",
         "link_title": "View all",
         "link": "shopify://collections",
         "round_images": false,
@@ -512,6 +571,70 @@
         "custom_class": "home-shop-by-color-sec",
         "collections_to_show": 20
       }
+    },
+    "blocks_UVPKaf": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_tJYGc3": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "led-mirrors",
+            "products_limit": 5,
+            "use_recommendations": true,
+            "title": "<strong>Top-Selling LED Mirrors</strong>",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 10,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_tJYGc3"
+      ],
+      "name": "Product carousel Mirrors",
+      "settings": {}
     },
     "collection_list_iqmkDd": {
       "type": "collection-list",
@@ -879,10 +1002,11 @@
   "order": [
     "slideshow_qt7hFy",
     "usp_bar_T3dt7A",
-    "blocks_4HkYkr",
     "collection_list_pb9YTb",
-    "trending_styles_xyz",
+    "collection_list_P79VV8",
+    "blocks_4HkYkr",
     "13830d8c-2d85-47ea-90e0-67f4d26a1478",
+    "blocks_UVPKaf",
     "collection_list_iqmkDd",
     "rich_text_NrganX",
     "apps_TetGGX",

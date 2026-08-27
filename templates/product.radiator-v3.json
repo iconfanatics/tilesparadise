@@ -70,6 +70,7 @@
         },
         "delivery_options_block": {
           "type": "delivery_options",
+          "disabled": true,
           "settings": {
             "get_it_text": "Get It Friday",
             "order_in_text": "Order in 21 hours and 4 minutes",
@@ -191,11 +192,12 @@
       "settings": {
         "tab_1_title": "Product Information",
         "tab_2_title": "Product Details",
-        "tab_3_title": "Tile FAQs"
+        "tab_3_title": "FAQs"
       }
     },
     "calculator_section": {
       "type": "custom-liquid",
+      "disabled": true,
       "name": "Tile Calculator",
       "settings": {
         "title": "",

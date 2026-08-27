@@ -84,7 +84,6 @@
         <div class="tp-css-tab-pane" id="pane-spec-{{ section.id }}">
           <div class="tp-spec-title">Product Details:</div>
           <ul class="tp-spec-list">
-            {%- if sku != blank -%}<li><strong>SKU:</strong> {{ sku }}</li>{%- endif -%}
             {%- if c.material != blank -%}<li><strong>Material:</strong> {{ c.material }}</li>{%- endif -%}
             {%- if c.colour != blank -%}<li><strong>Colour:</strong> {{ c.colour }}</li>{%- endif -%}
             {%- if c.thickness != blank -%}<li><strong>Thickness:</strong> {{ c.thickness }}</li>{%- endif -%}
