@@ -226,6 +226,7 @@
           "settings": {
             "collection": "tile-sale",
             "title_override": "",
+            "image": "shopify://shop_images/job-lot-39-tiles-28-sqm-onyx-real-60x120cm-blue-porcelain-polished-wall-floor-tile-2970155.jpg",
             "link": ""
           }
         },
@@ -296,6 +297,7 @@
       "name": "By Tiles",
       "settings": {
         "title": "Luxury Porcelain Tiles for Bathrooms, Kitchens & Floors",
+        "heading_size": "h1",
         "link_title": "View all",
         "link": "shopify://collections",
         "round_images": false,
@@ -424,7 +426,8 @@
       "custom_css": [],
       "name": "Trending Style",
       "settings": {
-        "title": "Trending Style & Colour",
+        "title": "Trending Tiles Style & Colour",
+        "heading_size": "h2",
         "link_title": "View all",
         "link": "shopify://collections",
         "round_images": false,
@@ -564,6 +567,7 @@
       "name": "Mirrors",
       "settings": {
         "title": "Modern & Luxury Mirrors",
+        "heading_size": "h2",
         "link_title": "View all",
         "link": "shopify://collections",
         "round_images": false,
@@ -647,14 +651,6 @@
             "link": ""
           }
         },
-        "collection_HnXqDW": {
-          "type": "collection",
-          "settings": {
-            "collection": "led-mirrors",
-            "title_override": "",
-            "link": ""
-          }
-        },
         "collection_ErBEJV": {
           "type": "collection",
           "settings": {
@@ -674,14 +670,14 @@
       },
       "block_order": [
         "collection_R7iGwz",
-        "collection_HnXqDW",
         "collection_ErBEJV",
         "collection_634ike"
       ],
       "custom_css": [],
       "name": "Bathrooms",
       "settings": {
-        "title": "Shop Bathrooms",
+        "title": "Shop Bathroom Essentials",
+        "heading_size": "h2",
         "link_title": "View all",
         "link": "shopify://collections",
         "round_images": false,
@@ -689,6 +685,198 @@
         "custom_class": "home-shop-by-color-sec shop-bathrooms-sec",
         "collections_to_show": 20
       }
+    },
+    "blocks_QaDqny": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_8h4mp9": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "toilets",
+            "products_limit": 5,
+            "use_recommendations": true,
+            "title": "Upgrade Bathroom with Our Bestselling Toilets",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 10,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_8h4mp9"
+      ],
+      "name": "Product carousel Toilets",
+      "settings": {}
+    },
+    "blocks_EgfjNr": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_6wFg4f": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "stylish-radiators-heated-towel-rails",
+            "products_limit": 5,
+            "use_recommendations": true,
+            "title": "Stylish Radiators & Heated Towel Rails",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 10,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_6wFg4f"
+      ],
+      "name": "Product Radiators",
+      "settings": {}
+    },
+    "blocks_k3pgfn": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_yyDmwP": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "luxury-shower-sets",
+            "products_limit": 5,
+            "use_recommendations": true,
+            "title": "Premium Shower Sets for Modern Bathrooms",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 10,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_yyDmwP"
+      ],
+      "name": "Product Shower Sets",
+      "settings": {}
     },
     "rich_text_NrganX": {
       "type": "rich-text",
@@ -1008,6 +1196,9 @@
     "13830d8c-2d85-47ea-90e0-67f4d26a1478",
     "blocks_UVPKaf",
     "collection_list_iqmkDd",
+    "blocks_QaDqny",
+    "blocks_EgfjNr",
+    "blocks_k3pgfn",
     "rich_text_NrganX",
     "apps_TetGGX",
     "custom_tabs_1",
