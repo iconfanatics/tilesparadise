@@ -1,6 +1,10 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -12,7 +16,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Tile_Ranges_02157fc6-c4ab-428f-9b8a-d3f3d3b03e2a.webp",
-            "mobile_image": "shopify://shop_images/Tile_Ranges_02157fc6-c4ab-428f-9b8a-d3f3d3b03e2a.webp",
+            "mobile_image": "shopify://shop_images/shop_our_tules_collection.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -29,7 +33,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Trade_Deals.webp",
-            "mobile_image": "shopify://shop_images/Trade_Deals.webp",
+            "mobile_image": "shopify://shop_images/shop_ours_trade_deals_collection.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -46,7 +50,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/premium_LED_Mirrors.webp",
-            "mobile_image": "shopify://shop_images/premium_LED_Mirrors.webp",
+            "mobile_image": "shopify://shop_images/SHOP_MIRROR_COLLECTIONS.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -63,7 +67,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Designer_Radiators.webp",
-            "mobile_image": "shopify://shop_images/Designer_Radiators.webp",
+            "mobile_image": "shopify://shop_images/radiators.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -80,7 +84,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Luxury_Shower_Sets.webp",
-            "mobile_image": "shopify://shop_images/Luxury_Shower_Sets.webp",
+            "mobile_image": "shopify://shop_images/luxury_shower_sets_f7db31fe-0ee2-463a-9dcf-d8486f31a07f.webp",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -134,7 +138,7 @@
           "settings": {
             "icon": "shopify://shop_images/refund_3.png",
             "heading": "Pay with PayPal",
-            "text": "Fast, secure checkout \u2014 no card needed."
+            "text": "Fast, secure checkout — no card needed."
           }
         },
         "usp_QfpCdx": {
@@ -149,8 +153,8 @@
           "type": "usp",
           "settings": {
             "icon": "shopify://shop_images/refund_2.png",
-            "heading": "Free Delivery Over \u00a3499",
-            "text": "To most of the UK \u2014 no hidden fees."
+            "heading": "Free Delivery Over £499",
+            "text": "To most of the UK — no hidden fees."
           }
         }
       },
@@ -172,87 +176,6 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
-    },
-    "blocks_4HkYkr": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_bd5bffb_hJekfy": {
-          "type": "ai_gen_block_bd5bffb",
-          "settings": {
-            "heading": "Luxury Porcelain Tiles for Bathrooms, Kitchens & Floors",
-            "heading_font": "system_ui_n7",
-            "font_size": 26,
-            "line_height": 1,
-            "text_color": "#3b3337",
-            "text_alignment": "left",
-            "padding_top": 20,
-            "padding_bottom": 20,
-            "padding_horizontal": 0,
-            "desktop_width_percent": 100
-          },
-          "blocks": {}
-        },
-        "ai_gen_block_477adb9_YEeeb6": {
-          "type": "ai_gen_block_477adb9",
-          "settings": {
-            "collection": "60x120cm-rectangular-large-tiles",
-            "products_limit": 6,
-            "use_recommendations": false,
-            "title": "",
-            "products_per_row_desktop": 5,
-            "products_per_row_mobile": "2",
-            "product_gap": 20,
-            "section_padding": 20,
-            "desktop_width_percent": 100,
-            "container_width": 1200,
-            "side_padding": 22,
-            "section_bg": "#f1eee8",
-            "title_size": 24,
-            "title_spacing": 10,
-            "title_color": "#000000",
-            "nav_button_bg": "#f5f5f5",
-            "nav_button_hover_bg": "#e8e8e8",
-            "nav_button_color": "#3b3337",
-            "nav_button_hover_color": "#000000",
-            "nav_right_offset": 4,
-            "card_bg": "#ffffff",
-            "image_bg": "#f4f4f4",
-            "card_border_radius": 2,
-            "card_padding": 10,
-            "product_title_size": 15,
-            "product_title_color": "#151515",
-            "price_size": 19,
-            "price_color": "#e40012",
-            "sale_price_color": "#e40012",
-            "compare_price_color": "#6f6f6f",
-            "accent_color": "#3070b7",
-            "badge_bg": "#e40012",
-            "badge_text_color": "#ffffff",
-            "badge_size": 13,
-            "vendor_bg": "#171717",
-            "vendor_text_color": "#ffffff",
-            "review_star_color": "#ff9d00",
-            "stock_text_color": "#111111",
-            "stock_size": 14,
-            "stock_icon_bg": "#31ad45",
-            "stock_icon_color": "#ffffff",
-            "out_of_stock_color": "#cf0e0e",
-            "wishlist_color": "#2e8f3d",
-            "button_text": "View product",
-            "button_bg": "#df3653",
-            "button_hover_bg": "#c72e47",
-            "button_text_color": "#ffffff",
-            "button_border_radius": 4
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_bd5bffb_hJekfy",
-        "ai_gen_block_477adb9_YEeeb6"
-      ],
-      "name": "Product carousel",
-      "settings": {}
     },
     "collection_list_pb9YTb": {
       "type": "collection-list",
@@ -301,8 +224,9 @@
         "collection_gold_tiles": {
           "type": "collection",
           "settings": {
-            "collection": "gold-tiles",
+            "collection": "tile-sale",
             "title_override": "",
+            "image": "shopify://shop_images/job-lot-39-tiles-28-sqm-onyx-real-60x120cm-blue-porcelain-polished-wall-floor-tile-2970155.jpg",
             "link": ""
           }
         },
@@ -370,85 +294,57 @@
         "collection_sale_tiles_room"
       ],
       "custom_css": [],
-      "name": "By Room",
+      "name": "By Tiles",
       "settings": {
-        "title": "Shop By Room",
+        "title": "Luxury Porcelain Tiles for Bathrooms, Kitchens & Floors",
+        "heading_size": "h1",
         "link_title": "View all",
         "link": "shopify://collections",
         "round_images": false,
         "show_collection_title": true,
         "custom_class": "home-shop-by-color-sec shop-by-room-grid",
-        "collections_to_show": 20
+        "collections_to_show": 6
       }
     },
-    "trending_styles_xyz": {
+    "collection_list_P79VV8": {
       "type": "collection-list",
       "blocks": {
-        "block_1": {
+        "collection_NkUqbh": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "onyx-tiles-1",
             "title_override": "Onyx Tiles",
-            "image": "shopify://shop_images/Onyx_Real_Porcelain_60x120cm_Blue_Polished_Wall_Floor_Tile_368effd7-9e6b-4f81-9660-2b6ab73d2093.webp",
-            "link": "https://tilesparadiseuk.com/collections/onyx-tiles-1"
-          }
-        },
-        "block_2": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title_override": "Marble Effect Tiles",
-            "image": "shopify://shop_images/sky-gold-white-marble-effect-polished-porcelain-60x120cm-wall-and-floor-tile-9981495.jpg",
-            "link": "shopify://collections/marble-effect-tiles"
-          }
-        },
-        "block_3": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title_override": "Gold Tiles",
-            "image": "shopify://shop_images/gold-marble-effect-tile-kitchen-bathroom-large-format.webp",
-            "link": "shopify://collections/gold-tiles"
-          }
-        },
-        "block_4": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title_override": "Black Tiles",
-            "image": "shopify://shop_images/dark-marble-effect-floor-tiles-maintenance.webp",
-            "link": "https://tilesparadiseuk.com/collections/gold-tiles"
-          }
-        }
-      },
-      "block_order": [
-        "block_1",
-        "block_2",
-        "block_3",
-        "block_4"
-      ],
-      "settings": {
-        "title": "Trending styles",
-        "link_title": "",
-        "link": "",
-        "round_images": false,
-        "show_collection_title": true,
-        "custom_class": "trending-styles-sec",
-        "collections_to_show": 20
-      }
-    },
-    "13830d8c-2d85-47ea-90e0-67f4d26a1478": {
-      "type": "collection-list",
-      "blocks": {
-        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-1": {
-          "type": "collection",
-          "settings": {
-            "collection": "blue-tiles",
-            "title_override": "",
             "link": ""
           }
         },
-        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-2": {
+        "collection_yNjGaA": {
+          "type": "collection",
+          "settings": {
+            "collection": "marble-effect-tiles",
+            "title_override": "Marble Effect Tiles",
+            "image": "shopify://shop_images/Silk_White_Black_Marble_Effect_Polished_Porcelain_60cm_x_120cm_Wall_Floor_Tile.webp",
+            "link": ""
+          }
+        },
+        "collection_yyNAnT": {
+          "type": "collection",
+          "settings": {
+            "collection": "gold-tiles",
+            "title_override": "",
+            "image": "shopify://shop_images/afyon-gold-polished-60x60cm-porcelain-wall-and-floor-tile-7275886.jpg",
+            "link": ""
+          }
+        },
+        "collection_by9Twn": {
+          "type": "collection",
+          "settings": {
+            "collection": "black-tiles",
+            "title_override": "Black Tiles",
+            "image": "shopify://shop_images/marquina-black-white-polished-porcelain-60x120cm-wall-and-floor-tiles_ea11a02e-739a-41b0-a835-833a07a4394c.webp",
+            "link": ""
+          }
+        },
+        "collection_PB44cG": {
           "type": "collection",
           "settings": {
             "collection": "green-tiles",
@@ -456,7 +352,31 @@
             "link": ""
           }
         },
-        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-3": {
+        "collection_iLnhqe": {
+          "type": "collection",
+          "settings": {
+            "collection": "blue-tiles",
+            "title_override": "",
+            "link": ""
+          }
+        },
+        "collection_mEKNnT": {
+          "type": "collection",
+          "settings": {
+            "collection": "blue-tiles",
+            "title_override": "",
+            "link": ""
+          }
+        },
+        "collection_b44ad3": {
+          "type": "collection",
+          "settings": {
+            "collection": "green-tiles",
+            "title_override": "",
+            "link": ""
+          }
+        },
+        "collection_kfPdVp": {
           "type": "collection",
           "settings": {
             "collection": "pink-tiles",
@@ -464,7 +384,7 @@
             "link": ""
           }
         },
-        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-4": {
+        "collection_j3mWYn": {
           "type": "collection",
           "settings": {
             "collection": "grey-tiles",
@@ -472,7 +392,7 @@
             "link": ""
           }
         },
-        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-5": {
+        "collection_EFYrJV": {
           "type": "collection",
           "settings": {
             "collection": "beige-floor-tiles-uk",
@@ -480,11 +400,157 @@
             "link": ""
           }
         },
+        "collection_QXp4Pm": {
+          "type": "collection",
+          "settings": {
+            "collection": "tile-sale",
+            "title_override": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_NkUqbh",
+        "collection_yNjGaA",
+        "collection_yyNAnT",
+        "collection_by9Twn",
+        "collection_PB44cG",
+        "collection_iLnhqe",
+        "collection_mEKNnT",
+        "collection_b44ad3",
+        "collection_kfPdVp",
+        "collection_j3mWYn",
+        "collection_EFYrJV",
+        "collection_QXp4Pm"
+      ],
+      "custom_css": [],
+      "name": "Trending Style",
+      "settings": {
+        "title": "Trending Tiles Style & Colour",
+        "heading_size": "h2",
+        "link_title": "View all",
+        "link": "shopify://collections",
+        "round_images": false,
+        "show_collection_title": true,
+        "custom_class": "home-shop-by-color-sec shop-by-room-grid",
+        "collections_to_show": 6
+      }
+    },
+    "blocks_4HkYkr": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_YEeeb6": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "60x120cm-rectangular-large-tiles",
+            "products_limit": 5,
+            "use_recommendations": true,
+            "title": "<strong>Our Best-Selling Tiles for Every Space</strong>",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 10,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_YEeeb6"
+      ],
+      "name": "Product carousel",
+      "settings": {}
+    },
+    "13830d8c-2d85-47ea-90e0-67f4d26a1478": {
+      "type": "collection-list",
+      "blocks": {
+        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "led-mirrors",
+            "title_override": "",
+            "link": ""
+          }
+        },
+        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "round-bathroom-led-mirrors",
+            "title_override": "",
+            "link": ""
+          }
+        },
+        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "demisting-bathroom-led-mirrors",
+            "title_override": "Demisting Led Mirrors",
+            "image": "shopify://shop_images/arctiq-800x600mm-frameless-led-mirror-tri-colour-dimmable-light-demister-pad-touch-wall-switch-verticalhorizontal-1923717.webp",
+            "link": ""
+          }
+        },
+        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-4": {
+          "type": "collection",
+          "settings": {
+            "collection": "black-bathroom-led-mirrors",
+            "title_override": "Black LED Mirrors",
+            "link": ""
+          }
+        },
+        "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-5": {
+          "type": "collection",
+          "settings": {
+            "collection": "back-lit-led-bathroom-mirrors",
+            "title_override": "Back-Lit LED Mirrors",
+            "image": "shopify://shop_images/velora-chillglow-500x700mm-led-mirror-cold-white-blue-light-bluetooth-speakers-shaver-socket-touch-sensor-mains-powered-3656939.webp",
+            "link": ""
+          }
+        },
         "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-6": {
           "type": "collection",
           "settings": {
-            "collection": "gold-tiles",
-            "title_override": "",
+            "collection": "rectangular-bathroom-led-mirrors",
+            "title_override": "Rectangular LED Mirrors",
+            "image": "shopify://shop_images/lumora-700x500mm-brushed-gold-led-illuminated-bathroom-mirror-anti-fog-verticalhorizontal-1818694.png",
             "link": ""
           }
         }
@@ -498,9 +564,10 @@
         "template--20588949111074__13830d8c-2d85-47ea-90e0-67f4d26a1478-collection-6"
       ],
       "custom_css": [],
-      "name": "Colour",
+      "name": "Mirrors",
       "settings": {
-        "title": "Popular Colour",
+        "title": "Modern & Luxury Mirrors",
+        "heading_size": "h2",
         "link_title": "View all",
         "link": "shopify://collections",
         "round_images": false,
@@ -509,6 +576,70 @@
         "collections_to_show": 20
       }
     },
+    "blocks_UVPKaf": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_tJYGc3": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "led-mirrors",
+            "products_limit": 5,
+            "use_recommendations": true,
+            "title": "<strong>Top-Selling LED Mirrors</strong>",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 10,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_tJYGc3"
+      ],
+      "name": "Product carousel Mirrors",
+      "settings": {}
+    },
     "collection_list_iqmkDd": {
       "type": "collection-list",
       "blocks": {
@@ -516,14 +647,6 @@
           "type": "collection",
           "settings": {
             "collection": "toilets",
-            "title_override": "",
-            "link": ""
-          }
-        },
-        "collection_HnXqDW": {
-          "type": "collection",
-          "settings": {
-            "collection": "led-mirrors",
             "title_override": "",
             "link": ""
           }
@@ -547,14 +670,14 @@
       },
       "block_order": [
         "collection_R7iGwz",
-        "collection_HnXqDW",
         "collection_ErBEJV",
         "collection_634ike"
       ],
       "custom_css": [],
       "name": "Bathrooms",
       "settings": {
-        "title": "Shop Bathrooms",
+        "title": "Shop Bathroom Essentials",
+        "heading_size": "h2",
         "link_title": "View all",
         "link": "shopify://collections",
         "round_images": false,
@@ -562,6 +685,198 @@
         "custom_class": "home-shop-by-color-sec shop-bathrooms-sec",
         "collections_to_show": 20
       }
+    },
+    "blocks_QaDqny": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_8h4mp9": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "toilets",
+            "products_limit": 5,
+            "use_recommendations": true,
+            "title": "Upgrade Bathroom with Our Bestselling Toilets",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 10,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_8h4mp9"
+      ],
+      "name": "Product carousel Toilets",
+      "settings": {}
+    },
+    "blocks_EgfjNr": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_6wFg4f": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "stylish-radiators-heated-towel-rails",
+            "products_limit": 5,
+            "use_recommendations": true,
+            "title": "Stylish Radiators & Heated Towel Rails",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 10,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_6wFg4f"
+      ],
+      "name": "Product Radiators",
+      "settings": {}
+    },
+    "blocks_k3pgfn": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_477adb9_yyDmwP": {
+          "type": "ai_gen_block_477adb9",
+          "settings": {
+            "collection": "luxury-shower-sets",
+            "products_limit": 5,
+            "use_recommendations": true,
+            "title": "Premium Shower Sets for Modern Bathrooms",
+            "products_per_row_desktop": 5,
+            "products_per_row_mobile": "2",
+            "product_gap": 20,
+            "section_padding": 20,
+            "desktop_width_percent": 100,
+            "container_width": 1200,
+            "side_padding": 22,
+            "section_bg": "#f1eee8",
+            "title_size": 24,
+            "title_spacing": 10,
+            "title_color": "#000000",
+            "nav_button_bg": "#f5f5f5",
+            "nav_button_hover_bg": "#e8e8e8",
+            "nav_button_color": "#3b3337",
+            "nav_button_hover_color": "#000000",
+            "nav_right_offset": 4,
+            "card_bg": "#ffffff",
+            "image_bg": "#f4f4f4",
+            "card_border_radius": 2,
+            "card_padding": 10,
+            "product_title_size": 15,
+            "product_title_color": "#151515",
+            "price_size": 19,
+            "price_color": "#e40012",
+            "sale_price_color": "#e40012",
+            "compare_price_color": "#6f6f6f",
+            "accent_color": "#3070b7",
+            "badge_bg": "#e40012",
+            "badge_text_color": "#ffffff",
+            "badge_size": 13,
+            "vendor_bg": "#171717",
+            "vendor_text_color": "#ffffff",
+            "review_star_color": "#ff9d00",
+            "stock_text_color": "#111111",
+            "stock_size": 14,
+            "stock_icon_bg": "#31ad45",
+            "stock_icon_color": "#ffffff",
+            "out_of_stock_color": "#cf0e0e",
+            "wishlist_color": "#2e8f3d",
+            "button_text": "View product",
+            "button_bg": "#df3653",
+            "button_hover_bg": "#c72e47",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_477adb9_yyDmwP"
+      ],
+      "name": "Product Shower Sets",
+      "settings": {}
     },
     "rich_text_NrganX": {
       "type": "rich-text",
@@ -575,7 +890,7 @@
         "text_width": "wide",
         "custom_class": "reviews-custom-header",
         "title": "Reviews from Customers",
-        "content": "<p><strong>4.8</strong> <em>\u2605\u2605\u2605\u2605\u2605</em></p><h2>Reviews from Customers</h2><p>Rated by homeowners across the UK for quality, durability, and style.</p>",
+        "content": "<p><strong>4.8</strong> <em>★★★★★</em></p><h2>Reviews from Customers</h2><p>Rated by homeowners across the UK for quality, durability, and style.</p>",
         "button_text": "",
         "button_link": "shopify://collections/all"
       }
@@ -608,7 +923,7 @@
           "settings": {
             "title": "About Tiles Paradise",
             "heading": "",
-            "content": "<p>Four years ago, we started buying tiles straight from the factories that make them. No importer in the middle. No distributor. No showroom with a coffee machine charging you for the decor.</p><p>We bring the stock into our own UK warehouse and ship it to your door \u2014 usually the next working day.</p><p>1,000+ customers. 4.8 stars. Not because the brand looks good, but because what we say we'll deliver, we actually deliver.</p><p>Porcelain tiles, bathroom products, LED mirrors, heated towel rails, toilets, shower sets. Everything you need for a renovation, from one place, at prices the high street can't justify.</p>"
+            "content": "<p>Four years ago, we started buying tiles straight from the factories that make them. No importer in the middle. No distributor. No showroom with a coffee machine charging you for the decor.</p><p>We bring the stock into our own UK warehouse and ship it to your door — usually the next working day.</p><p>1,000+ customers. 4.8 stars. Not because the brand looks good, but because what we say we'll deliver, we actually deliver.</p><p>Porcelain tiles, bathroom products, LED mirrors, heated towel rails, toilets, shower sets. Everything you need for a renovation, from one place, at prices the high street can't justify.</p>"
           }
         },
         "tab_2": {
@@ -616,7 +931,7 @@
           "settings": {
             "title": "Own the Room",
             "heading": "",
-            "content": "<p>Most people spend weeks scrolling tile websites, overwhelmed by choice and let down by photos that look nothing like the tile in real life.</p><p>Here's what we do instead.</p><p>Order a sample. We cut it, we post it, you hold it in your actual room in your actual light. If it's right, you buy. If not, try another. We refund the sample cost against your order.</p><p>No guessing. No returns because the colour was wrong on screen.</p><p>200+ tiles in stock. Marble effect, onyx, gloss, matt, outdoor \u2014 ready to ship.</p>"
+            "content": "<p>Most people spend weeks scrolling tile websites, overwhelmed by choice and let down by photos that look nothing like the tile in real life.</p><p>Here's what we do instead.</p><p>Order a sample. We cut it, we post it, you hold it in your actual room in your actual light. If it's right, you buy. If not, try another. We refund the sample cost against your order.</p><p>No guessing. No returns because the colour was wrong on screen.</p><p>200+ tiles in stock. Marble effect, onyx, gloss, matt, outdoor — ready to ship.</p>"
           }
         },
         "tab_3": {
@@ -624,7 +939,7 @@
           "settings": {
             "title": "Ready to Renovate?",
             "heading": "",
-            "content": "<p>Renovations go wrong for three reasons. Products take too long. Something arrives damaged and no one answers. Or you've ordered from five different websites and nothing matches when it gets there.</p><p>We fix all three.</p><p>Tiles, mirrors, toilets, radiators, shower sets \u2014 all held in our UK warehouse. Most orders ship the next working day. Tiles go out on fully-wrapped pallets because porcelain chips and we'd rather not deal with that.</p><p>If anything arrives damaged, photograph it while it's still on the pallet. Tell us within two working days. We'll sort a replacement \u2014 no argument.</p><p>One supplier. One delivery. One person to call.</p>"
+            "content": "<p>Renovations go wrong for three reasons. Products take too long. Something arrives damaged and no one answers. Or you've ordered from five different websites and nothing matches when it gets there.</p><p>We fix all three.</p><p>Tiles, mirrors, toilets, radiators, shower sets — all held in our UK warehouse. Most orders ship the next working day. Tiles go out on fully-wrapped pallets because porcelain chips and we'd rather not deal with that.</p><p>If anything arrives damaged, photograph it while it's still on the pallet. Tell us within two working days. We'll sort a replacement — no argument.</p><p>One supplier. One delivery. One person to call.</p>"
           }
         },
         "tab_4": {
@@ -640,7 +955,7 @@
           "settings": {
             "title": "How Buying From Us Works",
             "heading": "",
-            "content": "<p>Browse. Order a sample if you're unsure \u2014 we deliver it, you decide, we knock it off your first order.</p><p>When you're ready, check out with PayPal, Klarna, or card. 0% interest-free finance available if you want to spread the cost.</p><p>Your order ships from our UK warehouse within 1\u20133 working days. Tiles travel on pallets \u2014 not because we're overcautious, but because that's the only way to get porcelain to your door without it cracking.</p><p>If anything goes sideways, WhatsApp or live chat us. 24 hours a day, 7 days a week. A real person responds \u2014 not a bot reading from a script.</p>"
+            "content": "<p>Browse. Order a sample if you're unsure — we deliver it, you decide, we knock it off your first order.</p><p>When you're ready, check out with PayPal, Klarna, or card. 0% interest-free finance available if you want to spread the cost.</p><p>Your order ships from our UK warehouse within 1–3 working days. Tiles travel on pallets — not because we're overcautious, but because that's the only way to get porcelain to your door without it cracking.</p><p>If anything goes sideways, WhatsApp or live chat us. 24 hours a day, 7 days a week. A real person responds — not a bot reading from a script.</p>"
           }
         },
         "tab_6": {
@@ -648,7 +963,7 @@
           "settings": {
             "title": "What We Actually Stand For",
             "heading": "",
-            "content": "<p>We're four years old. We don't have a showroom or a 500-seat call centre.</p><p>What we have is a direct relationship with the factories, our own UK warehouse, and a team that replies in minutes \u2014 not working days.</p><p>Our goal is simple: fewer problems on delivery day, better prices, and someone who picks up when something goes wrong.</p><p>4.8 stars. 1,000+ reviews. Every one from a real customer who placed a real order.</p><p>Got a question before you buy? Ask on live chat, WhatsApp, or email. Same team. Same response time. Any hour.</p>"
+            "content": "<p>We're four years old. We don't have a showroom or a 500-seat call centre.</p><p>What we have is a direct relationship with the factories, our own UK warehouse, and a team that replies in minutes — not working days.</p><p>Our goal is simple: fewer problems on delivery day, better prices, and someone who picks up when something goes wrong.</p><p>4.8 stars. 1,000+ reviews. Every one from a real customer who placed a real order.</p><p>Got a question before you buy? Ask on live chat, WhatsApp, or email. Same team. Same response time. Any hour.</p>"
           }
         }
       },
@@ -764,14 +1079,14 @@
           "type": "question",
           "settings": {
             "title": "Do you offer samples?",
-            "answer": "<p>Yes \u2014 order a cut sample of any tile and we'll deliver it to your door, then refund the cost against your order when you buy. It's the best way to check colour and finish in your own light.<br/><br/></p>"
+            "answer": "<p>Yes — order a cut sample of any tile and we'll deliver it to your door, then refund the cost against your order when you buy. It's the best way to check colour and finish in your own light.<br/><br/></p>"
           }
         },
         "question_3xCC9L": {
           "type": "question",
           "settings": {
             "title": "What if my tiles arrive damaged?",
-            "answer": "<p>Tiles are well protected on the pallet, but if anything arrives damaged, take a photo while it's still on the pallet and tell us within 2 working days \u2014 we'll sort a replacement.<br/><br/></p>"
+            "answer": "<p>Tiles are well protected on the pallet, but if anything arrives damaged, take a photo while it's still on the pallet and tell us within 2 working days — we'll sort a replacement.<br/><br/></p>"
           }
         },
         "separator_fPHky4": {
@@ -784,21 +1099,21 @@
           "type": "question",
           "settings": {
             "title": "Can I pay in instalments?",
-            "answer": "<p>Yes \u2014 split the cost with 0% interest-free finance through PayPal Pay in 3 or Klarna at checkout.<br/><br/></p>"
+            "answer": "<p>Yes — split the cost with 0% interest-free finance through PayPal Pay in 3 or Klarna at checkout.<br/><br/></p>"
           }
         },
         "question_9gRb9m": {
           "type": "question",
           "settings": {
             "title": "Why are your prices lower than the high street?",
-            "answer": "<p>We import our tiles and bathroom products directly from the factories that make them, with no middleman markup \u2014 so you get the same designer looks for less.<br/><br/></p>"
+            "answer": "<p>We import our tiles and bathroom products directly from the factories that make them, with no middleman markup — so you get the same designer looks for less.<br/><br/></p>"
           }
         },
         "question_pQxhNR": {
           "type": "question",
           "settings": {
             "title": "Do you offer trade or bulk pricing?",
-            "answer": "<p>Yes \u2014 we offer trade accounts and pallet/bulk pricing. Apply through our trade enquiry page or get in touch.<br/><br/></p>"
+            "answer": "<p>Yes — we offer trade accounts and pallet/bulk pricing. Apply through our trade enquiry page or get in touch.<br/><br/></p>"
           }
         }
       },
@@ -819,7 +1134,7 @@
         "contact_info_text": "<p>If we still haven't answered your question, you can contact us below and we will get back to you as soon as possible.</p>",
         "contact_1_icon": "bi-network",
         "contact_1_heading": "Customer support",
-        "contact_1_text": "<p>Chat with us 24/7 on live chat or WhatsApp \u2014 07562 758749 (WhatsApp messages)<br/><br/></p>",
+        "contact_1_text": "<p>Chat with us 24/7 on live chat or WhatsApp — 07562 758749 (WhatsApp messages)<br/><br/></p>",
         "contact_2_icon": "bi-email",
         "contact_2_heading": "Send a message",
         "contact_2_text": "<p>Email <a href=\"mailto:sales@tilesparadiseuk.com\">sales@tilesparadiseuk.com</a> any time and we'll get back to you as soon as possible</p>"
@@ -875,11 +1190,15 @@
   "order": [
     "slideshow_qt7hFy",
     "usp_bar_T3dt7A",
-    "blocks_4HkYkr",
     "collection_list_pb9YTb",
-    "trending_styles_xyz",
+    "collection_list_P79VV8",
+    "blocks_4HkYkr",
     "13830d8c-2d85-47ea-90e0-67f4d26a1478",
+    "blocks_UVPKaf",
     "collection_list_iqmkDd",
+    "blocks_QaDqny",
+    "blocks_EgfjNr",
+    "blocks_k3pgfn",
     "rich_text_NrganX",
     "apps_TetGGX",
     "custom_tabs_1",

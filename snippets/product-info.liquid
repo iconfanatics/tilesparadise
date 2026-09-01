@@ -15,6 +15,13 @@
           {%- when 'product_meta' -%}
             {%- render 'product-meta', product: product, block: block -%}
 
+          {%- when 'custom_swatches' -%}
+            {%- if block.settings.liquid != blank -%}
+              <div class="product-meta__liquid tp-custom-liquid" {{ block.shopify_attributes }}>
+                {{ block.settings.liquid }}
+              </div>
+            {%- endif -%}
+
           {%- when 'variant_selector' -%}
             {%- render 'product-variant-selector', product: product, form: form, block: block -%}
 

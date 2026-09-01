@@ -83,21 +83,7 @@
         "show_quick_buy": false
       }
     },
-    "169974545854ef2da9": {
-      "type": "apps",
-      "blocks": {
-        "c68a5f1e-c45c-4fdc-b2db-75a84b9ff064": {
-          "type": "shopify://apps/vitals/blocks/featured-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "c68a5f1e-c45c-4fdc-b2db-75a84b9ff064"
-      ],
-      "settings": {
-        "include_margins": true
-      }
-    },
+
     "176672394354ea83bc": {
       "type": "_blocks",
       "settings": {}
@@ -205,7 +191,6 @@
     "4720762a-6b61-48e4-9dae-1e2b9be5db51",
     "main",
     "recently-viewed-products",
-    "169974545854ef2da9",
     "176672394354ea83bc",
     "faq_XDt39Y"
   ]

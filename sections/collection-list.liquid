@@ -2,7 +2,8 @@
   <div class="container">
     {%- if section.settings.title != blank -%}
       <header class="section__header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px; text-align: left;">
-        <h2 class="section__title custom-section-title" style="margin: 0;">{{ section.settings.title | escape }}</h2>
+        {%- assign heading_tag = section.settings.heading_size | default: 'h2' -%}
+        <{{ heading_tag }} class="section__title custom-section-title" style="margin: 0;">{{ section.settings.title | escape }}</{{ heading_tag }}>
 
         {%- if section.settings.link_title != blank and section.settings.link != blank -%}
           <a href="{{ section.settings.link }}" class="section__action-link link custom-view-all"><span>{{ section.settings.link_title | escape }}</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
@@ -248,6 +249,20 @@
       "id": "title",
       "label": "Heading",
       "default": "Our collections"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading HTML Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
     },
     {
       "type": "text",

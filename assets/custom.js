@@ -226,28 +226,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  function fixCheckoutButton() {
-
+  function forceEnableCheckoutButton() {
     const btn = document.querySelector('.custom-checkout-btn-selector');
-
     if (!btn) return;
-
-    // remove disabled
     btn.removeAttribute('disabled');
     btn.disabled = false;
+    btn.style.cssText += ';cursor:pointer!important;pointer-events:auto!important;opacity:1!important;';
 
-    // remove surrounding shipping-policy anchor
+    // remove surrounding shipping-policy anchor if any app wraps it
     const parentLink = btn.closest('a[href*="shipping-policy"]');
-
     if (parentLink) {
       parentLink.parentNode.insertBefore(btn, parentLink);
       parentLink.remove();
     }
-
-    console.log('Checkout button fixed');
   }
 
-  fixCheckoutButton();
+  // Run immediately
+  forceEnableCheckoutButton();
 
-  document.addEventListener('cart:refresh', fixCheckoutButton);
+  // Also run after short delays to beat any app that runs after DOMContentLoaded
+  setTimeout(forceEnableCheckoutButton, 500);
+  setTimeout(forceEnableCheckoutButton, 1500);
+  setTimeout(forceEnableCheckoutButton, 3000);
+
+  // Watch for any app re-disabling the button via MutationObserver
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'disabled') {
+        forceEnableCheckoutButton();
+      }
+    });
+  });
+
+  function observeBtn() {
+    var btn = document.querySelector('.custom-checkout-btn-selector');
+    if (btn) {
+      observer.observe(btn, { attributes: true });
+    }
+  }
+
+  observeBtn();
+  setTimeout(observeBtn, 1000);
+
+  document.addEventListener('cart:refresh', forceEnableCheckoutButton);
 });
+

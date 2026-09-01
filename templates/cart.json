@@ -125,28 +125,12 @@
         "title": "Recently viewed",
         "show_quick_buy": false
       }
-    },
-    "174446885791e87112": {
-      "type": "apps",
-      "blocks": {
-        "vitals_featured_reviews_txrAnT": {
-          "type": "shopify://apps/vitals/blocks/featured-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "vitals_featured_reviews_txrAnT"
-      ],
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
     "text_with_icons_QrLURr",
     "main",
     "featured_collection_UP6TXf",
-    "recently-viewed-products",
-    "174446885791e87112"
+    "recently-viewed-products"
   ]
 }

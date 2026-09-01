@@ -56,7 +56,7 @@
     "low_inventory_threshold": 0,
     "sale_text": "<span> Xmas Sale </span>",
     "sale_collection": "",
-    "cart_type": "message",
+    "cart_type": "page",
     "cart_empty_button_link": "shopify://collections/all",
     "cart_show_checkout_button": false,
     "cart_show_free_shipping_threshold": true,
@@ -150,6 +150,11 @@
         "type": "shopify://apps/yoast-seo-seo-for-everyone/blocks/metatags/7c777011-bc88-4743-a24e-64336e1e5b46",
         "disabled": false,
         "settings": {}
+      },
+      "12412247409707363845": {
+        "type": "shopify://apps/contentsquare-analytics/blocks/csq_tag_snippet_script/019a7cb2-3ace-7c1e-bb5d-112ee54f5310",
+        "disabled": false,
+        "settings": {}
       }
     }
   },
@@ -199,7 +204,7 @@
       "show_inventory_quantity": false,
       "low_inventory_threshold": 0,
       "show_reviews_badge": false,
-      "cart_type": "message",
+      "cart_type": "page",
       "cart_empty_button_link": "shopify://collections/all",
       "cart_show_checkout_button": true,
       "cart_show_free_shipping_threshold": false,
@@ -276,7 +281,7 @@
       "show_inventory_quantity": true,
       "low_inventory_threshold": 1,
       "show_reviews_badge": false,
-      "cart_type": "message",
+      "cart_type": "page",
       "cart_empty_button_link": "shopify://collections/all",
       "cart_show_checkout_button": true,
       "cart_show_free_shipping_threshold": true,
@@ -339,7 +344,7 @@
       "show_inventory_quantity": true,
       "low_inventory_threshold": 2,
       "show_reviews_badge": true,
-      "cart_type": "message",
+      "cart_type": "page",
       "cart_empty_button_link": "shopify://collections/all",
       "cart_show_checkout_button": true,
       "cart_show_free_shipping_threshold": true,

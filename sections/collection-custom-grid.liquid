@@ -766,7 +766,7 @@
 
             <div class="product-card">
 
-              <a href="{{ product.url }}" class="image">
+              <a href="{{ product.url }}" class="image" aria-label="{{ product.title | escape }}">
                 {% if product.featured_image %}
                   {%- assign loading_attr = 'lazy' -%}
                   {%- assign fetchpriority_attr = 'auto' -%}
