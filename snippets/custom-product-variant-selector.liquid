@@ -52,6 +52,28 @@
     {% endstyle %}
 {% endcomment %}
 
+<style>
+  /* Reduce color swatch size by 50% */
+  .color-swatch-list--large .color-swatch__item {
+    width: 22px !important;
+    height: 22px !important;
+  }
+  
+  .color-swatch__item {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  
+  /* Ensure the outer ring adjusts perfectly based on the new size */
+  .color-swatch__radio:checked + .color-swatch__item::after,
+  .color-swatch__button.is-selected .color-swatch__item::after {
+    width: calc(100% + 6px) !important;
+    height: calc(100% + 6px) !important;
+    top: -3px !important;
+    left: -3px !important;
+  }
+</style>
+
 {%- assign selected_variant = product.selected_or_first_available_variant -%}
 {%- assign color_label = 'color,colour,couleur,cor,colore,farbe,색,色,カラー,färg,farve,szín,barva' | split: ',' -%}
 
