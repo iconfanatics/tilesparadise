@@ -124,12 +124,8 @@
 
   {%- assign inst_meta = product.metafields.custom.instructions_pdf -%}
   {%- if inst_meta != blank -%}
-    {%- assign pdf_url = inst_meta.value.url -%}
-    {%- if pdf_url == blank -%}
-      {%- assign pdf_url = inst_meta.value | image_url -%}
-    {%- endif -%}
-    <a href="{{ pdf_url }}" target="_blank" rel="noopener noreferrer" class="tp-acc-item tp-acc-link">
-      <div class="tp-acc-header">
+    <div class="tp-acc-item" id="tp-acc-instructions">
+      <div class="tp-acc-header" onclick="document.getElementById('tp-acc-instructions').classList.toggle('is-open')">
         <div class="tp-acc-title-wrap">
           <span class="tp-acc-icon">
             <svg viewBox="0 0 24 24" fill="currentColor">
@@ -140,7 +136,10 @@
         </div>
         <span class="tp-acc-toggle-icon"></span>
       </div>
-    </a>
+      <div class="tp-acc-content">
+        {{ inst_meta | metafield_tag }}
+      </div>
+    </div>
   {%- endif -%}
 </div>
 
