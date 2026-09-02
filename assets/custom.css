@@ -83,3 +83,14 @@
     min-width: 250px !important;
   }
 }
+
+/* Reduce color swatch size by 50% */
+.color-swatch-list--large .color-swatch__item {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+.color-swatch__item {
+  width: 16px !important;
+  height: 16px !important;
+}
