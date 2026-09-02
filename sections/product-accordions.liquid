@@ -124,7 +124,10 @@
 
   {%- assign inst_meta = product.metafields.custom.instructions_pdf -%}
   {%- if inst_meta != blank -%}
-    {%- assign pdf_url = inst_meta.value.url | default: inst_meta.value -%}
+    {%- assign pdf_url = inst_meta.value.url -%}
+    {%- if pdf_url == blank -%}
+      {%- assign pdf_url = inst_meta.value | image_url -%}
+    {%- endif -%}
     <a href="{{ pdf_url }}" target="_blank" rel="noopener noreferrer" class="tp-acc-item tp-acc-link">
       <div class="tp-acc-header">
         <div class="tp-acc-title-wrap">
