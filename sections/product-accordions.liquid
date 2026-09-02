@@ -117,7 +117,27 @@
         <span class="tp-acc-toggle-icon"></span>
       </div>
       <div class="tp-acc-content">
-        {{ dim_meta | metafield_tag }}
+        {%- assign type = dim_meta.type -%}
+        {%- if type contains 'list' -%}
+          <div style="display: flex; flex-direction: column; gap: 15px;">
+            {%- for file in dim_meta.value -%}
+              {%- if file.src != blank or file.media_type == 'image' -%}
+                <img src="{{ file | image_url: width: 800 }}" alt="Dimensions" style="max-width: 100%; height: auto;">
+              {%- elsif file.url != blank -%}
+                <a href="{{ file.url }}" target="_blank" rel="noopener noreferrer" style="color: #016FD0; font-weight: bold; text-decoration: underline;">View / Download File</a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          {%- assign file = dim_meta.value -%}
+          {%- if file.src != blank or file.media_type == 'image' -%}
+            <img src="{{ file | image_url: width: 800 }}" alt="Dimensions" style="max-width: 100%; height: auto;">
+          {%- elsif file.url != blank -%}
+            <a href="{{ file.url }}" target="_blank" rel="noopener noreferrer" style="color: #016FD0; font-weight: bold; text-decoration: underline;">View / Download File</a>
+          {%- else -%}
+            {{ dim_meta | metafield_tag }}
+          {%- endif -%}
+        {%- endif -%}
       </div>
     </div>
   {%- endif -%}
@@ -137,7 +157,33 @@
         <span class="tp-acc-toggle-icon"></span>
       </div>
       <div class="tp-acc-content">
-        {{ inst_meta | metafield_tag }}
+        {%- assign type = inst_meta.type -%}
+        {%- if type contains 'list' -%}
+          <div style="display: flex; flex-direction: column; gap: 15px;">
+            {%- for file in inst_meta.value -%}
+              {%- if file.src != blank or file.media_type == 'image' -%}
+                <img src="{{ file | image_url: width: 800 }}" alt="Instructions" style="max-width: 100%; height: auto;">
+              {%- elsif file.url != blank -%}
+                <a href="{{ file.url }}" target="_blank" rel="noopener noreferrer" style="color: #016FD0; font-weight: bold; text-decoration: underline; display: inline-flex; align-items: center; gap: 6px;">
+                  <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  View / Download Instructions
+                </a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          {%- assign file = inst_meta.value -%}
+          {%- if file.src != blank or file.media_type == 'image' -%}
+            <img src="{{ file | image_url: width: 800 }}" alt="Instructions" style="max-width: 100%; height: auto;">
+          {%- elsif file.url != blank -%}
+            <a href="{{ file.url }}" target="_blank" rel="noopener noreferrer" style="color: #016FD0; font-weight: bold; text-decoration: underline; display: inline-flex; align-items: center; gap: 6px;">
+              <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              View / Download Instructions
+            </a>
+          {%- else -%}
+            {{ inst_meta | metafield_tag }}
+          {%- endif -%}
+        {%- endif -%}
       </div>
     </div>
   {%- endif -%}
