@@ -107,47 +107,41 @@
           {%- if template != 'product.quick-view' -%}
             {%- assign inst_meta = product.metafields.custom.instructions_pdf -%}
             {%- assign dim_meta = product.metafields.custom.dimensions -%}
-            {%- if inst_meta != blank or dim_meta != blank -%}
-              <div class="product-gallery__custom-anchors" style="display: flex; gap: 10px; margin-top: 15px; justify-content: center; flex-wrap: wrap;">
-                {%- if inst_meta != blank -%}
-                  <a href="#tp-acc-instructions" class="tp-gallery-anchor" onclick="document.getElementById('tp-acc-instructions').classList.add('is-open')">
-                    <svg style="width: 16px; height: 16px; color: #4a5568;" viewBox="0 0 24 24" fill="currentColor"><path d="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.11 3.89,21 5,21H19C20.11,21 21,20.11 21,19V5C21,3.89 20.11,3 19,3M9.5,11.5C9.5,12.33 8.83,13 8,13H7V15H5.5V9H8C8.83,9 9.5,9.67 9.5,10.5V11.5M14.5,13.5C14.5,14.33 13.83,15 13,15H10.5V9H13C13.83,9 14.5,9.67 14.5,10.5V13.5M18.5,10.5H17V11.5H18.5V13H17V15H15.5V9H18.5V10.5M7,10.5V11.5H8V10.5H7M12,10.5V13.5H13V10.5H12Z" /></svg>
-                    Instructions
-                  </a>
-                {%- endif -%}
-                {%- if dim_meta != blank -%}
-                  <a href="#tp-acc-dimensions" class="tp-gallery-anchor" onclick="document.getElementById('tp-acc-dimensions').classList.add('is-open')">
-                    <svg style="width: 16px; height: 16px; color: #4a5568;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2" ry="2" /><line x1="6" y1="7" x2="6" y2="11" /><line x1="10" y1="7" x2="10" y2="11" /><line x1="14" y1="7" x2="14" y2="11" /><line x1="18" y1="7" x2="18" y2="11" /><line x1="8" y1="7" x2="8" y2="9" /><line x1="12" y1="7" x2="12" y2="9" /><line x1="16" y1="7" x2="16" y2="9" /></svg>
-                    Dimensions
-                  </a>
-                {%- endif -%}
-              </div>
-              <style>
-                .tp-gallery-anchor {
-                  display: inline-flex;
-                  align-items: center;
-                  justify-content: center;
-                  gap: 8px;
-                  padding: 12px 18px;
-                  border: 1px solid #e2e8f0;
-                  border-radius: 4px;
-                  background: #fff;
-                  color: #2d3748;
-                  font-weight: 600;
-                  font-size: 14px;
-                  text-decoration: none;
-                  transition: all 0.2s;
-                  flex: 1;
-                  min-width: 120px;
-                  max-width: 200px;
-                  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-                }
-                .tp-gallery-anchor:hover {
-                  background: #f8fafc;
-                  border-color: #cbd5e1;
-                }
-              </style>
-            {%- endif -%}
+            <div class="product-gallery__custom-anchors" style="display: flex; gap: 10px; margin-top: 15px; justify-content: center; flex-wrap: wrap;">
+              <a href="#tp-acc-instructions" class="tp-gallery-anchor" onclick="document.getElementById('tp-acc-instructions').classList.add('is-open')">
+                <svg style="width: 16px; height: 16px; color: #4a5568;" viewBox="0 0 24 24" fill="currentColor"><path d="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.11 3.89,21 5,21H19C20.11,21 21,20.11 21,19V5C21,3.89 20.11,3 19,3M9.5,11.5C9.5,12.33 8.83,13 8,13H7V15H5.5V9H8C8.83,9 9.5,9.67 9.5,10.5V11.5M14.5,13.5C14.5,14.33 13.83,15 13,15H10.5V9H13C13.83,9 14.5,9.67 14.5,10.5V13.5M18.5,10.5H17V11.5H18.5V13H17V15H15.5V9H18.5V10.5M7,10.5V11.5H8V10.5H7M12,10.5V13.5H13V10.5H12Z" /></svg>
+                Instructions
+              </a>
+              <a href="#tp-acc-dimensions" class="tp-gallery-anchor" onclick="document.getElementById('tp-acc-dimensions').classList.add('is-open')">
+                <svg style="width: 16px; height: 16px; color: #4a5568;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2" ry="2" /><line x1="6" y1="7" x2="6" y2="11" /><line x1="10" y1="7" x2="10" y2="11" /><line x1="14" y1="7" x2="14" y2="11" /><line x1="18" y1="7" x2="18" y2="11" /><line x1="8" y1="7" x2="8" y2="9" /><line x1="12" y1="7" x2="12" y2="9" /><line x1="16" y1="7" x2="16" y2="9" /></svg>
+                Dimensions
+              </a>
+            </div>
+            <style>
+              .tp-gallery-anchor {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                padding: 12px 18px;
+                border: 1px solid #e2e8f0;
+                border-radius: 4px;
+                background: #fff;
+                color: #2d3748;
+                font-weight: 600;
+                font-size: 14px;
+                text-decoration: none;
+                transition: all 0.2s;
+                flex: 1;
+                min-width: 120px;
+                max-width: 200px;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+              }
+              .tp-gallery-anchor:hover {
+                background: #f8fafc;
+                border-color: #cbd5e1;
+              }
+            </style>
           {%- endif -%}
         </div>
 
