@@ -1,0 +1,154 @@
+<style>
+  .tp-product-accordions {
+    max-width: 1200px;
+    margin: -10px auto 40px auto;
+    padding: 0 15px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .tp-acc-item {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .tp-acc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    cursor: pointer;
+    color: #1a202c;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    background: #fafafa;
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .tp-acc-header:hover {
+    background: #f1f3f5;
+  }
+  .tp-acc-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .tp-acc-icon {
+    width: 24px;
+    height: 24px;
+    color: #278140; /* Match screenshot green */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tp-acc-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .tp-acc-toggle-icon {
+    font-size: 22px;
+    font-weight: 400;
+    color: #1a202c;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+  }
+  .tp-acc-content {
+    display: none;
+    padding: 24px 20px;
+    border-top: 1px solid #eaeaea;
+    color: #4a5568;
+    line-height: 1.6;
+    background: #fff;
+  }
+  .tp-acc-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  /* Open state */
+  .tp-acc-item.is-open .tp-acc-content {
+    display: block;
+    animation: tpFadeIn 0.3s ease;
+  }
+  .tp-acc-item.is-open .tp-acc-toggle-icon::before {
+    content: "\2013"; /* minus sign */
+  }
+  .tp-acc-item:not(.is-open) .tp-acc-toggle-icon::before {
+    content: "+";
+  }
+  /* For the link which doesn't have open state */
+  .tp-acc-link {
+    display: block;
+  }
+  .tp-acc-link .tp-acc-toggle-icon::before {
+    content: "\203A"; /* single right-pointing angle quotation mark > */
+    font-size: 24px;
+    margin-right: 4px;
+  }
+  @keyframes tpFadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<div class="tp-product-accordions">
+  {%- assign dim_meta = product.metafields.custom.dimensions -%}
+  {%- if dim_meta != blank -%}
+    <div class="tp-acc-item" id="tp-acc-dimensions">
+      <div class="tp-acc-header" onclick="document.getElementById('tp-acc-dimensions').classList.toggle('is-open')">
+        <div class="tp-acc-title-wrap">
+          <span class="tp-acc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="10" rx="2" ry="2" />
+              <line x1="6" y1="7" x2="6" y2="11" />
+              <line x1="10" y1="7" x2="10" y2="11" />
+              <line x1="14" y1="7" x2="14" y2="11" />
+              <line x1="18" y1="7" x2="18" y2="11" />
+              <line x1="8" y1="7" x2="8" y2="9" />
+              <line x1="12" y1="7" x2="12" y2="9" />
+              <line x1="16" y1="7" x2="16" y2="9" />
+            </svg>
+          </span>
+          Dimensions
+        </div>
+        <span class="tp-acc-toggle-icon"></span>
+      </div>
+      <div class="tp-acc-content">
+        {{ dim_meta | metafield_tag }}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- assign inst_meta = product.metafields.custom.instructions_pdf -%}
+  {%- if inst_meta != blank -%}
+    {%- assign pdf_url = inst_meta.value.url | default: inst_meta.value -%}
+    <a href="{{ pdf_url }}" target="_blank" rel="noopener noreferrer" class="tp-acc-item tp-acc-link">
+      <div class="tp-acc-header">
+        <div class="tp-acc-title-wrap">
+          <span class="tp-acc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.11 3.89,21 5,21H19C20.11,21 21,20.11 21,19V5C21,3.89 20.11,3 19,3M9.5,11.5C9.5,12.33 8.83,13 8,13H7V15H5.5V9H8C8.83,9 9.5,9.67 9.5,10.5V11.5M14.5,13.5C14.5,14.33 13.83,15 13,15H10.5V9H13C13.83,9 14.5,9.67 14.5,10.5V13.5M18.5,10.5H17V11.5H18.5V13H17V15H15.5V9H18.5V10.5M7,10.5V11.5H8V10.5H7M12,10.5V13.5H13V10.5H12Z" />
+            </svg>
+          </span>
+          Instructions
+        </div>
+        <span class="tp-acc-toggle-icon"></span>
+      </div>
+    </a>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Product Accordions",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product Accordions"
+    }
+  ]
+}
+{% endschema %}
