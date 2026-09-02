@@ -95,6 +95,20 @@
             {%- if c.box_quantity != blank -%}<li><strong>Box Quantity:</strong> {{ c.box_quantity }}</li>{%- endif -%}
             {%- if c.weight != blank -%}<li><strong>Weight:</strong> {{ c.weight }}</li>{%- endif -%}
             {%- if c.sale_by != blank -%}<li><strong>Sale By:</strong> {{ c.sale_by }}</li>{%- endif -%}
+            
+            {%- comment -%} MIRROR METAFIELDS {%- endcomment -%}
+            {%- if c.width != blank and c.height != blank -%}<li><strong>Size:</strong> {{ c.width }} &times; {{ c.height }}</li>{%- endif -%}
+            {%- if c.width != blank and c.height == blank -%}<li><strong>Width:</strong> {{ c.width }}</li>{%- endif -%}
+            {%- if c.height != blank and c.width == blank -%}<li><strong>Height:</strong> {{ c.height }}</li>{%- endif -%}
+            {%- if c.orientation != blank -%}<li><strong>Orientation:</strong> {{ c.orientation }}</li>{%- endif -%}
+            {%- if c.design != blank -%}<li><strong>Shape / Design:</strong> {{ c.design }}</li>{%- endif -%}
+            {%- if c.frame_type != blank -%}<li><strong>Frame:</strong> {{ c.frame_type }}</li>{%- endif -%}
+            {%- if c.lighting != blank -%}<li><strong>Lighting:</strong> {{ c.lighting }}</li>{%- endif -%}
+            {%- if c.color_temprature != blank -%}<li><strong>Colour Temperature:</strong> {{ c.color_temprature }}</li>{%- endif -%}
+            {%- if c.demister != blank -%}<li><strong>Demister / Anti-Fog:</strong> {{ c.demister }}</li>{%- endif -%}
+            {%- if c.bluetooth != blank -%}<li><strong>Bluetooth:</strong> {{ c.bluetooth }}</li>{%- endif -%}
+            {%- if c.shaver_socket != blank -%}<li><strong>Shaver Socket:</strong> {{ c.shaver_socket }}</li>{%- endif -%}
+            {%- if c.power != blank -%}<li><strong>Power:</strong> {{ c.power }}</li>{%- endif -%}
           </ul>
         </div>
         
