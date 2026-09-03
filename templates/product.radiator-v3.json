@@ -70,7 +70,6 @@
         },
         "delivery_options_block": {
           "type": "delivery_options",
-          "disabled": true,
           "settings": {
             "get_it_text": "Get It Friday",
             "order_in_text": "Order in 21 hours and 4 minutes",
@@ -129,6 +128,7 @@
         "tile_swatches_custom",
         "delivery_estimator_app_block_H7eJFc",
         "buy_buttons",
+        "delivery_options_block",
         "klarna_on_site_messaging_app_block_Dbqqrq",
         "a9c560d5-40e3-4fee-934f-f6b7ef7a9739",
         "description",
