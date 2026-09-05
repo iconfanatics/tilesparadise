@@ -291,6 +291,7 @@
 
 <div class="product-form__info-list">
   <div class="product-form__info-item">
+{% if template.suffix != 'radiator-v3' and template.suffix != 'radiator-v2' and template.suffix != 'radiator' %}
 {% if product.title contains 'Shower' or product.title contains 'Radiator' or product.title contains 'Towel' or product.title contains 'Pallet Deal' %}
   <p class ="free_stand">🚚 FREE STANDARD DELIVERY</p>
   {% endif %}
