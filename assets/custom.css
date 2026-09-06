@@ -109,3 +109,11 @@
 .modal__dialog {
   z-index: 2147483647 !important;
 }
+
+/* Global z-index fixes for popups vs sticky header */
+#shopify-section-header, .header-wrapper, .nav-bar {
+  z-index: 99 !important;
+}
+.klaviyo-form, .needsclick, #omnisend-form-container, .privy-popup-container, .modal, .modal__dialog, div[data-testid="form-component"] {
+  z-index: 999999999 !important;
+}
