@@ -1,6 +1,10 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -153,7 +157,7 @@
       "settings": {
         "title": "",
         "include_margins": true,
-        "liquid": "{%- comment -%}\n  =====================================================================\n  MIRROR — 2-Year Guarantee callout (Liquid block)\n  Compact trust strip. Sits well just below the buy box / Add to Basket.\n  =====================================================================\n{%- endcomment -%}\n\n<style>\n  .mgar-wrap{display:flex;justify-content:center;width:100%;}\n  .mgar{font-family:\"Roboto\",sans-serif;display:flex;align-items:center;gap:14px;max-width:520px;width:100%;background:#eaf3fc;border:1px solid #cfe5fb;border-radius:12px;padding:14px 16px;margin:14px 0}\n  .mgar__ic{flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#016FD0;display:flex;align-items:center;justify-content:center}\n  .mgar__ic svg{width:22px;height:22px;fill:#fff}\n  .mgar__t{font-family:\"Fraunces\",serif;font-weight:700;font-size:17px;color:#016FD0;line-height:1.1}\n  .mgar__d{font-size:13px;color:#3a4047;line-height:1.45;margin-top:3px}\n</style>\n\n<div class=\"mgar-wrap\">\n  <div class=\"mgar\">\n    <span class=\"mgar__ic\">\n      <svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n        <path d=\"M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Zm-1 14-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7Z\"/>\n      </svg>\n    </span>\n    <div>\n      <div class=\"mgar__t\">2-Year Guarantee</div>\n      <div class=\"mgar__d\">Covers the LED lighting and demister, so you can buy with total confidence.</div>\n    </div>\n  </div>\n</div>\n"
+        "liquid": "{%- comment -%}\n  =====================================================================\n  MIRROR — 2-Year Guarantee callout (Liquid block)\n  Compact trust strip. Sits well just below the buy box / Add to Basket.\n  =====================================================================\n{%- endcomment -%}\n\n<style>\n  .mgar-wrap{display:flex;justify-content:center;width:100%;}\n  .mgar{font-family:\"Roboto\",sans-serif;display:flex;align-items:center;gap:14px;max-width:520px;width:100%;background:#eaf3fc;border:1px solid #cfe5fb;border-radius:12px;padding:14px 16px;margin:14px 0}\n  .mgar__ic{flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#016FD0;display:flex;align-items:center;justify-content:center}\n  .mgar__ic svg{width:22px;height:22px;fill:#fff}\n  .mgar__t{font-family:\"Fraunces\",serif;font-weight:700;font-size:17px;color:#016FD0;line-height:1.1}\n  .mgar__d{font-size:13px;color:#3a4047;line-height:1.45;margin-top:3px}\n</style>\n\n<div class=\"mgar-wrap\">\n  <div class=\"mgar\">\n    <span class=\"mgar__ic\">\n      <svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n        <path d=\"M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Zm-1 14-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7Z\"/>\n      </svg>\n    </span>\n    <div>\n      <div class=\"mgar__t\">2-Year Guarantee</div>\n      <div class=\"mgar__d\">Covers the LED lighting and demister, so you can buy with total confidence.</div>\n    </div>\n  </div>\n</div>"
       }
     },
     "1788363900c3059e03": {
@@ -273,15 +277,9 @@
         "tab_3_title": "LED Mirror FAQs"
       }
     },
-    "custom_liquid_t77pJf": {
-      "type": "custom-liquid",
-      "disabled": true,
-      "name": "Paired With",
-      "settings": {
-        "title": "",
-        "include_margins": true,
-        "liquid": "{%- comment -%}\n  =====================================================================\n  MIRROR — \"Customers also paired with\" carousel  (Liquid block)\n  Cross-sells TILES + bathroom products on a mirror page.\n  Pulls a few products from each handle below. CSS scroll (no JS).\n  Edit the handles + per-collection count + heading to taste.\n  =====================================================================\n{%- endcomment -%}\n\n{%- assign source_handles = 'tile-sale,stylish-radiators-heated-towel-rails,luxury-shower-sets,toilets' | split: ',' -%}\n{%- assign per_collection = 3 -%}\n{%- assign heading = 'Customers also paired with' -%}\n\n<style>\n  .pcaro{font-family:\"Roboto\",sans-serif;max-width:1100px;margin:0 auto}\n  .pcaro__h{font-family:\"Fraunces\",serif;font-weight:700;font-size:30px;color:#016FD0;margin:0 0 18px}\n  .pcaro__track{display:flex;gap:16px;overflow-x:auto;padding:4px 4px 14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}\n  .pcaro__track::-webkit-scrollbar{height:6px}\n  .pcaro__track::-webkit-scrollbar-thumb{background:#cfd6dd;border-radius:6px}\n  .pcaro__card{flex:0 0 220px;scroll-snap-align:start;border:2px solid #e6e8eb;border-radius:12px;overflow:hidden;background:#fff;text-decoration:none;color:#1a1d24;transition:border-color .15s}\n  .pcaro__card:hover{border-color:#016FD0}\n  .pcaro__img{position:relative;padding-bottom:100%;background:#f3f5f6}\n  .pcaro__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}\n  .pcaro__save{position:absolute;top:10px;left:10px;background:#c8102e;color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:3px 8px}\n  .pcaro__body{padding:12px 14px}\n  .pcaro__title{font-size:13.5px;font-weight:600;line-height:1.35;min-height:38px;margin-bottom:8px}\n  .pcaro__price{font-size:16px;font-weight:800}\n  .pcaro__price s{font-size:12.5px;color:#6b7280;font-weight:500;margin-left:6px}\n  @media(max-width:640px){.pcaro__h{font-size:24px}.pcaro__card{flex-basis:165px}}\n</style>\n\n<section class=\"pcaro\">\n  <h2 class=\"pcaro__h\">{{ heading }}</h2>\n  <div class=\"pcaro__track\">\n    {%- for h in source_handles -%}\n      {%- assign coll = collections[h] -%}\n      {%- if coll != blank -%}\n        {%- for p in coll.products limit: per_collection -%}\n          <a class=\"pcaro__card\" href=\"{{ p.url }}\">\n            <div class=\"pcaro__img\">\n              {%- if p.compare_at_price > p.price -%}\n                {%- assign pct = p.compare_at_price | minus: p.price | times: 100 | divided_by: p.compare_at_price -%}\n                <span class=\"pcaro__save\">Save {{ pct }}%</span>\n              {%- endif -%}\n              {%- if p.featured_image -%}\n                <img src=\"{{ p.featured_image | image_url: width: 440 }}\" alt=\"{{ p.featured_image.alt | escape | default: p.title }}\" loading=\"lazy\">\n              {%- endif -%}\n            </div>\n            <div class=\"pcaro__body\">\n              <div class=\"pcaro__title\">{{ p.title }}</div>\n              <div class=\"pcaro__price\">{{ p.price | money }}{%- if p.compare_at_price > p.price -%}<s>{{ p.compare_at_price | money }}</s>{%- endif -%}</div>\n            </div>\n          </a>\n        {%- endfor -%}\n      {%- endif -%}\n    {%- endfor -%}\n  </div>\n</section>"
-      }
+    "product_accordions": {
+      "type": "product-accordions",
+      "settings": {}
     },
     "1780773500431ccfd2": {
       "type": "apps",
@@ -426,10 +424,6 @@
         "button_text_color": "#ffffff",
         "button_border_radius": 4
       }
-    },
-    "product_accordions": {
-      "type": "product-accordions",
-      "settings": {}
     }
   },
   "order": [
@@ -439,13 +433,12 @@
     "custom_liquid_xki7ez",
     "product_tabs",
     "product_accordions",
-    "custom_liquid_t77pJf",
-    "1780773500431ccfd2",
-    "custom_liquid_WhPNfa",
-    "blocks_JPq7Pd",
-    "recently_viewed_carousel_QTWnRD",
     "custom_liquid_cGhqfW",
     "custom_liquid_jnhHej",
-    "recently_viewed_paired_new"
+    "blocks_JPq7Pd",
+    "1780773500431ccfd2",
+    "recently_viewed_carousel_QTWnRD",
+    "recently_viewed_paired_new",
+    "custom_liquid_WhPNfa"
   ]
 }
