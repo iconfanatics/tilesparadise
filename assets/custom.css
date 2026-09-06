@@ -94,3 +94,10 @@
   width: 16px !important;
   height: 16px !important;
 }
+/* Custom Newsletter Popup Size */
+@media screen and (min-width: 641px) {
+  .modal--newsletter .modal__dialog, .modal--exit-popup .modal__dialog {
+    max-width: 420px !important;
+    padding: 40px !important;
+  }
+}
