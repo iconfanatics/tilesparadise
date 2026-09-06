@@ -118,31 +118,4 @@
   z-index: 999999999 !important;
 }
 
-/* Popup Close Button & Size Tweaks */
-.popup-newsletter__close, .exit-popup__close, .klaviyo-close-form {
-  position: absolute !important;
-  top: 15px !important;
-  right: 15px !important;
-  width: 30px !important;
-  height: 30px !important;
-  background-color: #000 !important;
-  color: #fff !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  z-index: 999999 !important;
-  opacity: 1 !important;
-  cursor: pointer !important;
-}
-.popup-newsletter__close svg, .exit-popup__close svg, .klaviyo-close-form svg {
-  width: 16px !important;
-  height: 16px !important;
-  fill: #fff !important;
-}
-@media screen and (min-width: 641px) {
-  .modal--newsletter .modal__dialog, .modal--exit-popup .modal__dialog, .klaviyo-form {
-    max-width: 360px !important;
-    padding: 30px !important;
-  }
-}
+
