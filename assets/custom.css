@@ -101,3 +101,11 @@
     padding: 40px !important;
   }
 }
+
+/* Fix popup z-index overlapping with header */
+.modal {
+  z-index: 2147483647 !important;
+}
+.modal__dialog {
+  z-index: 2147483647 !important;
+}
