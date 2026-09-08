@@ -1,7 +1,3 @@
-# robots.txt.liquid — Tiles Paradise
-# Keeps Shopify's auto-maintained default rules, restores the Sitemap line,
-# and adds a lean set of crawl-budget rules to the "*" group only.
-
 {% for group in robots.default_groups %}
   {{- group.user_agent }}
 
@@ -10,13 +6,37 @@
   {%- endfor -%}
 
   {%- if group.user_agent.value == '*' -%}
+
+    {{ '# -- Faceted navigation & filters --' }}
     {{ 'Disallow: /*?*filter*' }}
     {{ 'Disallow: /*?*view=*' }}
-    {{ 'Disallow: /*?q=*' }}
     {{ 'Disallow: /*?*sort_by=*' }}
-    {{ 'Disallow: /*?*pr_prod_strat=*' }}
-    {{ 'Disallow: /*?*pr_rec_id=*' }}
+
+    {{ '# -- Internal search --' }}
+    {{ 'Disallow: /*?q=*' }}
+    {{ 'Disallow: /*?_pos=*' }}
+    {{ 'Disallow: /*?_sid=*' }}
+    {{ 'Disallow: /*?ss=*' }}
+
+    {{ '# -- UTM & marketing tracking --' }}
+    {{ 'Disallow: /*?utm_source=*' }}
+    {{ 'Disallow: /*?utm_medium=*' }}
+    {{ 'Disallow: /*?utm_campaign=*' }}
+    {{ 'Disallow: /*?utm_content=*' }}
+    {{ 'Disallow: /*?utm_term=*' }}
+
+    {{ '# -- Third-party app params --' }}
+    {{ 'Disallow: /*?jdgm_referral_location=*' }}
+    {{ 'Disallow: /*?pr_prod_strat=*' }}
+    {{ 'Disallow: /*?pr_rec_id=*' }}
+
+    {{ '# -- Pagination --' }}
+    {{ 'Disallow: /collections/*?page=*' }}
+    {{ 'Disallow: /blogs/*?page=*' }}
+
+    {{ '# -- Feeds --' }}
     {{ 'Disallow: /*.atom$' }}
+
   {%- endif -%}
 
   {%- if group.sitemap != blank -%}
