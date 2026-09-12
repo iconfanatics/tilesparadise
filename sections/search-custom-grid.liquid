@@ -1,4 +1,20 @@
 <style>
+
+/* ================= SEARCH SPECIFIC FIX ================= */
+body.template-search,
+body.template-search #main {
+  background-color: #ffffff !important;
+}
+.search-header {
+  text-align: center;
+  margin: 40px 0 20px;
+}
+.search-header h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  color: #1a1d24;
+}
+
 /* ================= LAYOUT ================= */
 .collection-wrapper {
   display: grid;
@@ -607,6 +623,11 @@
 </style>
 
 <section class="collection-page page-width {{ section.settings.custom_class }}">
+
+  
+<div class="search-header">
+  <h1>Search Results for "{{ search.terms | escape }}"</h1>
+</div>
 
   <div class="collection-wrapper">
 
