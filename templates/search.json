@@ -12,9 +12,25 @@
     "main": {
       "type": "search-custom-grid",
       "settings": {}
+    },
+    "blog_posts_rYkFhT": {
+      "type": "blog-posts",
+      "name": "Blog posts",
+      "settings": {
+        "blog": "tiles",
+        "blog_posts_count": 3,
+        "title": "Inspiration & Guides",
+        "link_title": "View all",
+        "show_category": false,
+        "show_author": false,
+        "show_date": true,
+        "show_excerpt": false,
+        "stack_mobile": false
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "blog_posts_rYkFhT"
   ]
 }
