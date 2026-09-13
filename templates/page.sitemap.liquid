@@ -1,0 +1,259 @@
+{% comment %}
+  HTML Sitemap with Expandable "Show More" Feature for Tiles Paradise UK
+  100% SEO-Friendly (All links are pre-rendered in HTML DOM for Googlebot)
+{% endcomment %}
+
+<div class="page-width sitemap-container">
+  <header class="sitemap-header">
+    <h1 class="sitemap-title">{{ page.title }}</h1>
+    <p class="sitemap-subtitle">Explore the complete architecture of Tiles Paradise UK products, guides, and collections.</p>
+  </header>
+
+  <div class="sitemap-grid">
+    
+    <!-- 1. PRODUCT COLLECTIONS (COMMERCIAL HUBS) -->
+    <div class="sitemap-column" id="col-collections">
+      <div class="sitemap-col-header">
+        <h2 class="sitemap-col-heading">Product Collections</h2>
+        <span class="badge-total">{{ collections.size }} collections</span>
+      </div>
+      
+      <div class="sitemap-list-wrapper collapsed">
+        <ul class="sitemap-list">
+          {% for collection in collections %}
+            {% unless collection.handle == 'frontpage' or collection.title contains 'Sample' %}
+              <li>
+                <a href="{{ collection.url }}">{{ collection.title }}</a>
+                <span class="item-count">({{ collection.all_products_count }})</span>
+              </li>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+        <div class="fade-overlay"></div>
+      </div>
+      <button type="button" class="btn-toggle-expand" onclick="toggleExpand('col-collections')">
+        <span class="btn-text">View All Collections ▾</span>
+      </button>
+    </div>
+
+    <!-- 2. BLOG GUIDES & ARTICLES (INFORMATIONAL SPOKES) -->
+    <div class="sitemap-column" id="col-blogs">
+      {% paginate blogs['tiles'].articles by 250 %}
+      <div class="sitemap-col-header">
+        <h2 class="sitemap-col-heading">Tile Guides & Blog Posts</h2>
+        <span class="badge-total">{{ blogs['tiles'].articles_count }} guides</span>
+      </div>
+      
+      <div class="sitemap-list-wrapper collapsed">
+        <ul class="sitemap-list">
+          {% for article in blogs['tiles'].articles %}
+            <li>
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </li>
+          {% else %}
+            {% for blog in blogs %}
+              {% for article in blog.articles %}
+                <li>
+                  <a href="{{ article.url }}">{{ article.title }}</a>
+                </li>
+              {% endfor %}
+            {% endfor %}
+          {% endfor %}
+        </ul>
+        <div class="fade-overlay"></div>
+      </div>
+      <button type="button" class="btn-toggle-expand" onclick="toggleExpand('col-blogs')">
+        <span class="btn-text">View All Guides ▾</span>
+      </button>
+      {% endpaginate %}
+    </div>
+
+    <!-- 3. STORE PAGES & INFORMATION -->
+    <div class="sitemap-column" id="col-pages">
+      <div class="sitemap-col-header">
+        <h2 class="sitemap-col-heading">Customer Service & About</h2>
+      </div>
+      
+      <div class="sitemap-list-wrapper collapsed">
+        <ul class="sitemap-list">
+          {% for link in linklists.main-menu.links %}
+            {% if link.type == 'page_link' %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% for link in linklists.footer.links %}
+            {% if link.type == 'page_link' %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <div class="fade-overlay"></div>
+      </div>
+      <button type="button" class="btn-toggle-expand" onclick="toggleExpand('col-pages')">
+        <span class="btn-text">View All Pages ▾</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .sitemap-container {
+    max-width: 1200px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+    font-family: inherit;
+  }
+  .sitemap-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .sitemap-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 8px;
+  }
+  .sitemap-subtitle {
+    font-size: 16px;
+    color: #666;
+  }
+  .sitemap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    align-items: start;
+  }
+  .sitemap-column {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+  }
+  .sitemap-col-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f3f4f6;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .sitemap-col-heading {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+  }
+  .badge-total {
+    font-size: 12px;
+    font-weight: 500;
+    background: #eef2f6;
+    color: #3b82f6;
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+  .sitemap-list-wrapper {
+    position: relative;
+    transition: max-height 0.4s ease-in-out;
+  }
+  .sitemap-list-wrapper.collapsed {
+    max-height: 480px; /* শুরুর ১২-১৪টি আইটেম দেখাবে */
+    overflow: hidden;
+  }
+  .sitemap-list-wrapper.expanded {
+    max-height: none;
+  }
+  .sitemap-list-wrapper.collapsed .fade-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 80%, rgba(255, 255, 255, 1) 100%);
+    pointer-events: none;
+  }
+  .sitemap-list-wrapper.expanded .fade-overlay {
+    display: none;
+  }
+  .sitemap-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sitemap-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #f1f3f5;
+    line-height: 1.45;
+  }
+  .sitemap-list li:last-child {
+    border-bottom: none;
+  }
+  .sitemap-list a {
+    color: #1e3a8a;
+    text-decoration: none;
+    font-size: 14.5px;
+    transition: color 0.15s ease;
+  }
+  .sitemap-list a:hover {
+    color: #ea580c;
+    text-decoration: underline;
+  }
+  .item-count {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-left: 4px;
+  }
+  .btn-toggle-expand {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px 16px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .btn-toggle-expand:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+    color: #0f172a;
+  }
+  @media (max-width: 768px) {
+    .sitemap-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  function toggleExpand(columnId) {
+    var col = document.getElementById(columnId);
+    if (!col) return;
+    
+    var wrapper = col.querySelector('.sitemap-list-wrapper');
+    var btn = col.querySelector('.btn-toggle-expand .btn-text');
+    
+    if (wrapper.classList.contains('collapsed')) {
+      wrapper.classList.remove('collapsed');
+      wrapper.classList.add('expanded');
+      btn.textContent = 'Show Less ▴';
+    } else {
+      wrapper.classList.remove('expanded');
+      wrapper.classList.add('collapsed');
+      
+      if (columnId === 'col-collections') {
+        btn.textContent = 'View All Collections ▾';
+      } else if (columnId === 'col-blogs') {
+        btn.textContent = 'View All Guides ▾';
+      } else {
+        btn.textContent = 'View All Pages ▾';
+      }
+    }
+  }
+</script>

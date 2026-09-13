@@ -348,21 +348,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <script>
-  var mtr = $("input#squareMetre").val();
-  var tile_nu = $(".tile_nu").text();
-  $("input#meter").val(mtr+" m²");
-  $("input#tiles").val(tile_nu);
-  $("input#squareMetre").on('input',function(){
-      var a = $(this).val();
-      $("input#meter").val(a+" m²");
-        setTimeout(function () {
-           var tile_nu = $(".tile_nu").text();
-           $("input#tiles").val(tile_nu);
-        }, 500);
-});
-$(".custom_product_calculation .quantity-selector--product .quantity-selector__button").click(function(){
-    var a = $("input#squareMetre").val(); 
-    $("input#meter").val(a+" m²");
+document.addEventListener('DOMContentLoaded', function() {
+  const squareMetre = document.querySelector('input#squareMetre');
+  const meter = document.querySelector('input#meter');
+  const tiles = document.querySelector('input#tiles');
+  const tileNu = document.querySelector('.tile_nu');
+
+  if(squareMetre && meter && tiles && tileNu) {
+    meter.value = squareMetre.value + " m²";
+    tiles.value = tileNu.innerText || tileNu.textContent;
+
+    squareMetre.addEventListener('input', function() {
+      meter.value = this.value + " m²";
+      setTimeout(function () {
+         const currentTileNu = document.querySelector('.tile_nu');
+         if(currentTileNu) tiles.value = currentTileNu.innerText || currentTileNu.textContent;
+      }, 500);
+    });
+  }
+
+  const buttons = document.querySelectorAll('.custom_product_calculation .quantity-selector--product .quantity-selector__button');
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function(){
+      if(squareMetre && meter) meter.value = squareMetre.value + " m²";
+    });
+  });
 });
 </script>
 

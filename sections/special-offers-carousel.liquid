@@ -57,12 +57,11 @@
   </div>
 </section>
 
-<!-- SWIPER CDN -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+function initSwiper() {
+    if (typeof Swiper !== 'undefined') {
   new Swiper('.special-offers-swiper', {
     slidesPerView: {{ section.settings.slides_desktop }},
     spaceBetween: 16,
@@ -96,8 +95,13 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
-});
-</script>
+}
+    } else {
+      setTimeout(initSwiper, 300);
+    }
+  }
+  document.addEventListener('DOMContentLoaded', initSwiper);
+</script>>
 
 <style>
 /* SECTION */

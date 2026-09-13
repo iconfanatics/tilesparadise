@@ -268,7 +268,8 @@
 
 
     <script>
-document.addEventListener('DOMContentLoaded', function () {
+function initSwiper() {
+    if (typeof Swiper !== 'undefined') {
 
   new Swiper('.bestSellingSwiper', {
     loop: true,
@@ -291,5 +292,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-});
-</script>
+}
+    } else {
+      setTimeout(initSwiper, 300);
+    }
+  }
+  document.addEventListener('DOMContentLoaded', initSwiper);
+</script>>

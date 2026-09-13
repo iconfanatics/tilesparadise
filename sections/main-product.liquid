@@ -537,38 +537,50 @@
 
 
 <script>
-$(document).ready(function() {
-  $(".quantity-selector__button:last-child").click(function() {
-    let quantity_pair = $('.metafield_button').find('.quantity_name').val();
-    let ans1 = parseInt(quantity_pair) + 1;
-    $('.quantity_name').val(ans1);
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll(".quantity-selector__button:last-child").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      const qInput = document.querySelector('.metafield_button .quantity_name');
+      if (qInput) {
+        let ans1 = parseInt(qInput.value || 0) + 1;
+        document.querySelectorAll('.quantity_name').forEach(el => el.value = ans1);
+      }
+    });
   });
 
-  $(".decrease").click(function() {
-    let quantity_pair = $('.metafield_button').find('.quantity_name').val();
-    let ans2 = parseInt(quantity_pair) - 1;
-    $('.quantity_name').val(ans2);
+  document.querySelectorAll(".decrease").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      const qInput = document.querySelector('.metafield_button .quantity_name');
+      if (qInput) {
+        let ans2 = parseInt(qInput.value || 0) - 1;
+        document.querySelectorAll('.quantity_name').forEach(el => el.value = ans2);
+      }
+    });
   });
 });
 </script>
-
 
 
 
   <script>
-$(document).ready(function(){
+document.addEventListener('DOMContentLoaded', function(){
   setTimeout(function(){
-    $(".metafield_button").click(function(){
-      $(".mini-cart").addClass("another_cart_custom");
+    document.querySelectorAll(".metafield_button").forEach(function(btn) {
+      btn.addEventListener("click", function(){
+        const miniCart = document.querySelector(".mini-cart");
+        if (miniCart) miniCart.classList.add("another_cart_custom");
+      });
     });
   }, 5000);
-  
-  $(".header__action-item--cart").click(function(){
-    $(".mini-cart").removeClass("another_cart_custom");
+
+  document.querySelectorAll(".header__action-item--cart").forEach(function(btn) {
+    btn.addEventListener("click", function(){
+      const miniCart = document.querySelector(".mini-cart");
+      if (miniCart) miniCart.classList.remove("another_cart_custom");
+    });
   });
 });
 </script>
-
 
 
       

@@ -895,17 +895,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const MAX_WAIT = 4000;
   const start = Date.now();
+  let intervalId;
 
   function hasReviews() {
     return document.querySelector('.vtl-pr-review, .vtl-pr-main-widget');
   }
 
-  function check(final = false) {
+  function check() {
     if (hasReviews()) {
-      return; // show normally
+      clearInterval(intervalId);
+      return;
     }
 
-    if (final) {
+    if (Date.now() - start > MAX_WAIT) {
+      clearInterval(intervalId);
       // Hide Reviews tab if empty
       const tabBtn = document.querySelector('[data-tab="reviews"]');
       const tabContent = document.getElementById('reviews');
@@ -915,17 +918,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  const observer = new MutationObserver(() => {
-    check(false);
-    if (Date.now() - start > MAX_WAIT) check(true);
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-
-  setTimeout(() => check(true), MAX_WAIT);
+  intervalId = setInterval(check, 500);
 });
 </script>
 

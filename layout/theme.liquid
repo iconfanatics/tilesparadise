@@ -63,11 +63,7 @@ You can learn more about this (and learn how to cleanly revert these changes) at
         <link rel="preload" as="script" href="{{ 'theme.js' | asset_url }}">
         <link rel="preconnect" href="https://cdn.shopify.com">
     <link rel="preconnect" href="https://fonts.shopifycdn.com">
-    <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
     <link rel="dns-prefetch" href="https://ajax.googleapis.com">
-    <link rel="dns-prefetch" href="https://maps.googleapis.com">
-    <link rel="dns-prefetch" href="https://maps.gstatic.com">
-
     {% render 'social-meta-tags' %}
     {% render 'css-variables' %}
 
@@ -157,11 +153,8 @@ You can learn more about this (and learn how to cleanly revert these changes) at
 {%- endif -%}
   
 
-    <script type="text/lazyload" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script type="text/lazyload"
-src="https://www.paypal.com/sdk/js?client-id=AdzC8dXZ7LAwzsCYBxgPtP7qIueZFh9XhIynecEgiUyiwhVk3rEB-uJC_Jh-uud20jqtCHKU0e4l3zru&currency=GBP&components=messages"
-data-namespace="PayPalSDK">
-</script>
+    
+    
 
 
 
@@ -189,11 +182,11 @@ data-namespace="PayPalSDK">
     <!-- Preconnect for Google Fonts -->
             
     <!-- Load Google Fonts Asynchronously -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" media="print" onload="this.media='all'">
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
     </noscript>
@@ -238,24 +231,7 @@ data-namespace="PayPalSDK">
     <ul hidden>
       <li id="a11y-new-window-message">{{ 'general.accessibility.new_window' | t }}</li>
     </ul>
-  {% render 'preorder-now' %}
-    <style>
-    .jdgm-all-reviews-text__text {
-    color: #000 !important;
-}
-      .jdgm-widget.jdgm-all-reviews-text { 
-    text-align: center !important;
-}
-.jdgm-all-reviews-text>a {
- width: fit-content !important;
- margin: auto !important;
-}
-      
- .jdgm-all-reviews-text a {
-    color: #000 !important;
-    text-decoration: none !important;
-}
-    </style>
+  
     
   
 
@@ -297,50 +273,7 @@ data-namespace="PayPalSDK">
   })();
 </script>
   
-<!-- ACCESSIBILITY FORCE FIX FOR AGENTS -->
-<script>
-  (function() {
-    function enforceA11y() {
-      document.querySelectorAll('.header__search-button, [data-action="toggle-search"]').forEach(function(btn) {
-        if (btn.tagName === 'BUTTON' && (!btn.hasAttribute('aria-label') || btn.getAttribute('aria-label') !== 'Search')) {
-          btn.setAttribute('aria-label', 'Search');
-        }
-      });
-      document.querySelectorAll('.slideshow__slide, .flickity-slider > a').forEach(function(slide) {
-        if (slide.tagName === 'A') {
-          slide.setAttribute('aria-label', slide.getAttribute('aria-label') || 'Slide');
-        }
-        if (slide.getAttribute('aria-hidden') === 'true') {
-          slide.setAttribute('tabindex', '-1');
-        }
-      });
-    }
 
-    // Run immediately
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', enforceA11y);
-    } else {
-      enforceA11y();
-    }
-
-    var debounceTimer;
-    var observer = new MutationObserver(function(mutations) {
-      if (debounceTimer) clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(function() {
-        enforceA11y();
-      }, 300);
-    });
-
-    if (document.body) {
-      observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-hidden', 'class'] });
-    } else {
-      document.addEventListener('DOMContentLoaded', function() {
-        observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-hidden', 'class'] });
-      });
-    }
-  })();
-</script>
-<!-- END ACCESSIBILITY FORCE FIX -->
 </body>
 
 </html>

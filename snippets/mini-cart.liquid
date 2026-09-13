@@ -228,94 +228,61 @@
 </form>
 
 <script>
-// Decrease quantity
-$(document).on('click', '.mini-cart__quantity [data-action="decrease-quantity"]', function(event) {
+document.addEventListener('click', function(event) {
+  // Decrease quantity
+  let decreaseBtn = event.target.closest('.mini-cart__quantity [data-action="decrease-quantity"]');
+  if (decreaseBtn) {
     event.preventDefault();
-    var $quantitySelector = $(this);
-var prod_id = $(this).attr('data-id');
-var position = $(this).attr('index');
-var cart_posit = $quantitySelector.parents('.mini-cart__line-item').attr('data-place');
-  // alert(cart_posit);
-    setTimeout(function() {
-    if (position = cart_posit)  {
-       
-        // Use .find() to locate the descendant element
-        var a = parseInt($quantitySelector.closest('.mini-cart__quantity').find('.quantity-selector__value').val(), 10);
-        var b = a - 1;
-        var tile = $quantitySelector.parents('.mini-cart__line-item').find('.cart_chang').val();
-		var fin_met = (b * tile).toFixed(2); 
-		setTimeout(function(){
-        
-        $quantitySelector.parents(".mini-cart__line-item").children(".mini-cart__item-wrapper").children(".mini-cart__product-info").children("ul.mini-cart__property-list").html("<li class='mini-cart__property'>"+ fin_met +"</li>");
-		
-	//	alert(fin_met);
-		//alert($quantitySelector.parents(".mini-cart__line-item").children(".mini-cart__item-wrapper").children(".mini-cart__product-info").children("ul.mini-cart__property-list").html());
-    }, 1500);
-        jQuery.ajax({
-            url: '/cart/change.js',
-            type: 'post',
-            dataType: 'json',
-            data: {
-                id: prod_id,  
-              quantity : b,
-                properties: {"meter": fin_met}
-            },
-            success: function(data) { 
-                console.log('Cart updated successfully:', data);
-            },
-            error: function(error) {
-                console.error('Error updating cart:', error);
-                // Handle error, e.g., display an error message
-            }
-        });
+    handleQuantityChange(decreaseBtn, -1);
+  }
 
-    }
-    }, 2000);
+  // Increase quantity
+  let increaseBtn = event.target.closest('.mini-cart__quantity [data-action="increase-quantity"]');
+  if (increaseBtn) {
+    event.preventDefault();
+    handleQuantityChange(increaseBtn, 1);
+  }
 });
 
-// Increase quantity
-$(document).on('click', '.mini-cart__quantity [data-action="increase-quantity"]', function(event) {
-    event.preventDefault();
-    var $quantitySelector = $(this);
-var prod_id = $(this).attr('data-id');
-var position = $(this).attr('index');
-var cart_posit = $quantitySelector.parents('.mini-cart__line-item').attr('data-place');
-  // alert(cart_posit);
-    setTimeout(function() {
-    if (position = cart_posit)  {
-       
-        // Use .find() to locate the descendant element
-        var a = parseInt($quantitySelector.closest('.mini-cart__quantity').find('.quantity-selector__value').val(), 10);
-        var b = a + 1;
-        var tile = $quantitySelector.parents('.mini-cart__line-item').find('.cart_chang').val();
-		var fin_met = (b * tile).toFixed(2); 
-		setTimeout(function(){
-        
-        $quantitySelector.parents(".mini-cart__line-item").children(".mini-cart__item-wrapper").children(".mini-cart__product-info").children("ul.mini-cart__property-list").html("<li class='mini-cart__property'>"+ fin_met +"</li>");
-		
-		
-		//alert($quantitySelector.parents(".mini-cart__line-item").children(".mini-cart__item-wrapper").children(".mini-cart__product-info").children("ul.mini-cart__property-list").html());
-    }, 1500);
-        jQuery.ajax({
-            url: '/cart/change.js',
-            type: 'post',
-            dataType: 'json',
-            data: {
-                id: prod_id,  
-              quantity : b,
-                properties: {"meter": fin_met}
-            },
-            success: function(data) { 
-                console.log('Cart updated successfully:', data);
-            },
-            error: function(error) {
-                console.error('Error updating cart:', error);
-                // Handle error, e.g., display an error message
-            }
-        });
+function handleQuantityChange(btn, delta) {
+  var prod_id = btn.getAttribute('data-id');
+  var position = btn.getAttribute('index');
+  var lineItem = btn.closest('.mini-cart__line-item');
+  var cart_posit = lineItem ? lineItem.getAttribute('data-place') : null;
 
+  setTimeout(function() {
+    if (position == cart_posit && lineItem) {
+      var qtyInput = lineItem.querySelector('.quantity-selector__value');
+      var a = qtyInput ? parseInt(qtyInput.value, 10) : 0;
+      var b = a + delta;
+      
+      var tileInput = lineItem.querySelector('.cart_chang');
+      var tile = tileInput ? parseFloat(tileInput.value) : 0;
+      var fin_met = (b * tile).toFixed(2);
+      
+      setTimeout(function() {
+        var propList = lineItem.querySelector('.mini-cart__property-list');
+        if (propList) {
+          propList.innerHTML = "<li class='mini-cart__property'>" + fin_met + "</li>";
+        }
+      }, 1500);
+      
+      fetch('/cart/change.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          id: prod_id,
+          quantity: b,
+          properties: { "meter": fin_met }
+        })
+      })
+      .then(response => response.json())
+      .then(data => console.log('Cart updated successfully:', data))
+      .catch(error => console.error('Error updating cart:', error));
     }
-    }, 2000);
-});
-
+  }, 2000);
+}
 </script>
