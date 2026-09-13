@@ -623,7 +623,7 @@
 }
 </style>
 
-<section class="collection-page page-width {{ section.settings.custom_class }}">
+<section data-section-id="{{ section.id }}" data-section-type="collection" data-section-settings='{}' class="collection-page page-width {{ section.settings.custom_class }}">
 
   
 <div class="search-header">
@@ -941,6 +941,8 @@
         </div>
 
       {% endpaginate %}
+
+      <div class="link-search-results" style="display: none"></div>
 
     </div>
 
