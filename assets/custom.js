@@ -186,38 +186,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!button) return;
 
-    // We only want to force a reload on the cart page itself.
-    // The mini-cart handles its own AJAX gracefully without reloading.
-    if (window.location.pathname !== '/cart') return;
-
     e.preventDefault();
-    e.stopPropagation();
 
-    const line = button.dataset.line || button.dataset.id;
+    const line = button.dataset.line;
+
     let quantity = parseInt(button.dataset.quantity);
 
     if (!line || isNaN(quantity)) return;
 
-    // Show visual feedback
-    document.documentElement.classList.add('is-loading');
-    button.style.pointerEvents = 'none';
-    button.style.opacity = '0.5';
-
-    // Shopify API expects 'line' as an integer index, or 'id' as a variant ID / key string.
-    const payload = { quantity: quantity };
-    if (/^\d+$/.test(line) && line.length < 5) {
-      payload.line = parseInt(line, 10);
-    } else {
-      payload.id = line;
-    }
-
     try {
+
       const response = await fetch('/cart/change.js', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          line: line,
+          quantity: quantity
+        })
       });
 
       if (!response.ok) {
@@ -227,13 +214,12 @@ document.addEventListener("DOMContentLoaded", function () {
       location.reload();
 
     } catch (error) {
+
       console.error('Cart quantity error:', error);
-      document.documentElement.classList.remove('is-loading');
-      button.style.pointerEvents = 'auto';
-      button.style.opacity = '1';
+
     }
 
-  }, true); // Use capture phase so we intercept before theme.js (which uses delegateRoot)
+  });
 
 });
 
